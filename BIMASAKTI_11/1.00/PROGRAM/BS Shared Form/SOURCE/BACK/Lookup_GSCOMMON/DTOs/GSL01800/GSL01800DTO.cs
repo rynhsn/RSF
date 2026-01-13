@@ -9,6 +9,7 @@
         public string CCATEGORY_TYPE { get; set; }
         public string CCATEGORY_TYPE_DESCR { get; set; }
         public string CPARENT { get; set; }
+        public string CPARENT_ID { get; set; }
         public string CPARENT_NAME { get; set; }
         public bool LHAS_CHILD { get; set; }
     }

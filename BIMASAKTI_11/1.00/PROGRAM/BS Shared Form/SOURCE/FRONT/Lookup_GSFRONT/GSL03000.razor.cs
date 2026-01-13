@@ -106,7 +106,7 @@ namespace Lookup_GSFRONT
         }
 
         #region Category
-        private async Task Category_OnLostFocus()
+        private async Task Category_OnLostFocused()
         {
             var loEx = new R_Exception();
 

@@ -1286,6 +1286,34 @@ namespace Lookup_GSModel
 
             return loResult;
         }
+        public async Task<GSL03800DTO> GSL03800GetLocationAsync(GSL03800ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            GSL03800DTO loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+
+                var loTempResult = await R_HTTPClientWrapper.R_APIRequestObject<GSLGenericRecord<GSL03800DTO>, GSL03800ParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicRecordLookup.GSL03800GetLocation),
+                    poEntity,
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+                loResult = loTempResult.Data;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
 
         #region Not Implement
         public GSLGenericRecord<GSL00100DTO> GSL00100GetSalesTax(GSL00100ParameterDTO poEntity)
@@ -1465,6 +1493,10 @@ namespace Lookup_GSModel
             throw new NotImplementedException();
         }
         public GSLGenericRecord<GSL03700DTO> GSL03700GetMessage(GSL03700ParameterDTO poEntity)
+        {
+            throw new NotImplementedException();
+        }
+        public GSLGenericRecord<GSL03800DTO> GSL03800GetLocation(GSL03800ParameterDTO poEntity)
         {
             throw new NotImplementedException();
         }

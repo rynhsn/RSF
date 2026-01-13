@@ -14,19 +14,24 @@
             <R_GridColumns>
                 <R_GridTextColumn FieldName="@nameof(GSL03700DTO.CMESSAGE_NO_NAME)" HeaderText="@_localizer["_Message"]" Width="150px"></R_GridTextColumn>
                 <R_GridTextColumn FieldName="@nameof(GSL03700DTO.CMESSAGE_TYPE_DESCR)" HeaderText="@_localizer["_MessageType"]" Width="120px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="@nameof(GSL03700DTO.TMESSAGE_DESCRIPTION)" HeaderText="@_localizer["_Desc"]" Width="200px"></R_GridTextColumn>
-                <R_GridTextColumn FieldName="@nameof(GSL03700DTO.CADDITIONAL_DESCRIPTION)" HeaderText="@_localizer["_AdditionalCharges"]" Width="200px"></R_GridTextColumn>
             </R_GridColumns>
         </R_Grid>
     </R_StackLayout>
 
-    <R_StackLayout Row Class="justify-content-end">
+    <R_StackLayout Row Justify="@R_eJustify.SpaceBetween">
+        <R_ItemLayout>
+            <R_Popup R_Before_Open_Popup="@R_Before_Open_PopupViewMessage">
+                @_localizer["_View"]
+            </R_Popup>
+        </R_ItemLayout>
+        <R_ItemLayout>
             <R_Button OnClick="Button_OnClickOkAsync">
                 @_localizer["_OkBtn"]
             </R_Button>
             <R_Button OnClick="Button_OnClickCloseAsync">
                 @_localizer["_CancelBtn"]
             </R_Button>
+        </R_ItemLayout>
     </R_StackLayout>
 
 </R_StackLayout>

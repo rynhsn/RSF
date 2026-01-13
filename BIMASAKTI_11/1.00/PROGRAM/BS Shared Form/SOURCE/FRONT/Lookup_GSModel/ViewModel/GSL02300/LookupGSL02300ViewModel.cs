@@ -23,12 +23,12 @@ namespace Lookup_GSModel.ViewModel
             {
                 var loResult = await _model.GSL02300GetBuildingUnitListAsync(poParameter);
 
-                if (string.IsNullOrWhiteSpace(poParameter.CREMOVE_DATA_UNIT_ID_SEPARATOR) == false)
-                {
-                    var itemsToRemove = poParameter.CREMOVE_DATA_UNIT_ID_SEPARATOR.Split(',').ToList();
+                //if (string.IsNullOrWhiteSpace(poParameter.CREMOVE_DATA_UNIT_ID_SEPARATOR) == false)
+                //{
+                //    var itemsToRemove = poParameter.CREMOVE_DATA_UNIT_ID_SEPARATOR.Split(',').ToList();
 
-                    loResult.RemoveAll(item => itemsToRemove.Contains(item.CUNIT_ID));
-                }
+                //    loResult.RemoveAll(item => itemsToRemove.Contains(item.CUNIT_ID));
+                //}
 
                 BuildingUnitGrid = new ObservableCollection<GSL02300DTO>(loResult);
             }

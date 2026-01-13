@@ -21,7 +21,7 @@ namespace Lookup_GSFRONT
 
             try
             {
-                var loParam = (GSL02300ParameterDTO)poParameter;
+                var loParam = R_FrontUtility.ConvertObjectToObject<GSL02300ParameterDTO>(poParameter);
                 EnableTexboxFloor = string.IsNullOrWhiteSpace(loParam.CFLOOR_ID);
                 _Parameter = loParam;
                 if (string.IsNullOrWhiteSpace(loParam.CFLOOR_ID))
@@ -30,7 +30,7 @@ namespace Lookup_GSFRONT
                 }
                 else
                 {
-                    await Floor_OnLostFocus();
+                    await Floor_OnLostFocused();
                 }
             }
             catch (Exception ex)
@@ -71,7 +71,7 @@ namespace Lookup_GSFRONT
 
         #region Floor
 
-        private async Task Floor_OnLostFocus()
+        private async Task Floor_OnLostFocused()
         {
             var loEx = new R_Exception();
 

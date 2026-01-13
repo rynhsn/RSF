@@ -1395,5 +1395,35 @@ namespace Lookup_GSSERVICES
             _Logger.LogInfo("End GSL03700GetMessage");
             return loRtn;
         }
+
+        [HttpPost]
+        public async Task<GSLGenericRecord<GSL03800DTO>> GSL03800GetLocation(GSL03800ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03800GetLocation");
+            var loEx = new R_Exception();
+            GSLGenericRecord<GSL03800DTO> loRtn = new();
+            _Logger.LogInfo("Start GSL03800GetLocation");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLMessage");
+                var loResult = await loCls.GetALLLocation(poEntity);
+
+                _Logger.LogInfo("Filter Search by text GSL03800GetLocation");
+                loRtn.Data = loResult.Find(x => x.CLOCATION_ID.Trim().ToUpper() == poEntity.CSEARCH_TEXT.ToUpper().Trim());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            _Logger.LogInfo("End GSL03800GetLocation");
+            return loRtn;
+        }
     }
 }

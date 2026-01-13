@@ -15,6 +15,7 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_FASERVICES\Lookup_FAServices.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\FA\FAT00100SERVICE\FAT00100Service.csproj" />
   </ItemGroup>
 	<ItemGroup>

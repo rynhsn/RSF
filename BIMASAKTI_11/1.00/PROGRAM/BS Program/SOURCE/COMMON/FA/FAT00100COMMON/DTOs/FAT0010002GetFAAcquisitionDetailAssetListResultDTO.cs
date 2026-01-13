@@ -15,7 +15,7 @@ namespace FAT00100Common.DTOs
         public string CUNIT { get; set; } = string.Empty;
         public string CASSET_DEPT_CODE { get; set; } = string.Empty;
         public string CASSET_DEPT_NAME { get; set; } = string.Empty;
-        public string CASSET_LOCATION { get; set; } = string.Empty;
+        
         public string CJRNGRP_CODE { get; set; } = string.Empty;
         public string CJRNGRP_DESC { get; set; } = string.Empty;
         public string CTAX_CATEGORY_CODE { get; set; } = string.Empty;
@@ -28,6 +28,11 @@ namespace FAT00100Common.DTOs
         public string CASSET_OWNER { get; set; } = string.Empty;
 
         public string CREC_ID { get; set; } = string.Empty;
+        public string CPROPERTY_ID { get; set; } = string.Empty;
+        public string CLOCATION_ID { get; set; } = string.Empty;
+
+
+
     }
 }
 

@@ -448,6 +448,15 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string _Close {
+            get {
+                return ResourceManager.GetString("_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to COA.
         /// </summary>
         internal static string _COA {
@@ -880,6 +889,24 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location ID.
+        /// </summary>
+        internal static string _LocationID {
+            get {
+                return ResourceManager.GetString("_LocationID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location Name.
+        /// </summary>
+        internal static string _LocationName {
+            get {
+                return ResourceManager.GetString("_LocationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Local Curr. Base Rate.
         /// </summary>
         internal static string _LocCurrBaseRate {
@@ -1083,6 +1110,15 @@ namespace Lookup_GSFrontResources {
         internal static string _ProductUOM {
             get {
                 return ResourceManager.GetString("_ProductUOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property.
+        /// </summary>
+        internal static string _Property {
+            get {
+                return ResourceManager.GetString("_Property", resourceCulture);
             }
         }
         
@@ -1573,6 +1609,24 @@ namespace Lookup_GSFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        internal static string _View {
+            get {
+                return ResourceManager.GetString("_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Message.
+        /// </summary>
+        internal static string _ViewMessage {
+            get {
+                return ResourceManager.GetString("_ViewMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Warehouse.
         /// </summary>
         internal static string _Warehouse {
@@ -1641,6 +1695,15 @@ namespace Lookup_GSFrontResources {
         internal static string V01 {
             get {
                 return ResourceManager.GetString("V01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection invalid! Only Category without sub-category can be selected!.
+        /// </summary>
+        internal static string V02 {
+            get {
+                return ResourceManager.GetString("V02", resourceCulture);
             }
         }
     }

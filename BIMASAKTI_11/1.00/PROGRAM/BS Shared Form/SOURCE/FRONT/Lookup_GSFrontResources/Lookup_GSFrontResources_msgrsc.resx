@@ -129,6 +129,9 @@
   <data name="V01" xml:space="preserve">
     <value>Please select Category!</value>
   </data>
+  <data name="V02" xml:space="preserve">
+    <value>Selection invalid! Only Category without sub-category can be selected!</value>
+  </data>
   <data name="_AccountName" xml:space="preserve">
     <value>Account Name</value>
   </data>
@@ -258,6 +261,9 @@
   </data>
   <data name="_City" xml:space="preserve">
     <value>City</value>
+  </data>
+  <data name="_Close" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="_COA" xml:space="preserve">
     <value>COA</value>
@@ -403,6 +409,12 @@
   <data name="_Location" xml:space="preserve">
     <value>Location</value>
   </data>
+  <data name="_LocationID" xml:space="preserve">
+    <value>Location ID</value>
+  </data>
+  <data name="_LocationName" xml:space="preserve">
+    <value>Location Name</value>
+  </data>
   <data name="_LocCurrBaseRate" xml:space="preserve">
     <value>Local Curr. Base Rate</value>
   </data>
@@ -473,6 +485,9 @@
   </data>
   <data name="_ProductUOM" xml:space="preserve">
     <value>Product UOM</value>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
   </data>
   <data name="_RateDate" xml:space="preserve">
     <value>Rate Date</value>
@@ -635,6 +650,12 @@
   </data>
   <data name="_UserRestr" xml:space="preserve">
     <value>User Restriction</value>
+  </data>
+  <data name="_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="_ViewMessage" xml:space="preserve">
+    <value>View Message</value>
   </data>
   <data name="_Warehouse" xml:space="preserve">
     <value>Warehouse</value>

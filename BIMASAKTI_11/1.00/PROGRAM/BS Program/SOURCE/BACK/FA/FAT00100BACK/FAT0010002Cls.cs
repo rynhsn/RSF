@@ -12,6 +12,8 @@ using FAT00100Back.DTOs;
 using FAT00100BackResources;
 using FAT00100Common.DTOs;
 using System.Reflection.Metadata;
+using R_Storage;
+using R_StorageCommon;
 
 namespace FAT00100Back
 {
@@ -402,6 +404,8 @@ namespace FAT00100Back
             var loEx = new R_Exception();
             var loDb = new R_Db();
             var loRtn = new FAT0010002DTO();
+            R_ReadParameter loReadParameter = null;
+            R_ReadResult loReadResult = null;
 
             try
             {
@@ -424,6 +428,25 @@ namespace FAT00100Back
 
                 var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 loRtn = R_Utility.R_ConvertTo<FAT0010002DTO>(loDataTable).FirstOrDefault();
+
+                if (loRtn != null)
+                {
+                    if (string.IsNullOrEmpty(loRtn.CSTORAGE_ID) == false)
+                    {
+                        loReadParameter = new R_ReadParameter()
+                        {
+                            StorageId = loRtn.CSTORAGE_ID
+                        };
+
+                        loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                        loRtn.OIMAGE = loReadResult.Data;
+                        loRtn.CFILE_EXTENSION = loReadResult.FileExtension;
+                        loRtn.CFILE_NAME = loReadResult.FileName;
+                        //loResult.Data.CFILE_NAME_EXTENSION = loReadResult.FileName + loReadResult.FileExtension;
+                    }
+                }
+                
             }
             catch (Exception ex)
             {
@@ -459,62 +482,78 @@ namespace FAT00100Back
             string lcCmd = string.Empty;
             string lcQuery = string.Empty;
 
+            FAT00100ImageStorageTypeDTO loStorageType = null;
+
             try
             {
+                if (poNewEntity.OIMAGE != null)
+                {
+                    loStorageType = await GetStorageType();
+                    if (loStorageType != null)
+                    {
+                        await SetStorageID(poNewEntity, loStorageType);
+                    }
+                }
+                
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
 
                 // Determine action based on CRUD mode
                 string lcAction = peCRUDMode == eCRUDMode.AddMode ? "NEW" : "EDIT";
 
+                
+
+               
+
                 // Map DTO properties to stored procedure parameters
-                        loCmd.Parameters.Clear();
+                loCmd.Parameters.Clear();
                 lcQuery = $"RSP_FAT00100_SAVE_TRANS_ASSET ";
                 loCmd.CommandType = CommandType.StoredProcedure;
                 loCmd.CommandText = lcQuery;
 
-                        loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poNewEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poNewEntity.CUSER_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 50, lcAction);
-                loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poNewEntity.CREC_ID);
-                    loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, poNewEntity.CDEPT_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 50, poNewEntity.CREFERENCE_NO);
-                loDb.R_AddCommandParameter(loCmd, "@CREF_DATE", DbType.String, 50, poNewEntity.CTRANSACTION_DATE);
-                    loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, poNewEntity.CASSET_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANS_SEQ_NO", DbType.String, 50, poNewEntity.CTRANS_SEQNO);
-                loDb.R_AddCommandParameter(loCmd, "@CASSET_NAME", DbType.String, 50, poNewEntity.CASSET_NAME);
-                    loDb.R_AddCommandParameter(loCmd, "@CASSET_DEPT_CODE", DbType.String, 50, poNewEntity.CASSET_DEPT_CODE);
-                    loDb.R_AddCommandParameter(loCmd, "@CJRNGRP_CODE", DbType.String, 50, poNewEntity.CJRNGRP_CODE);
-                    loDb.R_AddCommandParameter(loCmd, "@CCATEGORY_CODE", DbType.String, 50, poNewEntity.CCATEGORY_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CTAX_CATEGORY_CODE", DbType.String, 50, poNewEntity.CTAX_CATEGORY_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@IQTY", DbType.Int32, 4, poNewEntity.IQTY);
-                    loDb.R_AddCommandParameter(loCmd, "@CUNIT", DbType.String, 50, poNewEntity.CUNIT);
-                loDb.R_AddCommandParameter(loCmd, "@CSERIAL_NO", DbType.String, 50, poNewEntity.CSERIAL_NO);
-                    loDb.R_AddCommandParameter(loCmd, "@CASSET_LOCATION", DbType.String, 50, poNewEntity.CASSET_LOCATION);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANS_DESC", DbType.String, 50, poNewEntity.CTRANS_DESC);
-                loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID", DbType.String, 50, poNewEntity.CSTORAGE_ID);
-                    loDb.R_AddCommandParameter(loCmd, "@CINSERVICE_DATE", DbType.String, 50, poNewEntity.CINSERVICE_DATE);
-                loDb.R_AddCommandParameter(loCmd, "@LNEW", DbType.Boolean, 1, poNewEntity.LNEW);
-                loDb.R_AddCommandParameter(loCmd, "@NINIT_COST", DbType.Decimal, 9, poNewEntity.NINIT_COST);
-                loDb.R_AddCommandParameter(loCmd, "@NADDITION", DbType.Decimal, 9, poNewEntity.NADDITION);
-                loDb.R_AddCommandParameter(loCmd, "@NDEDUCTION", DbType.Decimal, 9, poNewEntity.NDEDUCTION);
-                loDb.R_AddCommandParameter(loCmd, "@NPRIOR_DEPR", DbType.Decimal, 9, poNewEntity.NPRIOR_DEPR);
-                loDb.R_AddCommandParameter(loCmd, "@NYTD_DEPR", DbType.Decimal, 9, poNewEntity.NYTD_DEPR);
-                    loDb.R_AddCommandParameter(loCmd, "@CDEPR_METHOD", DbType.String, 50, poNewEntity.CDEPR_METHOD);
-                    loDb.R_AddCommandParameter(loCmd, "@CSTART_DATE", DbType.String, 50, poNewEntity.CSTART_DATE);
-                loDb.R_AddCommandParameter(loCmd, "@NBOOK_VALUE", DbType.Decimal, 0, poNewEntity.NBOOK_VALUE);
-                loDb.R_AddCommandParameter(loCmd, "@NBEG_BOOK_VALUE", DbType.Decimal, 0, poNewEntity.NBEG_BOOK_VALUE);
-                loDb.R_AddCommandParameter(loCmd, "@NRESIDUAL_VALUE", DbType.Decimal, 0, poNewEntity.NRESIDUAL_VALUE);
-                loDb.R_AddCommandParameter(loCmd, "@IUSEFUL_LIFE_YY", DbType.Int32, 4, poNewEntity.IUSEFUL_LIFE_YY);
-                loDb.R_AddCommandParameter(loCmd, "@IUSEFUL_LIFE_MM", DbType.Int32, 4, poNewEntity.IUSEFUL_LIFE_MM);
-                loDb.R_AddCommandParameter(loCmd, "@IREMAINING_LIFE_YY", DbType.Int32, 4, poNewEntity.IREMAINING_LIFE_YY);
-                loDb.R_AddCommandParameter(loCmd, "@IREMAINING_LIFE_MM", DbType.Int32, 4, poNewEntity.IREMAINING_LIFE_MM);
-                    loDb.R_AddCommandParameter(loCmd, "@NYEAR_DEPR_PCT", DbType.Decimal, 0, poNewEntity.NYEAR_DEPR_PCT);
-                loDb.R_AddCommandParameter(loCmd, "@NYEAR_DEPR", DbType.Decimal, 0, poNewEntity.NYEAR_DEPR);
-                loDb.R_AddCommandParameter(loCmd, "@NLBASE_RATE", DbType.Decimal, 0, poNewEntity.NLBASE_RATE);
-                loDb.R_AddCommandParameter(loCmd, "@NLCURRENCY_RATE", DbType.Decimal, 0, poNewEntity.NLCURRENCY_RATE);
-                loDb.R_AddCommandParameter(loCmd, "@NBBASE_RATE", DbType.Decimal, 0, poNewEntity.NBBASE_RATE);
-                loDb.R_AddCommandParameter(loCmd, "@NBCURRENCY_RATE", DbType.Decimal, 0, poNewEntity.NBCURRENCY_RATE);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poNewEntity.CCOMPANY_ID);                //@CCOMPANY_ID	varchar	8                         
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 30, poNewEntity.CUSER_ID);                      //@CUSER_ID	varchar	30
+                loDb.R_AddCommandParameter(loCmd, "@CACTION", DbType.String, 10, lcAction);                                   //@CACTION	varchar	10
+                loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poNewEntity.CREC_ID);                        //@CREC_ID	varchar	50
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poNewEntity.CDEPT_CODE);              //@CDEPT_CODE	varchar	20
+                loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poNewEntity.CREF_NO);                  //@CREF_NO	varchar	30
+                loDb.R_AddCommandParameter(loCmd, "@CREF_DATE", DbType.String, 8, poNewEntity.CREF_DATE);            //@CREF_DATE	varchar	8
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 30, poNewEntity.CASSET_CODE);            //@CASSET_CODE	varchar	30
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_SEQ_NO", DbType.String, 6, poNewEntity.CTRANS_SEQNO);             //@CTRANS_SEQ_NO	char	6
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_NAME", DbType.String, 200, poNewEntity.CASSET_NAME);                //@CASSET_NAME	nvarchar	200
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_DEPT_CODE", DbType.String, 20, poNewEntity.CASSET_DEPT_CODE);  //@CASSET_DEPT_CODE	varchar	20
+                loDb.R_AddCommandParameter(loCmd, "@CJRNGRP_CODE", DbType.String, 20, poNewEntity.CJRNGRP_CODE);          //@CJRNGRP_CODE	varchar	20
+                loDb.R_AddCommandParameter(loCmd, "@CCATEGORY_CODE", DbType.String, 20, poNewEntity.CCATEGORY_CODE);      //@CCATEGORY_CODE	varchar	20
+                loDb.R_AddCommandParameter(loCmd, "@CTAX_CATEGORY_CODE", DbType.String, 20, poNewEntity.CTAX_CATEGORY_CODE);  //@CTAX_CATEGORY_CODE	varchar	20
+                loDb.R_AddCommandParameter(loCmd, "@IQTY", DbType.Int32, 4, poNewEntity.IQTY);                                //@IQTY	int	4
+                loDb.R_AddCommandParameter(loCmd, "@CUNIT", DbType.String, 40, poNewEntity.CUNIT);                        //@CUNIT	nvarchar	40
+                loDb.R_AddCommandParameter(loCmd, "@CSERIAL_NO", DbType.String, 50, poNewEntity.CSERIAL_NO);                  //@CSERIAL_NO	varchar	30
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poNewEntity.CPROPERTY_ID);          //@CPROPERTY_ID	varchar	20
+                loDb.R_AddCommandParameter(loCmd, "@CLOCATION_ID", DbType.String, 20, poNewEntity.CLOCATION_ID);              //@CLOCATION_ID	varchar	20
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_DESC", DbType.String, 200, poNewEntity.CTRANS_DESC);               //@CTRANS_DESC	nvarchar	200
+                loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID", DbType.String, 50, poNewEntity.CSTORAGE_ID);                //@CSTORAGE_ID	varchar	50
+                loDb.R_AddCommandParameter(loCmd, "@CINSERVICE_DATE", DbType.String, 8, poNewEntity.CINSERVICE_DATE);    //@CINSERVICE_DATE	varchar	8
+                loDb.R_AddCommandParameter(loCmd, "@LNEW", DbType.Boolean, 1, poNewEntity.LNEW);                              //@LNEW	bit	1
+                loDb.R_AddCommandParameter(loCmd, "@NINIT_COST", DbType.Decimal, 9, poNewEntity.NINIT_COST);                  //@NINIT_COST	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@NADDITION", DbType.Decimal, 9, poNewEntity.NADDITION);                    //@NADDITION	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@NDEDUCTION", DbType.Decimal, 9, poNewEntity.NDEDUCTION);                  //@NDEDUCTION	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@NPRIOR_DEPR", DbType.Decimal, 9, poNewEntity.NPRIOR_DEPR);                //@NPRIOR_DEPR	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@NYTD_DEPR", DbType.Decimal, 9, poNewEntity.NYTD_DEPR);                    //@NYTD_DEPR	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@CDEPR_METHOD", DbType.String, 20, poNewEntity.CDEPR_METHOD);          //@CDEPR_METHOD	varchar	20
+                loDb.R_AddCommandParameter(loCmd, "@CSTART_DATE", DbType.String, 8, poNewEntity.CSTART_DATE);            //@CSTART_DATE	varchar	8
+                loDb.R_AddCommandParameter(loCmd, "@NBOOK_VALUE", DbType.Decimal, 9, poNewEntity.NBOOK_VALUE);                //@NBOOK_VALUE	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@NBEG_BOOK_VALUE", DbType.Decimal, 9, poNewEntity.NBEG_BOOK_VALUE);        //@NBEG_BOOK_VALUE	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@NRESIDUAL_VALUE", DbType.Decimal, 9, poNewEntity.NRESIDUAL_VALUE);        //@NRESIDUAL_VALUE	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@IUSEFUL_LIFE_YY", DbType.Int32, 4, poNewEntity.IUSEFUL_LIFE_YY);          //@IUSEFUL_LIFE_YY	int	4
+                loDb.R_AddCommandParameter(loCmd, "@IUSEFUL_LIFE_MM", DbType.Int32, 4, poNewEntity.IUSEFUL_LIFE_MM);          //@IUSEFUL_LIFE_MM	int	4
+                loDb.R_AddCommandParameter(loCmd, "@IREMAINING_LIFE_YY", DbType.Int32, 4, poNewEntity.IREMAINING_LIFE_YY);    //@IREMAINING_LIFE_YY	int	4
+                loDb.R_AddCommandParameter(loCmd, "@IREMAINING_LIFE_MM", DbType.Int32, 4, poNewEntity.IREMAINING_LIFE_MM);    //@IREMAINING_LIFE_MM	int	4
+                loDb.R_AddCommandParameter(loCmd, "@NYEAR_DEPR_PCT", DbType.Decimal, 5, poNewEntity.NYEAR_DEPR_PCT);      //@NYEAR_DEPR_PCT	numeric	5
+                loDb.R_AddCommandParameter(loCmd, "@NYEAR_DEPR", DbType.Decimal, 9, poNewEntity.NYEAR_DEPR);                  //@NYEAR_DEPR	numeric	9
+                loDb.R_AddCommandParameter(loCmd, "@NLBASE_RATE", DbType.Decimal, 13, poNewEntity.NLBASE_RATE);                //@NLBASE_RATE	numeric	13
+                loDb.R_AddCommandParameter(loCmd, "@NLCURRENCY_RATE", DbType.Decimal, 13, poNewEntity.NLCURRENCY_RATE);        //@NLCURRENCY_RATE	numeric	13
+                loDb.R_AddCommandParameter(loCmd, "@NBBASE_RATE", DbType.Decimal, 13, poNewEntity.NBBASE_RATE);                //@NBBASE_RATE	numeric	13
+                loDb.R_AddCommandParameter(loCmd, "@NBCURRENCY_RATE", DbType.Decimal, 13, poNewEntity.NBCURRENCY_RATE);        //@NBCURRENCY_RATE	numeric	13
 
                 _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
                 // Execute stored procedure and get result
@@ -681,7 +720,147 @@ namespace FAT00100Back
             return loResult;
         }
 
-        
+
+        private async Task<FAT00100ImageStorageTypeDTO> GetStorageType()
+        {
+            using Activity activity = _activitySource.StartActivity("GetStorageType");
+            var loEx = new R_Exception();
+            FAT00100ImageStorageTypeDTO loResult = null;
+            var loDb = new R_Db();
+            DbConnection loConn = null;
+            DbCommand loCmd = null;
+
+            try
+            {
+                loConn = await loDb.GetConnectionAsync();
+                loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_STORAGE_TYPE";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_LOGIN_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
+                try
+                {
+                    //Debug Logs
+                    var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                    _logger.LogDebug("EXEC RSP_GS_GET_STORAGE_TYPE {@poParameter}", loDbParam);
+
+                    var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                    loResult = R_Utility.R_ConvertTo<FAT00100ImageStorageTypeDTO>(loDataTable).FirstOrDefault();
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != System.Data.ConnectionState.Closed)
+                        loConn.Close();
+
+                    loConn.Dispose();
+                    loConn = null;
+                }
+                if (loCmd != null)
+                {
+                    loCmd.Dispose();
+                    loCmd = null;
+                }
+                if (loDb != null)
+                {
+                    loDb = null;
+                }
+            }
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
+        private async Task<FAT0010002DTO> SetStorageID(FAT0010002DTO poNewEntity, FAT00100ImageStorageTypeDTO poStorageType)
+        {
+            using Activity activity = _activitySource.StartActivity("SetStorageID");
+            var loEx = new R_Exception();
+            string lcQuery = "";
+            var loDb = new R_Db();
+            DbConnection loConn = null;
+            R_SaveResult loSaveResult;
+            R_ConnectionAttribute loConnAttr;
+
+            try
+            {
+                loConn = await loDb.GetConnectionAsync();
+                loConnAttr = loDb.GetConnectionAttribute();
+
+                //Set Storage Type
+                R_EStorageType loStorageType;
+                loStorageType = poStorageType.CSTORAGE_TYPE != "1" ? R_EStorageType.OnPremise : R_EStorageType.Cloud;
+
+                R_EProviderForCloudStorage loProvider;
+                loProvider = poStorageType.CSTORAGE_PROVIDER_ID.ToLower() != "azure" ? R_EProviderForCloudStorage.google : R_EProviderForCloudStorage.azure;
+
+                //Add and create Storage ID
+                R_AddParameter loAddParameter;
+
+                loAddParameter = new R_AddParameter()
+                {
+                    StorageType = loStorageType,
+                    ProviderCloudStorage = loProvider,
+                    FileName = poNewEntity.CPROPERTY_ID,
+                    FileExtension = poNewEntity.CPROPERTY_ID,
+                    UploadData = poNewEntity.OIMAGE,
+                    UserId = poNewEntity.CUSER_ID,
+                    BusinessKeyParameter = new R_BusinessKeyParameter()
+                    {
+                        CCOMPANY_ID = poNewEntity.CCOMPANY_ID,
+                        CDATA_TYPE = "STORAGE_DATA_TABLE",
+                        CKEY01 = poNewEntity.CPROPERTY_ID,
+                    }
+                };
+                loSaveResult = R_StorageUtility.AddFile(loAddParameter, loConn, loConnAttr.Provider);
+
+                //Set Storage ID CSTORAGE_ID
+                poNewEntity.CSTORAGE_ID = loSaveResult.StorageId;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loConn != null)
+                {
+                    if (loConn.State != System.Data.ConnectionState.Closed)
+                        loConn.Close();
+
+                    loConn.Dispose();
+                    loConn = null;
+                }
+                if (loDb != null)
+                {
+                    loDb = null;
+                }
+            }
+        EndBlock:
+            loEx.ThrowExceptionIfErrors();
+            return poNewEntity;
+        }
+
     }
 }
 

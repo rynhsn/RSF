@@ -418,7 +418,7 @@ public partial class PMT03500OtherUnit
             var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
             // _tabDetail = loData.CUTILITY_TYPE is "03" or "04" && loData.CSTATUS.Length > 0;
 
-            _hasDetail = loData.CSTATUS_CODE == "00" && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit;
+            _hasDetail = loData.CSTATUS_CODE != "00" && _conductorRefUtility.R_ConductorMode != R_eConductorMode.Edit;
 
             _viewModelUtility.EntityUtility = loData;
             _viewModelUtility.EntityUtility.CPROPERTY_ID = _viewModel.PropertyId;
@@ -490,7 +490,8 @@ public partial class PMT03500OtherUnit
     private void BeforeEditUtility(R_BeforeEditEventArgs eventArgs)
     {
         var loData = (PMT03500UtilityUsageDTO)eventArgs.Data;
-        eventArgs.Cancel = loData.CSTATUS.Length > 0;
+        //eventArgs.Cancel = loData.CSTATUS.Length > 0;
+        eventArgs.Cancel = loData.CSTATUS_CODE == "00" ? false : true; //Edit ZF
     }
 
     private void SetEdit(R_SetEditGridColumnEventArgs eventArgs)

@@ -8,7 +8,10 @@ namespace FAT00100Common.DTOs
     public class FAT0010002DTO
     {
 
-        
+        // Standard properties (ALWAYS at top)
+        public string CCOMPANY_ID { get; set; } = string.Empty;
+        public string CLANG_ID { get; set; } = string.Empty;
+        public string CUSER_ID { get; set; } = string.Empty;
 
 
         //dto Crud
@@ -22,7 +25,9 @@ namespace FAT00100Common.DTOs
         public int IQTY { get; set; }                                    // int(4)
         public string CUNIT { get; set; } = string.Empty;                // nvarchar(40)
         public string CSERIAL_NO { get; set; } = string.Empty;           // varchar(30)
-        public string CASSET_LOCATION { get; set; } = string.Empty;      // nvarchar(200)
+        public string CPROPERTY_ID { get; set; } = string.Empty;        // nvarchar(20)
+        public string CLOCATION_ID { get; set; } = string.Empty;         // nvarchar(20)
+                 
         public string CTRANS_DESC { get; set; } = string.Empty;          // nvarchar(200)
         public string CSTORAGE_ID { get; set; } = string.Empty;          // varchar(50)
         public string CINSERVICE_DATE { get; set; } = string.Empty;      // varchar(8)
@@ -82,16 +87,23 @@ namespace FAT00100Common.DTOs
 
 
 
-        // Standard properties (ALWAYS at top)
-        public string CCOMPANY_ID { get; set; } = string.Empty;
-        public string CLANG_ID { get; set; } = string.Empty;
-        public string CUSER_ID { get; set; } = string.Empty;
+        
 
         //additional standard properties
         public string CREF_NO { get; set; } = string.Empty;
         public string CLANGUAGE_ID { get; set; } = string.Empty;
         public DateTime? DSTART_DATE { get; set; }
         public string CREF_DATE { get; set; } = string.Empty;
+        public string CSOFT_PERIOD { get; set; } = string.Empty;
+        public string CLOCATION_NAME { get; set; } = string.Empty;
+        public string CPROPERTY_NAME { get; set; } = string.Empty;
+        public string CBUILDING_ID { get; set; } = string.Empty;
+        public string CBUILDING_NAME { get; set; } = string.Empty;
+        public string CFLOOR_ID { get; set; } = string.Empty;
+        public string CFLOOR_NAME { get; set; } = string.Empty;
+        public byte[] OIMAGE { get; set; }
+        public string CFILE_NAME { get; set; } = "";
+        public string CFILE_EXTENSION { get; set; } = "";
 
         // Business properties
         public string CFOREIGN_LANGUAGE { get; set; } = string.Empty;

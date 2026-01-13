@@ -449,9 +449,66 @@
     <value>Tanggal Referensi tidak boleh lebih awal dari Periode Soft!</value>
   </data>
   <data name="Val_AssetCode" xml:space="preserve">
-    <value>Silakan pilih Kode Aset!</value>
+    <value>Kode Aset wajib diisi!</value>
+  </data>
+  <data name="Val_AssetName" xml:space="preserve">
+    <value>Nama Aset wajib diisi!</value>
+  </data>
+  <data name="Val_AssetDepartment" xml:space="preserve">
+    <value>Silakan pilih Departemen Aset!</value>
+  </data>
+  <data name="Val_AssetJournalGroup" xml:space="preserve">
+    <value>Silakan pilih Grup Jurnal Aset!</value>
+  </data>
+  <data name="Val_AssetCategory" xml:space="preserve">
+    <value>Silakan pilih Kategori Aset!</value>
+  </data>
+  <data name="Val_AssetTaxCategory" xml:space="preserve">
+    <value>Silakan pilih Kategori Pajak Aset!</value>
+  </data>
+  <data name="Val_Unit" xml:space="preserve">
+    <value>Satuan wajib diisi!</value>
+  </data>
+  <data name="Val_Location" xml:space="preserve">
+    <value>Lokasi wajib diisi!</value>
   </data>
   <data name="Val_Description" xml:space="preserve">
     <value>Deskripsi wajib diisi!</value>
+  </data>
+  <data name="_Unit" xml:space="preserve">
+    <value>Satuan</value>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Properti</value>
+  </data>
+  <data name="_Building" xml:space="preserve">
+    <value>Gedung</value>
+  </data>
+  <data name="_Floor" xml:space="preserve">
+    <value>Lantai</value>
+  </data>
+  <data name="_Reference" xml:space="preserve">
+    <value>Referensi</value>
+  </data>
+  <data name="_Curr" xml:space="preserve">
+    <value>Mata Uang</value>
+  </data>
+  <data name="_DepartmentCode" xml:space="preserve">
+    <value>Kode Departemen</value>
+  </data>
+  <data name="_DepartmentName" xml:space="preserve">
+    <value>Nama Departemen</value>
+  </data>
+  <data name="_Percent" xml:space="preserve">
+    <value>Persen</value>
+  </data>
+  <data name="_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="_Save" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="_Cancel" xml:space="preserve">
+    <value>Batal</value>
   </data>
 </root>

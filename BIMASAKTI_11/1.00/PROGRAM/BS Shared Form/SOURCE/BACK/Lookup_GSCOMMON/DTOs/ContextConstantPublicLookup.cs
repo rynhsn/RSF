@@ -56,5 +56,8 @@
         public const string CREF_TYPE = "CREF_TYPE";
         public const string CREF_CODE = "CREF_CODE";
         public const string CSIGN_ID = "CSIGN_ID";
+        public const string CPARENT_ID = "CPARENT_ID";
+        public const string LCHILD_ONLY_SP = "LCHILD_ONLY_SP";
+        public const string CLOCATION_ID = "CLOCATION_ID";
     }
 }

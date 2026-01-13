@@ -21,6 +21,45 @@ namespace Lookup_GSLBACK
             _activitySource = PublicLookupGSActivitySourceBase.R_GetInstanceActivitySource();
         }
 
+        public async Task<List<GSLPropertyDTO>> GetALLProperty()
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLProperty");
+            var loEx = new R_Exception();
+            List<GSLPropertyDTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = await loDb.GetConnectionAsync();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_GET_PROPERTY_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+             .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_GET_PROPERTY_LIST {@poParameter}", loDbParam);
+
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSLPropertyDTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
         public async Task<List<GSL00100DTO>> GetALLSalesTax()
         {
             using Activity activity = _activitySource.StartActivity("GetALLSalesTax");
@@ -1057,14 +1096,16 @@ namespace Lookup_GSLBACK
                 var loConn = await loDb.GetConnectionAsync();
                 var loCmd = loDb.GetCommand();
 
-                var lcQuery = "RSP_GS_GET_CATEGORY_LIST";
+                var lcQuery = "RSP_GS_GET_HIERARCHY_CATEGORY_LIST";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, R_BackGlobalVar.USER_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CCATEGORY_TYPE", DbType.String, 50, poEntity.CCATEGORY_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CPARENT_ID", DbType.String, 50, poEntity.CPARENT_ID);
+                //loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@LCHILD_ONLY", DbType.Boolean, 50, false);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, R_BackGlobalVar.CULTURE);
 
                 //Debug Logs
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()
@@ -1078,7 +1119,7 @@ namespace Lookup_GSLBACK
                 foreach (var x in loResult)
                 {
                     x.ILEVEL_CCATEGORY_ID_CCATEGORY_NAME_DISPLAY = string.Format("[{0}] {1} - {2}", x.ILEVEL, x.CCATEGORY_ID, x.CCATEGORY_NAME);
-                    x.CPARENT = string.IsNullOrWhiteSpace(x.CPARENT) ? null : x.CPARENT;
+                    x.CPARENT_ID = string.IsNullOrWhiteSpace(x.CPARENT_ID) ? null : x.CPARENT_ID;
                 }
             }
             catch (Exception ex)
@@ -2147,5 +2188,47 @@ namespace Lookup_GSLBACK
 
             return loResult;
         }
+        public async Task<List<GSL03800DTO>> GetALLLocation(GSL03800ParameterDTO poEntity)
+        {
+            using Activity activity = _activitySource.StartActivity("GetALLLocation");
+            var loEx = new R_Exception();
+            List<GSL03800DTO> loResult = null;
+
+            try
+            {
+                var loDb = new R_Db();
+                var loConn = await loDb.GetConnectionAsync();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = "RSP_GS_LOOKUP_LOCATION";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poEntity.CPROPERTY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CACTIVE_TYPE", DbType.String, 50, poEntity.CACTIVE_TYPE);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 50, R_BackGlobalVar.CULTURE);
+                loDb.R_AddCommandParameter(loCmd, "@CLOCATION_ID", DbType.String, 50, poEntity.CLOCATION_ID);
+
+                //Debug Logs
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                .Where(x => x != null && x.ParameterName.StartsWith("@")).Select(x => x.Value);
+                _Logger.LogDebug("EXEC RSP_GS_LOOKUP_LOCATION {@poParameter}", loDbParam);
+
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, true);
+
+                loResult = R_Utility.R_ConvertTo<GSL03800DTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+
     }
 }

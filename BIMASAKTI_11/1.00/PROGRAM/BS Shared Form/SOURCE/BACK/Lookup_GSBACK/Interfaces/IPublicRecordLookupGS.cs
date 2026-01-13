@@ -50,5 +50,6 @@ namespace Lookup_GSLBACK
         Task<GSLGenericRecord<GSL03500DTO>> GSL03500GetWarehouse(GSL03500ParameterDTO poEntity);
         Task<GSLGenericRecord<GSL03600DTO>> GSL03600GetCompany(GSL03600ParameterDTO poEntity);
         Task<GSLGenericRecord<GSL03700DTO>> GSL03700GetMessage(GSL03700ParameterDTO poEntity);
+        Task<GSLGenericRecord<GSL03800DTO>> GSL03800GetLocation(GSL03800ParameterDTO poEntity);
     }
 }

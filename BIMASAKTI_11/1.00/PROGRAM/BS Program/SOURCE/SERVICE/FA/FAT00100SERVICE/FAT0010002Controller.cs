@@ -259,11 +259,11 @@ namespace FAT00100Service
                 // Create parameter DTO internally with global variables and streaming context
                 var loParam = new FAT00100GetStatusListParameterDTO
                 {
-                    CAPPLICATION = R_Utility.R_GetStreamingContext<string>(ContextConstants.CAPPLICATION) ?? "RHAPSODY",
+                    CAPPLICATION = "BIMASAKTI",
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CCLASS_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CCLASS_ID) ?? "_FA_DEPR_METHOD",
+                    CCLASS_ID = "_FA_DEPR_METHOD",
                     CLANGUAGE_ID = R_BackGlobalVar.CULTURE,
-                    CREC_ID_LIST = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREC_ID_LIST) ?? string.Empty
+                    CREC_ID_LIST = ""
                 };
 
                 _logger.LogInfo("Start method GetComboDepreciationMethod in {0}", lcMethod);

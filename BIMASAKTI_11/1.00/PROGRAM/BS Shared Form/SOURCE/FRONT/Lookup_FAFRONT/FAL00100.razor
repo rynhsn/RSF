@@ -1,0 +1,33 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_AssetTaxTypeLookup")]
+@inject R_ILocalizer<Lookup_FAFrontResources.Resources_Dummy_Class> _localizer
+@using Lookup_FACommon.DTOs
+
+<R_StackLayout Style="width: 800px">
+     <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.TaxTypeGrid"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="@R_eGridType.Navigator"
+                Pageable="true"
+                Height="300px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(FAL00100DTO.CTAX_TYPE_ID)" HeaderText="@_localizer["_TaxTypeId"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(FAL00100DTO.CTAX_TYPE_NAME)" HeaderText="@_localizer["_TaxTypeName"]" Width="300px"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="int" FieldName="@nameof(FAL00100DTO.IUSEFUL_LIFE)" ThousandSeparator="false" HeaderText="@_localizer["_UsefulLife"]" Width="200px"></R_GridNumericColumn>
+                <R_GridCheckBoxColumn FieldName="@nameof(FAL00100DTO.LACTIVE)" HeaderText="@_localizer["_Active"]" Width="100px"></R_GridCheckBoxColumn>
+                <R_GridTextColumn FieldName="@nameof(FAL00100DTO.CTAX_TYPE_DESC)" HeaderText="@_localizer["_TaxTypeDesc"]" Width="300px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            @_localizer["_OkBtn"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["_CancelBtn"]
+        </R_Button>
+</R_StackLayout>
+
+</R_StackLayout>

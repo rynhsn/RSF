@@ -26,6 +26,39 @@ namespace Lookup_GSModel
         {
         }
 
+
+        #region PropertyList
+        public IAsyncEnumerable<GSLPropertyDTO> GSLPropertyList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSLPropertyDTO>> GSLPropertyListAsync()
+        {
+            var loEx = new R_Exception();
+            List<GSLPropertyDTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSLPropertyDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSLPropertyList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
+        }
+        #endregion
+
         #region GSL00100
         public IAsyncEnumerable<GSL00100DTO> GSL00100GetSalesTaxList()
         {
@@ -878,7 +911,7 @@ namespace Lookup_GSModel
             try
             {
                 //Set Context
-                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, poParameter.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPARENT_ID, poParameter.CPARENT_ID);
                 R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CCATEGORY_TYPE, poParameter.CCATEGORY_TYPE);
 
                 R_HTTPClientWrapper.httpClientName = _HttpClientName;
@@ -1775,6 +1808,42 @@ namespace Lookup_GSModel
         public IAsyncEnumerable<GSL03700DTO> GSL03700GetMessageList()
         {
             throw new NotImplementedException();
+        }
+        #endregion
+
+        #region GSL03800
+        public IAsyncEnumerable<GSL03800DTO> GSL03800GetLocationList()
+        {
+            throw new NotImplementedException();
+        }
+        public async Task<List<GSL03800DTO>> GSL03800GetLocationListAsync(GSL03800ParameterDTO poEntity)
+        {
+            var loEx = new R_Exception();
+            List<GSL03800DTO> loResult = null;
+
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CPROPERTY_ID, string.IsNullOrWhiteSpace(poEntity.CPROPERTY_ID) ? "" : poEntity.CPROPERTY_ID);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CACTIVE_TYPE, string.IsNullOrWhiteSpace(poEntity.CACTIVE_TYPE) ? "" : poEntity.CACTIVE_TYPE);
+                R_FrontContext.R_SetStreamingContext(ContextConstantPublicLookup.CLOCATION_ID, string.IsNullOrWhiteSpace(poEntity.CLOCATION_ID) ? "" : poEntity.CLOCATION_ID);
+               
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<GSL03800DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookup.GSL03800GetLocationList),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+
         }
         #endregion
     }

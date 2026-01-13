@@ -14,13 +14,14 @@ namespace Lookup_GSFRONT
         private LookupGSL01800ViewModel _viewModel = new LookupGSL01800ViewModel();
         private R_TreeView<GSL01800TreeDTO> _treeRef;
         private R_Conductor _conductorRef;
-
+        private GSL01800DTOParameter _loParameter = new GSL01800DTOParameter();
         protected override async Task R_Init_From_Master(object poParameter)
         {
             var loEx = new R_Exception();
 
             try
             {
+                _loParameter = (GSL01800DTOParameter)poParameter;
                 await _treeRef.R_RefreshTree(poParameter);
             }
             catch (Exception ex)
@@ -86,7 +87,7 @@ namespace Lookup_GSFRONT
             var loConductorData = (GSL01800DTO)eventArgs.Data;
             var loData = R_FrontUtility.ConvertObjectToObject<GSL01800TreeDTO>(loConductorData);
             loData.Id = loConductorData.CCATEGORY_ID;
-            loData.ParentId = loConductorData.CPARENT;
+            loData.ParentId = loConductorData.CPARENT_ID;
             loData.Description = string.Format("[{0}] {1} - {2}", loConductorData.ILEVEL, loConductorData.CCATEGORY_ID, loConductorData.CCATEGORY_NAME);
             loData.Note = loConductorData.CCATEGORY_TYPE_DESCR;
             loData.Level = loConductorData.ILEVEL;
@@ -96,9 +97,16 @@ namespace Lookup_GSFRONT
         public async Task Button_OnClickOkAsync()
         {
             var loCurrentData = (GSL01800TreeDTO)_treeRef.CurrentSelectedData;
-            var loData = _viewModel.ListResult.FirstOrDefault(x => x.CCATEGORY_ID == loCurrentData.Id);
 
-            await this.Close(true, loData);
+            var loData = _viewModel.ListResult.FirstOrDefault(x => x.CCATEGORY_ID == loCurrentData.Id);
+            if (_loParameter.LCHILD_ONLY == true && loData.LHAS_CHILD == true)
+            {
+                await R_MessageBox.Show("V02", _localizer["V02"]);
+            }
+            else
+            {
+                await this.Close(true, loData);
+            }
         }
         public async Task Button_OnClickCloseAsync()
         {

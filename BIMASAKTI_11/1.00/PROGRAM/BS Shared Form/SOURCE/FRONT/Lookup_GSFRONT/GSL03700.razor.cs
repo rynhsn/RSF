@@ -47,7 +47,11 @@ namespace Lookup_GSFRONT
 
             loEx.ThrowExceptionIfErrors();
         }
-
+        private void R_Before_Open_PopupViewMessage(R_BeforeOpenPopupEventArgs eventArgs)
+        {
+            eventArgs.Parameter = GridRef.GetCurrentData();
+            eventArgs.TargetPageType = typeof(GSL03701);
+        }
         public async Task Button_OnClickOkAsync()
         {
             var loData = GridRef.GetCurrentData();

@@ -1507,7 +1507,7 @@ namespace FAT00100Front
                 var loParam = new FAT0010002DTO
                 {
                     CDEPT_CODE = loEntity.CDEPT_CODE ?? string.Empty,
-                    CTRANSACTION_CODE = loEntity.CSOURCE_MODULE =="FA"? "200010" : "420010",
+                    CTRANSACTION_CODE = loEntity.CSOURCE_MODULE == "FA" ? "200010" : "420010",
                     CREF_NO = loEntity.CREF_NO,
                     CSTATUS = loEntity.CTRANS_STATUS ?? string.Empty,
                     CMODE = "T", // T=Transaction, V=View
@@ -1519,7 +1519,8 @@ namespace FAT00100Front
                     CASSET_DEPT_CODE = _VM.DefaultAssetDeptCode ?? string.Empty,
                     LGLLINK = _VM.GLLink,
                     CGLLINK_DATE = _VM.GlinkDate ?? string.Empty,
-                    CREC_ID = loEntity.CREC_ID ?? string.Empty
+                    CREC_ID = loEntity.CREC_ID ?? string.Empty,
+                    CSOFT_PERIOD = _VM.SystemParamData.CSOFT_PERIOD ?? string.Empty
                 };
 
                 // Create popup settings with large size

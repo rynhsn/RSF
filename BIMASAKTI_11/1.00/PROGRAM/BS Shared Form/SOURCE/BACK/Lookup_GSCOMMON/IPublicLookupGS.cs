@@ -55,5 +55,7 @@ namespace Lookup_GSCOMMON
         IAsyncEnumerable<GSL03500DTO> GSL03500GetWarehouseList();
         IAsyncEnumerable<GSL03600DTO> GSL03600GetCompanyList();
         IAsyncEnumerable<GSL03700DTO> GSL03700GetMessageList();
+        IAsyncEnumerable<GSL03800DTO> GSL03800GetLocationList();
+        IAsyncEnumerable<GSLPropertyDTO> GSLPropertyList();
     }
 }

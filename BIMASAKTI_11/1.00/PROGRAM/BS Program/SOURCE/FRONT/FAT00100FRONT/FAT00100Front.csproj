@@ -15,7 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_FACOMMON\Lookup_FACommon.csproj" />
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_FAFRONT\Lookup_FAFront.csproj" />
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
     <ProjectReference Include="..\..\COMMON\FA\FAT00100Common\FAT00100Common.csproj" />
     <ProjectReference Include="..\FAT00100Model\FAT00100Model.csproj" />

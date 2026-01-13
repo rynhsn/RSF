@@ -18,6 +18,12 @@ using R_BlazorFrontEnd.Controls.Tab;
 using System;
 using System.Reflection;
 using System.Threading.Tasks;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
+using Lookup_FAFront;
+using Lookup_FACommon.DTOs;
+using Microsoft.AspNetCore.Components.Forms;
+using R_BlazorFrontEnd.Controls.MessageBox;
 
 namespace FAT00100Front
 {
@@ -26,6 +32,7 @@ namespace FAT00100Front
         private readonly FAT0010002ViewModel _VM = new FAT0010002ViewModel();
 
         [Inject] private IClientHelper ClientHelper { get; set; } = default!;
+        private R_eFileSelectAccept[] accepts = { R_eFileSelectAccept.Image };
         [Inject] private R_ILocalizer<FAT00100FrontResources.Resources_Dummy_Class> Localizer { get; set; } = default!;
         [Inject] public R_PopupService PopupService { get; set; } = default!;
 
@@ -39,6 +46,8 @@ namespace FAT00100Front
         private R_TabStrip tabStripRef;
         private R_TabStripTab? _tabExpenseAllocation;
         private R_TabPage? _tabPageExpenseAllocation;
+
+        private bool IsErrorEmptyFile = false;
 
         protected override async Task R_Init_From_Master(object? poParameter)
         {
@@ -75,6 +84,7 @@ namespace FAT00100Front
                     _VM.JrngrpCode = loParam.LJRNGRP_MODE;
                     _VM.DeptMode = loParam.LDEPT_MODE;
                     _VM.RecId = loParam.CREC_ID ?? string.Empty;
+                    _VM.SoftPeriod = loParam.CSOFT_PERIOD ?? string.Empty;
                 }
 
                 // Call GetFAAcquisitionDetailHeaderAsync to load header data
@@ -186,15 +196,8 @@ namespace FAT00100Front
 
             try
             {
-                var loParam = new
-                {
-                    CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
-                    CLOOKUP_SENDER_FLAG = "GSL00500",
-                    LACTIVE = true
-                };
-
-                eventArgs.Parameter = loParam;
+                eventArgs.Parameter = new GSL00700ParameterDTO();
+                eventArgs.TargetPageType = typeof(GSL00700);
             }
             catch (Exception ex)
             {
@@ -213,13 +216,11 @@ namespace FAT00100Front
 
             try
             {
-                if (eventArgs.Result == null) return;
-
-                dynamic loResult = eventArgs.Result;
-                if (_VM.Data != null)
+                var loTempResult = (GSL00700DTO)eventArgs.Result;
+                if (loTempResult != null)
                 {
-                    _VM.Data.CASSET_DEPT_CODE = loResult.cDeptCode?.ToString().Trim() ?? string.Empty;
-                    _VM.Data.CASSET_DEPT_NAME = loResult.cDeptDesc?.ToString().Trim() ?? string.Empty;
+                    _VM.Data.CASSET_DEPT_CODE = loTempResult.CDEPT_CODE;
+                    _VM.Data.CASSET_DEPT_NAME = loTempResult.CDEPT_NAME;
                 }
             }
             catch (Exception ex)
@@ -239,15 +240,14 @@ namespace FAT00100Front
 
             try
             {
-                var loParam = new
+                var loParam = new GSL00400ParameterDTO()
                 {
                     CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
-                    CLOOKUP_SENDER_FLAG = "GSL00600",
-                    CTYPE = "6"
+                    CPROPERTY_ID = "",
+                    CJRNGRP_TYPE = "60"
                 };
-
                 eventArgs.Parameter = loParam;
+                eventArgs.TargetPageType = typeof(GSL00400);
             }
             catch (Exception ex)
             {
@@ -271,8 +271,8 @@ namespace FAT00100Front
                 dynamic loResult = eventArgs.Result;
                 if (_VM.Data != null)
                 {
-                    _VM.Data.CJRNGRP_CODE = loResult.cJrnGrpCode?.ToString().Trim() ?? string.Empty;
-                    _VM.Data.CJRNGRP_DESC = loResult.cJrnGrpDesc?.ToString().Trim() ?? string.Empty;
+                    _VM.Data.CJRNGRP_CODE = loResult.CJRNGRP_CODE?.ToString().Trim() ?? string.Empty;
+                    _VM.Data.CJRNGRP_NAME = loResult.CJRNGRP_NAME?.ToString().Trim() ?? string.Empty;
                 }
             }
             catch (Exception ex)
@@ -292,16 +292,14 @@ namespace FAT00100Front
 
             try
             {
-                var loParam = new
+                eventArgs.Parameter = new GSL01800DTOParameter()
                 {
                     CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
-                    CLOOKUP_SENDER_FLAG = "GSL00510",
-                    CCATEGORY_ITEM = "51",
-                    CTYPE = "C"
+                    CUSER_ID = ClientHelper.UserId,
+                    CPROPERTY_ID = "",
+                    CCATEGORY_TYPE = "60"
                 };
-
-                eventArgs.Parameter = loParam;
+                eventArgs.TargetPageType = typeof(GSL01800);
             }
             catch (Exception ex)
             {
@@ -320,14 +318,15 @@ namespace FAT00100Front
 
             try
             {
-                if (eventArgs.Result == null) return;
 
-                dynamic loResult = eventArgs.Result;
-                if (_VM.Data != null)
-                {
-                    _VM.Data.CCATEGORY_CODE = loResult.cCategoryCode?.ToString().Trim() ?? string.Empty;
-                    _VM.Data.CCATEGORY_DESC = loResult.cCategoryDesc?.ToString().Trim() ?? string.Empty;
-                }
+                var loData = (GSL01800DTO)eventArgs.Result;
+                if (loData == null)
+                    return;
+
+                _VM.Data.CCATEGORY_CODE = loData.CCATEGORY_ID;
+                _VM.Data.CCATEGORY_NAME = loData.CCATEGORY_NAME;
+
+                
             }
             catch (Exception ex)
             {
@@ -346,14 +345,14 @@ namespace FAT00100Front
 
             try
             {
-                var loParam = new
+                eventArgs.Parameter = new FAL00200ParameterDTO()
                 {
                     CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
-                    CLOOKUP_SENDER_FLAG = "FAT00100"
+                    CSTATUS = "ACTIVE",
+                    CTAX_CATEGORY_ID = _VM.Data.CTAX_CATEGORY_CODE ?? "",
+                    CLANGUAGE_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en"
                 };
-
-                eventArgs.Parameter = loParam;
+                eventArgs.TargetPageType = typeof(FAL00200);
             }
             catch (Exception ex)
             {
@@ -372,14 +371,69 @@ namespace FAT00100Front
 
             try
             {
-                if (eventArgs.Result == null) return;
 
-                dynamic loResult = eventArgs.Result;
-                if (_VM.Data != null)
+                var loData = (FAL00200DTO)eventArgs.Result;
+                if (loData == null)
+                    return;
+
+                _VM.Data.CTAX_CATEGORY_CODE = loData.CTAX_CATEGORY_ID;
+                _VM.Data.CTAX_CATEGORY_NAME = loData.CTAX_CATEGORY_NAME;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void btnLocationLookup_R_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                eventArgs.Parameter = new GSL03800ParameterDTO()
                 {
-                    _VM.Data.CTAX_CATEGORY_CODE = loResult.cTaxCategoryCode?.ToString().Trim() ?? string.Empty;
-                    _VM.Data.CTAX_CATEGORY_DESC = loResult.cTaxCategoryDesc?.ToString().Trim() ?? string.Empty;
-                }
+                    CPROPERTY_ID = _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ? "" :_VM.Data.CPROPERTY_ID,
+                    CACTIVE_TYPE = "ACTIVE",
+                    CLOCATION_ID =_conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ? "" : _VM.Data.CLOCATION_ID,
+                    CSEARCH_TEXT = ""
+                };
+                eventArgs.TargetPageType = typeof(GSL03800);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Asset Tax Category lookup - after open
+        /// </summary>
+        private void btnLocationLookup_R_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+                var loData = (GSL03800DTO)eventArgs.Result;
+                if (loData == null)
+                    return;
+
+                _VM.Data.CLOCATION_ID = loData.CLOCATION_ID;
+                _VM.Data.CLOCATION_NAME = loData.CLOCATION_NAME;
+                //_VM.Data.CPROPERTY_ID = loData.CPROPERTY_ID;
+                //_VM.Data.CPROPERTY_NAME = loData.CPROPERTY_ID;
+                _VM.Data.CPROPERTY_ID = "ASHMD";
+                _VM.Data.CPROPERTY_NAME = "ASHMD";
+                _VM.Data.CBUILDING_ID = loData.CBUILDING_ID;
+                _VM.Data.CBUILDING_NAME= loData.CBUILDING_NAME;
+                _VM.Data.CFLOOR_ID = loData.CFLOOR_ID;
+                _VM.Data.CFLOOR_NAME = loData.CFLOOR_NAME;
             }
             catch (Exception ex)
             {
@@ -520,6 +574,14 @@ namespace FAT00100Front
                         decimal lnCalculatedValue = (value / _VM.TransDetailData.NBBASE_RATE) * _VM.TransDetailData.NBCURRENCY_RATE;
                         // Set property on _VM.Data using reflection
                         loProperty2.SetValue(_VM.Data, lnCalculatedValue);
+                        //if (value == 5)
+                        //{
+                        //    _VM.Data.NBINIT_COST = 5;
+                        //}
+                        //if (value == 4)
+                        //{
+                        //    _VM.Data.NBINIT_COST = lnCalculatedValue;
+                        //}
                     }
                     else
                     {
@@ -749,67 +811,34 @@ namespace FAT00100Front
 
             try
             {
-                // Initialize new record with default values
-                if (_VM.Data != null)
+
+                var loEntity = (FAT0010002DTO)eventArgs.Data;
+                // Set transaction date to current date
+                loEntity.DINSERVICE_DATE = DateTime.Now;
+                loEntity.DSTART_DATE = loEntity.DINSERVICE_DATE;
+                loEntity.LNEW_FLAG = true;
+
+
+                // Set default department from parent form
+                if (!string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE))
                 {
-                    // Set header fields
-                    _VM.Data.CDEPT_CODE = _VM.DeptCode;
-                    _VM.Data.CTRANSACTION_CODE = _VM.TransactionCode;
-                    _VM.Data.CREFERENCE_NO = _VM.ReferenceNo;
-                    _VM.Data.CSTATUS = _VM.Status;
-                    _VM.Data.CASSET_TRANS_SEQNO = "000100";
-                    _VM.Data.CASSET_STATUS = "0";
-                    _VM.Data.LNEW_FLAG = true;
-
-                    // Set currency rates from header
-                    if (_VM.HeaderData != null)
-                    {
-                        _VM.Data.NLBASE_RATE_AMOUNT = _VM.HeaderData.NLBASE_RATE_AMOUNT;
-                        _VM.Data.NLCURRENCY_RATE_AMOUNT = _VM.HeaderData.NLCURRENCY_RATE_AMOUNT;
-                        _VM.Data.NBBASE_RATE_AMOUNT = _VM.HeaderData.NBBASE_RATE_AMOUNT;
-                        _VM.Data.NBCURRENCY_RATE_AMOUNT = _VM.HeaderData.NBCURRENCY_RATE_AMOUNT;
-                        _VM.Data.CCURRENCY_CODE = _VM.HeaderData.CCURRENCY_CODE;
-                    }
-
-                    // Set default department from parent form
-                    if (!string.IsNullOrWhiteSpace(_VM.DefaultAssetDeptCode))
-                    {
-                        _VM.Data.CASSET_DEPT_CODE = _VM.DefaultAssetDeptCode;
-                    }
-                    else if (!string.IsNullOrWhiteSpace(_VM.DeptCode))
-                    {
-                        _VM.Data.CASSET_DEPT_CODE = _VM.DeptCode;
-                    }
-
-                    // Set default in-service date to transaction date
-                    if (_VM.HeaderData != null && !string.IsNullOrWhiteSpace(_VM.HeaderData.CTRANSACTION_DATE))
-                    {
-                        if (_VM.HeaderData.CTRANSACTION_DATE.Length == 8)
-                        {
-                            string lcYear = _VM.HeaderData.CTRANSACTION_DATE.Substring(0, 4);
-                            string lcMonth = _VM.HeaderData.CTRANSACTION_DATE.Substring(4, 2);
-                            string lcDay = _VM.HeaderData.CTRANSACTION_DATE.Substring(6, 2);
-                            if (int.TryParse(lcYear, out int liYear) &&
-                                int.TryParse(lcMonth, out int liMonth) &&
-                                int.TryParse(lcDay, out int liDay))
-                            {
-                                _VM.Data.DINSERVICE_DATE = new DateTime(liYear, liMonth, liDay);
-                            }
-                        }
-                    }
-
-                    // Initialize depreciation fields
-                    _VM.Data.CDEPR_METHOD = _VM.ComboDepreciationMethodFirstItem.CCODE; // Default to "No Depreciation"
-                    _VM.Data.IUSEFUL_LIVE_YR = 0;
-                    _VM.Data.IUSEFUL_LIVE_MO = 0;
-                    _VM.Data.IREM_UL_YR = 0;
-                    _VM.Data.IREM_UL_MO = 0;
-                    _VM.Data.NYEAR_DEPR_PCT = 0;
-                    _VM.Data.NLYEAR_DEPR_AMT = 0;
-                    _VM.Data.NBYEAR_DEPR_AMT = 0;
-                    _VM.Data.NLRESIDUAL_VALUE = 0;
-                    _VM.Data.NBRESIDUAL_VALUE = 0;
+                    loEntity.CASSET_DEPT_CODE = _VM.TransDetailData.CDEPT_CODE;
+                    loEntity.CASSET_DEPT_NAME = _VM.TransDetailData.CDEPT_NAME;
                 }
+                // Initialize depreciation fields
+                if (_VM.ComboDepreciationMethodFirstItem != null)
+                {
+                    loEntity.CDEPR_METHOD = _VM.ComboDepreciationMethodFirstItem.CCODE; // Default to "No Depreciation"
+                }
+                loEntity.IUSEFUL_LIVE_YR = 0;
+                loEntity.IUSEFUL_LIVE_MO = 0;
+                loEntity.IREM_UL_YR = 0;
+                loEntity.IREM_UL_MO = 0;
+                loEntity.NYEAR_DEPR_PCT = 0;
+                loEntity.NLYEAR_DEPR_AMT = 0;
+                loEntity.NBYEAR_DEPR_AMT = 0;
+                loEntity.NLRESIDUAL_VALUE = 0;
+                loEntity.NBRESIDUAL_VALUE = 0;
             }
             catch (Exception ex)
             {
@@ -819,70 +848,69 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        /// <summary>
-        /// Conductor - Saving
-        /// Based on NET4: conAssetInfo_R_Saving (line 610-742)
-        /// </summary>
-        private void ConductorAssetInfo_R_Saving(R_SavingEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                if (_VM.Data == null)
-                    return;
-
-                var loEntity = _VM.Data;
-
-                // Set header fields
-                loEntity.LASSET_INCREMENT_FLAG = _VM.AssetIncrementFlag;
-                loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
-                loEntity.CUSER_ID = ClientHelper.UserId;
-                
-                if (_VM.TransDetailData != null)
-                {
-                    loEntity.CDEPT_CODE = _VM.TransDetailData.CDEPT_CODE;
-                    loEntity.CREF_DATE = _VM.TransDetailData.CREF_DATE;
-                    loEntity.NLBASE_RATE = _VM.TransDetailData.NLBASE_RATE;
-                    loEntity.NLCURRENCY_RATE = _VM.TransDetailData.NLCURRENCY_RATE;
-                    loEntity.NBBASE_RATE = _VM.TransDetailData.NBBASE_RATE;
-                    loEntity.NBCURRENCY_RATE = _VM.TransDetailData.NBCURRENCY_RATE;
-                }
-                // Set start date
-                if (loEntity.DSTART_DATE.HasValue)
-                {
-                    loEntity.CSTART_DATE = loEntity.DSTART_DATE.Value.ToString("yyyyMMdd");
-                }
-                else
-                {
-                    loEntity.CSTART_DATE = string.Empty;
-                }
-
-                // Set in-service date
-                if (loEntity.DINSERVICE_DATE.HasValue)
-                {
-                    loEntity.CINSERVICE_DATE = loEntity.DINSERVICE_DATE.Value.ToString("yyyyMMdd");
-                }
-                else
-                {
-                    loEntity.CINSERVICE_DATE = string.Empty;
-                }
-                loEntity.CGLLINK_DATE = "debug rsaving";
-
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
+        
 
         private async Task OnClickNextButton()
         {
             R_Exception loException = new R_Exception();
             try
             {
+                //validation when next
+                if (_VM == null || _VM.Data == null)
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS002"));
+                }
+                else
+                {
+                    // Validate Asset Code
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE) && _VM.AssetIncrementFlag==false)
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
+                    }
+
+                    // Validate Asset Name
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_NAME))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetName"));
+                    }
+
+                    // Validate Asset Department
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_DEPT_CODE))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetDepartment"));
+                    }
+
+                    // Validate Asset Journal Group
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CJRNGRP_CODE))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetJournalGroup"));
+                    }
+
+                    // Validate Asset Category
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CCATEGORY_CODE))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCategory"));
+                    }
+
+                    // Validate Asset Tax Category
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CTAX_CATEGORY_CODE))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetTaxCategory"));
+                    }
+
+                    // Validate Unit
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CUNIT))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Unit"));
+                    }
+
+                    // Validate Location
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CLOCATION_ID))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Location"));
+                    }
+                }
+
                 if (!loException.HasError)
                 {
                     IsSuccess = true;
@@ -1023,50 +1051,7 @@ namespace FAT00100Front
             await InvokeTabEventCallbackAsync(poValue);
         }
 
-        /// <summary>
-        /// Conductor - Service Save
-        /// </summary>
-        private async Task ConductorAssetInfo_R_ServiceSave(R_ServiceSaveEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                // Get entity from event args
-                var loEntity = eventArgs.Data as FAT0010002DTO ?? _VM.Data;
-                
-                // Ensure entity is not null
-                if (loEntity == null)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS002"));
-                }
-                else
-                {
-                    
-                    await _VM.SaveRecordAsync(
-                        loEntity,
-                        eventArgs.ConductorMode == R_eConductorMode.Add ? eCRUDMode.AddMode : eCRUDMode.EditMode,
-                        ClientHelper.CompanyId,
-                        ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en"
-                    );
-
-                    // Set result - this will update the conductor's bound entity with the result from backend
-                    eventArgs.Result = _VM.CurrentRecord;
-
-                    // Refresh asset list grid after save
-                    if (gvAssetList != null)
-                    {
-                        await gvAssetList.R_RefreshGrid(null);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
+        
 
         /// <summary>
         /// Conductor - Service Delete
@@ -1101,6 +1086,9 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
+
+        
+
         /// <summary>
         /// Conductor - Validation
         /// Based on NET4: conAssetInfo_R_Validation (line 920-1038)
@@ -1122,38 +1110,34 @@ namespace FAT00100Front
                 }
 
                 // Validate Reference Date
-                if (string.IsNullOrWhiteSpace(_VM.Data.CREF_DATE) && 
-                    string.IsNullOrWhiteSpace(_VM.TransDetailData?.CREF_DATE))
+                if (string.IsNullOrWhiteSpace(_VM.TransDetailData?.CREF_DATE))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_ReferenceDate"));
                 }
 
-                // Validate Reference Date Range (must not be earlier than Soft Period)
-                string lcRefDate = !string.IsNullOrWhiteSpace(_VM.Data.CREF_DATE) 
-                    ? _VM.Data.CREF_DATE 
-                    : _VM.TransDetailData?.CREF_DATE ?? string.Empty;
+                //// Validate Reference Date Range (must not be earlier than Soft Period)
+                //string lcRefDate = _VM.TransDetailData.CREF_DATE;
                 
-                if (!string.IsNullOrWhiteSpace(lcRefDate) && lcRefDate.Length >= 6)
-                {
-                    string lcRefDatePeriod = lcRefDate.Substring(0, 6);
-                    if (!string.IsNullOrWhiteSpace(_VM.SoftPeriod) && string.Compare(lcRefDatePeriod, _VM.SoftPeriod) < 0)
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_ReferenceDateRange"));
-                    }
-                }
+                //if (!string.IsNullOrWhiteSpace(lcRefDate) && lcRefDate.Length >= 6)
+                //{
+                //    string lcRefDatePeriod = lcRefDate.Substring(0, 6);
+                //    if (!string.IsNullOrWhiteSpace(_VM.SoftPeriod) && string.Compare(lcRefDatePeriod, _VM.SoftPeriod) < 0)
+                //    {
+                //        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_ReferenceDateRange"));
+                //    }
+                //}
 
-                // Validate Asset Code
-                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
-                }
+                //// Validate Asset Code
+                //if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
+                //{
+                //    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
+                //}
 
-                // Validate Description
-                if (string.IsNullOrWhiteSpace(_VM.Data.CDESCRIPTION) && 
-                    string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Description"));
-                }
+                //// Validate Description
+                //if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
+                //{
+                //    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Description"));
+                //}
             }
             catch (Exception ex)
             {
@@ -1163,6 +1147,109 @@ namespace FAT00100Front
             if (loEx.HasError)
             {
                 eventArgs.Cancel = true;
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Conductor - Saving
+        /// Based on NET4: conAssetInfo_R_Saving (line 610-742)
+        /// </summary>
+        private void ConductorAssetInfo_R_Saving(R_SavingEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                
+                var loEntity = (FAT0010002DTO)eventArgs.Data;
+
+                // Set header fields
+                loEntity.LASSET_INCREMENT_FLAG = _VM.AssetIncrementFlag;
+                loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
+                loEntity.CUSER_ID = ClientHelper.UserId;
+
+                if (_VM.TransDetailData != null)
+                {
+                    loEntity.CDEPT_CODE = _VM.TransDetailData.CDEPT_CODE;
+                    loEntity.CREF_NO = _VM.TransDetailData.CREF_NO;
+                    loEntity.CREF_DATE = _VM.TransDetailData.CREF_DATE;
+                    loEntity.NLBASE_RATE = _VM.TransDetailData.NLBASE_RATE;
+                    loEntity.NLCURRENCY_RATE = _VM.TransDetailData.NLCURRENCY_RATE;
+                    loEntity.NBBASE_RATE = _VM.TransDetailData.NBBASE_RATE;
+                    loEntity.NBCURRENCY_RATE = _VM.TransDetailData.NBCURRENCY_RATE;
+                }
+                // Set start date
+                if (loEntity.DSTART_DATE.HasValue)
+                {
+                    loEntity.CSTART_DATE = loEntity.DSTART_DATE.Value.ToString("yyyyMMdd");
+                }
+                else
+                {
+                    loEntity.CSTART_DATE = string.Empty;
+                }
+
+                // Set in-service date
+                if (loEntity.DINSERVICE_DATE.HasValue)
+                {
+                    loEntity.CINSERVICE_DATE = loEntity.DINSERVICE_DATE.Value.ToString("yyyyMMdd");
+                }
+                else
+                {
+                    loEntity.CINSERVICE_DATE = string.Empty;
+                }
+                loEntity.CGLLINK_DATE = "debug rsaving";
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Conductor - Service Save
+        /// </summary>
+        private async Task ConductorAssetInfo_R_ServiceSave(R_ServiceSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // Get entity from event args
+                var loEntity = (FAT0010002DTO)eventArgs.Data;
+
+                // Ensure entity is not null
+                if (loEntity == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS002"));
+                }
+                else
+                {
+
+                    await _VM.SaveRecordAsync(
+                        loEntity,
+                        eventArgs.ConductorMode == R_eConductorMode.Add ? eCRUDMode.AddMode : eCRUDMode.EditMode,
+                        ClientHelper.CompanyId,
+                        ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en"
+                    );
+
+                    // Set result - this will update the conductor's bound entity with the result from backend
+                    eventArgs.Result = _VM.CurrentRecord;
+
+                    // Refresh asset list grid after save
+                    if (gvAssetList != null)
+                    {
+                        await gvAssetList.R_RefreshGrid(null);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
             }
 
             loEx.ThrowExceptionIfErrors();
@@ -1437,10 +1524,37 @@ namespace FAT00100Front
         /// </summary>
         private void OnYearlyDepreciationPctChanged(decimal value)
         {
-            if (_VM.Data != null)
+            //if (_VM.Data != null)
+            //{
+            //    _VM.Data.NYEAR_DEPR_PCT = value;
+            //}
+        }
+
+        private async Task OnChangeInputFile(InputFileChangeEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
             {
-                _VM.Data.NYEAR_DEPR_PCT = value;
+                var loByteFile = await R_FrontUtility.ConvertStreamToByteAsync(eventArgs.File.OpenReadStream());
+                string loFile = eventArgs.File.Name;
+
+                _VM.Data.OIMAGE = loByteFile;
+                _VM.Data.CFILE_NAME = Path.GetFileNameWithoutExtension(loFile);
+                _VM.Data.CFILE_EXTENSION = Path.GetExtension(loFile);
             }
+            catch (Exception ex)
+            {
+                if (IsErrorEmptyFile)
+                {
+                    await R_MessageBox.Show("", "File is Empty", R_eMessageBoxButtonType.OK);
+                }
+                else
+                {
+                    loEx.Add(ex);
+                }
+            }
+            loEx.ThrowExceptionIfErrors();
         }
 
         #endregion

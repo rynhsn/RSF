@@ -28,7 +28,7 @@ namespace Lookup_GSModel.ViewModel
                 var loGridData = loResult.Select(x =>
                 new GSL01800TreeDTO
                 {
-                    ParentId = x.CPARENT,
+                    ParentId = x.CPARENT_ID,
                     ParentName = x.CPARENT_NAME,
                     Id = x.CCATEGORY_ID,
                     Name = x.CCATEGORY_NAME,

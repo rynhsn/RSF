@@ -613,9 +613,66 @@
     <value>Reference Date may not be earlier than Soft Period!</value>
   </data>
   <data name="Val_AssetCode" xml:space="preserve">
-    <value>Please select Asset Code!</value>
+    <value>Asset Code is required!</value>
+  </data>
+  <data name="Val_AssetName" xml:space="preserve">
+    <value>Asset Name is required!</value>
+  </data>
+  <data name="Val_AssetDepartment" xml:space="preserve">
+    <value>Please select Asset Department!</value>
+  </data>
+  <data name="Val_AssetJournalGroup" xml:space="preserve">
+    <value>Please select Asset Journal Group!</value>
+  </data>
+  <data name="Val_AssetCategory" xml:space="preserve">
+    <value>Please select Asset Category!</value>
+  </data>
+  <data name="Val_AssetTaxCategory" xml:space="preserve">
+    <value>Please select Asset Tax Category!</value>
+  </data>
+  <data name="Val_Unit" xml:space="preserve">
+    <value>Unit is required!</value>
+  </data>
+  <data name="Val_Location" xml:space="preserve">
+    <value>Location is required!</value>
   </data>
   <data name="Val_Description" xml:space="preserve">
     <value>Description is required!</value>
+  </data>
+  <data name="_Unit" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="_Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_Building" xml:space="preserve">
+    <value>Building</value>
+  </data>
+  <data name="_Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="_Reference" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="_Curr" xml:space="preserve">
+    <value>Curr</value>
+  </data>
+  <data name="_DepartmentCode" xml:space="preserve">
+    <value>Department Code</value>
+  </data>
+  <data name="_DepartmentName" xml:space="preserve">
+    <value>Department Name</value>
+  </data>
+  <data name="_Percent" xml:space="preserve">
+    <value>Percent</value>
+  </data>
+  <data name="_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="_Cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
 </root>

@@ -991,8 +991,9 @@ namespace Lookup_GSSERVICES
                 _Logger.LogInfo("Set Param GSL01800GetCategoryList");
                 poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
                 poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
-                poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                //poParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
                 poParameter.CCATEGORY_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CCATEGORY_TYPE);
+                poParameter.CPARENT_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPARENT_ID);
 
                 _Logger.LogInfo("Call Back Method GetALLCategory");
                 loRtn = await loCls.GetALLCategory(poParameter);
@@ -1957,5 +1958,76 @@ namespace Lookup_GSSERVICES
             }
         }
 
+        [HttpPost]
+        public IAsyncEnumerable<GSL03800DTO> GSL03800GetLocationList()
+        {
+            return GetGSL03800Stream();
+        }
+        private async IAsyncEnumerable<GSL03800DTO> GetGSL03800Stream()
+        {
+            using Activity activity = _activitySource.StartActivity("GSL03800GetLocationList");
+            var loEx = new R_Exception();
+            List<GSL03800DTO> loRtn = null;
+            _Logger.LogInfo("Start GSL03800GetLocationList");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+                var loParameter = new GSL03800ParameterDTO();
+                loParameter.CPROPERTY_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CPROPERTY_ID);
+                loParameter.CACTIVE_TYPE = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CACTIVE_TYPE);
+                loParameter.CLOCATION_ID = R_Utility.R_GetStreamingContext<string>(ContextConstantPublicLookup.CLOCATION_ID);
+
+                _Logger.LogInfo("Call Back Method GetALLLocation");
+                loRtn = await loCls.GetALLLocation(loParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSL03800GetLocationList");
+
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
+        }
+
+        [HttpPost]
+        public IAsyncEnumerable<GSLPropertyDTO> GSLPropertyList()
+        {
+            return GSLPropertyListStream(); 
+        }
+        private async IAsyncEnumerable<GSLPropertyDTO> GSLPropertyListStream()
+        {
+            using Activity activity = _activitySource.StartActivity("GSLPropertyList");
+            var loEx = new R_Exception();
+            List<GSLPropertyDTO> loRtn = null;
+            _Logger.LogInfo("Start GSLPropertyList");
+
+            try
+            {
+                var loCls = new PublicLookupCls();
+
+                _Logger.LogInfo("Call Back Method GetALLProperty");
+                loRtn = await loCls.GetALLProperty();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _Logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _Logger.LogInfo("End GSLPropertyList");
+
+            foreach (var item in loRtn)
+            {
+                yield return item;
+            }
+        }
     }
 }
