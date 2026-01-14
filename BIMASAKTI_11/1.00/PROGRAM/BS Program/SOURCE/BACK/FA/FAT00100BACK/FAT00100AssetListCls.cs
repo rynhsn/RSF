@@ -68,7 +68,7 @@ namespace FAT00100Back
                 using DbCommand loCmd = loDb.GetCommand();
 
                 loCmd.Parameters.Clear();
-                var lcQuery = "RSP_FAT00100_GET_TRANS_ASSET_LIST";
+                var lcQuery = "RSP_FAT00100_GET_TRANS_ASSET_LIST ";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 
@@ -124,7 +124,7 @@ namespace FAT00100Back
                 using DbCommand loCmd = loDb.GetCommand();
 
                 loCmd.Parameters.Clear();
-                var lcQuery = "RSP_FAT00100_GET_TRANS_ASSET";
+                var lcQuery = "RSP_FAT00100_GET_TRANS_ASSET ";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 

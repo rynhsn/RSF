@@ -22,6 +22,15 @@ namespace FAT00100Model.VMs
     {
         private readonly FAT0010002Model _model = new FAT0010002Model();
 
+        public string DEFAULT_TRANSACTION_CODE = "200010";
+        public string DEFAULT_PJ_TRANSACTION_CODE = "420010";
+        public string DEFAULT_SOURCE_MODULE_FA = "FA";
+        public string DEFAULT_SOURCE_MODULE_PJ = "PJ";
+        public string DEFAULT_STATUS_DRAFT = "00";
+        public string DEFAULT_GL_TRF_STATUS = "0";
+        public string STATUS_FLAG_DISABLED = "0";
+        public string STATUS_FLAG_ENABLED = "1";
+
         // Current form data
         public FAT0010002DTO CurrentRecord { get; set; } = new FAT0010002DTO();
 
@@ -36,6 +45,7 @@ namespace FAT00100Model.VMs
         public FAT00100GetStatusListResultDTO ComboDepreciationMethodFirstItem { get; set; } = new FAT00100GetStatusListResultDTO();
         public ObservableCollection<FAT0010002GetFAAcquisitionDetailAssetListResultDTO> AssetList { get; set; } = new ObservableCollection<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>();
         public ObservableCollection<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO> AllocExpenPageList { get; set; } = new ObservableCollection<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>();
+        public ObservableCollection<FAT00100GetTransExpAllocListResultDTO> TransExpAllocList { get; set; } = new ObservableCollection<FAT00100GetTransExpAllocListResultDTO>();
 
         // Form state properties (extracted from VB.NET module variables)
         public string DeptCode { get; set; } = string.Empty;
@@ -375,9 +385,9 @@ namespace FAT00100Model.VMs
                     TransDetailData = loResult.Data ?? new FAT0010002GetTransDetailResultDTO();
                     RefDateDisplay = DateTime.ParseExact(TransDetailData.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
 
-                    //TransactionCode = HeaderData.CTRANSACTION_CODE;
-                    //ReferenceNo = HeaderData.CREFERENCE_NO;
-                    //DeptCode = HeaderData.CDEPT_CODE;
+                    
+                    ReferenceNo = TransDetailData.CREF_NO;
+                    DeptCode = HeaderData.CDEPT_CODE;
                     //LocalRate = HeaderData.NLRATE;
                     //BaseRate = HeaderData.NBRATE;
                     //BaseXRate = HeaderData.NBXRATE;
@@ -475,6 +485,34 @@ namespace FAT00100Model.VMs
 
                 var loResult = await _model.GetFAAcquisitionDetailAllocExpenPageListAsync();
                 AllocExpenPageList = new ObservableCollection<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>(loResult.Data ?? new List<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>());
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Get transaction expense allocation list - streaming method
+        /// </summary>
+        public async Task FAT00100GetTransExpAllocListAsync(string pcCompanyId, string pcLangId, string pcParentId, string pcDeptCode, string pcTransCode, string pcRefNo, string pcAssetCode, string pcAssetTransSeqNo)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // Set streaming context for custom parameters (NOT CCOMPANY_ID, CLANG_ID)
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CPARENT_ID, pcParentId);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CDEPT_CODE, pcDeptCode);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CTRANS_CODE, pcTransCode);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CREF_NO, pcRefNo);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CASSET_CODE, pcAssetCode);
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CASSET_TRANS_SEQ_NO, pcAssetTransSeqNo);
+
+                var loResult = await _model.FAT00100GetTransExpAllocListAsync();
+                TransExpAllocList = new ObservableCollection<FAT00100GetTransExpAllocListResultDTO>(loResult.Data ?? new List<FAT00100GetTransExpAllocListResultDTO>());
             }
             catch (Exception ex)
             {

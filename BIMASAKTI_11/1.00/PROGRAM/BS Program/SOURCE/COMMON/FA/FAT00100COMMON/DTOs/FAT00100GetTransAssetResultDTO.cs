@@ -11,6 +11,7 @@ namespace FAT00100Common.DTOs
         public string CASSET_DEPT_CODE { get; set; } = string.Empty;
         public string CASSET_DEPT_NAME { get; set; } = string.Empty;
         public string CASSET_LOCATION { get; set; } = string.Empty;
+        public string CLOCATION_NAME { get; set; } = string.Empty;
         public string CSERIAL_NUMBER { get; set; } = string.Empty;
         public short IQTY { get; set; }
         public string CLOCAL_CURRENCY_CODE { get; set; } = string.Empty;

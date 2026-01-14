@@ -45,5 +45,10 @@ namespace FAT00100Common
         public const string CAPPLICATION = "FAT00100_CAPPLICATION";
         public const string CCLASS_ID = "FAT00100_CCLASS_ID";
         public const string CREC_ID_LIST = "FAT00100_CREC_ID_LIST";
+
+        // FAT00100GetTransExpAllocList
+        public const string CPARENT_ID = "FAT00100_CPARENT_ID";
+        public const string CTRANS_CODE = "FAT00100_CTRANS_CODE";
+        public const string CASSET_TRANS_SEQ_NO = "FAT00100_CASSET_TRANS_SEQ_NO";
     }
 }

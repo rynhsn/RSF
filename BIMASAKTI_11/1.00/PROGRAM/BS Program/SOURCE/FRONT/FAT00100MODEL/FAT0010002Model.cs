@@ -315,6 +315,41 @@ namespace FAT00100Model
             return loRtn;
         }
 
+        /// <summary>
+        /// Get transaction expense allocation list - Interface method (throws NotImplementedException)
+        /// </summary>
+        public IAsyncEnumerable<FAT00100GetTransExpAllocListResultDTO> FAT00100GetTransExpAllocList()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Get transaction expense allocation list - Actual implementation
+        /// </summary>
+        public async Task<FAT0010002ResultDTO<List<FAT00100GetTransExpAllocListResultDTO>>> FAT00100GetTransExpAllocListAsync()
+        {
+            var loEx = new R_Exception();
+            FAT0010002ResultDTO<List<FAT00100GetTransExpAllocListResultDTO>> loRtn = new FAT0010002ResultDTO<List<FAT00100GetTransExpAllocListResultDTO>>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00100GetTransExpAllocListResultDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT0010002.FAT00100GetTransExpAllocList),
+                    _ModuleName,
+                    true,
+                    true);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
         #endregion
     }
 }

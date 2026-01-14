@@ -8,9 +8,12 @@ namespace FAT00100Common.DTOs
     {
         public string CDEPT_CODE { get; set; } = string.Empty;
         public string CTRANSACTION_CODE { get; set; } = string.Empty;
-        public string CREFERENCE_NO { get; set; } = string.Empty;
+        public string CREF_NO { get; set; } = string.Empty;
         public string CASSET_CODE { get; set; } = string.Empty;
-        public string CASSET_TRANS_SEQNO { get; set; } = "000100";
+        public string CTRANS_SEQ_NO { get; set; } = string.Empty;
+        public string CPARENT_ID { get; set; } = string.Empty;
+        public string CLANGUAGE_ID { get; set; } = string.Empty;
+        public string CPROPERTY_ID { get; set; } = string.Empty;
     }
 }
 

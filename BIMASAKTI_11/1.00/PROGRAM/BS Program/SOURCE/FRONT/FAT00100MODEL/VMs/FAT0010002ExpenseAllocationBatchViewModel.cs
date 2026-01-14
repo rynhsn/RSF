@@ -43,6 +43,7 @@ namespace FAT00100Model.VMs
             string lcGuid = "";
             List<FAT0010002CommonDTO> loBigObject;
             var loUserParam = new List<R_KeyValue>();
+            List<R_KeyValue> loBatchParUserParameters;
 
             try
             {
@@ -58,13 +59,23 @@ namespace FAT00100Model.VMs
                 _companyId = poParameter.CCOMPANY_ID;
                 _userId = poParameter.CUSER_ID;
 
-                // Set custom UserParameters from poParameter.UserParameters
-                // NET4: Sets CDEPT_CODE, CTRANSACTION_CODE, CREFERENCE_NO, CASSET_CODE, CASSET_TRANS_SEQNO
-                loUserParam.Add(new R_KeyValue { Key = "CDEPT_CODE", Value = poParameter.UserParameters.CDEPT_CODE });
-                loUserParam.Add(new R_KeyValue { Key = "CTRANSACTION_CODE", Value = poParameter.UserParameters.CTRANSACTION_CODE });
-                loUserParam.Add(new R_KeyValue { Key = "CREFERENCE_NO", Value = poParameter.UserParameters.CREFERENCE_NO });
-                loUserParam.Add(new R_KeyValue { Key = "CASSET_CODE", Value = poParameter.UserParameters.CASSET_CODE });
-                loUserParam.Add(new R_KeyValue { Key = "CASSET_TRANS_SEQNO", Value = poParameter.UserParameters.CASSET_TRANS_SEQNO });
+                loBatchParUserParameters = new List<R_KeyValue>();
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = FAT0010002BatchContextConstant.CPROPERTY_ID, Value = poParameter.UserParameters.CPROPERTY_ID });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = FAT0010002BatchContextConstant.CPARENT_ID, Value = poParameter.UserParameters.CPARENT_ID });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = FAT0010002BatchContextConstant.CDEPT_CODE, Value = poParameter.UserParameters.CDEPT_CODE });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = FAT0010002BatchContextConstant.CTRANSACTION_CODE, Value = poParameter.UserParameters.CTRANSACTION_CODE });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = FAT0010002BatchContextConstant.CREF_NO, Value = poParameter.UserParameters.CREF_NO });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = FAT0010002BatchContextConstant.CASSET_CODE, Value = poParameter.UserParameters.CASSET_CODE });
+                loBatchParUserParameters.Add(new R_KeyValue
+                { Key = FAT0010002BatchContextConstant.CTRANS_SEQ_NO, Value = poParameter.UserParameters.CTRANS_SEQ_NO });
+                
+
 
                 loCls = new R_ProcessAndUploadClient(
                     pcModuleName: "FA",
@@ -82,7 +93,7 @@ namespace FAT00100Model.VMs
                 loBatchPar.COMPANY_ID = poParameter.CCOMPANY_ID;
                 loBatchPar.USER_ID = poParameter.CUSER_ID;
                 loBatchPar.ClassName = "FAT00100Back.FAT0010002BatchCls";
-                loBatchPar.UserParameters = loUserParam;
+                loBatchPar.UserParameters = loBatchParUserParameters;
                 loBatchPar.BigObject = loBigObject;
 
                 lcGuid = await loCls.R_BatchProcess<List<FAT0010002CommonDTO>>(loBatchPar, loBigObject.Count > 0 ? loBigObject.Count : 1);

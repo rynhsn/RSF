@@ -8,11 +8,11 @@
             <R_ItemLayout col="2">
                 <R_Label>@Localizer["_Reference"]</R_Label>
             </R_ItemLayout>
-            <R_ItemLayout col="2">
-                <R_Label>@(VM?.Data?.CREF_NO ?? string.Empty)</R_Label>
+            <R_ItemLayout col="3">
+                <R_Label>@(VM?.CurrentRecord?.CREF_NO ?? string.Empty)</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="2">
-                <R_Label>@(VM?.CurrentRecord?.CREF_DATE ?? string.Empty)</R_Label>
+                <R_Label>@(VM?.CurrentRecord?.CREF_DATE_DISPLAY ?? string.Empty)</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
         <R_StackLayout Row class="mb-1">
@@ -107,7 +107,7 @@
                         <R_Label>@Localizer["_Location"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout auto="false">
-                        <R_TextBox @bind-Value="VM.Data.CASSET_LOCATION" 
+                        <R_TextBox @bind-Value="VM.Data.CLOCATION_NAME" 
                                    R_ConductorSource="@_conductorRef"
                                    Enabled="false" />
                     </R_ItemLayout>

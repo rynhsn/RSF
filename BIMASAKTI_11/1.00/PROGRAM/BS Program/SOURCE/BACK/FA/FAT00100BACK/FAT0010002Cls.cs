@@ -720,6 +720,61 @@ namespace FAT00100Back
             return loResult;
         }
 
+        /// <summary>
+        /// Get transaction expense allocation list
+        /// </summary>
+        /// <param name="poParameter">Parameter containing company ID, parent ID, dept code, trans code, ref no, asset code, asset trans seq no, and language ID</param>
+        /// <returns>List of transaction expense allocation result DTOs</returns>
+        public async Task<List<FAT00100GetTransExpAllocListResultDTO>> FAT00100GetTransExpAllocList(FAT00100GetTransExpAllocListParameterDTO poParameter)
+        {
+            string lcMethod = nameof(FAT00100GetTransExpAllocList);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            _logger.LogInfo("START method {MethodName}", lcMethod);
+
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
+            var loResult = new List<FAT00100GetTransExpAllocListResultDTO>();
+
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+
+                loCmd.Parameters.Clear();
+                var lcQuery = "RSP_FA_GET_TRANS_EXP_ALLOC_LIST";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPARENT_ID", DbType.String, 50, poParameter.CPARENT_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poParameter.CDEPT_CODE ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10, poParameter.CTRANS_CODE ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poParameter.CREF_NO ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 20, poParameter.CASSET_CODE ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_TRANS_SEQ_NO", DbType.String, 6, poParameter.CASSET_TRANS_SEQ_NO ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 2, poParameter.CLANGUAGE_ID);
+
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                loResult = R_Utility.R_ConvertTo<FAT00100GetTransExpAllocListResultDTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loDb != null)
+                    loDb = null;
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _logger.LogInfo("END method {MethodName}", lcMethod);
+
+            return loResult;
+        }
 
         private async Task<FAT00100ImageStorageTypeDTO> GetStorageType()
         {

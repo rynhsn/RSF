@@ -20,5 +20,6 @@ namespace FAT00100Common
         IAsyncEnumerable<FAT00100GetStatusListResultDTO> GetComboDepreciationMethod();
         IAsyncEnumerable<FAT0010002GetFAAcquisitionDetailAssetListResultDTO> GetFAAcquisitionDetailAssetList();
         IAsyncEnumerable<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO> GetFAAcquisitionDetailAllocExpenPageList();
+        IAsyncEnumerable<FAT00100GetTransExpAllocListResultDTO> FAT00100GetTransExpAllocList();
     }
 }

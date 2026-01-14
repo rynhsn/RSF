@@ -370,6 +370,48 @@ namespace FAT00100Service
                 yield return loItem;
             }
         }
+
+        [HttpPost]
+        public async IAsyncEnumerable<FAT00100GetTransExpAllocListResultDTO> FAT00100GetTransExpAllocList()
+        {
+            var lcMethod = nameof(FAT00100GetTransExpAllocList);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            List<FAT00100GetTransExpAllocListResultDTO> loResult = new List<FAT00100GetTransExpAllocListResultDTO>();
+
+            try
+            {
+                var loCls = new FAT0010002Cls();
+
+                // Create parameter DTO internally with global variables and streaming context
+                var loParam = new FAT00100GetTransExpAllocListParameterDTO
+                {
+                    CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
+                    CLANGUAGE_ID = R_BackGlobalVar.CULTURE,
+                    CPARENT_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CPARENT_ID) ?? string.Empty,
+                    CDEPT_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CDEPT_CODE) ?? string.Empty,
+                    CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CTRANS_CODE) ?? string.Empty,
+                    CREF_NO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CREF_NO) ?? string.Empty,
+                    CASSET_CODE = R_Utility.R_GetStreamingContext<string>(ContextConstants.CASSET_CODE) ?? string.Empty,
+                    CASSET_TRANS_SEQ_NO = R_Utility.R_GetStreamingContext<string>(ContextConstants.CASSET_TRANS_SEQ_NO) ?? string.Empty
+                };
+
+                _logger.LogInfo("Start method FAT00100GetTransExpAllocList in {0}", lcMethod);
+                loResult = await loCls.FAT00100GetTransExpAllocList(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            foreach (FAT00100GetTransExpAllocListResultDTO loItem in loResult)
+            {
+                yield return loItem;
+            }
+        }
     }
 }
 

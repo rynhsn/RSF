@@ -20,6 +20,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
 
 namespace FAT00100Front
 {
@@ -47,7 +49,7 @@ namespace FAT00100Front
         private readonly FAT0010002ExpenseAllocationBatchViewModel _batchViewModel = new FAT0010002ExpenseAllocationBatchViewModel();
 
         // Component references
-        private R_Grid<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>? _gridAllocExpense;
+        private R_Grid<FAT00100GetTransExpAllocListResultDTO>? _gridAllocExpense;
         private R_ConductorGrid? _conductorGridAllocExpenseRef;
 
         // State management
@@ -166,54 +168,7 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        /// <summary>
-        /// Load expense allocation data for current asset
-        /// Called when asset is selected or tab is activated
-        /// </summary>
-        public async Task LoadExpenseAllocationDataAsync()
-        {
-            var loEx = new R_Exception();
-
-            try
-            {
-                // Use _currentDTO if available (from R_Init_From_Master), otherwise use _VM.Data
-                FAT0010002DTO? loCurrentData = _currentDTO ?? _VM.Data;
-                if (loCurrentData == null)
-                    return;
-
-                // Get required parameters
-                string lcCompanyId = ClientHelper.CompanyId;
-                string lcLangId = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en";
-                string lcDeptCode = _VM.DeptCode;
-                string lcTransactionCode = _VM.TransactionCode;
-                string lcReferenceNo = _VM.ReferenceNo;
-                string lcAssetCode = loCurrentData.CASSET_CODE ?? string.Empty;
-                string lcAssetTransSeqNo = loCurrentData.CASSET_TRANS_SEQNO ?? "000100";
-
-                // Load expense allocation list
-                await _VM.GetFAAcquisitionDetailAllocExpenPageListAsync(
-                    lcCompanyId,
-                    lcLangId,
-                    lcDeptCode,
-                    lcTransactionCode,
-                    lcReferenceNo,
-                    lcAssetCode,
-                    lcAssetTransSeqNo
-                );
-
-                // Refresh grid
-                if (_gridAllocExpense != null)
-                {
-                    await _gridAllocExpense.R_RefreshGrid(null);
-                }
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            loEx.ThrowExceptionIfErrors();
-        }
+        
 
         #region Grid Data Loading
 
@@ -233,16 +188,18 @@ namespace FAT00100Front
                 
                 string lcCompanyId = ClientHelper.CompanyId;
                 string lcLangId = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en";
-                string lcDeptCode = _VM.DeptCode;
+                string lcDeptCode = loCurrentData?.CDEPT_CODE??"";
                 string lcTransactionCode = _VM.TransactionCode;
                 string lcReferenceNo = _VM.ReferenceNo;
                 string lcAssetCode = loCurrentData?.CASSET_CODE ?? string.Empty;
-                string lcAssetTransSeqNo = loCurrentData?.CASSET_TRANS_SEQNO ?? "000100";
+                string lcAssetTransSeqNo = loCurrentData?.CASSET_TRANS_SEQNO ?? "";
+                string lcParentId = loCurrentData?.CREC_ID ?? "";
 
                 // Call ViewModel method to get expense allocation list (streaming method)
-                await _VM.GetFAAcquisitionDetailAllocExpenPageListAsync(
+                await _VM.FAT00100GetTransExpAllocListAsync(
                     lcCompanyId,
                     lcLangId,
+                    lcParentId,
                     lcDeptCode,
                     lcTransactionCode,
                     lcReferenceNo,
@@ -251,7 +208,7 @@ namespace FAT00100Front
                 );
 
                 // Set the result from ViewModel
-                eventArgs.ListEntityResult = _VM.AllocExpenPageList ?? new ObservableCollection<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>();
+                eventArgs.ListEntityResult = _VM.TransExpAllocList ?? new ObservableCollection<FAT00100GetTransExpAllocListResultDTO>();
             }
             catch (Exception ex)
             {
@@ -268,7 +225,6 @@ namespace FAT00100Front
         private void GridAllocExpense_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
-
             try
             {
                 // Return the entity as-is (no additional processing needed)
@@ -292,7 +248,7 @@ namespace FAT00100Front
 
             try
             {
-                var loData = (FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO)eventArgs.Data;
+                var loData = (FAT00100GetTransExpAllocListResultDTO)eventArgs.Data;
 
                 if (loData != null)
                 {
@@ -318,7 +274,7 @@ namespace FAT00100Front
 
             try
             {
-                var loData = (List<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>)eventArgs.Data;
+                var loData = (List<FAT00100GetTransExpAllocListResultDTO>)eventArgs.Data;
 
                 // Validate grid has data
                 // NET4: If loBigObject.Count = 0 Then loEx.Add(R_Utility.R_GetError(GetType(Resources_Dummy_Class), "PS018"))
@@ -349,8 +305,8 @@ namespace FAT00100Front
             {
                 // Convert grid data to List<FAT0010002CommonDTO>
                 // NET4: loBigObject = (From A As FAT0010002StreamDTO In bsGridAllocExpense.List Select New FAT0010002CommonDTO...)
-                List<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO> loGridData = 
-                    (List<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>)eventArgs.Data;
+                List<FAT00100GetTransExpAllocListResultDTO> loGridData = 
+                    (List<FAT00100GetTransExpAllocListResultDTO>)eventArgs.Data;
 
                 List<FAT0010002CommonDTO> loBigObject = loGridData
                     .Select(x => new FAT0010002CommonDTO
@@ -368,11 +324,13 @@ namespace FAT00100Front
                     CUSER_ID = ClientHelper.UserId,
                     UserParameters = new R_SaveBatchUserParameterDTO
                     {
-                        CDEPT_CODE = _VM.DeptCode,
-                        CTRANSACTION_CODE = _VM.TransactionCode,
-                        CREFERENCE_NO = _VM.ReferenceNo,
-                        CASSET_CODE = _VM.Data?.CASSET_CODE ?? string.Empty,
-                        CASSET_TRANS_SEQNO = _VM.Data?.CASSET_TRANS_SEQNO ?? "000100"
+                        CDEPT_CODE = _VM.TransDetailData.CDEPT_CODE,
+                        CREF_NO = _VM.TransDetailData.CREF_NO,
+                        CASSET_CODE = _VM.Data?.CASSET_CODE,
+                        CTRANS_SEQ_NO = _VM.Data.CTRANS_SEQNO,
+                        CPARENT_ID = _VM.Data.CREC_ID,
+                        CPROPERTY_ID = _VM.Data.CPROPERTY_ID,
+                        CTRANSACTION_CODE= _VM.DEFAULT_TRANSACTION_CODE
                     },
                     Data = loBigObject
                 };
@@ -525,19 +483,8 @@ namespace FAT00100Front
 
             try
             {
-                // Set lookup page type and parameters
-                // NET4: Uses LookUpForm with GSL00500 sender flag
-                var loParam = new
-                {
-                    CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
-                    CLOOKUP_SENDER_FLAG = "GSL00500",
-                    LACTIVE = true
-                };
-
-                eventArgs.Parameter = loParam;
-                // Note: TargetPageType should be set to the lookup page type (GSL00500)
-                // This will be determined by the lookup system based on CLOOKUP_SENDER_FLAG
+                eventArgs.Parameter = new GSL00700ParameterDTO();
+                eventArgs.TargetPageType = typeof(GSL00700);
             }
             catch (Exception ex)
             {
@@ -557,19 +504,19 @@ namespace FAT00100Front
 
             try
             {
-                if (eventArgs.Result == null) return;
 
-                dynamic loResult = eventArgs.Result;
-                var loGridRow = (FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO)eventArgs.ColumnData;
-
-                if (loGridRow != null && loResult != null)
+                var loTempResult = (GSL00700DTO)eventArgs.Result;
+                var loGridRow = (FAT00100GetTransExpAllocListResultDTO)eventArgs.ColumnData;
+                if (loTempResult != null && loGridRow != null)
                 {
-                    // NET4: gvAllocExpense.CurrentRow.Cells("CEXPENSE_DEPT_CODE").Value = loReturn.cDeptCode
-                    // NET4: gvAllocExpense.CurrentRow.Cells("CEXPENSE_DEPT_NAME").Value = loReturn.cDeptDesc
-                    loGridRow.CEXPENSE_DEPT_CODE = loResult.cDeptCode?.ToString().Trim() ?? string.Empty;
-                    loGridRow.CEXPENSE_DEPT_NAME = loResult.cDeptDesc?.ToString().Trim() ?? string.Empty;
-                    _lastDepartmentCode = loGridRow.CEXPENSE_DEPT_CODE;
+                    _VM.Data.CASSET_DEPT_CODE = loTempResult.CDEPT_CODE;
+                    _VM.Data.CASSET_DEPT_NAME = loTempResult.CDEPT_NAME;
+
+                    loGridRow.CEXPENSE_DEPT_CODE = loTempResult.CDEPT_CODE;
+                    loGridRow.CEXPENSE_DEPT_NAME = loTempResult.CDEPT_NAME;
                 }
+
+                
             }
             catch (Exception ex)
             {

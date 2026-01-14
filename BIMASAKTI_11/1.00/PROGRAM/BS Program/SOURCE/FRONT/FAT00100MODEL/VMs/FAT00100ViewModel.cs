@@ -420,6 +420,7 @@ namespace FAT00100Model.VMs
                     CurrentRecord.CBASE_CURRENCY_CODE = CompanyInfoData.CBASE_CURRENCY_CODE ?? string.Empty;
                     CurrentRecord.CCREATE_DATE= CurrentRecord.DCREATE_DATE.ToString("dd-MMM-yyyy HH:mm");
                     CurrentRecord.CUPDATE_DATE = CurrentRecord.DUPDATE_DATE.ToString("dd-MMM-yyyy HH:mm");
+                    CurrentRecord.CREF_DATE_DISPLAY = CurrentRecord.DREF_DATE.ToString("dd-MMMM-yyyy");
 
                 }
             }

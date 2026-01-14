@@ -146,6 +146,7 @@ namespace FAT00100Common.DTOs
         public string CREFERENCE_NO { get; set; } = string.Empty;
         public string CREF_DATE { get; set; } = string.Empty;
         public DateTime DREF_DATE { get; set; }
+        public string CREF_DATE_DISPLAY { get; set; }
         public string CDOCUMENT_NO { get; set; } = string.Empty;
         public string CDOC_NO { get; set; } = string.Empty;
         public string CDOCUMENT_DATE { get; set; } = string.Empty;

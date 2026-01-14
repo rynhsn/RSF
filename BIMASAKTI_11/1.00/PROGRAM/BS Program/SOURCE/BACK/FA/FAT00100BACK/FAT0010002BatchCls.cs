@@ -13,6 +13,9 @@ using R_Common;
 using R_CommonFrontBackAPI;
 using R_Common;
 using R_OpenTelemetry;
+using System.Windows.Input;
+using System.Data.SqlClient;
+using System.Runtime.InteropServices;
 
 namespace FAT00100Back
 {
@@ -71,109 +74,82 @@ namespace FAT00100Back
 
         private async Task _BatchProcessAsync(R_BatchProcessPar poBatchProcessPar)
         {
-            string lcMethod = nameof(_BatchProcessAsync);
-            using Activity? loActivity = _activitySource.StartActivity(lcMethod);
+            using var Activity = _activitySource.StartActivity(nameof(_BatchProcessAsync));
+            _logger.LogInfo(string.Format("START process method {0} on Cls", nameof(_BatchProcessAsync)));
             R_Exception loException = new R_Exception();
-            R_Db? loDb = null;
+            string lcQuery = "";
+            R_Db loDb = new R_Db();
+            DbConnection loConn = null;
+            DbCommand loCommand = null;
 
             try
             {
-                loDb = new R_Db();
-                string lcCompanyId = poBatchProcessPar.Key.COMPANY_ID;
+                loCommand = loDb.GetCommand();
+                loConn = await loDb.GetConnectionAsync();
+                //Get data from poBatchPRocessParam
+                var loObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<FAT0010002CommonDTO>>(poBatchProcessPar.BigObject);
 
-                // Get parameters from UserParameters dictionary
-                string lcDeptCode = poBatchProcessPar.UserParameters.Where(x => x.Key.Equals("CDEPT_CODE", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault()?.Value?.ToString() ?? string.Empty;
-                string lcTransactionCode = poBatchProcessPar.UserParameters.Where(x => x.Key.Equals("CTRANSACTION_CODE", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault()?.Value?.ToString() ?? string.Empty;
-                string lcReferenceNo = poBatchProcessPar.UserParameters.Where(x => x.Key.Equals("CREFERENCE_NO", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault()?.Value?.ToString() ?? string.Empty;
-                string lcAssetCode = poBatchProcessPar.UserParameters.Where(x => x.Key.Equals("CASSET_CODE", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault()?.Value?.ToString() ?? string.Empty;
-                string lcAssetTransSeqNo = poBatchProcessPar.UserParameters.Where(x => x.Key.Equals("CASSET_TRANS_SEQNO", StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault()?.Value?.ToString() ?? string.Empty;
+                var loCDEPT_CODE = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(FAT0010002BatchContextConstant.CDEPT_CODE)).FirstOrDefault().Value;
+                var lcCDEPT_CODE = ((System.Text.Json.JsonElement)loCDEPT_CODE).GetString();
 
-                using TransactionScope loTransScope = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled);
-                using DbConnection loConn = await loDb.GetConnectionAsync();
-                using DbCommand loCmd = loDb.GetCommand();
+                var loCTRANSACTION_CODE = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(FAT0010002BatchContextConstant.CTRANSACTION_CODE)).FirstOrDefault().Value;
+                var lcCTRANSACTION_CODE = ((System.Text.Json.JsonElement)loCTRANSACTION_CODE).GetString();
 
-                // Deserialize batch data
-                List<FAT0010002CommonDTO> loObjectImport = R_NetCoreUtility.R_DeserializeObjectFromByte<List<FAT0010002CommonDTO>>(poBatchProcessPar.BigObject);
+                var loCREF_NO = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(FAT0010002BatchContextConstant.CREF_NO)).FirstOrDefault().Value;
+                var lcCREF_NO = ((System.Text.Json.JsonElement)loCREF_NO).GetString();
 
-                // DELETE existing records
-                loCmd.Parameters.Clear();
-                string lcCmdDelete = " DELETE FAT_TRANS_EXP_ALLOC " +
-                                          " WHERE CCOMPANY_ID = @CCOMPANY_ID " +
-                                          " AND CDEPT_CODE = @CDEPT_CODE " +
-                                          " AND CTRANSACTION_CODE = @CTRANSACTION_CODE " +
-                                          " AND CREFERENCE_NO = @CREFERENCE_NO " +
-                                          " AND CASSET_CODE = @CASSET_CODE " +
-                                          " AND CASSET_TRANS_SEQNO = @CASSET_TRANS_SEQNO ";
+                var loCASSET_CODE = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(FAT0010002BatchContextConstant.CASSET_CODE)).FirstOrDefault().Value;
+                var lcCASSET_CODE = ((System.Text.Json.JsonElement)loCASSET_CODE).GetString();
 
-                loCmd.CommandText = lcCmdDelete;
-                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, lcCompanyId);
-                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, lcDeptCode);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, lcTransactionCode);
-                loDb.R_AddCommandParameter(loCmd, "@CREFERENCE_NO", DbType.String, 50, lcReferenceNo);
-                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, lcAssetCode);
-                loDb.R_AddCommandParameter(loCmd, "@CASSET_TRANS_SEQNO", DbType.String, 50, lcAssetTransSeqNo);
+                var loCTRANS_SEQ_NO = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(FAT0010002BatchContextConstant.CTRANS_SEQ_NO)).FirstOrDefault().Value;
+                var lcCTRANS_SEQ_NO = ((System.Text.Json.JsonElement)loCTRANS_SEQ_NO).GetString();
 
-                await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                var loCPARENT_ID = poBatchProcessPar.UserParameters.Where((x) => x.Key.Equals(FAT0010002BatchContextConstant.CPARENT_ID)).FirstOrDefault().Value;
+                var lcCPARENT_ID = ((System.Text.Json.JsonElement)loCPARENT_ID).GetString();
 
-                if (loObjectImport != null && loObjectImport.Count > 0)
+                lcQuery = "CREATE TABLE #FAT00100_EXP_ALLOC_LIST(" +
+                   "CEXPENSE_DEPT_CODE   VARCHAR(20)" +
+                   ",NEXPENSE_PCT         NUMERIC(5,2)" +
+                   ") ";
+
+
+                _logger.LogDebug("{@ObjectQuery} ", lcQuery);
+
+                await loDb.SqlExecNonQueryAsync(lcQuery, loConn, false);
+
+                for (var i = 0; i < loObject.Count; i++)
                 {
-                    string lcCmdInsert = " DECLARE @DATENOW AS DATETIME = DBO.RFN_GET_DB_TODAY(@CCOMPANY_ID)" +
-                            " INSERT INTO FAT_TRANS_EXP_ALLOC " +
-                            " (CCOMPANY_ID, CDEPT_CODE, CTRANSACTION_CODE, CREFERENCE_NO, CASSET_CODE, " +
-                            " CASSET_TRANS_SEQNO, CEXPENSE_DEPT_CODE, NEXPENSE_PCT, COLD_FLAG, " +
-                            " CCREATE_BY, DCREATE_DATE, CUPDATE_BY, DUPDATE_DATE) " +
-                            " VALUES ";
-
-                    loCmd.Parameters.Clear();
-                    loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, lcCompanyId);
-                    loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 50, lcDeptCode);
-                    loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 50, lcTransactionCode);
-                    loDb.R_AddCommandParameter(loCmd, "@CREFERENCE_NO", DbType.String, 50, lcReferenceNo);
-                    loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, lcAssetCode);
-                    loDb.R_AddCommandParameter(loCmd, "@CASSET_TRANS_SEQNO", DbType.String, 50, lcAssetTransSeqNo);
-                    loDb.R_AddCommandParameter(loCmd, "@COLD_FLAG", DbType.String, 50, "0");
-                    loDb.R_AddCommandParameter(loCmd, "@CCREATE_BY", DbType.String, 50, poBatchProcessPar.Key.USER_ID);
-                    loDb.R_AddCommandParameter(loCmd, "@CUPDATE_BY", DbType.String, 50, poBatchProcessPar.Key.USER_ID);
-
-                    int countLoop = 1;
-                    foreach (var saveParam in loObjectImport)
-                    {
-                        countLoop++;
-                        // Note: Preserving original behavior - embeds values directly in SQL string
-                        lcCmdInsert += string.Format("(@CCOMPANY_ID, @CDEPT_CODE, @CTRANSACTION_CODE, @CREFERENCE_NO, @CASSET_CODE, " +
-                                                      " @CASSET_TRANS_SEQNO, '{0}', '{1}', @COLD_FLAG, " +
-                                                      " @CCREATE_BY, @DATENOW, @CUPDATE_BY, @DATENOW),",
-                                                      saveParam.CEXPENSE_DEPT_CODE, saveParam.NEXPENSE_PCT);
-                    }
-
-                    if (!string.IsNullOrEmpty(lcCmdInsert))
-                    {
-                        // Remove trailing comma
-                        lcCmdInsert = lcCmdInsert.Substring(0, lcCmdInsert.Length - 1);
-                        loCmd.CommandText = lcCmdInsert;
-                        await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
-                    }
+                    _logger.LogDebug($"INSERT INTO #FAT00100_EXP_ALLOC_LIST " +
+                                     $"VALUES (" +
+                                     $"'{loObject[i].CEXPENSE_DEPT_CODE}', " +
+                                     $"{loObject[i].NEXPENSE_PCT}, " +
+                                     $")");
                 }
 
-                // Write batch status
-                if (!loException.Haserror)
+                await loDb.R_BulkInsertAsync((SqlConnection)loConn, "#FAT00100_EXP_ALLOC_LIST", loObject);
+                lcQuery = "RSP_FAT00100_SAVE_TRANS_EXP_ALLOC ";
+                loCommand.CommandText = lcQuery;
+                loCommand.CommandType = CommandType.StoredProcedure;
+                loDb.R_AddCommandParameter(loCommand, "@CCOMPANY_ID", DbType.String, 8, poBatchProcessPar.Key.COMPANY_ID);
+                loDb.R_AddCommandParameter(loCommand, "@CUSER_ID", DbType.String, 8, poBatchProcessPar.Key.USER_ID);
+                loDb.R_AddCommandParameter(loCommand, "@CDEPT_CODE", DbType.String, 20, lcCDEPT_CODE);
+                loDb.R_AddCommandParameter(loCommand, "@CREF_NO", DbType.String, 20, lcCREF_NO);
+                loDb.R_AddCommandParameter(loCommand, "@CASSET_CODE", DbType.String, 20, lcCASSET_CODE);
+                loDb.R_AddCommandParameter(loCommand, "@CTRANS_SEQ_NO", DbType.String, 8, lcCTRANS_SEQ_NO);
+                loDb.R_AddCommandParameter(loCommand, "@CPARENT_ID", DbType.String, 8, lcCPARENT_ID);
+                //loDb.R_AddCommandParameter(loCommand, "@CKEY_GUID", DbType.String, 100, poBatchProcessPar.Key.KEY_GUID);
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCommand.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+                try
                 {
-                    string lcCmdStatus = string.Format("exec RSP_WriteUploadProcessStatus '{0}', '{1}', '{2}', '{3}', '{4}', '{5}'",
-                        poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID, poBatchProcessPar.Key.KEY_GUID.Trim(), 1, "Save Complete", 1);
-                    loCmd.Parameters.Clear();
-                    loCmd.CommandText = lcCmdStatus;
-                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, true);
+                    await loDb.SqlExecNonQueryAsync(loConn, loCommand, false);
                 }
-                else
+                catch (Exception ex)
                 {
-                    string lcCmdStatus = string.Format("exec RSP_WriteUploadProcessStatus N'{0}', N'{1}', N'{2}', N'{3}', N'{4}', N'{5}'",
-                        poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID, poBatchProcessPar.Key.KEY_GUID.Trim(), 1, "Save Complete With Validation", 9);
-                    loCmd.Parameters.Clear();
-                    loCmd.CommandText = lcCmdStatus;
-                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                    loException.Add(ex);
+                    _logger.LogError(loException);
+                    throw;
                 }
 
-                loTransScope.Complete();
             }
             catch (Exception ex)
             {
@@ -188,8 +164,24 @@ namespace FAT00100Back
                 }
             }
 
+            //HANDLE EXCEPTION IF THERE ANY ERROR ON TRY CATCH paling luar
+            if (loException.Haserror)
+            {
+                string lcMessageError = loException.ErrorList[0].ErrDescp.Replace("'", "`");
+                lcQuery = "INSERT INTO GST_UPLOAD_ERROR_STATUS(CCOMPANY_ID,CUSER_ID,CKEY_GUID,ISEQ_NO,CERROR_MESSAGE) VALUES" +
+                    string.Format("('{0}', '{1}', ", poBatchProcessPar.Key.COMPANY_ID, poBatchProcessPar.Key.USER_ID) +
+                    string.Format("'{0}', -1, '{1}')", poBatchProcessPar.Key.KEY_GUID, lcMessageError);
+                await loDb.SqlExecNonQueryAsync(lcQuery);
+
+                lcQuery = string.Format("EXEC RSP_WriteUploadProcessStatus '{0}', ", poBatchProcessPar.Key.COMPANY_ID) +
+                   string.Format("'{0}', ", poBatchProcessPar.Key.USER_ID) +
+                   string.Format("'{0}', ", poBatchProcessPar.Key.KEY_GUID) +
+                   string.Format("100, '{0}', 9", lcMessageError);
+
+                await loDb.SqlExecNonQueryAsync(lcQuery);
+            }
+            _logger.LogInfo(string.Format("End process method on Cls", nameof(_BatchProcessAsync)));
             loException.ThrowExceptionIfErrors();
-            _logger.LogInfo("END method {MethodName}", lcMethod);
         }
     }
 }
