@@ -426,10 +426,8 @@ namespace FAT00100Front
 
                 _VM.Data.CLOCATION_ID = loData.CLOCATION_ID;
                 _VM.Data.CLOCATION_NAME = loData.CLOCATION_NAME;
-                //_VM.Data.CPROPERTY_ID = loData.CPROPERTY_ID;
-                //_VM.Data.CPROPERTY_NAME = loData.CPROPERTY_ID;
-                _VM.Data.CPROPERTY_ID = "ASHMD";
-                _VM.Data.CPROPERTY_NAME = "ASHMD";
+                _VM.Data.CPROPERTY_ID = loData.CPROPERTY_ID;
+                _VM.Data.CPROPERTY_NAME = loData.CPROPERTY_ID;
                 _VM.Data.CBUILDING_ID = loData.CBUILDING_ID;
                 _VM.Data.CBUILDING_NAME= loData.CBUILDING_NAME;
                 _VM.Data.CFLOOR_ID = loData.CFLOOR_ID;
@@ -1103,7 +1101,7 @@ namespace FAT00100Front
                     return;
 
                 // Validate Department
-                if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE) && 
+                if (string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE) && 
                     (_VM.TransDetailData == null || string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE)))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_department"));
@@ -1115,29 +1113,17 @@ namespace FAT00100Front
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_ReferenceDate"));
                 }
 
-                //// Validate Reference Date Range (must not be earlier than Soft Period)
-                //string lcRefDate = _VM.TransDetailData.CREF_DATE;
-                
-                //if (!string.IsNullOrWhiteSpace(lcRefDate) && lcRefDate.Length >= 6)
-                //{
-                //    string lcRefDatePeriod = lcRefDate.Substring(0, 6);
-                //    if (!string.IsNullOrWhiteSpace(_VM.SoftPeriod) && string.Compare(lcRefDatePeriod, _VM.SoftPeriod) < 0)
-                //    {
-                //        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_ReferenceDateRange"));
-                //    }
-                //}
+                // Validate Asset Code
+                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE) && _VM.AssetIncrementFlag == false)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
+                }
 
-                //// Validate Asset Code
-                //if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
-                //{
-                //    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
-                //}
-
-                //// Validate Description
-                //if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
-                //{
-                //    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Description"));
-                //}
+                // Validate Description
+                if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Description"));
+                }
             }
             catch (Exception ex)
             {
@@ -1199,7 +1185,7 @@ namespace FAT00100Front
                 {
                     loEntity.CINSERVICE_DATE = string.Empty;
                 }
-                loEntity.CGLLINK_DATE = "debug rsaving";
+                //loEntity.NYEAR_DEPR_PCT = _VM.lnNYEAR_DEPR_PCT;
 
             }
             catch (Exception ex)

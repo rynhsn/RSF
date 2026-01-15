@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="01/02/2026 14:10:04" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\PM\BIMASAKTI_PM_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="01/15/2026 09:41:05" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Data" DataType="PMR02600Common.DTOs.Print.PMR02600ReportResultDTO, PMR02600Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -90,7 +90,7 @@
       <inherited Name="BaseHeaderUserId"/>
       <inherited Name="LabelUserId"/>
       <inherited Name="BaseHeaderDate"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="89.05" Width="1047.06" Height="47.25" CanGrow="true" CanShrink="true">
+      <ChildBand Name="Child1" ZOrder="-1" Top="87.72" Width="1047.06" Height="47.25" CanGrow="true" CanShrink="true">
         <TextObject Name="Text41" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.PROPERTY]" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text42" Left="94.5" Top="9.45" Width="368.55" Height="18.9" Text=": [ResponseDataModel.Data.Header.CPROPERTY]" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text43" Top="28.35" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.BUILDING]" Font="Arial Unicode MS, 9pt"/>
@@ -105,7 +105,7 @@
         <TextObject Name="Text46" Left="604.8" Top="28.35" Width="283.5" Height="18.9" Text=": [ResponseDataModel.Data.Header.DPERIOD]" Format="Date" Format.Format="d" Font="Arial Unicode MS, 9pt"/>
       </ChildBand>
     </inherited>
-    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="163.2" Width="1047.06" Height="28.35" Border.Lines="Bottom" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true" Condition="[ResponseDataModel.Data.Data.CBUILDING_ID]" SortOrder="None">
+    <GroupHeaderBand Name="GroupHeader1" ZOrder="0" Top="159.2" Width="1047.06" Height="28.35" Border.Lines="Bottom" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true" Condition="[ResponseDataModel.Data.Data.CBUILDING_ID]" SortOrder="None">
       <TextObject Name="Text55" Width="396.9" Height="18.9" Text="[ResponseDataModel.Data.Label.BUILDING] : [ResponseDataModel.Data.Data.CBUILDING_ID] - [ResponseDataModel.Data.Data.CBUILDING_NAME]" Font="Arial Unicode MS, 9pt">
         <Formats>
           <GeneralFormat/>
@@ -113,7 +113,7 @@
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <DataHeaderBand Name="DataHeader1" Top="140.3" Width="1047.06" Height="18.9" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true">
+      <DataHeaderBand Name="DataHeader1" Top="137.63" Width="1047.06" Height="18.9" Border.Lines="Top, Bottom" CanGrow="true" CanShrink="true" RepeatOnEveryPage="true">
         <TextObject Name="Text54" Left="973.35" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.Label.OCCUPANCY]" Format="Percent" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text53" Left="831.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Label.OCCUPIABLE_AREA]" HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text47" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.UNIT_ID]" Font="Arial Unicode MS, 9pt"/>
@@ -123,26 +123,26 @@
         <TextObject Name="Text51" Left="519.75" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TENANT_NAME]" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text52" Left="689.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Label.LEASED_AREA]" HorzAlign="Right" Font="Arial Unicode MS, 9pt"/>
       </DataHeaderBand>
-      <DataBand Name="Data1" Top="195.55" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Data">
+      <DataBand Name="Data1" Top="190.22" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="Data">
         <TextObject Name="Text56" Width="94.5" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CUNIT_ID]" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text57" Left="94.5" Width="132.3" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CUNIT_TYPE_NAME]" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text58" Left="226.8" Width="179.55" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CUNIT_DESCRIPTION]" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text59" Left="406.35" Width="113.4" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CTENANT_ID]" Font="Arial Unicode MS, 9pt"/>
         <TextObject Name="Text60" Left="519.75" Width="170.1" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Data.CTENANT_NAME]" Font="Arial Unicode MS, 9pt"/>
-        <TextObject Name="Text61" Left="689.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLEASED_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text62" Left="831.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NOCCUPIABLE_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text63" Left="973.35" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.Data.NOCCUPANCY]%" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text61" Left="689.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NLEASED_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text62" Left="831.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NOCCUPIABLE_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text63" Left="973.35" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.Data.NOCCUPANCY]%" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 9pt" Trimming="EllipsisCharacter"/>
       </DataBand>
-      <GroupFooterBand Name="GroupFooter1" Top="218.45" Width="1047.06" Height="66.15" Border.Lines="Top">
-        <TextObject Name="Text64" Left="519.75" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TOTAL_LEASE_AREA]" Font="Arial, 9pt"/>
+      <GroupFooterBand Name="GroupFooter1" Top="211.78" Width="1047.06" Height="66.15" Border.Lines="Top">
+        <TextObject Name="Text64" Left="519.75" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TOTAL_LEASE_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="0" Font="Arial, 9pt"/>
         <TextObject Name="Text65" Left="519.75" Top="18.9" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TOTAL_LEASED_AREA]" Font="Arial, 9pt"/>
         <TextObject Name="Text66" Left="519.75" Top="37.8" Width="170.1" Height="18.9" Text="[ResponseDataModel.Data.Label.TOTAL_AVAILABLE]" Font="Arial, 9pt"/>
-        <TextObject Name="Text67" Left="689.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASE_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text68" Left="689.85" Top="18.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASED_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text69" Left="831.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASE_AREA_PCT]%" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text70" Left="831.6" Top="18.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASED_AREA_PCT]%" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text71" Left="689.85" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NAVAIL_AREA]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text72" Left="831.6" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NAVAIL_AREA_PCT]%" Format="Number" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="." Format.GroupSeparator="," Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text67" Left="689.85" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASE_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text68" Left="689.85" Top="18.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASED_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text69" Left="831.6" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASE_AREA_PCT]%" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text70" Left="831.6" Top="18.9" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NTOTAL_LEASED_AREA_PCT]%" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text71" Left="689.85" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NAVAIL_AREA]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text72" Left="831.6" Top="37.8" Width="141.75" Height="18.9" Text="[ResponseDataModel.Data.Data.NAVAIL_AREA_PCT]%" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="" Format.PositivePattern="0" Format.NegativePattern="0" HorzAlign="Right" WordWrap="false" Font="Arial, 9pt" Trimming="EllipsisCharacter"/>
       </GroupFooterBand>
     </GroupHeaderBand>
   </inherited>

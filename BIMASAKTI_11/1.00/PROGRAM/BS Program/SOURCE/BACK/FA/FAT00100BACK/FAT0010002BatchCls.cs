@@ -134,7 +134,7 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCommand, "@CUSER_ID", DbType.String, 8, poBatchProcessPar.Key.USER_ID);
                 loDb.R_AddCommandParameter(loCommand, "@CDEPT_CODE", DbType.String, 20, lcCDEPT_CODE);
                 loDb.R_AddCommandParameter(loCommand, "@CREF_NO", DbType.String, 20, lcCREF_NO);
-                loDb.R_AddCommandParameter(loCommand, "@CASSET_CODE", DbType.String, 20, lcCASSET_CODE);
+                loDb.R_AddCommandParameter(loCommand, "@CASSET_CODE", DbType.String, 50, lcCASSET_CODE);
                 loDb.R_AddCommandParameter(loCommand, "@CTRANS_SEQ_NO", DbType.String, 8, lcCTRANS_SEQ_NO);
                 loDb.R_AddCommandParameter(loCommand, "@CPARENT_ID", DbType.String, 8, lcCPARENT_ID);
                 //loDb.R_AddCommandParameter(loCommand, "@CKEY_GUID", DbType.String, 100, poBatchProcessPar.Key.KEY_GUID);

@@ -278,6 +278,18 @@ namespace FAT00100Front
 
                 // Validate grid has data
                 // NET4: If loBigObject.Count = 0 Then loEx.Add(R_Utility.R_GetError(GetType(Resources_Dummy_Class), "PS018"))
+                //if (string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE) &&
+                //   (_VM.TransDetailData == null || string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE)))
+                //{
+                //    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_department"));
+                //}
+                decimal lnTotal = loData.Sum(x => x.NEXPENSE_PCT);
+                if (lnTotal != 100)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_expense_percentage_not_100"));
+                    eventArgs.Cancel = true;
+                }
+
                 if (loData == null || loData.Count == 0)
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS018"));
@@ -541,9 +553,9 @@ namespace FAT00100Front
             try
             {
                 // Only handle department code column changes
-                if (eventArgs.ColumnName == nameof(FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO.CEXPENSE_DEPT_CODE))
+                if (eventArgs.ColumnName == nameof(FAT00100GetTransExpAllocListResultDTO.CEXPENSE_DEPT_CODE))
                 {
-                    var loGridRow = (FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO)eventArgs.CurrentRow;
+                    var loGridRow = (FAT00100GetTransExpAllocListResultDTO)eventArgs.CurrentRow;
                     
                     if (loGridRow != null)
                     {
@@ -571,9 +583,9 @@ namespace FAT00100Front
             try
             {
                 // Only handle department code column
-                if (eventArgs.ColumnName == nameof(FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO.CEXPENSE_DEPT_CODE))
+                if (eventArgs.ColumnName == nameof(FAT00100GetTransExpAllocListResultDTO.CEXPENSE_DEPT_CODE))
                 {
-                    var loGridRow = (FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO)eventArgs.CurrentRow;
+                    var loGridRow = (FAT00100GetTransExpAllocListResultDTO)eventArgs.CurrentRow;
 
                     if (loGridRow != null)
                     {
@@ -622,6 +634,26 @@ namespace FAT00100Front
         #region Grid Validation Handlers
 
         /// <summary>
+        /// Grid check delete - enables delete functionality
+        /// </summary>
+        private void GridAllocExpense_R_CheckDelete(R_CheckDeleteEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // Allow delete when in edit mode
+                eventArgs.Allow = _isEditMode;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
         /// Grid before delete validation
         /// NET4: gvAllocExpense_R_BeforeDelete (lines 1880-1884)
         /// Cannot delete row if CEXPENSE_DEPT_CODE equals Asset Department Code
@@ -632,15 +664,16 @@ namespace FAT00100Front
 
             try
             {
-                var loEntity = R_FrontUtility.ConvertObjectToObject<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>(eventArgs.Data);
+                var loEntity = R_FrontUtility.ConvertObjectToObject<FAT00100GetTransExpAllocListResultDTO>(eventArgs.Data);
                 // Use _currentDTO if available, otherwise use _VM.Data
                 FAT0010002DTO? loCurrentData = _currentDTO ?? _VM.Data;
                 string lcAssetDeptCode = loCurrentData?.CASSET_DEPT_CODE ?? string.Empty;
 
-                if (loEntity != null && loEntity.CEXPENSE_DEPT_CODE == lcAssetDeptCode)
-                {
-                    eventArgs.Cancel = true;
-                }
+                // Cannot delete row if CEXPENSE_DEPT_CODE equals Asset Department Code
+                // if (loEntity != null && loEntity.CEXPENSE_DEPT_CODE == lcAssetDeptCode)
+                // {
+                //     eventArgs.Cancel = true;
+                // }
             }
             catch (Exception ex)
             {
@@ -661,15 +694,15 @@ namespace FAT00100Front
 
             try
             {
-                var loEntity = R_FrontUtility.ConvertObjectToObject<FAT0010002GetFAAcquisitionDetailAllocExpenPageListResultDTO>(eventArgs.Data);
+                var loEntity = R_FrontUtility.ConvertObjectToObject<FAT00100GetTransExpAllocListResultDTO>(eventArgs.Data);
                 // Use _currentDTO if available, otherwise use _VM.Data
-                FAT0010002DTO? loCurrentData = _currentDTO ?? _VM.Data;
-                string lcAssetDeptCode = loCurrentData?.CASSET_DEPT_CODE ?? string.Empty;
+                // FAT0010002DTO? loCurrentData = _currentDTO ?? _VM.Data;
+                // string lcAssetDeptCode = loCurrentData?.CASSET_DEPT_CODE ?? string.Empty;
 
-                if (loEntity != null && loEntity.CEXPENSE_DEPT_CODE == lcAssetDeptCode)
-                {
-                    eventArgs.Cancel = true;
-                }
+                // if (loEntity != null && loEntity.CEXPENSE_DEPT_CODE == lcAssetDeptCode)
+                // {
+                //     eventArgs.Cancel = true;
+                // }
             }
             catch (Exception ex)
             {

@@ -145,18 +145,17 @@
                 <!-- Row 1: Department (left) | Reference No (right) -->
                 <R_StackLayout Row class="mb-1">
                     <R_ItemLayout col="3">
-                        <R_Label>@Localizer["_Department"]</R_Label>
+                        <R_Label>@Localizer["_Department"]*</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
                         <R_TextBox @bind-Value="_VM.Data.CDEPT_CODE"
                                 R_ConductorSource="@_conductorRef"
-                                R_EnableAdd="true"
-                                R_EnableEdit="true"
+                                Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Add)" 
                                 OnLostFocused="txtDepartmentCode_OnLostFocused" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnDepartmentEntryLookup_R_Before_Open_Lookup"
-                                R_After_Open_Lookup="btnDepartmentEntryLookup_R_After_Open_Lookup">...</R_Lookup>
+                                R_After_Open_Lookup="btnDepartmentEntryLookup_R_After_Open_Lookup" Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Add)" >...</R_Lookup>
                     </R_ItemLayout>
                     
                     <R_ItemLayout auto="true">
@@ -174,7 +173,7 @@
                 <!-- Row 2: Ref. Date (left) | Document No (right) -->
                 <R_StackLayout Row class="mb-1">
                     <R_ItemLayout col="3">
-                        <R_Label>@Localizer["_ReferenceNo"]</R_Label>
+                        <R_Label>@Localizer["_ReferenceNo"]@(_VM.TransCodeInfoData.LINCREMENT_FLAG == false?"*":"")</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CREF_NO"
@@ -184,7 +183,7 @@
 
                     </R_ItemLayout>
                     <R_ItemLayout col="3" class="ps-4">
-                        <R_Label>@Localizer["_RefDate"]</R_Label>
+                        <R_Label>@Localizer["_RefDate"]*</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_DatePicker @bind-Value="_VM.Data.DREF_DATE"
@@ -230,8 +229,7 @@
                                     ValueField="@nameof(SourceOptionDTO.CVALUE)"
                                     TextField="@nameof(SourceOptionDTO.CDESCRIPTION)"
                                     R_ConductorSource="@_conductorRef"
-                                    R_EnableAdd="true"
-                                    R_EnableEdit="true" />
+                                     Enabled="false" />
                     </R_ItemLayout>
                 </R_StackLayout>
 
@@ -303,19 +301,20 @@
                 <!-- Supplier Section -->
                 <R_StackLayout Row class="mb-1">
                     <R_ItemLayout col="3">
-                        <R_Label>@Localizer["_Supplier"]</R_Label>
+                        <R_Label>@Localizer["_Supplier"]*</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CSUPPLIER_ID"
                                 R_ConductorSource="@_conductorRef"
                                 R_EnableAdd="true"
                                 R_EnableEdit="true"
-                                OnLostFocused="txtSupplierCode_OnLostFocused" />
+                                OnLostFocused="txtSupplierCode_OnLostFocused" 
+                                Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Add)" />
                     </R_ItemLayout>
                     <R_ItemLayout auto="true">
                         <R_Lookup R_Before_Open_Lookup="btnSupplierEntryLookup_R_Before_Open_Lookup"
                                 R_After_Open_Lookup="btnSupplierEntryLookup_R_After_Open_Lookup"
-                                  R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit>...</R_Lookup>
+                                  R_ConductorSource="@_conductorRef" Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Add)" >...</R_Lookup>
                     </R_ItemLayout>
                     <R_ItemLayout auto="false">
                         <R_TextBox @bind-Value="_VM.Data.CSUPPLIER_NAME" Enabled="false" />
@@ -325,7 +324,7 @@
                 <!-- Currency and Rates Section -->
                 <R_StackLayout Row class="mb-1">
                     <R_ItemLayout col="3">
-                        <R_Label>@Localizer["_Currency"]</R_Label>
+                        <R_Label>@Localizer["_Currency"]*</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_ComboBox Value="_VM.Data.CCURRENCY_CODE"
@@ -409,7 +408,7 @@
                 <!-- Description Section -->
                 <R_StackLayout Row class="mb-1">
                     <R_ItemLayout col="3">
-                        <R_Label>@Localizer["_Description"]</R_Label>
+                        <R_Label>@Localizer["_Description"]*</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="9">
                         <R_TextArea @bind-Value="_VM.Data.CTRANS_DESC"

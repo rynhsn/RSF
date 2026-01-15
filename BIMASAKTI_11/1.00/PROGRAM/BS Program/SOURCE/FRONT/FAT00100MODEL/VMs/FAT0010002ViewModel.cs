@@ -93,6 +93,8 @@ namespace FAT00100Model.VMs
         /// </summary>
         public string RefDateDisplay { get; set; } = string.Empty;
 
+        public decimal lnNYEAR_DEPR_PCT = 0;
+
         /// <summary>
         /// Format local currency rate display
         /// </summary>
@@ -188,6 +190,7 @@ namespace FAT00100Model.VMs
                         CurrentRecord.CDESCRIPTION = CurrentRecord.CTRANSACTION_DESCR;
                     }
                     CurrentRecord.DSTART_DATE = R_FrontUtility.R_ConvertToDateTime(CurrentRecord.CSTART_DATE, "yyyyMMdd");
+                    lnNYEAR_DEPR_PCT = CurrentRecord.NYEAR_DEPR_PCT;
                 }
             }
             catch (Exception ex)

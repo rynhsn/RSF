@@ -486,6 +486,13 @@ namespace FAT00100Back
 
             try
             {
+                // Determine action based on CRUD mode
+                string lcAction = peCRUDMode == eCRUDMode.AddMode ? "NEW" : "EDIT";
+                // if NEW create new GIU
+                if (lcAction == "NEW")
+                {
+                    poNewEntity.CREC_ID = Guid.NewGuid().ToString();
+                }
                 if (poNewEntity.OIMAGE != null)
                 {
                     loStorageType = await GetStorageType();
@@ -497,14 +504,6 @@ namespace FAT00100Back
                 
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
-
-                // Determine action based on CRUD mode
-                string lcAction = peCRUDMode == eCRUDMode.AddMode ? "NEW" : "EDIT";
-
-                
-
-               
-
                 // Map DTO properties to stored procedure parameters
                 loCmd.Parameters.Clear();
                 lcQuery = $"RSP_FAT00100_SAVE_TRANS_ASSET ";
@@ -518,9 +517,10 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poNewEntity.CDEPT_CODE);              //@CDEPT_CODE	varchar	20
                 loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poNewEntity.CREF_NO);                  //@CREF_NO	varchar	30
                 loDb.R_AddCommandParameter(loCmd, "@CREF_DATE", DbType.String, 8, poNewEntity.CREF_DATE);            //@CREF_DATE	varchar	8
-                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 30, poNewEntity.CASSET_CODE);            //@CASSET_CODE	varchar	30
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, poNewEntity.CASSET_CODE);            //@CASSET_CODE	varchar	50
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_SEQ_NO", DbType.String, 6, poNewEntity.CTRANS_SEQNO);             //@CTRANS_SEQ_NO	char	6
-                loDb.R_AddCommandParameter(loCmd, "@CASSET_NAME", DbType.String, 200, poNewEntity.CASSET_NAME);                //@CASSET_NAME	nvarchar	200
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_NAME", DbType.String, 50, poNewEntity.CASSET_NAME);                //@CASSET_NAME	nvarchar	200
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_OWNER", DbType.String, 200, poNewEntity.CASSET_OWNER);                //@CASSET_OWNER	varchar	50
                 loDb.R_AddCommandParameter(loCmd, "@CASSET_DEPT_CODE", DbType.String, 20, poNewEntity.CASSET_DEPT_CODE);  //@CASSET_DEPT_CODE	varchar	20
                 loDb.R_AddCommandParameter(loCmd, "@CJRNGRP_CODE", DbType.String, 20, poNewEntity.CJRNGRP_CODE);          //@CJRNGRP_CODE	varchar	20
                 loDb.R_AddCommandParameter(loCmd, "@CCATEGORY_CODE", DbType.String, 20, poNewEntity.CCATEGORY_CODE);      //@CCATEGORY_CODE	varchar	20
@@ -750,7 +750,7 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poParameter.CDEPT_CODE ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10, poParameter.CTRANS_CODE ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poParameter.CREF_NO ?? string.Empty);
-                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 20, poParameter.CASSET_CODE ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, poParameter.CASSET_CODE ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CASSET_TRANS_SEQ_NO", DbType.String, 6, poParameter.CASSET_TRANS_SEQ_NO ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 2, poParameter.CLANGUAGE_ID);
 
@@ -883,7 +883,7 @@ namespace FAT00100Back
                     {
                         CCOMPANY_ID = poNewEntity.CCOMPANY_ID,
                         CDATA_TYPE = "STORAGE_DATA_TABLE",
-                        CKEY01 = poNewEntity.CPROPERTY_ID,
+                        CKEY01 = poNewEntity.CREC_ID,
                     }
                 };
                 loSaveResult = R_StorageUtility.AddFile(loAddParameter, loConn, loConnAttr.Provider);

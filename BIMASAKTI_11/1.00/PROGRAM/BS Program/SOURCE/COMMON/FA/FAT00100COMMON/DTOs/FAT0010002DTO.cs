@@ -18,7 +18,8 @@ namespace FAT00100Common.DTOs
         public string CASSET_CODE { get; set; } = string.Empty;          // varchar(30)
         public string CTRANS_SEQ_NO { get; set; } = string.Empty;        // char(6)
         public string CASSET_NAME { get; set; } = string.Empty;          // nvarchar(200)
-        public string CASSET_DEPT_CODE { get; set; } = string.Empty;     // varchar(20)
+        public string CASSET_OWNER { get; set; } = string.Empty;          // varchar(50)
+        public string CASSET_DEPT_CODE { get; set; } = string.Empty;     // varchar(50)
         public string CJRNGRP_CODE { get; set; } = string.Empty;         // varchar(20)
         public string CCATEGORY_CODE { get; set; } = string.Empty;       // varchar(20)
         public string CTAX_CATEGORY_CODE { get; set; } = string.Empty;   // varchar(20)
@@ -154,7 +155,6 @@ namespace FAT00100Common.DTOs
         public int IUSEFUL_LIVE { get; set; }
         public decimal NLYEAR_DEPR_AMT { get; set; }
         public decimal NBYEAR_DEPR_AMT { get; set; }
-        public string CASSET_OWNER { get; set; } = string.Empty;
         public byte[]? OASSET_IMAGE { get; set; }
         public byte[]? OOASSET_IMAGE { get; set; }
         public bool LDELETE_FLAG { get; set; }

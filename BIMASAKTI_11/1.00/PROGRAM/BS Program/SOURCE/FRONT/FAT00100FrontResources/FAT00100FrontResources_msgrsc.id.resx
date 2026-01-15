@@ -475,6 +475,9 @@
   <data name="Val_Description" xml:space="preserve">
     <value>Deskripsi wajib diisi!</value>
   </data>
+  <data name="Val_expense_percentage_not_100" xml:space="preserve">
+    <value>Total Alokasi Persentase Biaya untuk semua departemen harus 100!</value>
+  </data>
   <data name="_Unit" xml:space="preserve">
     <value>Satuan</value>
   </data>

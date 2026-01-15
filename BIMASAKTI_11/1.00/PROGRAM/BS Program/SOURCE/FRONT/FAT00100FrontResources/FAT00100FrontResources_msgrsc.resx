@@ -639,6 +639,9 @@
   <data name="Val_Description" xml:space="preserve">
     <value>Description is required!</value>
   </data>
+  <data name="Val_expense_percentage_not_100" xml:space="preserve">
+    <value>Total Expense Allocation Percentage for all departments must be 100!</value>
+  </data>
   <data name="_Unit" xml:space="preserve">
     <value>Unit</value>
   </data>

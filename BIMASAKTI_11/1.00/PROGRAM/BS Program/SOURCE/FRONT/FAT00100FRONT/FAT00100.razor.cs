@@ -1005,7 +1005,6 @@ namespace FAT00100Front
                 loEntity.CCREATE_BY = ClientHelper.UserId;
                 loEntity.CUPDATE_BY = ClientHelper.UserId;
                 loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
-                loEntity.CDEPT_CODE = !string.IsNullOrWhiteSpace(_VM.PoDeptCode) ? _VM.PoDeptCode : loEntity.CDEPT_CODE; // from filter, txtDepartmentCodeFilter equivalent
                 loEntity.CTRANSACTION_CODE = _VM.CurrentRecord.CTRANSACTION_CODE; // from filter
 
                 
@@ -1251,6 +1250,12 @@ namespace FAT00100Front
                     loEntity = _VM.CurrentRecord;
                 }
 
+                // Validate required fields (existing validations)
+                if (string.IsNullOrWhiteSpace(loEntity.CDEPT_CODE))
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_department"));
+                }
+
                 // Add mode: Validate transaction number when LINCREMENT_FLAG is false
                 if (eventArgs.ConductorMode == R_eConductorMode.Add)
                 {
@@ -1269,6 +1274,11 @@ namespace FAT00100Front
                 if (loEntity.DREF_DATE == null)
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS006"));
+                }
+                if (string.IsNullOrWhiteSpace(loEntity.CSUPPLIER_ID))
+                {
+                    // Note: Supplier validation - check net4 for correct error code if different
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS010"));
                 }
 
                 // Validate currency
@@ -1316,16 +1326,8 @@ namespace FAT00100Front
                     }
                 }
 
-                // Validate required fields (existing validations)
-                if (string.IsNullOrWhiteSpace(loEntity.CDEPT_CODE))
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS003"));
-                }
-                if (string.IsNullOrWhiteSpace(loEntity.CSUPPLIER_ID))
-                {
-                    // Note: Supplier validation - check net4 for correct error code if different
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS010"));
-                }
+                
+                
 
                 // Validate transaction date >= soft period (PS004 in net4 - line 1275-1277)
                 if (!string.IsNullOrEmpty(lcTransactionDate) && !string.IsNullOrWhiteSpace(_VM.SoftPeriod))
@@ -1335,6 +1337,10 @@ namespace FAT00100Front
                     {
                         loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS004"));
                     }
+                }
+                if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Description"));
                 }
 
                 // TODO: PJ transaction validation (PS037) - requires async call to ValidatePJTrans
