@@ -264,6 +264,15 @@
   <data name="_Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
+  <data name="_AssetDepartment" xml:space="preserve">
+    <value>Asset Department</value>
+  </data>
+  <data name="_AssetJournalGrp" xml:space="preserve">
+    <value>Asset Journal Grp</value>
+  </data>
+  <data name="_AssetTaxCategory" xml:space="preserve">
+    <value>Asset Journal Grp</value>
+  </data>
   <data name="_Journal" xml:space="preserve">
     <value>Journal</value>
   </data>
@@ -513,5 +522,8 @@
   </data>
   <data name="_Cancel" xml:space="preserve">
     <value>Batal</value>
+  </data>
+  <data name="_ErrLookup01" xml:space="preserve">
+    <value>Data tidak ditemukan!!</value>
   </data>
 </root>

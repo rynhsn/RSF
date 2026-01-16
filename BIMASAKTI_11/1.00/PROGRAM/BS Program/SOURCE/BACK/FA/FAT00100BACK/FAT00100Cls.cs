@@ -23,6 +23,7 @@ namespace FAT00100Back
     public class FAT00100Cls : R_BusinessObjectAsync<FAT00100DTO>
     {
         private readonly FAT00100BackResources.Resources_Dummy_Class loRsp = new();
+        RSP_FAT00100_SAVE_TRANSResources.Resources_Dummy_Class loRsp2 = new();
         private readonly LoggerFAT00100 _logger;
         private readonly ActivitySource _activitySource;
 
@@ -516,6 +517,7 @@ namespace FAT00100Back
             {
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
+                R_ExternalException.R_SP_Init_Exception(loConn);
 
                 loCmd.Parameters.Clear();
                 var lcQuery = "RSP_FAT00100_SAVE_TRANS ";
@@ -572,19 +574,21 @@ namespace FAT00100Back
 
                 _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
 
-                // Execute stored procedure and get result
-                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-                var loRtnList = R_Utility.R_ConvertTo<FAT00100DTO>(loDataTable);
-                var loRtn = loRtnList.FirstOrDefault();
-
-                // Update CREC_ID from stored procedure result
-                if (loRtn != null && !string.IsNullOrWhiteSpace(loRtn.CREC_ID))
+                try
                 {
-                    poNewEntity.CREC_ID = loRtn.CREC_ID;
+                    var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                    var loRtnList = R_Utility.R_ConvertTo<FAT00100DTO>(loDataTable);
+                    var loRtn = loRtnList.FirstOrDefault();
+                    if (loRtn != null && !string.IsNullOrWhiteSpace(loRtn.CREC_ID))
+                    {
+                        poNewEntity.CREC_ID = loRtn.CREC_ID;
+                    }
                 }
-
-                // Get Exception - Note: R_ExternalException may not be available in NET6, preserve logic
-                // loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
             {

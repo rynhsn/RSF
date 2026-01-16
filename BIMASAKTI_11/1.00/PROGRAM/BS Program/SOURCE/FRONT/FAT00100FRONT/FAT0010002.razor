@@ -188,6 +188,7 @@
                                     <R_ItemLayout col="2">
                                         <R_TextBox @bind-Value="_VM.Data.CASSET_DEPT_CODE"
                                                    R_ConductorSource="@_conductorAssetInfoRef"
+                                                   OnLostFocused="txtDepartment_OnLostFocused"
                                                    R_EnableAdd="true"
                                                    R_EnableEdit="true" />
                                     </R_ItemLayout>
@@ -211,6 +212,7 @@
                                     <R_ItemLayout col="2">
                                         <R_TextBox @bind-Value="_VM.Data.CJRNGRP_CODE"
                                                    R_ConductorSource="@_conductorAssetInfoRef"
+                                                   OnLostFocused="txtJournalGroup_OnLostFocused"
                                                    R_EnableAdd="true"
                                                    R_EnableEdit="true" />
                                     </R_ItemLayout>
@@ -234,6 +236,7 @@
                                     <R_ItemLayout col="2">
                                         <R_TextBox @bind-Value="_VM.Data.CCATEGORY_CODE"
                                                    R_ConductorSource="@_conductorAssetInfoRef"
+                                                   OnLostFocused="txtAssetCategory_OnLostFocused"
                                                    R_EnableAdd="true"
                                                    R_EnableEdit="true" />
                                     </R_ItemLayout>
@@ -257,6 +260,7 @@
                                     <R_ItemLayout col="2">
                                         <R_TextBox @bind-Value="_VM.Data.CTAX_CATEGORY_CODE"
                                                    R_ConductorSource="@_conductorAssetInfoRef"
+                                                   OnLostFocused="txtAssetTaxCategory_OnLostFocused"
                                                    R_EnableAdd="true"
                                                    R_EnableEdit="true" />
                                     </R_ItemLayout>
@@ -321,6 +325,7 @@
                                     <R_ItemLayout col="2">
                                         <R_TextBox @bind-Value="_VM.Data.CLOCATION_ID"
                                                    R_ConductorSource="@_conductorAssetInfoRef"
+                                                   OnLostFocused="txtLocation_OnLostFocused"
                                                    R_EnableAdd="true"
                                                    R_EnableEdit="true" />
                                     </R_ItemLayout>

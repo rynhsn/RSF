@@ -20,7 +20,7 @@
                 <R_Label>@Localizer["_Supplier"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="6">
-                <R_Label>@(VM?.CurrentRecord?.CSUPPLIER_ID_NAME ?? string.Empty)</R_Label>
+                <R_Label>@(VM?.CurrentRecord?.CSUPPLIER_ID ?? string.Empty) @(VM?.CurrentRecord?.CSUPPLIER_NAME ?? string.Empty)</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
     </R_ItemLayout>

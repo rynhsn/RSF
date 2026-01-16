@@ -18,20 +18,14 @@ using R_StorageCommon;
 namespace FAT00100Back
 {
     /// <summary>
-    /// Result DTO for stored procedure RSP_FAT00100_SAVE_TRANS_ASSET
-    /// </summary>
-    public class FAT0010002SaveResultDTO
-    {
-        public string CREC_ID { get; set; } = string.Empty;
-    }
-
-    /// <summary>
     /// Business logic class for FAT0010002 - FA Acquisition Detail operations
     /// Handles all business logic operations for FA Acquisition Detail
     /// </summary>
     public class FAT0010002Cls : R_BusinessObjectAsync<FAT0010002DTO>
     {
         private readonly FAT00100BackResources.Resources_Dummy_Class loRsp = new();
+        RSP_FAT00100_DELETE_TRANS_ASSETResources.Resources_Dummy_Class loRsp2 = new();
+        RSP_FAT00100_SAVE_TRANS_ASSETResources.Resources_Dummy_Class loRsp3 = new();
         private readonly LoggerFAT00100 _logger;
         private readonly ActivitySource _activitySource;
 
@@ -360,10 +354,11 @@ namespace FAT00100Back
             {
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
+                R_ExternalException.R_SP_Init_Exception(loConn);
 
                 loCmd.Parameters.Clear();
                 loCmd.CommandType = CommandType.StoredProcedure;
-                loCmd.CommandText = "RSP_FAT00100_DELETE_TRANS_ASSET";
+                loCmd.CommandText = "RSP_FAT00100_DELETE_TRANS_ASSET ";
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poEntity.CREC_ID);
@@ -372,8 +367,15 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_SEQ_NO", DbType.String, 50, poEntity.CTRANS_SEQ_NO);
 
                 _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
-
-                await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                try
+                {
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
             {
@@ -504,6 +506,7 @@ namespace FAT00100Back
                 
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
+                R_ExternalException.R_SP_Init_Exception(loConn);
                 // Map DTO properties to stored procedure parameters
                 loCmd.Parameters.Clear();
                 lcQuery = $"RSP_FAT00100_SAVE_TRANS_ASSET ";
@@ -556,15 +559,20 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCmd, "@NBCURRENCY_RATE", DbType.Decimal, 13, poNewEntity.NBCURRENCY_RATE);        //@NBCURRENCY_RATE	numeric	13
 
                 _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
-                // Execute stored procedure and get result
-                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-                var loRtn = R_Utility.R_ConvertTo<FAT0010002SaveResultDTO>(loDataTable).FirstOrDefault();
-
-                // Update entity with returned CREC_ID if available
-                if (loRtn != null && !string.IsNullOrWhiteSpace(loRtn.CREC_ID))
+                try
                 {
-                    poNewEntity.CREC_ID= loRtn.CREC_ID;
+                    var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                    var loRtn = R_Utility.R_ConvertTo<FAT0010002SaveResultDTO>(loDataTable).FirstOrDefault();
+                    if (loRtn != null && !string.IsNullOrWhiteSpace(loRtn.CREC_ID))
+                    {
+                        poNewEntity.CREC_ID = loRtn.CREC_ID;
+                    }
                 }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
 
                 _logger.LogInfo("Executed RSP_FAT00100_SAVE_TRANS_ASSET with action: {Action}", lcAction);
                 _logger.LogDebug("Stored procedure executed successfully");
@@ -741,7 +749,7 @@ namespace FAT00100Back
                 using DbCommand loCmd = loDb.GetCommand();
 
                 loCmd.Parameters.Clear();
-                var lcQuery = "RSP_FA_GET_TRANS_EXP_ALLOC_LIST";
+                var lcQuery = "RSP_FA_GET_TRANS_EXP_ALLOC_LIST ";
                 loCmd.CommandText = lcQuery;
                 loCmd.CommandType = CommandType.StoredProcedure;
 

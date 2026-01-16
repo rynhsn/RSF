@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Lookup_GSFRONT;
 using Lookup_GSCOMMON.DTOs;
+using Lookup_GSModel.ViewModel;
 
 namespace FAT00100Front
 {
@@ -102,8 +103,8 @@ namespace FAT00100Front
 
             try
             {
-                ClientHelper.Set_CompanyId("BSI");
-                ClientHelper.Set_UserId("zf");
+                //ClientHelper.Set_CompanyId("BSI");
+                //ClientHelper.Set_UserId("zf");
                 // Extract parameters from poParameter if available
                 string lcReferenceNo = string.Empty;
                 string lcDeptCode = string.Empty;
@@ -258,25 +259,86 @@ namespace FAT00100Front
 
         private async Task txtDepartmentCode_OnLostFocused()
         {
-            var loEx = new R_Exception();
+            R_Exception loEx = new();
 
             try
             {
-                // Check if value has changed (equivalent to lctxtDepartmentCode.Trim <> txtDepartmentCode.Text.Trim in net4)
-                if (_previousDeptCode.Trim() == _VM.PoDeptCode?.Trim())
-                {
-                    // Value hasn't changed, no need to process
-                    return;
-                }
-
-                // If department code is empty, clear name and error
                 if (string.IsNullOrWhiteSpace(_VM.PoDeptCode))
                 {
-                    _VM.PoDeptName = string.Empty;
-                    _previousDeptCode = string.Empty;
+                    _VM.PoDeptCode = "";
+                    _VM.PoDeptName = "";
                     return;
                 }
 
+
+                LookupGSL00700ViewModel loLookupViewModel = new();
+                var param = new GSL00700ParameterDTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CUSER_ID = ClientHelper.UserId,
+                    CSEARCH_TEXT = _VM.PoDeptCode
+                };
+                var loResult = await loLookupViewModel.GetDepartment(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _VM.PoDeptCode = "";
+                    _VM.PoDeptName = "";
+                }
+                else
+                {
+                    _VM.PoDeptCode = loResult.CDEPT_CODE;
+                    _VM.PoDeptName = loResult.CDEPT_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+
+        private async Task txtDepartmentCodeEntry_OnLostFocused()
+        {
+            R_Exception loEx = new();
+
+            try
+            {
+                FAT00100DTO loGetData = _VM.Data;
+
+                if (string.IsNullOrWhiteSpace(loGetData.CDEPT_CODE))
+                {
+                    loGetData.CDEPT_CODE = "";
+                    loGetData.CDEPT_NAME = "";
+                    return;
+                }
+
+                LookupGSL00700ViewModel loLookupViewModel = new();
+                var param = new GSL00700ParameterDTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CUSER_ID = ClientHelper.UserId,
+                    CSEARCH_TEXT = loGetData.CDEPT_CODE
+                };
+                var loResult = await loLookupViewModel.GetDepartment(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    loGetData.CDEPT_CODE = "";
+                    loGetData.CDEPT_NAME = "";
+                }
+                else
+                {
+                    loGetData.CDEPT_CODE = loResult.CDEPT_CODE;
+                    loGetData.CDEPT_NAME = loResult.CDEPT_NAME;
+                }
             }
             catch (Exception ex)
             {
@@ -423,20 +485,82 @@ namespace FAT00100Front
 
         private async Task txtSupplierCode_OnLostFocused()
         {
-            var loEx = new R_Exception();
+            R_Exception loEx = new();
 
             try
             {
                 if (string.IsNullOrWhiteSpace(_VM.PoSupplierId))
                 {
-                    _VM.PoSupplierName = string.Empty;
-                    await Task.CompletedTask;
+                    _VM.PoSupplierId = "";
+                    _VM.PoSupplierName = "";
+                    return;
+                }
+                //GSL02900ParameterDTO
+
+                LookupGSL02900ViewModel loLookupViewModel = new();
+                var param = new GSL02900ParameterDTO
+                {
+                    CSEARCH_TEXT = _VM.PoSupplierId
+                };
+                var loResult = await loLookupViewModel.GetSupplier(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _VM.PoSupplierId = "";
+                    _VM.PoSupplierName = "";
+                }
+                else
+                {
+                    _VM.PoSupplierId = loResult.CSUPPLIER_ID;
+                    _VM.PoSupplierName = loResult.CSUPPLIER_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+
+        private async Task txtSupplierCodeEntry_OnLostFocused()
+        {
+            R_Exception loEx = new();
+
+            try
+            {
+                FAT00100DTO loGetData = _VM.Data;
+
+                if (string.IsNullOrWhiteSpace(loGetData.CSUPPLIER_ID))
+                {
+                    loGetData.CSUPPLIER_ID = "";
+                    loGetData.CSUPPLIER_NAME = "";
                     return;
                 }
 
-                // TODO: Implement supplier validation if ViewModel method exists
-                // For now, description will be populated from lookup
-                await Task.CompletedTask;
+                LookupGSL02900ViewModel loLookupViewModel = new();
+                var param = new GSL02900ParameterDTO
+                {
+                    CSEARCH_TEXT = loGetData.CSUPPLIER_ID
+                };
+                var loResult = await loLookupViewModel.GetSupplier(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    loGetData.CSUPPLIER_ID = "";
+                    loGetData.CSUPPLIER_NAME = "";
+                }
+                else
+                {
+                    loGetData.CSUPPLIER_ID = loResult.CSUPPLIER_ID;
+                    loGetData.CSUPPLIER_NAME = loResult.CSUPPLIER_NAME;
+                }
             }
             catch (Exception ex)
             {
@@ -913,14 +1037,8 @@ namespace FAT00100Front
 
             try
             {
-                // Extract entity from eventArgs.Data
                 var loEntity = (FAT00100DTO)eventArgs.Data;
-
-                // Store filter supplier ID before clearing (equivalent to txtSuppIDFilter.Text in net4)
                 string lcFilterSupplierId = _VM.PoSupplierId;
-
-                // Clear form fields (equivalent to clearing local variables in net4)
-                // Set values on both loEntity (eventArgs.Data) and _VM.Data for consistency
                 loEntity.CSUPPLIER_ID = string.Empty;
                 loEntity.CSUPPLIER_NAME = string.Empty;
                 loEntity.CDEPT_CODE = string.Empty;
@@ -928,7 +1046,6 @@ namespace FAT00100Front
                 loEntity.CCURRENCY_NAME = string.Empty;
                 loEntity.CREF_NO = string.Empty;
 
-                // Set transaction date to current date
                 loEntity.DREF_DATE = DateTime.Now;
                 loEntity.CREF_DATE = DateTime.Now.ToString("yyyyMMdd");
 
@@ -937,33 +1054,8 @@ namespace FAT00100Front
                 loEntity.CDOCUMENT_DATE = loEntity.CREF_DATE;
                 loEntity.CCREATE_DATE = loEntity.CCREATE_DATE;
                 loEntity.CUPDATE_DATE = loEntity.CUPDATE_DATE;
-
-                // Set FA source as default (CFR_MODULE = "FA") - equivalent to rdbFA.IsChecked = True
                 loEntity.CSOURCE_MODULE = FAT00100ViewModel.DEFAULT_SOURCE_MODULE_FA;
-
-                // Set hardcoded transaction code (equivalent to filter transaction code in net4)
                 loEntity.CTRANSACTION_CODE = FAT00100ViewModel.DEFAULT_TRANSACTION_CODE;
-                // Note: Transaction name should be populated from InitialProcessData if available
-                //if (_VM.InitialProcessData != null && !string.IsNullOrWhiteSpace(_VM.CompanyInfoData.CFILTER_TRANS_DESC))
-                //{
-                //    loEntity.CTRANSACTION_NAME = _VM.InitialProcessData.CFILTER_TRANS_DESC;
-                //}
-
-                // Set supplier code from filter (equivalent to txtSupplierCode.Text = txtSuppIDFilter.Text in net4)
-                if (!string.IsNullOrWhiteSpace(lcFilterSupplierId))
-                {
-                    loEntity.CSUPPLIER_ID = lcFilterSupplierId;
-                    // Note: Supplier name should be populated from lookup validation if needed
-                    // In net4, this triggers txtSupplierCode_LostFocus which validates and populates name
-                }
-
-                // Set currency to local currency code (equivalent to txtCurrency.Text = pcLocalCurrencyCode in net4)
-                if (!string.IsNullOrWhiteSpace(_VM.LocalCurrencyCode))
-                {
-                    loEntity.CCURRENCY_CODE = _VM.LocalCurrencyCode;
-                    // Note: Currency name should be populated from lookup validation if needed
-                    // In net4, this triggers txtCurrency_LostFocus which validates and populates name
-                }
 
                 // Set default currency rate codes from CompanyInfoData
                 if (_VM.CompanyInfoData != null)
@@ -976,14 +1068,6 @@ namespace FAT00100Front
                     loEntity.CLOCAL_CURRENCY_CODE = string.Empty;
                     loEntity.CBASE_CURRENCY_CODE = string.Empty;
                 }
-
-                // Clear nested DTOs
-                //loEntity.oCP = new List<FAT00100CPDTO>();
-                //loEntity.oSupp = null;
-                //_VM.ContactPersonList.Clear();
-                //_VM.SupplierInfo = new FAT00100GetGSM_SUPPLIER_INFOResultDTO();
-
-                // Clear reference number for new record
                 loEntity.CREF_NO = string.Empty;
             }
             catch (Exception ex)
@@ -1005,11 +1089,7 @@ namespace FAT00100Front
                 loEntity.CCREATE_BY = ClientHelper.UserId;
                 loEntity.CUPDATE_BY = ClientHelper.UserId;
                 loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
-                loEntity.CTRANSACTION_CODE = _VM.CurrentRecord.CTRANSACTION_CODE; // from filter
-
-                
-
-                // Set Dates (convert DateTime to string "yyyyMMdd") - equivalent to net4 lines 817-818
+                loEntity.CTRANSACTION_CODE = _VM.CurrentRecord.CTRANSACTION_CODE; 
                 if (loEntity.DREF_DATE != default)
                 {
                     loEntity.CREF_DATE = loEntity.DREF_DATE.ToString("yyyyMMdd");
@@ -1036,89 +1116,6 @@ namespace FAT00100Front
                     loEntity.CFR_DEPT_CODE = string.Empty;
                     loEntity.CFR_REF_NO = string.Empty;
                 }
-                // If PJ: keep values from UI (already bound in razor)
-
-                //// Calculate LGLLINK (equivalent to net4 lines 830-836)
-                //string lcGlinkDate = _VM.InitialProcessData?.CGLLINK_DATE ?? string.Empty;
-                //loEntity.LGLLINK = (string.Compare(lcGlinkDate, loEntity.CTRANSACTION_DATE) <= 0);
-
-                //// Set Status for Add Mode (equivalent to net4 lines 838-842)
-                //if (eventArgs.ConductorMode == R_eConductorMode.Add)
-                //{
-                //    loEntity.CSTATUS = FAT00100ViewModel.DEFAULT_STATUS_DRAFT; // Draft
-                //    loEntity.CGL_TRF_STATUS = FAT00100ViewModel.DEFAULT_GL_TRF_STATUS;
-                //}
-
-                //// Handle Transaction Period (equivalent to net4 line 847)
-                //// Set CTRANSACTION_PRD = First 6 characters of CTRANSACTION_DATE (YYYYMM format)
-                //if (!string.IsNullOrEmpty(loEntity.CTRANSACTION_DATE) && loEntity.CTRANSACTION_DATE.Length >= 6)
-                //{
-                //    loEntity.CTRANSACTION_PRD = loEntity.CTRANSACTION_DATE.Substring(0, 6);
-                //}
-                //else
-                //{
-                //    loEntity.CTRANSACTION_PRD = string.Empty;
-                //}
-
-                //// Prepare Supplier Info (oSupp and oCP) - equivalent to net4 lines 848-858
-                //if (string.IsNullOrWhiteSpace(loEntity.CINFO_SEQNO))
-                //{
-                //    // If empty: Create new FAT00100SuppDTO
-                //    loEntity.oSupp = new FAT00100SuppDTO
-                //    {
-                //        CCOMPANY_ID = ClientHelper.CompanyId,
-                //        CSUPPLIER_ID = loEntity.CSUPPLIER_ID, // from entity (already bound from UI)
-                //        CSUPPLIER_NAME = loEntity.CSUPPLIER_NAME // from entity (already bound from UI)
-                //    };
-                //    loEntity.oCP = new List<FAT00100CPDTO>();
-                //}
-                //else
-                //{
-                //    // If not empty: Get supplier info and contact list from ViewModel
-                //    // Note: This should be called asynchronously, but R_Saving is synchronous
-                //    // The supplier info should already be loaded in ViewModel from previous operations
-                //    if (_VM.SupplierInfo != null && !string.IsNullOrWhiteSpace(_VM.SupplierInfo.CSUPPLIER_ID))
-                //    {
-                //        // Map SupplierInfo to oSupp
-                //        loEntity.oSupp = new FAT00100SuppDTO
-                //        {
-                //            CCOMPANY_ID = _VM.SupplierInfo.CCOMPANY_ID,
-                //            CSUPPLIER_ID = _VM.SupplierInfo.CSUPPLIER_ID,
-                //            CINFO_SEQNO = _VM.SupplierInfo.CINFO_SEQNO,
-                //            CSUPPLIER_NAME = _VM.SupplierInfo.CSUPPLIER_NAME,
-                //            CADDRESS = _VM.SupplierInfo.CADDRESS,
-                //            CPOSTAL_CODE = _VM.SupplierInfo.CPOSTAL_CODE,
-                //            CCITY = _VM.SupplierInfo.CCITY,
-                //            CCOUNTRY_CODE = _VM.SupplierInfo.CCOUNTRY_CODE,
-                //            CSTATE_CODE = _VM.SupplierInfo.CSTATE_CODE,
-                //            CPHONE_1 = _VM.SupplierInfo.CPHONE_1,
-                //            CPHONE_2 = _VM.SupplierInfo.CPHONE_2,
-                //            CPHONE_3 = _VM.SupplierInfo.CPHONE_3,
-                //            CFAX_NO1 = _VM.SupplierInfo.CFAX_NO1,
-                //            CFAX_NO2 = _VM.SupplierInfo.CFAX_NO2,
-                //            CFAX_NO3 = _VM.SupplierInfo.CFAX_NO3,
-                //            CEMAIL_1 = _VM.SupplierInfo.CEMAIL_1,
-                //            CEMAIL_2 = _VM.SupplierInfo.CEMAIL_2,
-                //            CEMAIL_3 = _VM.SupplierInfo.CEMAIL_3,
-                //            CTAX_REG_TP = _VM.SupplierInfo.CTAX_REG_TP,
-                //            CTAX_NAME = _VM.SupplierInfo.CTAX_NAME,
-                //            CTAX_REGISTER_ID = _VM.SupplierInfo.CTAX_REGISTER_ID,
-                //            DTAX_REGISTER_DATE = _VM.SupplierInfo.DTAX_REGISTER_DATE,
-                //            CTAX_BUSINESS_TYPE = _VM.SupplierInfo.CTAX_BUSINESS_TYPE,
-                //            CTAX_BUSINESS_NAME = _VM.SupplierInfo.CTAX_BUSINESS_NAME
-                //        };
-                //    }
-
-                //    // Set oCP from ContactPersonList
-                //    if (_VM.ContactPersonList != null && _VM.ContactPersonList.Count > 0)
-                //    {
-                //        loEntity.oCP = new List<FAT00100CPDTO>(_VM.ContactPersonList);
-                //    }
-                //    else
-                //    {
-                //        loEntity.oCP = new List<FAT00100CPDTO>();
-                //    }
-                //}
             }
             catch (Exception ex)
             {
@@ -1134,31 +1131,17 @@ namespace FAT00100Front
 
             try
             {
-                // Get entity directly from eventArgs.Data (following example pattern)
                 var loParam = (FAT00100DTO)eventArgs.Data;
-                
-                // Set CompanyId, UserId, LangId from ClientHelper
-                
                 loParam.CCOMPANY_ID = ClientHelper.CompanyId;
                 loParam.CUSER_ID = ClientHelper.UserId;
                 loParam.CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName;
-
-                // Call ViewModel save method
                 await _VM.SaveRecordAsync(
                     loParam, 
                     (eCRUDMode)eventArgs.ConductorMode, 
                     ClientHelper.CompanyId, 
                     ClientHelper.CultureUI.TwoLetterISOLanguageName
                 );
-                
-                // Set result - this will update the conductor's bound entity with the generated CREF_NO
-                // The result entity from backend contains the generated CREF_NO when LINCREMENT_FLAG = True
-                // The conductor will update the Data property (read-only) from this result
                 eventArgs.Result = _VM.CurrentRecord;
-
-                // Refresh grid after save
-                //if (_gridRef != null)
-                //    await _gridRef.R_RefreshGrid(null);
             }
             catch (Exception ex)
             {
@@ -1218,9 +1201,6 @@ namespace FAT00100Front
 
             try
             {
-                // Get entity from conductor's current data (contains all bound UI values)
-                // Note: R_GetCurrentData() returns the current entity with all bound values from the form
-                // This ensures we have all the data entered by the user, even if eventArgs.Data is empty
                 FAT00100DTO loEntity;
                 if (_conductorRef != null)
                 {
@@ -1231,12 +1211,10 @@ namespace FAT00100Front
                     }
                     else if (eventArgs.Data != null && eventArgs.Data is FAT00100DTO)
                     {
-                        // Fallback to eventArgs.Data if conductor data is not available
                         loEntity = (FAT00100DTO)eventArgs.Data;
                     }
                     else
                     {
-                        // Fallback to CurrentRecord if both are not available
                         loEntity = _VM.CurrentRecord;
                     }
                 }
@@ -1246,11 +1224,9 @@ namespace FAT00100Front
                 }
                 else
                 {
-                    // Fallback to CurrentRecord if conductor is not available
                     loEntity = _VM.CurrentRecord;
                 }
 
-                // Validate required fields (existing validations)
                 if (string.IsNullOrWhiteSpace(loEntity.CDEPT_CODE))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_department"));
@@ -1286,8 +1262,6 @@ namespace FAT00100Front
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS007"));
                 }
-
-                // Validate PJ fields when PJ source is selected
                 if (loEntity.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)
                 {
                     if (string.IsNullOrWhiteSpace(loEntity.CFR_DEPT_CODE) || string.IsNullOrWhiteSpace(loEntity.CFR_REF_NO))
@@ -1296,7 +1270,6 @@ namespace FAT00100Front
                     }
                 }
 
-                // Validate document date <= transaction date
                 string lcDocumentDate = string.Empty;
                 string lcTransactionDate = string.Empty;
 

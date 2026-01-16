@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -34,6 +34,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\FA\FAT00100Common\FAT00100Common.csproj" />
     <ProjectReference Include="..\FAT00100BackResources\FAT00100BackResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT00100_DELETE_TRANS_ASSETResources\RSP_FAT00100_DELETE_TRANS_ASSETResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT00100_SAVE_TRANSResources\RSP_FAT00100_SAVE_TRANSResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT00100_SAVE_TRANS_ASSETResources\RSP_FAT00100_SAVE_TRANS_ASSETResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT00100_SAVE_TRANS_EXP_ALLOCResources\RSP_FAT00100_SAVE_TRANS_EXP_ALLOCResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FA_DELETE_TRANS_EXP_ALLOCResources\RSP_FA_DELETE_TRANS_EXP_ALLOCResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FA_SAVE_TRANS_EXP_ALLOCResources\RSP_FA_SAVE_TRANS_EXP_ALLOCResources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

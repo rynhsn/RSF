@@ -24,6 +24,9 @@ using Lookup_FAFront;
 using Lookup_FACommon.DTOs;
 using Microsoft.AspNetCore.Components.Forms;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using Lookup_GSModel.ViewModel;
+using Lookup_FAModel.ViewModel.FAL00200;
+using System.Xml.Linq;
 
 namespace FAT00100Front
 {
@@ -231,6 +234,52 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
+        private async Task txtDepartment_OnLostFocused()
+        {
+            R_Exception loEx = new();
+
+            try
+            {
+                FAT0010002DTO loGetData = _VM.Data;
+
+                if (string.IsNullOrWhiteSpace(loGetData.CASSET_DEPT_CODE))
+                {
+                    loGetData.CASSET_DEPT_CODE = "";
+                    loGetData.CASSET_DEPT_NAME = "";
+                    return;
+                }
+
+                LookupGSL00700ViewModel loLookupViewModel = new();
+                var param = new GSL00700ParameterDTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CUSER_ID = ClientHelper.UserId,
+                    CSEARCH_TEXT = loGetData.CASSET_DEPT_CODE
+                };
+                var loResult = await loLookupViewModel.GetDepartment(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    loGetData.CASSET_DEPT_CODE = "";
+                    loGetData.CASSET_DEPT_NAME = "";
+                }
+                else
+                {
+                    loGetData.CASSET_DEPT_CODE = loResult.CDEPT_CODE;
+                    loGetData.CASSET_DEPT_NAME = loResult.CDEPT_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
+
         /// <summary>
         /// Asset Journal Group lookup - before open
         /// </summary>
@@ -281,6 +330,53 @@ namespace FAT00100Front
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task txtJournalGroup_OnLostFocused()
+        {
+            R_Exception loEx = new();
+
+            try
+            {
+                FAT0010002DTO loGetData = _VM.Data;
+
+                if (string.IsNullOrWhiteSpace(loGetData.CJRNGRP_CODE))
+                {
+                    loGetData.CJRNGRP_CODE = "";
+                    loGetData.CJRNGRP_NAME = "";
+                    return;
+                }
+
+                LookupGSL00400ViewModel loLookupViewModel = new();
+                var param = new GSL00400ParameterDTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CPROPERTY_ID = "",
+                    CJRNGRP_TYPE = "60",
+                    CSEARCH_TEXT = loGetData.CASSET_DEPT_CODE
+                };
+                var loResult = await loLookupViewModel.GetJournalGroup(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    loGetData.CJRNGRP_CODE = "";
+                    loGetData.CJRNGRP_NAME = "";
+                }
+                else
+                {
+                    loGetData.CJRNGRP_CODE = loResult.CJRNGRP_CODE;
+                    loGetData.CJRNGRP_NAME = loResult.CJRNGRP_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
         }
 
         /// <summary>
@@ -335,6 +431,53 @@ namespace FAT00100Front
 
             loEx.ThrowExceptionIfErrors();
         }
+        private async Task txtAssetCategory_OnLostFocused()
+        {
+            R_Exception loEx = new();
+
+            try
+            {
+                FAT0010002DTO loGetData = _VM.Data;
+
+                if (string.IsNullOrWhiteSpace(loGetData.CCATEGORY_CODE))
+                {
+                    loGetData.CCATEGORY_CODE = "";
+                    loGetData.CCATEGORY_NAME = "";
+                    return;
+                }
+
+                LookupGSL01800ViewModel loLookupViewModel = new();
+                var param = new GSL01800DTOParameter
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CUSER_ID = ClientHelper.UserId,
+                    CPROPERTY_ID = "",
+                    CCATEGORY_TYPE = "60",
+                    CSEARCH_TEXT = loGetData.CASSET_DEPT_CODE
+                };
+                var loResult = await loLookupViewModel.GetCategory(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    loGetData.CCATEGORY_CODE = "";
+                    loGetData.CCATEGORY_NAME = "";
+                }
+                else
+                {
+                    loGetData.CCATEGORY_CODE = loResult.CCATEGORY_ID;
+                    loGetData.CCATEGORY_NAME = loResult.CCATEGORY_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
+        }
 
         /// <summary>
         /// Asset Tax Category lookup - before open
@@ -385,6 +528,53 @@ namespace FAT00100Front
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task txtAssetTaxCategory_OnLostFocused()
+        {
+            R_Exception loEx = new();
+
+            try
+            {
+                FAT0010002DTO loGetData = _VM.Data;
+
+                if (string.IsNullOrWhiteSpace(loGetData.CTAX_CATEGORY_CODE))
+                {
+                    loGetData.CTAX_CATEGORY_CODE = "";
+                    loGetData.CTAX_CATEGORY_NAME = "";
+                    return;
+                }
+
+                LookupFAL00200ViewModel loLookupViewModel = new();
+                var param = new FAL00200ParameterDTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CSTATUS = "ACTIVE",
+                    CTAX_CATEGORY_ID = _VM.Data.CTAX_CATEGORY_CODE ?? "",
+                    CLANGUAGE_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
+                };
+                var loResult = await loLookupViewModel.GetTaxCategory(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    loGetData.CTAX_CATEGORY_CODE = "";
+                    loGetData.CTAX_CATEGORY_NAME = "";
+                }
+                else
+                {
+                    loGetData.CTAX_CATEGORY_CODE = loResult.CTAX_CATEGORY_ID;
+                    loGetData.CTAX_CATEGORY_NAME = loResult.CTAX_CATEGORY_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
         }
 
         private void btnLocationLookup_R_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
@@ -439,6 +629,71 @@ namespace FAT00100Front
             }
 
             loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task txtLocation_OnLostFocused()
+        {
+            R_Exception loEx = new();
+
+            try
+            {
+                FAT0010002DTO loGetData = _VM.Data;
+
+                if (string.IsNullOrWhiteSpace(loGetData.CLOCATION_ID))
+                {
+                    loGetData.CLOCATION_ID = "";
+                    loGetData.CLOCATION_NAME = "";
+                    loGetData.CPROPERTY_ID = "";
+                    loGetData.CPROPERTY_NAME = "";
+                    loGetData.CBUILDING_ID = "";
+                    loGetData.CBUILDING_NAME = "";
+                    loGetData.CFLOOR_ID = "";
+                    loGetData.CFLOOR_NAME = "";
+                    return;
+                }
+
+                LookupGSL03800ViewModel loLookupViewModel = new();
+                var param = new GSL03800ParameterDTO
+                {
+                    CPROPERTY_ID = _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ? "" : loGetData.CPROPERTY_ID,
+                    CACTIVE_TYPE = "ACTIVE",
+                    CLOCATION_ID = _conductorAssetInfoRef.R_ConductorMode == R_eConductorMode.Add ? "" : loGetData.CLOCATION_ID,
+                    CSEARCH_TEXT = loGetData.CLOCATION_ID,
+                };
+                var loResult = await loLookupViewModel.GetLocation(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    loGetData.CLOCATION_ID = "";
+                    loGetData.CLOCATION_NAME = "";
+                    loGetData.CPROPERTY_ID = "";
+                    loGetData.CPROPERTY_NAME = "";
+                    loGetData.CBUILDING_ID = "";
+                    loGetData.CBUILDING_NAME = "";
+                    loGetData.CFLOOR_ID = "";
+                    loGetData.CFLOOR_NAME = "";
+                }
+                else
+                {
+                    loGetData.CLOCATION_ID = loResult.CLOCATION_ID;
+                    loGetData.CLOCATION_NAME = loResult.CLOCATION_NAME;
+                    loGetData.CPROPERTY_ID = loResult.CPROPERTY_ID;
+                    loGetData.CPROPERTY_NAME = loResult.CPROPERTY_ID;
+                    loGetData.CBUILDING_ID = loResult.CBUILDING_ID;
+                    loGetData.CBUILDING_NAME = loResult.CBUILDING_NAME;
+                    loGetData.CFLOOR_ID = loResult.CFLOOR_ID;
+                    loGetData.CFLOOR_NAME = loResult.CFLOOR_NAME;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            R_DisplayException(loEx);
         }
 
         #endregion

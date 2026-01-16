@@ -678,4 +678,7 @@
   <data name="_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="_ErrLookup01" xml:space="preserve">
+    <value>Not found data by search text!!</value>
+  </data>
 </root>

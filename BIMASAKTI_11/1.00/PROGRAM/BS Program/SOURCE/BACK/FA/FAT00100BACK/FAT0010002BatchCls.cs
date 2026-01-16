@@ -25,6 +25,8 @@ namespace FAT00100Back
     /// </summary>
     public class FAT0010002BatchCls : R_IBatchProcessAsync
     {
+
+        RSP_FAT00100_SAVE_TRANS_EXP_ALLOCResources.Resources_Dummy_Class loRsp = new();
         private readonly ActivitySource _activitySource;
         private readonly LoggerFAT00100 _logger;
 
@@ -86,6 +88,7 @@ namespace FAT00100Back
             {
                 loCommand = loDb.GetCommand();
                 loConn = await loDb.GetConnectionAsync();
+                //R_ExternalException.R_SP_Init_Exception(loConn);
                 //Get data from poBatchPRocessParam
                 var loObject = R_NetCoreUtility.R_DeserializeObjectFromByte<List<FAT0010002CommonDTO>>(poBatchProcessPar.BigObject);
 
@@ -149,6 +152,7 @@ namespace FAT00100Back
                     _logger.LogError(loException);
                     throw;
                 }
+               // loException.Add(R_ExternalException.R_SP_Get_Exception(loConn));
 
             }
             catch (Exception ex)
