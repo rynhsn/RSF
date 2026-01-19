@@ -426,7 +426,18 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_SEQ_NO", DbType.String, 30, poEntity.CTRANS_SEQ_NO);
                 loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 10, poEntity.CLANGUAGE_ID);
 
-                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+                //_logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p =>
+                {
+                    string lcValue = p.Value?.ToString() ?? "NULL";
+                    // Add quotes for string and boolean types
+                    if (p.DbType == DbType.String || p.DbType == DbType.StringFixedLength || p.DbType == DbType.AnsiString || p.DbType == DbType.AnsiStringFixedLength ||
+                        p.DbType == DbType.Boolean || p.Value is bool || p.Value is string)
+                    {
+                        return $" {p.ParameterName} ='{lcValue}'";
+                    }
+                    return $" {p.ParameterName} ={lcValue}";
+                })));
 
                 var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 loRtn = R_Utility.R_ConvertTo<FAT0010002DTO>(loDataTable).FirstOrDefault();
@@ -536,7 +547,7 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_DESC", DbType.String, 200, poNewEntity.CTRANS_DESC);               //@CTRANS_DESC	nvarchar	200
                 loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID", DbType.String, 50, poNewEntity.CSTORAGE_ID);                //@CSTORAGE_ID	varchar	50
                 loDb.R_AddCommandParameter(loCmd, "@CINSERVICE_DATE", DbType.String, 8, poNewEntity.CINSERVICE_DATE);    //@CINSERVICE_DATE	varchar	8
-                loDb.R_AddCommandParameter(loCmd, "@LNEW", DbType.Boolean, 1, poNewEntity.LNEW);                              //@LNEW	bit	1
+                loDb.R_AddCommandParameter(loCmd, "@LNEW_FLAG", DbType.Boolean, 1, poNewEntity.LNEW_FLAG);                              //@LNEW_FLAG	bit	1
                 loDb.R_AddCommandParameter(loCmd, "@NINIT_COST", DbType.Decimal, 9, poNewEntity.NINIT_COST);                  //@NINIT_COST	numeric	9
                 loDb.R_AddCommandParameter(loCmd, "@NADDITION", DbType.Decimal, 9, poNewEntity.NADDITION);                    //@NADDITION	numeric	9
                 loDb.R_AddCommandParameter(loCmd, "@NDEDUCTION", DbType.Decimal, 9, poNewEntity.NDEDUCTION);                  //@NDEDUCTION	numeric	9
@@ -558,7 +569,18 @@ namespace FAT00100Back
                 loDb.R_AddCommandParameter(loCmd, "@NBBASE_RATE", DbType.Decimal, 13, poNewEntity.NBBASE_RATE);                //@NBBASE_RATE	numeric	13
                 loDb.R_AddCommandParameter(loCmd, "@NBCURRENCY_RATE", DbType.Decimal, 13, poNewEntity.NBCURRENCY_RATE);        //@NBCURRENCY_RATE	numeric	13
 
-                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
+                //_logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p =>
+                {
+                    string lcValue = p.Value?.ToString() ?? "NULL";
+                    // Add quotes for string and boolean types
+                    if (p.DbType == DbType.String || p.DbType == DbType.StringFixedLength || p.DbType == DbType.AnsiString || p.DbType == DbType.AnsiStringFixedLength ||
+                        p.DbType == DbType.Boolean || p.Value is bool || p.Value is string)
+                    {
+                        return $" {p.ParameterName} ='{lcValue}'";
+                    }
+                    return $" {p.ParameterName} ={lcValue}";
+                })));
                 try
                 {
                     var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);

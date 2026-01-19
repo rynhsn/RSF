@@ -487,7 +487,8 @@
                                               R_EnableEdit="true" />
                             </R_ItemLayout>
                             <R_ItemLayout col="1" Style="text-align:right;">
-                                <R_CheckBox @bind-Value="_VM.Data.LNEW_FLAG"
+                                <R_CheckBox Value="@_VM.Data.LNEW_FLAG"
+                                            ValueChanged="@((bool value) => OnFlagNewChanged(value))"
                                             R_ConductorSource="@_conductorAssetInfoRef"
                                             R_EnableAdd="true"
                                             R_EnableEdit="true" />
@@ -542,7 +543,7 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="@_VM.Data.NINIT_COST"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NINIT_COST", "NLINIT_COST", "NBINIT_COST"))"
+                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NINIT_COST", "NLINIT_COST", "NBINIT_COST",true))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
@@ -597,7 +598,7 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="@_VM.Data.NADDITION"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NADDITION", "NLADDITION", "NBADDITION"))"
+                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NADDITION", "NLADDITION", "NBADDITION",true))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
@@ -652,7 +653,7 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="_VM.Data.NDEDUCTION"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NDEDUCTION", "NLDEDUCTION", "NBDEDUCTION"))"
+                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NDEDUCTION", "NLDEDUCTION", "NBDEDUCTION",true))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
@@ -707,7 +708,7 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="@_VM.Data.NPRIOR_DEPR"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NPRIOR_DEPR", "NLPRIOR_DEPR", "NBPRIOR_DEPR"))"
+                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NPRIOR_DEPR", "NLPRIOR_DEPR", "NBPRIOR_DEPR",true))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
@@ -762,7 +763,7 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="@_VM.Data.NYTD_DEPR"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NYTD_DEPR", "NLYTD_DEPR", "NBYTD_DEPR"))"
+                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NYTD_DEPR", "NLYTD_DEPR", "NBYTD_DEPR",true))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
@@ -846,14 +847,12 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="@_VM.Data.NBOOK_VALUE"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NBOOK_VALUE", "NLBOOK_VALUE", "NBBOOK_VALUE"))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
                                                               Style="text-align: right;"
                                                               R_ConductorSource="@_conductorAssetInfoRef"
-                                                              R_EnableAdd
-                                                              R_EnableEdit />
+                                                              Enabled="false" />
                                         </R_ItemLayout>
                                     </R_StackLayout>
                                 </R_ItemLayout>
@@ -900,14 +899,15 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="@_VM.Data.NBEG_BOOK_VALUE"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NBEG_BOOK_VALUE", "NLBEG_BOOK_VALUE", "NBBEG_BOOK_VALUE"))"
+                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NBEG_BOOK_VALUE", "NLBEG_BOOK_VALUE", "NBBEG_BOOK_VALUE", false))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
                                                               Style="text-align: right;"
                                                               R_ConductorSource="@_conductorAssetInfoRef"
                                                               R_EnableAdd
-                                                              R_EnableEdit  />
+                                                              R_EnableEdit  
+                                                              Enabled="@(_conductorAssetInfoRef?.R_ConductorMode != R_eConductorMode.Normal && !_VM.Data.LNEW_FLAG)" />
                                         </R_ItemLayout>
                                     </R_StackLayout>
                                 </R_ItemLayout>
@@ -954,7 +954,7 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="@_VM.Data.NRESIDUAL_VALUE"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NRESIDUAL_VALUE", "NLRESIDUAL_VALUE", "NBRESIDUAL_VALUE"))"
+                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NRESIDUAL_VALUE", "NLRESIDUAL_VALUE", "NBRESIDUAL_VALUE", false))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
@@ -1006,7 +1006,8 @@
                                 <R_Label>@Localizer["_UsefulLife"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="2">
-                                <R_NumericTextBox @bind-Value="_VM.Data.IUSEFUL_LIFE_YY"
+                                <R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_YY"
+                                                  ValueChanged="@((int value) => OnUsefulLifeYearChanged(value))"
                                                   TValue="int"
                                                   ThousandSeparator="false"
                                                   R_ConductorSource="@_conductorAssetInfoRef"
@@ -1017,7 +1018,8 @@
                                 <R_Label>@Localizer["_Year"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="2">
-                                <R_NumericTextBox @bind-Value="_VM.Data.IUSEFUL_LIFE_MM"
+                                <R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_MM"
+                                                  ValueChanged="@((int value) => OnUsefulLifeMonthChanged(value))"
                                                   TValue="int"
                                                   ThousandSeparator="false"
                                                   R_ConductorSource="@_conductorAssetInfoRef"
@@ -1036,23 +1038,27 @@
                                 <R_Label>@Localizer["_Remaining"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="2">
-                                <R_NumericTextBox @bind-Value="_VM.Data.IREMAINING_LIFE_YY"
+                                <R_NumericTextBox Value="@_VM.Data.IREMAINING_LIFE_YY"
+                                                  ValueChanged="@((int value) => OnRemainingYearChanged(value))"
                                                   TValue="int"
                                                   ThousandSeparator="false"
                                                   R_ConductorSource="@_conductorAssetInfoRef"
                                                   R_EnableAdd
-                                                  R_EnableEdit />
+                                                  R_EnableEdit
+                                                  Enabled="@(_conductorAssetInfoRef?.R_ConductorMode != R_eConductorMode.Normal && !_VM.Data.LNEW_FLAG)" />
                             </R_ItemLayout>
                             <R_ItemLayout col="1">
                                 <R_Label>@Localizer["_Year"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="2">
-                                <R_NumericTextBox  @bind-Value="_VM.Data.IREMAINING_LIFE_MM"
+                                <R_NumericTextBox Value="@_VM.Data.IREMAINING_LIFE_MM"
+                                                  ValueChanged="@((int value) => OnRemainingMonthChanged(value))"
                                                   TValue="int"
                                                   ThousandSeparator="false"
                                                   R_ConductorSource="@_conductorAssetInfoRef"
                                                   R_EnableAdd
-                                                  R_EnableEdit />
+                                                  R_EnableEdit
+                                                  Enabled="@(_conductorAssetInfoRef?.R_ConductorMode != R_eConductorMode.Normal && !_VM.Data.LNEW_FLAG)" />
                             </R_ItemLayout>
                             <R_ItemLayout col="1">
                                 <R_Label>@Localizer["_Month"]</R_Label>
@@ -1068,70 +1074,14 @@
                                                           TValue="decimal"
                                                           Decimals="2"
                                                           ThousandSeparator="true"
-                                                          Style="text-align: right;"
                                                           R_ConductorSource="@_conductorAssetInfoRef"
-                                                          R_EnableAdd
-                                                          R_EnableEdit />
+                                                          Style="text-align: right;"
+                                                          Enabled="false" />
                             </R_ItemLayout> 
                             <R_ItemLayout col="1">
                                 <R_Label>%</R_Label>
                             </R_ItemLayout>
                         </R_StackLayout>
-
-                        <!-- Yearly Depreciation -->
-                        @* <R_StackLayout Row class="mb-2"> *@
-                        @*     <R_ItemLayout col="2"> *@
-                        @*         <R_Label></R_Label> *@
-                        @*     </R_ItemLayout> *@
-                        @*     <R_ItemLayout col="2"> *@
-                        @*         <R_StackLayout Row> *@
-                        @*             <R_ItemLayout col="2" Style="text-align: right;"> *@
-                        @*                 <R_Label>@(_VM.TransDetailData.CCURRENCY_CODE ?? string.Empty)</R_Label> *@
-                        @*             </R_ItemLayout> *@
-                        @*             <R_ItemLayout col="10"> *@
-                        @*                 <R_NumericTextBox Value="@_VM.Data.NYEAR_DEPR" *@
-                        @*                                   ValueChanged="@((decimal value) => OnAmountChanged(value, "NYEAR_DEPR", "NLYEAR_DEPR", "NBYEAR_DEPR"))" *@
-                        @*                                   TValue="decimal" *@
-                        @*                                   Decimals="2" *@
-                        @*                                   ThousandSeparator="true" *@
-                        @*                                   Style="text-align: right;" *@
-                        @*                                   R_ConductorSource="@_conductorAssetInfoRef" *@
-                        @*                                   R_EnableAdd *@
-                        @*                                   R_EnableEdit /> *@
-                        @*             </R_ItemLayout> *@
-                        @*         </R_StackLayout> *@
-                        @*     </R_ItemLayout> *@
-                        @*     <R_ItemLayout col="2"> *@
-                        @*         <R_StackLayout Row> *@
-                        @*             <R_ItemLayout col="2" Style="text-align: right;"> *@
-                        @*                 <R_Label>@(_VM.LocalCurrencyCode ?? string.Empty)</R_Label> *@
-                        @*             </R_ItemLayout> *@
-                        @*             <R_ItemLayout col="10"> *@
-                        @*                 <R_NumericTextBox Value="@_VM.Data.NLYEAR_DEPR" *@
-                        @*                                   TValue="decimal" *@
-                        @*                                   Decimals="2" *@
-                        @*                                   ThousandSeparator="true" *@
-                        @*                                   Style="text-align: right;" *@
-                        @*                                   Enabled="false" /> *@
-                        @*             </R_ItemLayout> *@
-                        @*         </R_StackLayout> *@
-                        @*     </R_ItemLayout> *@
-                        @*     <R_ItemLayout col="2"> *@
-                        @*         <R_StackLayout Row> *@
-                        @*             <R_ItemLayout col="2" Style="text-align: right;"> *@
-                        @*                 <R_Label>@(_VM.BaseCurrencyCode ?? string.Empty)</R_Label> *@
-                        @*             </R_ItemLayout> *@
-                        @*             <R_ItemLayout col="10"> *@
-                        @*                 <R_NumericTextBox Value="@_VM.Data.NBYEAR_DEPR" *@
-                        @*                                   TValue="decimal" *@
-                        @*                                   Decimals="2" *@
-                        @*                                   ThousandSeparator="true" *@
-                        @*                                   Style="text-align: right;" *@
-                        @*                                   Enabled="false" /> *@
-                        @*             </R_ItemLayout> *@
-                        @*         </R_StackLayout> *@
-                        @*     </R_ItemLayout> *@
-                        @* </R_StackLayout> *@
 
                         <R_StackLayout Row class="mb-1">
                                 <R_ItemLayout col="2">
@@ -1143,15 +1093,13 @@
                                         <R_Label>@(_VM.TransDetailData.CCURRENCY_CODE ?? string.Empty)</R_Label>
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
-                                            <R_NumericTextBox Value="@_VM.Data.NYEAR_DEPR"
-                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NYEAR_DEPR", "NLYEAR_DEPR", "NBYEAR_DEPR"))"
+                                        <R_NumericTextBox @bind-Value="_VM.Data.NYEAR_DEPR"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
-                                                              Style="text-align: right;"
                                                               R_ConductorSource="@_conductorAssetInfoRef"
-                                                              R_EnableAdd
-                                                              R_EnableEdit />
+                                                              Style="text-align: right;"
+                                                              Enabled="false" />
                                         </R_ItemLayout>
                                     </R_StackLayout>
                                 </R_ItemLayout>
@@ -1165,6 +1113,7 @@
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
+                                                              R_ConductorSource="@_conductorAssetInfoRef"
                                                               Style="text-align: right;"
                                                               Enabled="false"/>
                                         </R_ItemLayout>

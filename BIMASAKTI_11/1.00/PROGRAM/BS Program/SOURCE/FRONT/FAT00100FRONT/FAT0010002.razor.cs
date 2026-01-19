@@ -27,6 +27,8 @@ using R_BlazorFrontEnd.Controls.MessageBox;
 using Lookup_GSModel.ViewModel;
 using Lookup_FAModel.ViewModel.FAL00200;
 using System.Xml.Linq;
+using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FAT00100Front
 {
@@ -785,7 +787,7 @@ namespace FAT00100Front
         #endregion
 
         #region Business Process Methods - Amount Calculation
-        private async Task OnAmountChanged(decimal value, string valFrom, string set1, string set2)
+        private async Task OnAmountChanged(decimal value, string valFrom, string set1, string set2, bool calculateBookValue)
         {
             var loEx = new R_Exception();
 
@@ -827,20 +829,27 @@ namespace FAT00100Front
                         decimal lnCalculatedValue = (value / _VM.TransDetailData.NBBASE_RATE) * _VM.TransDetailData.NBCURRENCY_RATE;
                         // Set property on _VM.Data using reflection
                         loProperty2.SetValue(_VM.Data, lnCalculatedValue);
-                        //if (value == 5)
-                        //{
-                        //    _VM.Data.NBINIT_COST = 5;
-                        //}
-                        //if (value == 4)
-                        //{
-                        //    _VM.Data.NBINIT_COST = lnCalculatedValue;
-                        //}
                     }
                     else
                     {
                         // Set property on _VM.Data to 0
                         loProperty2.SetValue(_VM.Data, 0m);
                     }
+                }
+
+                if (calculateBookValue == true)
+                {
+                    _VM.Data.NBOOK_VALUE = _VM.Data.NINIT_COST + _VM.Data.NADDITION - _VM.Data.NDEDUCTION - _VM.Data.NPRIOR_DEPR - _VM.Data.NYTD_DEPR;
+                    await OnAmountChanged(_VM.Data.NBOOK_VALUE, "NBOOK_VALUE", "NLBOOK_VALUE", "NBBOOK_VALUE", false);
+                    if (_VM.Data.LNEW_FLAG)
+                    {
+                        _VM.Data.NBEG_BOOK_VALUE = _VM.Data.NBOOK_VALUE;
+                        await OnAmountChanged(_VM.Data.NBEG_BOOK_VALUE, "NBEG_BOOK_VALUE", "NLBEG_BOOK_VALUE", "NBBEG_BOOK_VALUE", false);
+                    }
+                }
+                else
+                {
+                    CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
                 }
             }
             catch (Exception ex)
@@ -851,7 +860,109 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        
+        private void OnFlagNewChanged(bool poParam)
+        {
+            _VM.Data.LNEW_FLAG = poParam;
+        }
+
+        private void OnUsefulLifeYearChanged(int poParam)
+        {
+            _VM.Data.IUSEFUL_LIFE_YY = poParam;
+            if (_VM.Data.LNEW_FLAG)
+            {
+                _VM.Data.IREMAINING_LIFE_YY = _VM.Data.IUSEFUL_LIFE_YY;
+            }
+            CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
+        }
+
+        private void OnUsefulLifeMonthChanged(int poParam)
+        {
+            _VM.Data.IUSEFUL_LIFE_MM = poParam;
+            if (_VM.Data.LNEW_FLAG)
+            {
+                _VM.Data.IREMAINING_LIFE_MM = _VM.Data.IUSEFUL_LIFE_MM;
+            }
+            CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
+        }
+
+        private void OnRemainingYearChanged(int poParam)
+        {
+            _VM.Data.IREMAINING_LIFE_YY = poParam;
+            CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
+        }
+
+        private void OnRemainingMonthChanged(int poParam)
+        {
+            _VM.Data.IREMAINING_LIFE_MM = poParam;
+            CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
+        }
+
+        /// <summary>
+        /// Handle depreciation method changed event
+        /// </summary>
+        private void OnDepreciationMethodChanged(string? value)
+        {
+            if (_VM.Data != null)
+            {
+                _VM.Data.CDEPR_METHOD = value;
+                CalculateYearlyDepreciationProcess(value);
+
+            }
+        }
+
+        private async Task OnBookValueChanged(decimal poParam)
+        {
+            _VM.Data.NBOOK_VALUE = poParam;
+            await OnAmountChanged(poParam, "NBOOK_VALUE", "NLBOOK_VALUE", "NBBOOK_VALUE",false);
+            if (_VM.Data.LNEW_FLAG)
+            {
+                _VM.Data.NBEG_BOOK_VALUE = _VM.Data.NBOOK_VALUE;
+            }
+        }
+
+        private void CalculateYearlyDepreciationProcess(string value)
+        { 
+            //VAR_NO_DEPRECIATION = 00-ND
+            //VAR_MANUAL = 10-MN
+            //VAR_STRAIGHT_LINE = 20-SL
+            //VAR_DECLINING = 30-DC
+            //VAR_DOUBLE_DECLINING = 40-DD
+
+            if (value== "00-ND" || value == "10-MN")
+
+            {
+                _VM.Data.NYEAR_DEPR_PCT = 0;
+            }else 
+            if (value == "40-DD") 
+            {
+                _VM.Data.NYEAR_DEPR_PCT = ((1m / ((_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM)) *12) *200;
+            }
+            else
+            {
+                _VM.Data.NYEAR_DEPR_PCT = ((1m / ((_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM)) * 12) * 100;
+            }
+
+            decimal decVal = 0.01m;
+            if (value == "20-SL")
+            {
+                
+                _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NBEG_BOOK_VALUE - _VM.Data.NRESIDUAL_VALUE) * decVal;
+                _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NLBEG_BOOK_VALUE - _VM.Data.NLRESIDUAL_VALUE) * decVal;
+                _VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NBBEG_BOOK_VALUE - _VM.Data.NBRESIDUAL_VALUE) * decVal;
+            }
+            else
+            {
+                _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NBEG_BOOK_VALUE * decVal;
+                _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NLBEG_BOOK_VALUE * decVal;
+                _VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NBBEG_BOOK_VALUE * decVal;
+            }
+            
+
+
+
+        }
+
+
 
         #endregion
 
@@ -1749,16 +1860,9 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        /// <summary>
-        /// Handle depreciation method changed event
-        /// </summary>
-        private void OnDepreciationMethodChanged(string? value)
-        {
-            if (_VM.Data != null)
-            {
-                _VM.Data.CDEPR_METHOD = value ?? "0";
-            }
-        }
+        
+
+        
 
         /// <summary>
         /// Handle yearly depreciation percentage changed event
