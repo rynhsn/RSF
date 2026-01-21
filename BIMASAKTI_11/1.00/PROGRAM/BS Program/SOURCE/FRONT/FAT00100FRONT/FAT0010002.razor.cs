@@ -935,26 +935,98 @@ namespace FAT00100Front
             }else 
             if (value == "40-DD") 
             {
-                _VM.Data.NYEAR_DEPR_PCT = ((1m / ((_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM)) *12) *200;
+                //_VM.Data.NYEAR_DEPR_PCT = ((1m / ((_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM)) *12) *200;
+                decimal lnDenominator = (_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM;
+                if (lnDenominator == 0)
+                {
+                    _VM.Data.NYEAR_DEPR_PCT = 0;
+                }
+                else
+                {
+                    _VM.Data.NYEAR_DEPR_PCT = ((1m / lnDenominator) * 12) * 200;
+                }
             }
             else
             {
-                _VM.Data.NYEAR_DEPR_PCT = ((1m / ((_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM)) * 12) * 100;
+                //_VM.Data.NYEAR_DEPR_PCT = ((1m / ((_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM)) * 12) * 100;
+                decimal lnDenominator = (_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM;
+                if (lnDenominator == 0)
+                {
+                    _VM.Data.NYEAR_DEPR_PCT = 0;
+                }
+                else
+                {
+                    _VM.Data.NYEAR_DEPR_PCT = ((1m / lnDenominator) * 12) * 100;
+                }
             }
 
             decimal decVal = 0.01m;
             if (value == "20-SL")
             {
                 
-                _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NBEG_BOOK_VALUE - _VM.Data.NRESIDUAL_VALUE) * decVal;
-                _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NLBEG_BOOK_VALUE - _VM.Data.NLRESIDUAL_VALUE) * decVal;
-                _VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NBBEG_BOOK_VALUE - _VM.Data.NBRESIDUAL_VALUE) * decVal;
+                //_VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NBEG_BOOK_VALUE - _VM.Data.NRESIDUAL_VALUE) * decVal;
+                decimal lnDenominator = (_VM.Data.NBEG_BOOK_VALUE - _VM.Data.NRESIDUAL_VALUE);
+                if (lnDenominator == 0)
+                {
+                    _VM.Data.NYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator * decVal;
+                }
+                //_VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NLBEG_BOOK_VALUE - _VM.Data.NLRESIDUAL_VALUE) * decVal;
+                decimal lnDenominator2 = (_VM.Data.NLBEG_BOOK_VALUE - _VM.Data.NLRESIDUAL_VALUE);
+                if (lnDenominator2 == 0)
+                {
+                    _VM.Data.NLYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator2 * decVal;
+                }
+                //_VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NBBEG_BOOK_VALUE - _VM.Data.NBRESIDUAL_VALUE) * decVal;
+                decimal lnDenominator3 = (_VM.Data.NBBEG_BOOK_VALUE - _VM.Data.NBRESIDUAL_VALUE);
+                if (lnDenominator3 == 0)
+                {
+                    _VM.Data.NBYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator3 * decVal;
+                }
             }
             else
             {
-                _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NBEG_BOOK_VALUE * decVal;
-                _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NLBEG_BOOK_VALUE * decVal;
-                _VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NBBEG_BOOK_VALUE * decVal;
+                //  _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NBEG_BOOK_VALUE * decVal;
+                decimal lnDenominator4 = _VM.Data.NBEG_BOOK_VALUE;
+                if (lnDenominator4 == 0)
+                {
+                    _VM.Data.NYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator4 * decVal;
+                }
+                //_VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NLBEG_BOOK_VALUE * decVal;
+                decimal lnDenominator5 = _VM.Data.NLBEG_BOOK_VALUE;
+                if (lnDenominator5 == 0)
+                {
+                    _VM.Data.NLYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator5 * decVal;
+                }
+                //_VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NBBEG_BOOK_VALUE * decVal;
+                decimal lnDenominator6 = _VM.Data.NBBEG_BOOK_VALUE;
+                if (lnDenominator6 == 0)
+                {
+                    _VM.Data.NBYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator6 * decVal;
+                }
             }
             
 
@@ -1120,6 +1192,8 @@ namespace FAT00100Front
                         _VM.Data.NBBEG_BOOK_VALUE = _VM.Data.NBBOOK_VALUE;
                     }
                 }
+
+                CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
 
                 // Refresh Expense Allocation tab page with current data (equivalent to InvokeRefreshTabPageAsync in FAT00100)
                 // Check if conductor is in Normal mode and Expense Allocation tab is active

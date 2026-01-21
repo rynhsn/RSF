@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\GLF00100SERVICES\GLF00100SERVICES.csproj" />
     <ProjectReference Include="..\..\..\..\..\BS Shared Form\SOURCE\SERVICES\Lookup_GLSERVICES\Lookup_GLSERVICES.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLI00100Service\GLI00100Service.csproj" />
     <ProjectReference Include="..\..\..\SERVICE\GL\GLM00200SERVICE\GLM00200SERVICE.csproj" />

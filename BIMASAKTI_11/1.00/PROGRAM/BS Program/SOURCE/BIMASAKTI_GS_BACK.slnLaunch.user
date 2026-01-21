@@ -13,6 +13,10 @@
       {
         "Path": "API\\FA\\BIMASAKTI_FA_API\\BIMASAKTI_FA_API.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "API\\GL\\BIMASAKTI_GL_API\\BIMASAKTI_GL_API.csproj",
+        "Action": "Start"
       }
     ]
   }

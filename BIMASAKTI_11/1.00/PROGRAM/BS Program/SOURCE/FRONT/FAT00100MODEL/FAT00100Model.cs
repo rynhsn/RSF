@@ -77,6 +77,57 @@ namespace FAT00100Model
             return loResult;
         }
 
+        //implementation
+        public async Task<FAT00100ResultDTO<object>> FAT00100SubmitTrans(FAT00100SubmitTransParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<object> loResult = new FAT00100ResultDTO<object>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<object>, FAT00100SubmitTransParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100SubmitTrans),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
+        public async Task<FAT00100ResultDTO<object>> FAT00100UpdateTransHd(FAT00100UpdateTransHdParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00100ResultDTO<object> loResult = new FAT00100ResultDTO<object>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00100ResultDTO<object>, FAT00100UpdateTransHdParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00100.FAT00100UpdateTransHd),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
         public async Task<R_ServiceDeleteResultDTO> R_ServiceDelete(R_ServiceDeleteParameterDTO<FAT00100DTO> poParameter)
         {
             var loEx = new R_Exception();

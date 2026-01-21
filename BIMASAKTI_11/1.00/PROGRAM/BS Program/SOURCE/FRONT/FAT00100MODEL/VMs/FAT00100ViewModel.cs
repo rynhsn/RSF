@@ -318,7 +318,7 @@ namespace FAT00100Model.VMs
                 // Validate PoDeptCode is not empty
                 if (string.IsNullOrWhiteSpace(PoDeptCode))
                 {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS013"));
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS001"));
                     loEx.ThrowExceptionIfErrors();
                 }
 
@@ -457,6 +457,60 @@ namespace FAT00100Model.VMs
                 CurrentRecord = loResult.data;
                 // Note: Data property is read-only and will be updated by the conductor from eventArgs.Result
 
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        //implementation
+        /// <summary>
+        /// Submit transaction
+        /// </summary>
+        public async Task FAT00100SubmitTransAsync(string pcCompanyId, string pcUserId, string pcRecId)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = new FAT00100SubmitTransParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId,
+                    CUSER_ID = pcUserId,
+                    CREC_ID = pcRecId
+                };
+
+                await _model.FAT00100SubmitTrans(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Update transaction header status
+        /// </summary>
+        public async Task FAT00100UpdateTransHdAsync(string pcCompanyId, string pcUserId, string pcRecId, string pcNewStatus)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = new FAT00100UpdateTransHdParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId,
+                    CUSER_ID = pcUserId,
+                    CREC_ID = pcRecId,
+                    CNEW_STATUS = pcNewStatus
+                };
+
+                await _model.FAT00100UpdateTransHd(loParam);
             }
             catch (Exception ex)
             {

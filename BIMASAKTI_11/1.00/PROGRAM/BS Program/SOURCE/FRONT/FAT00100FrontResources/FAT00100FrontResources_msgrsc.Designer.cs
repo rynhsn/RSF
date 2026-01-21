@@ -448,7 +448,7 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Draft.
+        ///   Looks up a localized string similar to Redraft.
         /// </summary>
         internal static string _Draft {
             get {
@@ -993,6 +993,15 @@ namespace FAT00100FrontResources {
         internal static string _UsefulLife {
             get {
                 return ResourceManager.GetString("_UsefulLife", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User/Owner.
+        /// </summary>
+        internal static string _UserOrOwner {
+            get {
+                return ResourceManager.GetString("_UserOrOwner", resourceCulture);
             }
         }
         

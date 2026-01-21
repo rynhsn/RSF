@@ -325,7 +325,7 @@
     <value>Document Number</value>
   </data>
   <data name="_Draft" xml:space="preserve">
-    <value>Draft</value>
+    <value>Redraft</value>
   </data>
   <data name="_DTRANSACTION_DATE" xml:space="preserve">
     <value>Date</value>
@@ -680,5 +680,8 @@
   </data>
   <data name="_ErrLookup01" xml:space="preserve">
     <value>Not found data by search text!!</value>
+  </data>
+  <data name="_UserOrOwner" xml:space="preserve">
+    <value>User/Owner</value>
   </data>
 </root>

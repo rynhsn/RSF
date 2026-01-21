@@ -23,6 +23,8 @@ using System.Threading.Tasks;
 using Lookup_GSFRONT;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSModel.ViewModel;
+using GLF00100COMMON;
+using GLF00100FRONT;
 
 namespace FAT00100Front
 {
@@ -1564,29 +1566,15 @@ namespace FAT00100Front
                     return;
                 }
 
-                // Validation before submit (only for Draft status "00") - equivalent to net4 lines 2265-2272
-                if (loEntity.CTRANS_STATUS == FAT00100ViewModel.DEFAULT_STATUS_DRAFT)
+                // Validate that we have a record ID
+                if (string.IsNullOrWhiteSpace(loEntity.CREC_ID))
                 {
-                    var loValidationResult = await _VM.ValidationBeforeSubmitAsync(
-                        ClientHelper.CompanyId,
-                        loEntity.CDEPT_CODE,
-                        loEntity.CTRANSACTION_CODE,
-                        loEntity.CREF_NO
-                    );
-
-                    // Check if validation result is empty/null (equivalent to net4 line 2268)
-                    // NET4 returns a string, NET6 returns DTO with CASSET_CODE property
-                    if (string.IsNullOrWhiteSpace(loValidationResult?.CASSET_CODE))
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS036"));
-                        R_DisplayException(loEx);
-                        return;
-                    }
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS009"));
+                    R_DisplayException(loEx);
+                    return;
                 }
 
-                // Show confirmation message based on current status - equivalent to net4 line 2275
-                string lcMessageKey = loEntity.CTRANS_STATUS == FAT00100ViewModel.DEFAULT_STATUS_DRAFT ? "_msgSubmit" : "_msgDraft";
-                string lcMessage = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), lcMessageKey);
+                string lcMessage = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_msgSubmit");
 
                 var leResult = await R_MessageBox.Show(
                     "",
@@ -1599,55 +1587,16 @@ namespace FAT00100Front
                     return;
                 }
 
-                // Call submit process - equivalent to net4 line 2278
-                // ViewModel uses CurrentRecord for CDEPT_CODE, CTRANSACTION_CODE, CREF_NO
-                await _VM.SubmitProcessAsync(
+                // call submit transaction
+                await _VM.FAT00100SubmitTransAsync(
                     ClientHelper.CompanyId,
-                    ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    ClientHelper.UserId
+                    ClientHelper.UserId,
+                    loEntity.CREC_ID
                 );
 
-                // Reload entity to get updated status - equivalent to net4 conForm.R_GetEntity(loParam)
-                var loParam = new FAT00100DTO
-                {
-                    CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    CDEPT_CODE = _VM.PoDeptCode,
-                    CREF_NO = loEntity.CREF_NO
-                };
-
-                await _VM.GetEntity(loParam);
-
-                // Refresh grid - equivalent to net4 RefreshGridRow()
+                // Refresh grid after submit
                 if (_gridRef != null)
                     await _gridRef.R_RefreshGrid(null);
-
-                // After grid refresh, get the first row and display it in conductor
-                // This ensures the conductor displays the data from the first row that was selected by the grid
-                if (_VM.DataGridList != null && _VM.DataGridList.Count > 0)
-                {
-                    var loFirstRow = _VM.DataGridList[0];
-                    var loFirstRowParam = new FAT00100DTO
-                    {
-                        CCOMPANY_ID = ClientHelper.CompanyId,
-                        CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                        CDEPT_CODE = loFirstRow.CDEPT_CODE ?? string.Empty,
-                        CREF_NO = loFirstRow.CREF_NO
-                    };
-
-                    // Get entity for the first row
-                    await _VM.GetEntity(loFirstRowParam);
-
-                    // Display first row in conductor
-                    if (_conductorRef != null)
-                        await _conductorRef.R_GetEntity(loFirstRowParam);
-                }
-                else
-                {
-                    // If no data in grid, just refresh conductor with the submitted record
-                    if (_conductorRef != null)
-                        await _conductorRef.R_GetEntity(loParam);
-                }
             }
             catch (Exception ex)
             {
@@ -1674,16 +1623,14 @@ namespace FAT00100Front
                     return;
                 }
 
-                // Validate status is Open (01) - redraft only works from Open status
-                if (loEntity.CTRANS_STATUS != "10")
+                // Validate that we have a record ID
+                if (string.IsNullOrWhiteSpace(loEntity.CREC_ID))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS009"));
                     R_DisplayException(loEx);
                     return;
                 }
 
-                // Show confirmation message for redraft - equivalent to net4 line 2275
-                // When status is "01" (Open), show "_msgDraft" message
                 string lcMessage = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_msgDraft");
 
                 var leResult = await R_MessageBox.Show(
@@ -1697,55 +1644,17 @@ namespace FAT00100Front
                     return;
                 }
 
-                // Call submit process - same method handles both submit and redraft
-                // ViewModel uses CurrentRecord for CDEPT_CODE, CTRANSACTION_CODE, CREF_NO
-                await _VM.SubmitProcessAsync(
+                // call update transaction header status to draft (00)
+                await _VM.FAT00100UpdateTransHdAsync(
                     ClientHelper.CompanyId,
-                    ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    ClientHelper.UserId
+                    ClientHelper.UserId,
+                    loEntity.CREC_ID,
+                    FAT00100ViewModel.DEFAULT_STATUS_DRAFT
                 );
 
-                // Reload entity to get updated status - equivalent to net4 conForm.R_GetEntity(loParam)
-                var loParam = new FAT00100DTO
-                {
-                    CCOMPANY_ID = ClientHelper.CompanyId,
-                    CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    CDEPT_CODE = _VM.PoDeptCode,
-                    CREF_NO = loEntity.CREF_NO
-                };
-
-                await _VM.GetEntity(loParam);
-
-                // Refresh grid - equivalent to net4 RefreshGridRow()
+                // Refresh grid after update
                 if (_gridRef != null)
                     await _gridRef.R_RefreshGrid(null);
-
-                // After grid refresh, get the first row and display it in conductor
-                // This ensures the conductor displays the data from the first row that was selected by the grid
-                if (_VM.DataGridList != null && _VM.DataGridList.Count > 0)
-                {
-                    var loFirstRow = _VM.DataGridList[0];
-                    var loFirstRowParam = new FAT00100DTO
-                    {
-                        CCOMPANY_ID = ClientHelper.CompanyId,
-                        CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                        CDEPT_CODE = loFirstRow.CDEPT_CODE ?? string.Empty,
-                        CREF_NO = loFirstRow.CREF_NO
-                    };
-
-                    // Get entity for the first row
-                    await _VM.GetEntity(loFirstRowParam);
-
-                    // Display first row in conductor
-                    if (_conductorRef != null)
-                        await _conductorRef.R_GetEntity(loFirstRowParam);
-                }
-                else
-                {
-                    // If no data in grid, just refresh conductor with the redrafted record
-                    if (_conductorRef != null)
-                        await _conductorRef.R_GetEntity(loParam);
-                }
             }
             catch (Exception ex)
             {
@@ -1773,23 +1682,19 @@ namespace FAT00100Front
             R_DisplayException(loEx);
         }
 
-        private async Task btnJournal_OnClick()
+
+        #region Journal
+        private void R_Before_Open_PopupJournal(R_BeforeOpenPopupEventArgs eventArgs)
         {
-            var loEx = new R_Exception();
-
-            try
+            eventArgs.Parameter = new GLF00100ParameterDTO()
             {
-                // TODO: Implement journal button click handler
-                // This typically opens a journal form/page
-                await Task.CompletedTask;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-
-            R_DisplayException(loEx);
+                CDEPT_CODE = _VM.Data.CDEPT_CODE,
+                CTRANS_CODE = _VM.Data.CSOURCE_MODULE=="FA"? FAT00100ViewModel.DEFAULT_TRANSACTION_CODE : FAT00100ViewModel.DEFAULT_PJ_TRANSACTION_CODE,
+                CREF_NO = _VM.Data.CGL_REF_NO
+            };
+            eventArgs.TargetPageType = typeof(GLF00100);
         }
+        #endregion
 
         #endregion
 

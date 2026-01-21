@@ -86,6 +86,65 @@ namespace FAT00100Service
             return loRtn;
         }
 
+        //implementasi 
+        [HttpPost]
+        public async Task<FAT00100ResultDTO<object>> FAT00100SubmitTrans(FAT00100SubmitTransParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100SubmitTrans);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<object>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00100SubmitTrans in {0}", lcMethod);
+                await loCls.FAT00100SubmitTrans(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
+        [HttpPost]
+        public async Task<FAT00100ResultDTO<object>> FAT00100UpdateTransHd(FAT00100UpdateTransHdParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00100UpdateTransHd);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00100ResultDTO<object>();
+
+            try
+            {
+                var loCls = new FAT00100Cls();
+
+                // Set global variables from R_BackGlobalVar
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00100UpdateTransHd in {0}", lcMethod);
+                await loCls.FAT00100UpdateTransHd(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
         [HttpPost]
         public async Task<R_ServiceDeleteResultDTO> R_ServiceDelete(R_ServiceDeleteParameterDTO<FAT00100DTO> poParameter)
         {

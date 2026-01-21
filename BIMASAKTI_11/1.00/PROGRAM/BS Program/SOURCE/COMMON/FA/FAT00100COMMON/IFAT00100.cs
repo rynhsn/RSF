@@ -31,6 +31,8 @@ namespace FAT00100Common
         Task<FAT00100ResultDTO<FAT00100ValidationBeforeSubmitResultDTO>> ValidationBeforeSubmit(FAT00100ValidationBeforeSubmitParameterDTO poParameter);
         Task<FAT00100ResultDTO<FAT00100ValidationBeforeCloseResultDTO>> ValidationBeforeClose(FAT00100ValidationBeforeCloseParameterDTO poParameter);
         Task<FAT00100ResultDTO<FAT00100ValidatePJTransResultDTO>> ValidatePJTrans(FAT00100ValidatePJTransParameterDTO poParameter);
+        Task<FAT00100ResultDTO<object>> FAT00100SubmitTrans(FAT00100SubmitTransParameterDTO poParameter);
+        Task<FAT00100ResultDTO<object>> FAT00100UpdateTransHd(FAT00100UpdateTransHdParameterDTO poParameter);
 
         // Streaming methods
         IAsyncEnumerable<FAT00100GetComboPeriodMonthResultDTO> GetComboPeriodMonth();
