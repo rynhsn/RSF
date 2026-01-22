@@ -6,6 +6,8 @@ using HDR00200Common.DTOs;
 using HDR00200Common.DTOs.Print;
 using R_BackEnd;
 using R_Common;
+using R_Storage;
+using R_StorageCommon;
 
 namespace HDR00200Back;
 
@@ -187,7 +189,7 @@ public class HDR00200Cls
      * Digunakan untuk mendapatkan logo perusahaan
      * kemudian dikirim sebagai response ke controller dalam bentuk HDR00200PrintBaseHeaderLogoDTO
      */
-    public HDR00200PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompany(string pcCompanyId)
+    public HDR00200PrintBaseHeaderLogoDTO GetBaseHeaderLogoCompany(HDR00200ReportParam poParam)
     {
         using var loActivity = _activitySource.StartActivity(nameof(GetBaseHeaderLogoCompany)); // Start activity
         var loEx = new R_Exception(); // Create new exception object
@@ -202,17 +204,43 @@ public class HDR00200Cls
             loConn = loDb.GetConnection(R_Db.eDbConnectionStringType.ReportConnectionString); // Get database connection
             loCmd = loDb.GetCommand(); // Get database command
 
-            var lcQuery = $"SELECT dbo.RFN_GET_COMPANY_LOGO('{pcCompanyId}') as BLOGO"; // Query to get company logo
-            loCmd.CommandText = lcQuery; // Set command text to query
-            loCmd.CommandType = CommandType.Text; // Set command type to text
+            var lcQuery = "RSP_GS_GET_PROPERTY_DETAIL ";
+            loCmd = loDb.GetCommand();
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
 
-            _logger.LogDebug("{pcQuery}", lcQuery); // Log the query
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, poParam.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poParam.CPROPERTY_ID);
 
-            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false); // Execute the query
-            loResult = R_Utility.R_ConvertTo<HDR00200PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault(); // Convert the data table to HDR00200PrintBaseHeaderLogoDTO
-        
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p =>
+            {
+                string lcValue = p.Value?.ToString() ?? "NULL";
+                // Add quotes for string and boolean types
+                if (p.DbType == DbType.String || p.DbType == DbType.StringFixedLength || p.DbType == DbType.AnsiString || p.DbType == DbType.AnsiStringFixedLength ||
+                    p.DbType == DbType.Boolean || p.Value is bool || p.Value is string)
+                {
+                    return $" {p.ParameterName} ='{lcValue}'";
+                }
+                return $" {p.ParameterName} ={lcValue}";
+            })));
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+            loResult = R_Utility.R_ConvertTo<HDR00200PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+
+            if (string.IsNullOrEmpty(loResult.CSTORAGE_ID) == false)
+            {
+                var loReadParameter = new R_ReadParameter()
+                {
+                    StorageId = loResult.CSTORAGE_ID
+                };
+
+                var loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                loResult.BLOGO = loReadResult.Data;
+            }
+
             //ambil company name
-            lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{pcCompanyId}'"; // Query to get company name
+            lcQuery = $"EXEC RSP_GS_GET_COMPANY_INFO '{poParam.CCOMPANY_ID}'"; // Query to get company name
             loCmd.CommandText = lcQuery;
             loCmd.CommandType = CommandType.Text;
 
@@ -223,6 +251,8 @@ public class HDR00200Cls
 
             loResult!.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME;
             loResult.CDATETIME_NOW = loCompanyNameResult.CDATETIME_NOW;
+
+
         }
         catch (Exception ex)
         {

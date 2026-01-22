@@ -16,4 +16,5 @@ public class PMR00460ParameterDb
     public bool LCONFIRMED { get; set; }
     public bool LCLOSED { get; set; }
     public string CLANG_ID { get; set; } = "";
+    public string CTRX_TYPE { get; set; } = ""; // CR 21-01-2026 ZF,IB
 }

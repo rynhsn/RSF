@@ -106,6 +106,15 @@ namespace PMR00460FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Casual.
+        /// </summary>
+        internal static string Casual {
+            get {
+                return ResourceManager.GetString("Casual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Closed.
         /// </summary>
         internal static string Closed {
@@ -138,6 +147,15 @@ namespace PMR00460FrontResources {
         internal static string Detail {
             get {
                 return ResourceManager.GetString("Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event.
+        /// </summary>
+        internal static string Event {
+            get {
+                return ResourceManager.GetString("Event", resourceCulture);
             }
         }
         
@@ -408,6 +426,24 @@ namespace PMR00460FrontResources {
         internal static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit.
+        /// </summary>
+        internal static string Unit {
+            get {
+                return ResourceManager.GetString("Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Lease.
+        /// </summary>
+        internal static string unitLease {
+            get {
+                return ResourceManager.GetString("unitLease", resourceCulture);
             }
         }
     }

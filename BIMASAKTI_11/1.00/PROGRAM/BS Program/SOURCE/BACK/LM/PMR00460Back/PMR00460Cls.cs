@@ -215,32 +215,19 @@ public class PMR00460Cls
             loDb.R_AddCommandParameter(loCmd, "@LCLOSED", DbType.Boolean, 1, poParam.LCLOSED);
             loDb.R_AddCommandParameter(loCmd, "@CLANG_ID", DbType.String, 20, poParam.CLANG_ID);
             loDb.R_AddCommandParameter(loCmd, "@CTYPE", DbType.String, 1, poParam.CTYPE);
+            //loDb.R_AddCommandParameter(loCmd, "@CTRX_TYPE", DbType.String, 1, poParam.CTRX_TYPE);
 
-            var loDbParam = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x =>
-                    x.ParameterName is
-                        "@CCOMPANY_ID" or
-                        "@CPROPERTY_ID" or
-                        "@CFROM_BUILDING_ID" or
-                        "@CTO_BUILDING_ID" or
-                        "@CFROM_PERIOD" or
-                        "@CTO_PERIOD" or
-                        "@CREPORT_TYPE" or
-                        "@LOPEN" or
-                        "@LSCHEDULED" or
-                        "@LCONFIRMED" or
-                        "@LCLOSED" or
-                        "@CLANG_ID" or 
-                        "@CTYPE"
-                )
-                .Select(x => x.Value);
-
-            /*
-             * Log Debug
-             * Digunakan untuk melakukan log debug
-             * yang berisi query dan parameter
-             */
-            _logger.LogDebug("EXEC {pcQuery} {@poParam}", lcQuery, loDbParam);
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p =>
+            {
+                string lcValue = p.Value?.ToString() ?? "NULL";
+                // Add quotes for string and boolean types
+                if (p.DbType == DbType.String || p.DbType == DbType.StringFixedLength || p.DbType == DbType.AnsiString || p.DbType == DbType.AnsiStringFixedLength ||
+                    p.DbType == DbType.Boolean || p.Value is bool || p.Value is string)
+                {
+                    return $" {p.ParameterName} ='{lcValue}'";
+                }
+                return $" {p.ParameterName} ={lcValue}";
+            })));
 
             var loDataTable = loDb.SqlExecQuery(loConn, loCmd, true); // Execute the query
 
@@ -326,6 +313,62 @@ public class PMR00460Cls
 
         loEx.ThrowExceptionIfErrors(); // Throw exception if there are errors
         return loResult; // Return the company logo
+    }
+
+    public PMR00460PrintBaseHeaderLogoDTO GetLogoProperty(PMR00460ReportParam poParameter)
+    {
+        using var activity = _activitySource.StartActivity(nameof(GetLogoProperty));
+        var loEx = new R_Exception();
+        var loDb = new R_Db();
+        PMR00460PrintBaseHeaderLogoDTO loResult = new();
+
+        try
+        {
+            using DbConnection loConn = loDb.GetConnection();
+            using DbCommand loCmd = loDb.GetCommand();
+
+            var lcQuery = "RSP_GS_GET_PROPERTY_DETAIL";
+            loCmd.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.StoredProcedure;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 50, poParameter.CPROPERTY_ID);
+
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ",
+                loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName}='{p.Value}'")));
+
+            var loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+            loResult = R_Utility.R_ConvertTo<PMR00460PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault() ?? new();
+
+            if (!string.IsNullOrEmpty(loResult.CSTORAGE_ID))
+            {
+                var loReadParameter = new R_StorageCommon.R_ReadParameter { StorageId = loResult.CSTORAGE_ID };
+                var loReadResult = R_Storage.R_StorageUtility.ReadFile(loReadParameter, loConn);
+                loResult.CLOGO= loReadResult.Data;
+            }
+
+            lcQuery = "RSP_GS_GET_COMPANY_INFO";
+            loCmd.CommandText = lcQuery;
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.Parameters.Clear();
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 50, R_BackGlobalVar.COMPANY_ID);
+
+            //Debug Logs
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ",
+loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName}='{p.Value}'")));
+            loDataTable = loDb.SqlExecQuery(loConn, loCmd, false);
+            var loCompanyNameResult = R_Utility.R_ConvertTo<PMR00460PrintBaseHeaderLogoDTO>(loDataTable).FirstOrDefault();
+            loResult.CDATETIME_NOW = loCompanyNameResult?.CDATETIME_NOW ?? "";
+            loResult.CCOMPANY_NAME = loCompanyNameResult?.CCOMPANY_NAME ?? "";
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError($"ERROR in {nameof(GetLogoProperty)}: {ex.Message}", ex);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return loResult;
     }
 
 }

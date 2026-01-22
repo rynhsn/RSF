@@ -33,7 +33,8 @@ namespace PMR00460Model.ViewModel
         {
             // new KeyValuePair<string, string>("S", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Strata")),
             new KeyValuePair<string, string>("O", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Owner")),
-            new KeyValuePair<string, string>("L", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Lease"))
+            new KeyValuePair<string, string>("L", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Lease")),
+            new KeyValuePair<string, string>("C", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Casual"))
         };
 
         public KeyValuePair<string, string>[] PeriodList = new KeyValuePair<string, string>[]
@@ -62,6 +63,21 @@ namespace PMR00460Model.ViewModel
 
         public List<string> FileType = new List<string> { "XLSX", "XLS", "CSV" };
 
+        public KeyValuePair<string, string>[] TrxTypeList =
+        {
+            // new KeyValuePair<string, string>("S", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Strata")),
+            new KeyValuePair<string, string>("U", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Unit")),
+            new KeyValuePair<string, string>("C", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Casual")),
+            new KeyValuePair<string, string>("E", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "Event"))
+        };
+
+        public bool LagrementTypeOwner= true;
+        public bool LagrementTypeLease = false;
+        public bool LagrementTypeCasual = false;
+        public string agrementTypeOwnerVal = "O";
+        public string LagrementTypeLeaseVal = "L";
+        public string LagrementTypeCasualVal = "C";
+        public bool Lall = false;
 
         public async Task Init()
         {
@@ -75,7 +91,7 @@ namespace PMR00460Model.ViewModel
             ReportParam.ITO_PERIOD_YEAR = today.Year;
             ReportParam.CTO_PERIOD_MONTH = today.Month.ToString("00");
 
-
+            ReportParam.CTRX_TYPE = "";
             ReportParam.CREPORT_TYPE = ReportType[0].Key;
             ReportParam.CTYPE = "O";
             ReportParam.LOPEN = true;
@@ -168,13 +184,13 @@ namespace PMR00460Model.ViewModel
                 }
 
                 //building
-                if (string.IsNullOrEmpty(ReportParam.CFROM_BUILDING_ID))
+                if (string.IsNullOrEmpty(ReportParam.CFROM_BUILDING_ID) && Lall==false)
                 {
                     loEx.Add("",
                         R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "FromBuildingCannotBeEmpty"));
                 }
 
-                if (string.IsNullOrEmpty(ReportParam.CTO_BUILDING_ID))
+                if (string.IsNullOrEmpty(ReportParam.CTO_BUILDING_ID) && Lall == false)
                 {
                     loEx.Add("", R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "ToBuildingCannotBeEmpty"));
                 }
@@ -194,7 +210,7 @@ namespace PMR00460Model.ViewModel
                 ReportParam.CTO_PERIOD_MONTH_NAME =
                     Array.Find(PeriodList, x => x.Key == ReportParam.CTO_PERIOD_MONTH).Value;
                 ReportParam.CREPORT_TYPE_NAME = Array.Find(ReportType, x => x.Key == ReportParam.CREPORT_TYPE).Value;
-                ReportParam.CTYPE_NAME = Array.Find(AgreementType, x => x.Key == ReportParam.CTYPE).Value;
+                //ReportParam.CTYPE_NAME = Array.Find(AgreementType, x => x.Key == ReportParam.CTYPE).Value;
             }
             catch (Exception e)
             {

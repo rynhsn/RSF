@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\HD\BIMASAKTI_HD_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="07/22/2025 13:48:35" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\HD\BIMASAKTI_HD_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="01/21/2026 17:28:24" ReportInfo.CreatorVersion="2023.2.21.0">
   <Dictionary>
     <BusinessObjectDataSource Name="ResponseDataModel" ReferenceName="ResponseDataModel" DataType="System.Collections.ArrayList" Enabled="true">
       <Column Name="Data" DataType="HDR00200Common.DTOs.Print.HDR00200ReportResultDTO, HDR00200Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -162,19 +162,22 @@
         <Column Name="CPRINT_NAME" DataType="System.String"/>
         <Column Name="CUSER_ID" DataType="System.String"/>
         <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
+        <Column Name="CPRINT_DATE_COMPANY" DataType="System.String"/>
       </Column>
       <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <Column Name="Page" DataType="System.String"/>
         <Column Name="Of" DataType="System.String"/>
         <Column Name="Print_Date" DataType="System.String"/>
         <Column Name="Print_By" DataType="System.String"/>
+        <Column Name="Printed" DataType="System.String"/>
+        <Column Name="By" DataType="System.String"/>
       </Column>
     </BusinessObjectDataSource>
   </Dictionary>
   <inherited Name="Page1">
     <inherited Name="PageHeader1">
       <inherited Name="BaseHeaderLogo"/>
-      <inherited Name="Text33"/>
+      <inherited Name="BaseHeaderCompany"/>
       <inherited Name="LabelNoPage">
         <Formats>
           <GeneralFormat/>
@@ -183,13 +186,12 @@
           <GeneralFormat/>
         </Formats>
       </inherited>
-      <inherited Name="BaseHeaderDate"/>
       <inherited Name="LabelDateTime"/>
       <inherited Name="BaseHeaderLabel"/>
       <inherited Name="BaseHeaderUserId"/>
       <inherited Name="LabelUserId"/>
-      <inherited Name="BaseHeaderDateTime"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="103.95">
+      <inherited Name="BaseHeaderDate"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="87.72" Width="1047.06" Height="103.95">
         <TextObject Name="Text42" Top="18.9" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Property]" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text43" Top="37.8" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Period]" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text44" Top="56.7" Width="94.5" Height="18.9" Text="[ResponseDataModel.Data.Label.Area]" Font="Arial Unicode MS, 6.5pt"/>
@@ -197,7 +199,6 @@
         <TextObject Name="Text46" Left="94.5" Top="75.6" Width="189" Height="18.9" Text=": [ResponseDataModel.Data.Header.BuildingDisplay]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text47" Left="94.5" Top="56.7" Width="189" Height="18.9" Text=": [ResponseDataModel.Data.Header.AreaDisplay]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text48" Left="94.5" Top="37.8" Width="189" Height="18.9" Text=": [ResponseDataModel.Data.Header.PeriodDisplay]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
-        <TextObject Name="Text51" Left="94.5" Top="18.9" Width="189" Height="18.9" Text=": [ResponseDataModel.Data.Label.Property]" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text52" Left="557.55" Top="18.9" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Category]:" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text53" Left="642.6" Top="18.9" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Handover]" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text54" Left="718.2" Top="18.9" Width="56.7" Height="18.9" Text="[ResponseDataModel.Data.Label.Complaint]" Font="Arial Unicode MS, 6.5pt"/>
@@ -228,47 +229,48 @@
         <CheckBoxObject Name="CheckBox12" Left="784.35" Top="66.15" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckClosed"/>
         <CheckBoxObject Name="CheckBox13" Left="859.95" Top="66.15" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckCancelled"/>
         <CheckBoxObject Name="CheckBox14" Left="945" Top="66.15" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.Header.CheckTerminated"/>
+        <TextObject Name="Text118" Left="94.5" Top="18.9" Width="189" Height="18.9" Text=": [ResponseDataModel.Data.Header.PropertyDisplay]" Font="Arial, 6.5pt"/>
       </ChildBand>
     </inherited>
-    <DataBand Name="Data1" ZOrder="0" Top="229.35" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="ResponseDataModel">
+    <DataBand Name="Data1" ZOrder="0" Top="234.8" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="ResponseDataModel">
       <TextObject Name="Text81" Top="9.45" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Building]: [ResponseDataModel.Data.DataPrivate.CBUILDING_NAME]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold, Italic">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <DataHeaderBand Name="DataHeader1" Top="187.55" Width="1047.06" Height="37.8" Border.Lines="Top, Bottom" CanGrow="true" RepeatOnEveryPage="true">
-        <TextObject Name="Text68" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Building]" AutoWidth="true" Font="Arial Unicode MS, 6.5pt, style=Bold, Italic"/>
-        <TextObject Name="Text69" Left="18.9" Top="9.45" Width="75.6" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Floor]" Font="Arial Unicode MS, 6.5pt, style=Bold, Italic"/>
-        <TextObject Name="Text70" Left="37.8" Top="18.9" Width="47.25" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Unit]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text71" Left="85.05" Top="18.9" Width="37.8" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Asset]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text72" Left="122.85" Top="18.9" Width="160.65" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.TicketNoDate]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text73" Left="283.5" Top="18.9" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Description]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text74" Left="378" Top="18.9" Width="75.6" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Status]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text75" Left="453.6" Top="18.9" Width="103.95" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.TenantOwner]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text76" Left="557.55" Top="18.9" Width="85.05" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Caller]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text77" Left="642.6" Top="18.9" Width="132.3" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Solution]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text78" Left="774.9" Top="18.9" Width="113.4" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Invoice]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text79" Left="888.3" Top="18.9" Width="66.15" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Escalated]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text80" Left="954.45" Top="18.9" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.ClosedDate]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+      <DataHeaderBand Name="DataHeader1" Top="194.33" Width="1047.06" Height="37.8" Border.Lines="Top, Bottom" CanGrow="true" RepeatOnEveryPage="true">
+        <TextObject Name="Text68" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Building]" AutoWidth="true" Font="Arial Unicode MS, 6.5pt, style=Italic"/>
+        <TextObject Name="Text69" Left="18.9" Top="9.45" Width="75.6" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Floor]" Font="Arial Unicode MS, 6.5pt, style=Italic"/>
+        <TextObject Name="Text70" Left="37.8" Top="18.9" Width="47.25" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Unit]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text71" Left="85.05" Top="18.9" Width="37.8" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Asset]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text72" Left="122.85" Top="18.9" Width="160.65" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.TicketNoDate]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text73" Left="283.5" Top="18.9" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Description]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text74" Left="378" Top="18.9" Width="75.6" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Status]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text75" Left="453.6" Top="18.9" Width="103.95" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.TenantOwner]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text76" Left="557.55" Top="18.9" Width="85.05" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Caller]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text77" Left="642.6" Top="18.9" Width="132.3" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Solution]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text78" Left="774.9" Top="18.9" Width="113.4" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Invoice]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text79" Left="888.3" Top="18.9" Width="66.15" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Escalated]" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text80" Left="954.45" Top="18.9" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.ClosedDate]" Font="Arial Unicode MS, 6.5pt"/>
       </DataHeaderBand>
-      <DataBand Name="Data2" Top="252.25" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="ResponseDataModel">
+      <DataBand Name="Data2" Top="256.37" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="ResponseDataModel">
         <TextObject Name="Text82" Left="18.9" Top="9.45" Width="75.6" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Floor]: [ResponseDataModel.Data.DataPrivate.Floor.CFLOOR_NAME]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold, Italic">
           <Formats>
             <GeneralFormat/>
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <DataBand Name="Data3" Top="275.15" Width="1047.06" CanGrow="true" CanShrink="true" DataSource="Unit" KeepTogether="true" KeepDetail="true">
-          <DataBand Name="Data4" Top="279.15" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="Data">
-            <TextObject Name="Text86" Left="122.85" Top="18.9" Width="160.65" Height="9.45" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.DCARE_TICKET_DATE] [ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.DCARE_TICKET_DATE]" Font="Arial Unicode MS, 6.5pt">
+        <DataBand Name="Data3" Top="277.93" Width="1047.06" CanGrow="true" CanShrink="true" DataSource="Unit" KeepTogether="true" KeepDetail="true">
+          <DataBand Name="Data4" Top="280.6" Width="1047.06" Height="47.25" CanGrow="true" CanShrink="true" DataSource="Data">
+            <TextObject Name="Text86" Left="122.85" Top="37.8" Width="160.65" Height="9.45" CanGrow="true" CanShrink="true" GrowToBottom="true" CanBreak="false" Text="[ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.DCARE_TICKET_DATE] [ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.DCARE_TICKET_DATE]" Font="Arial Unicode MS, 6.5pt">
               <Formats>
                 <DateFormat Format="MMMM dd, yyyy"/>
                 <TimeFormat/>
               </Formats>
             </TextObject>
-            <TextObject Name="Text92" Left="557.55" Top="18.9" Width="85.05" Height="9.45" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.CCALLER_PHONE]" Font="Arial Unicode MS, 6.5pt"/>
-            <TextObject Name="Text95" Left="774.9" Top="18.9" Width="113.4" Height="9.45" VisibleExpression="[ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.NTOTAL_AMOUNT] &gt; 0" GrowToBottom="true" Text="[ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.CCURRENCY_SYMBOL] [ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.NTOTAL_AMOUNT]" Font="Arial Unicode MS, 6.5pt">
+            <TextObject Name="Text92" Left="557.55" Top="37.8" Width="85.05" Height="9.45" CanGrow="true" CanShrink="true" GrowToBottom="true" Text="[ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.CCALLER_PHONE]" Font="Arial Unicode MS, 6.5pt"/>
+            <TextObject Name="Text95" Left="774.9" Top="37.8" Width="113.4" Height="9.45" VisibleExpression="[ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.NTOTAL_AMOUNT] &gt; 0" GrowToBottom="true" Text="[ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.CCURRENCY_SYMBOL] [ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.NTOTAL_AMOUNT]" Font="Arial Unicode MS, 6.5pt">
               <Formats>
                 <NumberFormat UseLocale="false" NegativePattern="1"/>
                 <NumberFormat UseLocale="false" NegativePattern="1"/>
@@ -300,9 +302,9 @@
               </Formats>
             </TextObject>
             <CheckBoxObject Name="CheckBox15" Left="916.65" Top="9.45" Width="9.45" Height="9.45" Border.Lines="All" DataColumn="ResponseDataModel.Data.DataPrivate.Floor.Unit.Data.LESCALATED"/>
-            <DataFooterBand Name="DataFooter4" Top="311.5" Width="1047.06"/>
+            <DataFooterBand Name="DataFooter4" Top="330.52" Width="1047.06"/>
           </DataBand>
-          <DataFooterBand Name="DataFooter2" Top="315.5" Width="1047.06" Height="37.8">
+          <DataFooterBand Name="DataFooter2" Top="333.18" Width="1047.06" Height="37.8">
             <TextObject Name="Text99" Left="793.8" Top="9.45" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.DataPrivate.Floor.SUM_WITH_INVOICE]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
             <TextObject Name="Text97" Left="510.3" Top="9.45" Width="189" Height="18.9" Text="[ResponseDataModel.Data.Label.TotalCareIn] [ResponseDataModel.Data.DataPrivate.Floor.CFLOOR_NAME]" Font="Arial Unicode MS, 6.5pt, style=Bold">
               <Formats>
@@ -319,7 +321,7 @@
             <LineObject Name="Line2" Left="37.8" Top="37.8" Width="1011.15"/>
           </DataFooterBand>
         </DataBand>
-        <DataFooterBand Name="DataFooter3" Top="357.3" Width="1047.06" Height="37.8">
+        <DataFooterBand Name="DataFooter3" Top="373.65" Width="1047.06" Height="37.8">
           <TextObject Name="Text104" Left="510.3" Top="9.45" Width="189" Height="18.9" Text="[ResponseDataModel.Data.Label.TotalCareIn] [ResponseDataModel.Data.DataPrivate.CBUILDING_NAME]" Font="Arial Unicode MS, 6.5pt, style=Bold">
             <Formats>
               <GeneralFormat/>
@@ -335,7 +337,7 @@
           <LineObject Name="Line3" Left="18.9" Top="37.8" Width="1030.05"/>
         </DataFooterBand>
       </DataBand>
-      <DataFooterBand Name="DataFooter1" Top="399.1" Width="1047.06" Height="37.8">
+      <DataFooterBand Name="DataFooter1" Top="414.12" Width="1047.06" Height="37.8">
         <TextObject Name="Text111" Left="793.8" Top="9.45" Width="37.8" Height="18.9" Text="[ResponseDataModel.Data.SUM_WITH_INVOICE]" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text112" Left="727.65" Top="9.45" Width="66.15" Height="18.9" Text="[ResponseDataModel.Data.Label.WithInvoice]:" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text113" Left="850.5" Top="9.45" Width="75.6" Height="18.9" Text="[ResponseDataModel.Data.Label.HasEscalated]:" Font="Arial Unicode MS, 6.5pt"/>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\HD\BIMASAKTI_HD_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="08/26/2025 17:21:11" ReportInfo.CreatorVersion="2023.2.21.0">
+<inherited BaseReport="BaseHeaderLandscapeCommon.frx" BaseReportAbsolutePath="D:\RealCode\RSF\BIMASAKTI_11\1.00\PROGRAM\BS Program\SOURCE\API\HD\BIMASAKTI_HD_API\Reports\BaseHeaderLandscapeCommon.frx" ScriptLanguage="CSharp" ReportInfo.Created="08/04/2023 16:21:34" ReportInfo.Modified="01/21/2026 16:55:54" ReportInfo.CreatorVersion="2023.2.21.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -183,19 +183,22 @@ namespace FastReport
         <Column Name="CPRINT_NAME" DataType="System.String"/>
         <Column Name="CUSER_ID" DataType="System.String"/>
         <Column Name="DPRINT_DATE_COMPANY" DataType="System.DateTime"/>
+        <Column Name="CPRINT_DATE_COMPANY" DataType="System.String"/>
       </Column>
       <Column Name="BaseHeaderColumn" DataType="BaseHeaderReportCOMMON.BaseHeaderColumnDTO, BaseHeaderReportCOMMON, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
         <Column Name="Page" DataType="System.String"/>
         <Column Name="Of" DataType="System.String"/>
         <Column Name="Print_Date" DataType="System.String"/>
         <Column Name="Print_By" DataType="System.String"/>
+        <Column Name="Printed" DataType="System.String"/>
+        <Column Name="By" DataType="System.String"/>
       </Column>
     </BusinessObjectDataSource>
   </Dictionary>
   <inherited Name="Page1">
     <inherited Name="PageHeader1">
       <inherited Name="BaseHeaderLogo"/>
-      <inherited Name="Text33"/>
+      <inherited Name="BaseHeaderCompany"/>
       <inherited Name="LabelNoPage">
         <Formats>
           <GeneralFormat/>
@@ -204,13 +207,12 @@ namespace FastReport
           <GeneralFormat/>
         </Formats>
       </inherited>
-      <inherited Name="BaseHeaderDate"/>
       <inherited Name="LabelDateTime"/>
       <inherited Name="BaseHeaderLabel"/>
       <inherited Name="BaseHeaderUserId"/>
       <inherited Name="LabelUserId"/>
-      <inherited Name="BaseHeaderDateTime"/>
-      <ChildBand Name="Child1" ZOrder="-1" Top="79.6" Width="1047.06" Height="94.5" CanGrow="true">
+      <inherited Name="BaseHeaderDate"/>
+      <ChildBand Name="Child1" ZOrder="-1" Top="90.38" Width="1047.06" Height="94.5" CanGrow="true">
         <TextObject Name="Text42" Top="9.45" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Property]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text43" Top="28.35" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Period]	:" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text44" Top="47.25" Width="113.4" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Category]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
@@ -242,27 +244,27 @@ namespace FastReport
         <TextObject Name="Text119" Left="113.4" Top="28.35" Width="189" Height="18.9" CanGrow="true" Text=": [ResponseDataModel.Data.Header.PeriodDisplay]" AutoWidth="true" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
       </ChildBand>
     </inherited>
-    <DataBand Name="Data1" ZOrder="0" Top="219.9" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource1" KeepDetail="true">
+    <DataBand Name="Data1" ZOrder="0" Top="233.35" Width="1047.06" Height="18.9" CanGrow="true" CanShrink="true" DataSource="BusinessObjectDataSource1" KeepDetail="true">
       <TextObject Name="Text73" Top="9.45" Width="103.95" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Task] [ResponseDataModel.Data.DataMaintenance.CTASK_CTG_NAME]" AutoWidth="true" Font="Arial Unicode MS, 6.5pt, style=Bold">
         <Formats>
           <GeneralFormat/>
           <GeneralFormat/>
         </Formats>
       </TextObject>
-      <DataHeaderBand Name="DataHeader1" Top="178.1" Width="1047.06" Height="37.8" Border.Lines="Top, Bottom" RepeatOnEveryPage="true">
-        <TextObject Name="Text72" Left="945" Top="18.9" Width="85.05" Height="9.45" Text="[ResponseDataModel.Data.Label.ClosedDate]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text63" Left="9.45" Top="18.9" Width="94.5" Height="9.45" Text="[ResponseDataModel.Data.Label.Task]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text64" Left="103.95" Top="18.9" Width="56.7" Height="9.45" Text="[ResponseDataModel.Data.Label.Asset]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text65" Left="160.65" Top="18.9" Width="141.75" Height="9.45" Text="[ResponseDataModel.Data.Label.TicketNoDate]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text66" Left="302.4" Top="18.9" Width="75.6" Height="9.45" Text="[ResponseDataModel.Data.Label.Status]" AutoWidth="true" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text67" Left="378" Top="18.9" Width="113.4" Height="9.45" Text="[ResponseDataModel.Data.Label.ChecklistStatus]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text68" Left="491.4" Top="18.9" Width="141.75" Height="9.45" Text="[ResponseDataModel.Data.Label.ChecklistNotes]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text69" Left="670.95" Top="18.9" Width="113.4" Height="9.45" Text="[ResponseDataModel.Data.Label.PlanDate]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text70" Left="784.35" Top="18.9" Width="94.5" Height="9.45" Text="[ResponseDataModel.Data.Label.ActualDate]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text71" Left="878.85" Top="18.9" Width="66.15" Height="9.45" Text="[ResponseDataModel.Data.Label.IsEscalated]" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
-        <TextObject Name="Text62" Width="103.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Label.TaskCategory]" VertAlign="Bottom" WordWrap="false" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
+      <DataHeaderBand Name="DataHeader1" Top="190.22" Width="1047.06" Height="37.8" Border.Lines="Top, Bottom" RepeatOnEveryPage="true">
+        <TextObject Name="Text72" Left="945" Top="18.9" Width="85.05" Height="9.45" Text="[ResponseDataModel.Data.Label.ClosedDate]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text63" Left="9.45" Top="18.9" Width="94.5" Height="9.45" Text="[ResponseDataModel.Data.Label.Task]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text64" Left="103.95" Top="18.9" Width="56.7" Height="9.45" Text="[ResponseDataModel.Data.Label.Asset]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text65" Left="160.65" Top="18.9" Width="141.75" Height="9.45" Text="[ResponseDataModel.Data.Label.TicketNoDate]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text66" Left="302.4" Top="18.9" Width="75.6" Height="9.45" Text="[ResponseDataModel.Data.Label.Status]" AutoWidth="true" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text67" Left="378" Top="18.9" Width="113.4" Height="9.45" Text="[ResponseDataModel.Data.Label.ChecklistStatus]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text68" Left="491.4" Top="18.9" Width="141.75" Height="9.45" Text="[ResponseDataModel.Data.Label.ChecklistNotes]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text69" Left="670.95" Top="18.9" Width="113.4" Height="9.45" Text="[ResponseDataModel.Data.Label.PlanDate]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text70" Left="784.35" Top="18.9" Width="94.5" Height="9.45" Text="[ResponseDataModel.Data.Label.ActualDate]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text71" Left="878.85" Top="18.9" Width="66.15" Height="9.45" Text="[ResponseDataModel.Data.Label.IsEscalated]" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
+        <TextObject Name="Text62" Width="103.95" Height="18.9" CanGrow="true" Text="[ResponseDataModel.Data.Label.TaskCategory]" VertAlign="Bottom" WordWrap="false" Font="Arial Unicode MS, 6.5pt"/>
       </DataHeaderBand>
-      <DataBand Name="Data2" Top="242.8" Width="1047.06" DataSource="Task" KeepTogether="true" KeepDetail="true">
+      <DataBand Name="Data2" Top="257.58" Width="1047.06" DataSource="Task" KeepTogether="true" KeepDetail="true">
         <TextObject Name="Text75" Left="9.45" Top="18.9" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.Every] [ResponseDataModel.Data.DataMaintenance.Task.IDURATION_TIME] [ResponseDataModel.Data.DataMaintenance.Task.CDURATION_TYPE_DESCRIPTION]" NullValue="-" Duplicates="Hide" Font="Arial Unicode MS, 6.5pt">
           <Formats>
             <GeneralFormat/>
@@ -272,8 +274,8 @@ namespace FastReport
         </TextObject>
         <TextObject Name="Text74" Left="9.45" Top="9.45" Width="94.5" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataMaintenance.Task.CTASK_NAME]" NullValue="-" Duplicates="Hide" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text76" Left="103.95" Top="9.45" Width="56.7" Height="18.9" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataMaintenance.Task.Asset.CASSET_CODE]" NullValue="-" Duplicates="Hide" Font="Arial Unicode MS, 6.5pt"/>
-        <DataBand Name="Data3" Top="246.8" Width="1047.06" DataSource="Asset" KeepTogether="true" KeepDetail="true">
-          <DataBand Name="Data4" Top="250.8" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="Data" KeepTogether="true" KeepDetail="true">
+        <DataBand Name="Data3" Top="262.92" Width="1047.06" DataSource="Asset" KeepTogether="true" KeepDetail="true">
+          <DataBand Name="Data4" Top="268.25" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true" DataSource="Data" KeepTogether="true" KeepDetail="true">
             <TextObject Name="Text77" Left="160.65" Top="9.45" Width="141.75" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataMaintenance.Task.Asset.Data.CCARE_TICKET_NO]" NullValue="-" Font="Arial Unicode MS, 6.5pt"/>
             <TextObject Name="Text78" Left="160.65" Top="18.9" Width="85.05" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataMaintenance.Task.Asset.Data.DCARE_TICKET_DATE]" NullValue="-" Format="Date" Format.Format="d" Font="Arial Unicode MS, 6.5pt"/>
             <TextObject Name="Text79" Left="302.4" Top="9.45" Width="75.6" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataMaintenance.Task.Asset.Data.CSTATUS_DESCRIPTION]&#13;&#10;[ResponseDataModel.Data.DataMaintenance.Task.Asset.Data.CSUBSTATUS_DESCRIPTION_DISPLAY]" NullValue="-" Font="Arial Unicode MS, 6.5pt">
@@ -298,7 +300,7 @@ namespace FastReport
             <TextObject Name="Text123" Left="737.1" Top="18.9" Width="47.25" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataMaintenance.Task.Asset.Data.DPLAN_END_DATE]" NullValue="-" Format="Time" Format.Format="t" Font="Arial Unicode MS, 6.5pt"/>
             <TextObject Name="Text125" Left="831.6" Top="18.9" Width="47.25" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataMaintenance.Task.Asset.Data.DACTUAL_END_DATE]" NullValue="-" Format="Time" Format.Format="t" Font="Arial Unicode MS, 6.5pt"/>
             <TextObject Name="Text124" Left="831.6" Top="9.45" Width="47.25" Height="9.45" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.DataMaintenance.Task.Asset.Data.DACTUAL_START_DATE]" NullValue="-" Format="Time" Format.Format="t" Font="Arial Unicode MS, 6.5pt"/>
-            <DataFooterBand Name="DataFooter4" Top="283.15" Width="1047.06" Height="28.35" CanShrink="true">
+            <DataFooterBand Name="DataFooter4" Top="301.93" Width="1047.06" Height="28.35" CanShrink="true">
               <LineObject Name="Line1" Left="160.65" Width="888.3"/>
               <TextObject Name="Text90" Left="822.15" Width="85.05" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.HasEscalated]: " AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
               <TextObject Name="Text93" Left="963.9" Width="37.8" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.All]:" AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
@@ -312,7 +314,7 @@ namespace FastReport
               <TextObject Name="Text117" Left="1001.7" Top="9.45" Width="37.8" Height="9.45" Text="[ResponseDataModel.Data.DataMaintenance.Task.Asset.SUM_ALL]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
             </DataFooterBand>
           </DataBand>
-          <DataFooterBand Name="DataFooter1" Top="315.5" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
+          <DataFooterBand Name="DataFooter1" Top="335.62" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
             <TextObject Name="Text94" Left="822.15" Width="85.05" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.HasEscalated]: " AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
             <TextObject Name="Text97" Left="963.9" Width="37.8" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.All]:" AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
             <TextObject Name="Text103" Left="595.35" Width="226.8" Height="28.35" Text="[ResponseDataModel.Data.Label.TotalCareIn] [ResponseDataModel.Data.DataMaintenance.Task.CTASK_NAME]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold">
@@ -326,7 +328,7 @@ namespace FastReport
             <LineObject Name="Line2" Left="160.65" Width="888.3"/>
           </DataFooterBand>
         </DataBand>
-        <DataFooterBand Name="DataFooter2" Top="347.85" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
+        <DataFooterBand Name="DataFooter2" Top="369.3" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
           <TextObject Name="Text98" Left="822.15" Width="85.05" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.HasEscalated]: " AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="Text101" Left="963.9" Width="37.8" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.All]:" AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
           <TextObject Name="Text104" Left="595.35" Width="226.8" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.TotalCareIn] [ResponseDataModel.Data.DataMaintenance.CTASK_CTG_NAME]" AutoWidth="true" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold">
@@ -340,14 +342,14 @@ namespace FastReport
           <LineObject Name="Line4" Left="103.95" Width="945"/>
         </DataFooterBand>
       </DataBand>
-      <DataFooterBand Name="DataFooter3" Top="380.2" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
+      <DataFooterBand Name="DataFooter3" Top="402.98" Width="1047.06" Height="28.35" CanGrow="true" CanShrink="true">
         <TextObject Name="Text105" Left="595.35" Width="226.8" Height="28.35" Text="[ResponseDataModel.Data.Label.GrandTotalCareMaintenance]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt, style=Bold"/>
         <TextObject Name="Text106" Left="822.15" Width="85.05" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.HasEscalated]: " AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text109" Left="963.9" Width="37.8" Height="28.35" CanGrow="true" CanShrink="true" Text="[ResponseDataModel.Data.Label.All]:" AutoWidth="true" HorzAlign="Right" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text110" Left="907.2" Width="28.35" Height="28.35" Text="[ResponseDataModel.Data.SUM_ESCALATED]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
         <TextObject Name="Text111" Left="1001.7" Width="37.8" Height="28.35" Text="[ResponseDataModel.Data.SUM_ALL]" VertAlign="Center" Font="Arial Unicode MS, 6.5pt"/>
         <LineObject Name="Line5" Left="9.45" Width="1039.5"/>
-        <ChildBand Name="Child2" Top="412.55" Width="1047.06" CanShrink="true">
+        <ChildBand Name="Child2" Top="436.67" Width="1047.06" CanShrink="true">
           <LineObject Name="Line6" Width="1048.95"/>
         </ChildBand>
       </DataFooterBand>

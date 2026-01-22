@@ -32,6 +32,7 @@
         public bool LSCHEDULED { get; set; }
         public bool LCONFIRMED { get; set; }
         public bool LCLOSED { get; set; }
+        public string CTRX_TYPE { get; set; } // CR 21-01-2026 ZF,IB
     }
     
     

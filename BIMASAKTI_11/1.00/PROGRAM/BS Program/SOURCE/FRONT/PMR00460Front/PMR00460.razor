@@ -20,20 +20,31 @@
     </R_ItemLayout>
 </R_StackLayout>
 
+@* <R_StackLayout Row>
+    <R_ItemLayout Class="mb-1">
+        <R_RadioGroup Data="@_viewModel.TrxTypeList"
+                      @bind-Value="_viewModel.ReportParam.CTRX_TYPE"
+                      ValueField="Key"
+                      TextField="Value"
+                      Layout="R_eRadioGroupLayout.Horizontal"
+                      Enabled />
+    </R_ItemLayout>
+</R_StackLayout> *@
+
 <R_StackLayout Class="mb-1">
     <R_ItemLayout>
         <R_GroupBox Title="@_localizer["Building"]" ShowBorder Class="p-3" Enabled="@(_viewModel.EnableView)">
-            <R_StackLayout>
-                <R_ItemLayout col="6" Class="ms-4">
+            <R_StackLayout Row >
+                <R_ItemLayout col="7" Class="ms-4">
                     <R_StackLayout Row>
                         <R_ItemLayout col="2">
                             <R_Label>@_localizer["From"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
-                            <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING_ID" OnLostFocused="OnLostFocusFromBuilding" Enabled/>
+                            <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING_ID" OnLostFocused="OnLostFocusFromBuilding" Enabled="@(_viewModel.Lall==false)" />
                         </R_ItemLayout>
                         <R_ItemLayout>
-                            <R_Lookup R_Before_Open_Lookup="BeforeLookupFromBuilding" R_After_Open_Lookup="AfterLookupFromBuilding" Enabled>...</R_Lookup>
+                            <R_Lookup R_Before_Open_Lookup="BeforeLookupFromBuilding" R_After_Open_Lookup="AfterLookupFromBuilding" Enabled="@(_viewModel.Lall==false)">...</R_Lookup>
                         </R_ItemLayout>
                         <R_ItemLayout col="5">
                             <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING_NAME" Enabled="false"/>
@@ -44,13 +55,23 @@
                             <R_Label>@_localizer["To"]</R_Label>
                         </R_ItemLayout>
                         <R_ItemLayout col="4">
-                            <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING_ID" OnLostFocused="OnLostFocusToBuilding" Enabled/>
+                            <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING_ID" OnLostFocused="OnLostFocusToBuilding" Enabled="@(_viewModel.Lall==false)" />
                         </R_ItemLayout>
                         <R_ItemLayout>
-                            <R_Lookup R_Before_Open_Lookup="BeforeLookupToBuilding" R_After_Open_Lookup="AfterLookupToBuilding" Enabled>...</R_Lookup>
+                            <R_Lookup R_Before_Open_Lookup="BeforeLookupToBuilding" R_After_Open_Lookup="AfterLookupToBuilding" Enabled="@(_viewModel.Lall==false)">...</R_Lookup>
                         </R_ItemLayout>
                         <R_ItemLayout col="5">
                             <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING_NAME" Enabled="false"/>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_StackLayout Row>
+                        <R_ItemLayout>
+                            <R_CheckBox Value="_viewModel.Lall" ValueChanged="@((bool value) => All_OnChange(value))" Enabled />
+                        </R_ItemLayout>
+                        <R_ItemLayout>
+                            <R_Label>@_localizer["All"]</R_Label>
                         </R_ItemLayout>
                     </R_StackLayout>
                 </R_ItemLayout>
@@ -116,12 +137,12 @@
     <R_ItemLayout col="5" Class="pe-1">
         <R_GroupBox Title="@_localizer["Type"]" Class="p-3" Enabled="@(_viewModel.EnableView)">
             <R_StackLayout>
-                <R_ItemLayout Class="ms-4">
+                <R_ItemLayout>
                     <R_StackLayout Row>
                         <R_ItemLayout col="3">
                             <R_Label>@_localizer["Report"]</R_Label>
                         </R_ItemLayout>
-                        <R_ItemLayout Class="ms-4">
+                        <R_ItemLayout>
                             <R_RadioGroup Data="@_viewModel.ReportType"
                                           @bind-Value="_viewModel.ReportParam.CREPORT_TYPE"
                                           ValueField="Key"
@@ -134,13 +155,43 @@
                         <R_ItemLayout col="3">
                             <R_Label>@_localizer["Agreement"]</R_Label>
                         </R_ItemLayout>
-                        <R_ItemLayout Class="ms-4">
+                        @* <R_ItemLayout Class="ms-4">
                             <R_RadioGroup Data="@_viewModel.AgreementType"
                                           @bind-Value="_viewModel.ReportParam.CTYPE"
                                           ValueField="Key"
                                           TextField="Value"
                                           Layout="R_eRadioGroupLayout.Horizontal"
                                           Enabled/>
+                        </R_ItemLayout> *@
+                        <R_ItemLayout col="3">
+                            <R_StackLayout Row>
+                                <R_ItemLayout>
+                                    <R_CheckBox Value="_viewModel.LagrementTypeOwner" ValueChanged="@((bool value) => AggrementTypeOwner_OnChange(value))" Enabled />
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_Label>@_localizer["Owner"]</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_StackLayout Row>
+                                <R_ItemLayout>
+                                    <R_CheckBox Value="_viewModel.LagrementTypeLease" ValueChanged="@((bool value) => AggrementTypeLease_OnChange(value))" Enabled />
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_Label>@_localizer["unitLease"]</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_StackLayout Row>
+                                <R_ItemLayout>
+                                    <R_CheckBox Value="_viewModel.LagrementTypeCasual" ValueChanged="@((bool value) => AggrementTypeCasual_OnChange(value))" Enabled />
+                                </R_ItemLayout>
+                                <R_ItemLayout>
+                                    <R_Label>@_localizer["Casual"]</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
                         </R_ItemLayout>
                     </R_StackLayout>
                 </R_ItemLayout>

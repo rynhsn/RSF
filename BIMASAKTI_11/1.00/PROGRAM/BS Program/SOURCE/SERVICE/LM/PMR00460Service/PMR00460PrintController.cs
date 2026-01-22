@@ -168,17 +168,20 @@ public class PMR00460PrintController : R_ReportControllerBase
             var lcLang = R_BackGlobalVar.CULTURE;
     
             var loCls = new PMR00460Cls();
-            var loHeader = loCls.GetBaseHeaderLogoCompany(lcCompany);
+            var loHeader = loCls.GetLogoProperty(poParam);
+            //loRtn.BaseHeaderData.CCOMPANY_NAME = loHeader.CCOMPANY_NAME ?? "";
+            var lodate = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture);
+            //loRtn.BaseHeaderData.CPRINT_DATE_COMPANY = lodate.ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME);
             loRtn.BaseHeaderData = new BaseHeaderDTO
             {
-                BLOGO_COMPANY = loHeader.BLOGO,
+                BLOGO_COMPANY = loHeader.CLOGO,
                 CCOMPANY_NAME = loHeader.CCOMPANY_NAME!,
-                DPRINT_DATE_COMPANY = DateTime.ParseExact(loHeader.CDATETIME_NOW, "yyyyMMdd HH:mm:ss", CultureInfo.InvariantCulture),
-                CPRINT_CODE = "PMR00460",
+                CPRINT_DATE_COMPANY = lodate.ToString(R_BackGlobalVar.REPORT_FORMAT_SHORT_DATE + " " + R_BackGlobalVar.REPORT_FORMAT_SHORT_TIME),
+            CPRINT_CODE = "PMR00460",
                 CPRINT_NAME = "Handover Report",
                 CUSER_ID = lcUser
             };
-    
+
             var loData = new PMR00460ReportResultDTO()
             {
                 Title = "Handover Report",
@@ -203,6 +206,7 @@ public class PMR00460PrintController : R_ReportControllerBase
                 LCLOSED = poParam.LCLOSED,
                 CLANG_ID = lcLang,
                 CTYPE = poParam.CTYPE,
+                CTRX_TYPE = poParam.CTRX_TYPE // CR 21-01-2026 ZF,IB
             };
     
             _logger.LogInfo("Get Detail Invoice List Report");

@@ -1,4 +1,4 @@
-﻿using BlazorClientHelper;
+using BlazorClientHelper;
 using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Lookup_GSModel.ViewModel;
@@ -329,5 +329,84 @@ public partial class PMR00460 : R_Page
 
         EndBlock:
         loEx.ThrowExceptionIfErrors();
+    }
+
+    private async Task AggrementTypeOwner_OnChange(bool val)
+    {
+        _viewModel.LagrementTypeOwner = val;
+        await SetdataCType();
+    }
+    private async Task AggrementTypeLease_OnChange(bool val)
+    {
+        _viewModel.LagrementTypeLease = val;
+        await SetdataCType();
+    }
+    private async Task AggrementTypeCasual_OnChange(bool val)
+    {
+        _viewModel.LagrementTypeCasual = val;
+        await SetdataCType(); 
+    }
+
+    private async Task All_OnChange(bool val)
+    {
+        _viewModel.Lall = val;
+        if (_viewModel.Lall)
+        {
+            setEmtyFromTo();
+            
+        }
+        else
+        {
+            await _viewModel.GetDefaultParam();
+        }
+    }
+
+    private async Task SetdataCType()
+    {
+        var selectedTypes = new List<(string Key, bool IsSelected)>
+        {
+            ("O", _viewModel.LagrementTypeOwner),
+            ("L", _viewModel.LagrementTypeLease),
+            ("C", _viewModel.LagrementTypeCasual)
+        };
+
+        var ctypeParts = new List<string>();
+        var ctypeNameParts = new List<string>();
+
+        foreach (var (key, isSelected) in selectedTypes)
+        {
+            if (isSelected)
+            {
+                ctypeParts.Add(key);
+                var agreementType = Array.Find(_viewModel.AgreementType, x => x.Key == key);
+                if (agreementType.Key == key && !string.IsNullOrEmpty(agreementType.Value))
+                {
+                    ctypeNameParts.Add(agreementType.Value);
+                }
+            }
+        }
+
+        _viewModel.ReportParam.CTYPE = string.Join(",", ctypeParts);
+        _viewModel.ReportParam.CTYPE_NAME = string.Join(", ", ctypeNameParts);
+
+        // Handle Casual agreement type special logic
+        if (_viewModel.LagrementTypeCasual)
+        {
+            _viewModel.Lall = true;
+            setEmtyFromTo();
+        }
+        else
+        {
+            _viewModel.Lall = false;
+            await _viewModel.GetDefaultParam();
+        }
+    }
+
+    private void setEmtyFromTo()
+    {
+        _viewModel.ReportParam.CFROM_BUILDING_ID = "";
+        _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
+        _viewModel.ReportParam.CTO_BUILDING_ID = "";
+        _viewModel.ReportParam.CTO_BUILDING_NAME = "";
     }
 }
