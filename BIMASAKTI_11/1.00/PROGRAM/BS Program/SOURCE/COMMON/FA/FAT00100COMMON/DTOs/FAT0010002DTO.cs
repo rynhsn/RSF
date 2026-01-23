@@ -105,6 +105,7 @@ namespace FAT00100Common.DTOs
         public byte[] OIMAGE { get; set; }
         public string CFILE_NAME { get; set; } = "";
         public string CFILE_EXTENSION { get; set; } = "";
+        public string CDEPT_CODE_DEFAULT { get; set; } = string.Empty;
 
         // Business properties
         public string CFOREIGN_LANGUAGE { get; set; } = string.Empty;

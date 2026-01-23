@@ -405,8 +405,8 @@ public partial class PMR00460 : R_Page
     private void setEmtyFromTo()
     {
         _viewModel.ReportParam.CFROM_BUILDING_ID = "";
-        _viewModel.ReportParam.CFROM_BUILDING_NAME = "";
+        _viewModel.ReportParam.CFROM_BUILDING_NAME = "-";
         _viewModel.ReportParam.CTO_BUILDING_ID = "";
-        _viewModel.ReportParam.CTO_BUILDING_NAME = "";
+        _viewModel.ReportParam.CTO_BUILDING_NAME = "-";
     }
 }

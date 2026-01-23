@@ -48,6 +48,7 @@ namespace FAT00100Model.VMs
         public ObservableCollection<FAT00100GetTransExpAllocListResultDTO> TransExpAllocList { get; set; } = new ObservableCollection<FAT00100GetTransExpAllocListResultDTO>();
 
         // Form state properties (extracted from VB.NET module variables)
+        public string DeptCodeDefault { get; set; } = string.Empty;
         public string DeptCode { get; set; } = string.Empty;
         public string ReferenceNo { get; set; } = string.Empty;
         public string RecId { get; set; } = string.Empty;

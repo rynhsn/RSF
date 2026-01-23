@@ -292,7 +292,7 @@
     <value>Closed</value>
   </data>
   <data name="_Created" xml:space="preserve">
-    <value>Created</value>
+    <value>Created By</value>
   </data>
   <data name="_CREFERENCE_NO" xml:space="preserve">
     <value>Transaction Number</value>
@@ -348,9 +348,6 @@
   <data name="_Period" xml:space="preserve">
     <value>Period</value>
   </data>
-  <data name="_PJ" xml:space="preserve">
-    <value>PJ</value>
-  </data>
   <data name="_Print" xml:space="preserve">
     <value>Print</value>
   </data>
@@ -382,7 +379,7 @@
     <value>Transaction Type</value>
   </data>
   <data name="_Updated" xml:space="preserve">
-    <value>Updated</value>
+    <value>Updated By</value>
   </data>
   <data name="_Void" xml:space="preserve">
     <value>Void</value>
@@ -683,5 +680,32 @@
   </data>
   <data name="_UserOrOwner" xml:space="preserve">
     <value>User/Owner</value>
+  </data>
+  <data name="val_systemParam" xml:space="preserve">
+    <value>The program cannot continue because the FA System Parameter has not been set. Please configure the system parameter before proceeding</value>
+  </data>
+  <data name="val_sourceRefNo" xml:space="preserve">
+    <value>Please select Source Ref. No.!</value>
+  </data>
+  <data name="val_Supplier" xml:space="preserve">
+    <value>Please select Supplier!</value>
+  </data>
+  <data name="val_LocalCurrencyBaseRate" xml:space="preserve">
+    <value>Local Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="val_LocalCurrencyRate" xml:space="preserve">
+    <value>Local Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="val_BaseCurrencyBaseRate" xml:space="preserve">
+    <value>Base Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="val_BaseCurrencyRate" xml:space="preserve">
+    <value>Base Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="_PJ" xml:space="preserve">
+    <value>PJ</value>
+  </data>
+  <data name="val_Quantity" xml:space="preserve">
+    <value>Quantity must be greater than 0! </value>
   </data>
 </root>

@@ -214,7 +214,7 @@ public class PMR00460Cls
             loDb.R_AddCommandParameter(loCmd, "@LCONFIRMED", DbType.Boolean, 1, poParam.LCONFIRMED);
             loDb.R_AddCommandParameter(loCmd, "@LCLOSED", DbType.Boolean, 1, poParam.LCLOSED);
             loDb.R_AddCommandParameter(loCmd, "@CLANG_ID", DbType.String, 20, poParam.CLANG_ID);
-            loDb.R_AddCommandParameter(loCmd, "@CTYPE", DbType.String, 1, poParam.CTYPE);
+            loDb.R_AddCommandParameter(loCmd, "@CTYPE", DbType.String, 20, poParam.CTYPE);
             //loDb.R_AddCommandParameter(loCmd, "@CTRX_TYPE", DbType.String, 1, poParam.CTRX_TYPE);
 
             _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p =>

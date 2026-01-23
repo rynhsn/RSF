@@ -277,7 +277,7 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created.
+        ///   Looks up a localized string similar to Created By.
         /// </summary>
         internal static string _Created {
             get {
@@ -970,7 +970,7 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updated.
+        ///   Looks up a localized string similar to Updated By.
         /// </summary>
         internal static string _Updated {
             get {
@@ -1681,6 +1681,24 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Base Currency Base Rate must be greater than 0!.
+        /// </summary>
+        internal static string val_BaseCurrencyBaseRate {
+            get {
+                return ResourceManager.GetString("val_BaseCurrencyBaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Currency Rate must be greater than 0!.
+        /// </summary>
+        internal static string val_BaseCurrencyRate {
+            get {
+                return ResourceManager.GetString("val_BaseCurrencyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select department!.
         /// </summary>
         internal static string Val_department {
@@ -1708,11 +1726,38 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local Currency Base Rate must be greater than 0!.
+        /// </summary>
+        internal static string val_LocalCurrencyBaseRate {
+            get {
+                return ResourceManager.GetString("val_LocalCurrencyBaseRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Currency Rate must be greater than 0!.
+        /// </summary>
+        internal static string val_LocalCurrencyRate {
+            get {
+                return ResourceManager.GetString("val_LocalCurrencyRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Location is required!.
         /// </summary>
         internal static string Val_Location {
             get {
                 return ResourceManager.GetString("Val_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity must be greater than 0! .
+        /// </summary>
+        internal static string val_Quantity {
+            get {
+                return ResourceManager.GetString("val_Quantity", resourceCulture);
             }
         }
         
@@ -1731,6 +1776,33 @@ namespace FAT00100FrontResources {
         internal static string Val_ReferenceDateRange {
             get {
                 return ResourceManager.GetString("Val_ReferenceDateRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Source Ref. No.!.
+        /// </summary>
+        internal static string val_sourceRefNo {
+            get {
+                return ResourceManager.GetString("val_sourceRefNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Supplier!.
+        /// </summary>
+        internal static string val_Supplier {
+            get {
+                return ResourceManager.GetString("val_Supplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The program cannot continue because the FA System Parameter has not been set. Please configure the system parameter before proceeding.
+        /// </summary>
+        internal static string val_systemParam {
+            get {
+                return ResourceManager.GetString("val_systemParam", resourceCulture);
             }
         }
         

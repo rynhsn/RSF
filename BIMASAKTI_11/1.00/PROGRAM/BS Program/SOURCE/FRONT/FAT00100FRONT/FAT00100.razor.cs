@@ -1048,6 +1048,13 @@ namespace FAT00100Front
                 loEntity.CCURRENCY_NAME = string.Empty;
                 loEntity.CREF_NO = string.Empty;
 
+                var foundDept = _VM.DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == _VM.SystemParamData.CTRANS_DEPT_CODE);
+                if (foundDept != null)
+                {
+                    loEntity.CDEPT_CODE = foundDept.CDEPT_CODE;
+                    loEntity.CDEPT_NAME = foundDept.CDEPT_NAME;
+                }
+
                 loEntity.DREF_DATE = DateTime.Now;
                 loEntity.CREF_DATE = DateTime.Now.ToString("yyyyMMdd");
 
@@ -1253,23 +1260,41 @@ namespace FAT00100Front
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS006"));
                 }
-                if (string.IsNullOrWhiteSpace(loEntity.CSUPPLIER_ID))
-                {
-                    // Note: Supplier validation - check net4 for correct error code if different
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS010"));
-                }
+                
 
                 // Validate currency
                 if (string.IsNullOrWhiteSpace(loEntity.CCURRENCY_CODE))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS007"));
                 }
+
                 if (loEntity.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)
                 {
-                    if (string.IsNullOrWhiteSpace(loEntity.CFR_DEPT_CODE) || string.IsNullOrWhiteSpace(loEntity.CFR_REF_NO))
+                    if (string.IsNullOrWhiteSpace(loEntity.CFR_REF_NO))
                     {
-                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS008"));
+                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_sourceRefNo"));
                     }
+                }
+
+                if (string.IsNullOrWhiteSpace(loEntity.CSUPPLIER_ID))
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_Supplier"));
+                }
+                if (loEntity.NLBASE_RATE<=0m)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_LocalCurrencyBaseRate"));
+                }
+                if (loEntity.NLCURRENCY_RATE <= 0m)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_LocalCurrencyRate"));
+                }
+                if (loEntity.NBBASE_RATE <= 0m)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_BaseCurrencyBaseRate"));
+                }
+                if (loEntity.NBCURRENCY_RATE <= 0m)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_BaseCurrencyRate"));
                 }
 
                 string lcDocumentDate = string.Empty;
@@ -1321,7 +1346,7 @@ namespace FAT00100Front
                 // TODO: PJ transaction validation (PS037) - requires async call to ValidatePJTrans
                 // This should be handled in a separate validation step or made async if framework supports it
                 // If LCHANGE_DESC is false and PJ is selected, need to call ValidatePJTrans service
-
+                //add validation for local currency  and base currency 
                 if (loEx.HasError)
                 {
                     eventArgs.Cancel = true;
@@ -1501,7 +1526,8 @@ namespace FAT00100Front
                     LGLLINK = _VM.GLLink,
                     CGLLINK_DATE = _VM.GlinkDate ?? string.Empty,
                     CREC_ID = loEntity.CREC_ID ?? string.Empty,
-                    CSOFT_PERIOD = _VM.SystemParamData.CSOFT_PERIOD ?? string.Empty
+                    CSOFT_PERIOD = _VM.SystemParamData.CSOFT_PERIOD ?? string.Empty,
+                    CDEPT_CODE_DEFAULT= _VM.SystemParamData.CTRANS_DEPT_CODE
                 };
 
                 // Create popup settings with large size

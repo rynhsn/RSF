@@ -35,6 +35,7 @@ namespace FAT00100Front
     public partial class FAT0010002 : R_Page
     {
         private readonly FAT0010002ViewModel _VM = new FAT0010002ViewModel();
+        private readonly FAT00100ViewModel _VM00100 = new FAT00100ViewModel();
 
         [Inject] private IClientHelper ClientHelper { get; set; } = default!;
         private R_eFileSelectAccept[] accepts = { R_eFileSelectAccept.Image };
@@ -90,7 +91,10 @@ namespace FAT00100Front
                     _VM.DeptMode = loParam.LDEPT_MODE;
                     _VM.RecId = loParam.CREC_ID ?? string.Empty;
                     _VM.SoftPeriod = loParam.CSOFT_PERIOD ?? string.Empty;
+                    _VM.DeptCodeDefault= loParam.CDEPT_CODE_DEFAULT ?? string.Empty;
                 }
+
+                await _VM00100.GetDeptLookupListAsync(ClientHelper.CompanyId, ClientHelper.UserId, string.Empty);
 
                 // Call GetFAAcquisitionDetailHeaderAsync to load header data
                 if (!string.IsNullOrWhiteSpace(loParam.CDEPT_CODE) &&
@@ -1253,15 +1257,23 @@ namespace FAT00100Front
                 var loEntity = (FAT0010002DTO)eventArgs.Data;
                 // Set transaction date to current date
                 loEntity.DINSERVICE_DATE = DateTime.Now;
+                loEntity.CINSERVICE_DATE = DateTime.Now.ToString("yyyyMMdd");
                 loEntity.DSTART_DATE = loEntity.DINSERVICE_DATE;
+                loEntity.CSTART_DATE = DateTime.Now.ToString("yyyyMMdd");
                 loEntity.LNEW_FLAG = true;
 
-
                 // Set default department from parent form
-                if (!string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE))
+                //if (!string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE))
+                //{
+                //    loEntity.CASSET_DEPT_CODE = _VM.TransDetailData.CDEPT_CODE;
+                //    loEntity.CASSET_DEPT_NAME = _VM.TransDetailData.CDEPT_NAME;
+                //}
+
+                var foundDept = _VM00100.DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == _VM.DeptCodeDefault);
+                if (foundDept != null)
                 {
-                    loEntity.CASSET_DEPT_CODE = _VM.TransDetailData.CDEPT_CODE;
-                    loEntity.CASSET_DEPT_NAME = _VM.TransDetailData.CDEPT_NAME;
+                    loEntity.CASSET_DEPT_CODE = foundDept.CDEPT_CODE;
+                    loEntity.CASSET_DEPT_NAME = foundDept.CDEPT_NAME;
                 }
                 // Initialize depreciation fields
                 if (_VM.ComboDepreciationMethodFirstItem != null)
@@ -1334,6 +1346,12 @@ namespace FAT00100Front
                     if (string.IsNullOrWhiteSpace(_VM.Data.CTAX_CATEGORY_CODE))
                     {
                         loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetTaxCategory"));
+                    }
+
+                    // Validate Unit
+                    if (_VM.Data.IQTY<=0m)
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_Quantity"));
                     }
 
                     // Validate Unit
