@@ -139,4 +139,56 @@ public class PMT06000InitCls
 
         return loRtn;
     }
+
+    public PMT06000GetSystemParamResultDTO PMT06000GetSystemParam(PMT06000GetSystemParamParameterDTO poParams)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(PMT06000GetSystemParam));
+        R_Exception loEx = new();
+        List<PMT06000GetSystemParamResultDTO> loReturnTemp = new List<PMT06000GetSystemParamResultDTO>();
+        PMT06000GetSystemParamResultDTO loReturn = new PMT06000GetSystemParamResultDTO();
+        R_Db loDb;
+        DbConnection loConn;
+        DbCommand loCmd;
+        string lcQuery;
+
+        try
+        {
+            loDb = new R_Db();
+            loConn = loDb.GetConnection();
+            loCmd = loDb.GetCommand();
+
+            lcQuery = "RSP_PM_GET_SYSTEM_PARAM ";
+            loCmd.CommandType = CommandType.StoredProcedure;
+            loCmd.CommandText = lcQuery;
+
+            loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParams.CCOMPANY_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 8, poParams.CLANGUAGE_ID);
+            loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParams.CPROPERTY_ID);
+
+            _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p =>
+            {
+                string lcValue = p.Value?.ToString() ?? "NULL";
+                // Add quotes for string and boolean types
+                if (p.DbType == DbType.String || p.DbType == DbType.StringFixedLength || p.DbType == DbType.AnsiString || p.DbType == DbType.AnsiStringFixedLength ||
+                    p.DbType == DbType.Boolean || p.Value is bool || p.Value is string)
+                {
+                    return $" {p.ParameterName} ='{lcValue}'";
+                }
+                return $" {p.ParameterName} ={lcValue}";
+            })));
+
+            var DataTable = loDb.SqlExecQuery(loConn, loCmd, true);
+
+            loReturnTemp = R_Utility.R_ConvertTo<PMT06000GetSystemParamResultDTO>(DataTable).ToList();
+            loReturn = loReturnTemp.FirstOrDefault() ?? new PMT06000GetSystemParamResultDTO();
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        return loReturn;
+    }
 }

@@ -349,6 +349,15 @@ namespace PMT06000FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date In cannot be smaller than Date Soft Period.
+        /// </summary>
+        internal static string PLEASE_DATE_IN_SMALLER {
+            get {
+                return ResourceManager.GetString("PLEASE_DATE_IN_SMALLER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select Building!.
         /// </summary>
         internal static string PLEASE_SELECT_BUILDING {

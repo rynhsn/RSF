@@ -115,4 +115,33 @@ public class PMT06000InitController : ControllerBase, IPMT06000Init
         _logger.LogInfo("End - Get Year Range Param");
         return loReturn;
     }
+
+    [HttpPost]
+    public PMT06000SingleDTO<PMT06000GetSystemParamResultDTO> PMT06000GetSystemParam(PMT06000GetSystemParamParameterDTO poParam)
+    {
+        using var loActivity = _activitySource.StartActivity(nameof(PMT06000GetSystemParam));
+        _logger.LogInfo("Start - GetSystemParam");
+        var loEx = new R_Exception();
+        var loCls = new PMT06000InitCls();
+        var loReturn = new PMT06000SingleDTO<PMT06000GetSystemParamResultDTO>();
+
+        try
+        {
+            _logger.LogInfo("Set Parameter");
+            poParam.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+            poParam.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+
+            _logger.LogInfo("GetSystemParam");
+            loReturn.Data = loCls.PMT06000GetSystemParam(poParam);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+            _logger.LogError(loEx);
+        }
+
+        loEx.ThrowExceptionIfErrors();
+        _logger.LogInfo("End - Get Year Range Param");
+        return loReturn;
+    }
 }

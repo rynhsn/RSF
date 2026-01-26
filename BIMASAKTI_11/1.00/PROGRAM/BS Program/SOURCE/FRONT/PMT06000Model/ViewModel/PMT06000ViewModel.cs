@@ -176,6 +176,7 @@ namespace PMT06000Model.ViewModel
         public List<PMT06000PropertyDTO> PropertyList = new List<PMT06000PropertyDTO>();
         public List<PMT06000PeriodDTO> PeriodList = new List<PMT06000PeriodDTO>();
         public PMT06000YearRangeDTO YearRange = new PMT06000YearRangeDTO();
+        public PMT06000GetSystemParamResultDTO SystemParamResult = new PMT06000GetSystemParamResultDTO();
 
         public string SelectedPropertyId = "";
 
@@ -308,6 +309,27 @@ namespace PMT06000Model.ViewModel
                 YearRange = loReturn.Data;
                 SelectedYear = DateTime.Now.Year;
                 // Data.IINV_YEAR = SelectedYear;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task PMT06000GetSystemParam(string CPropertyId)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+
+                var loParam = new PMT06000GetSystemParamParameterDTO { CPROPERTY_ID=CPropertyId};
+                var loReturn =
+                    await _initModel.GetAsync<PMT06000SingleDTO<PMT06000GetSystemParamResultDTO>, PMT06000GetSystemParamParameterDTO>(
+                        nameof(IPMT06000Init.PMT06000GetSystemParam), loParam);
+                SystemParamResult = loReturn.Data;
+                SystemParamResult.DSOFT_PERIOD_DATE = DateTime.ParseExact(SystemParamResult.CSOFT_PERIOD, "yyyyMM", CultureInfo.InvariantCulture);
             }
             catch (Exception ex)
             {

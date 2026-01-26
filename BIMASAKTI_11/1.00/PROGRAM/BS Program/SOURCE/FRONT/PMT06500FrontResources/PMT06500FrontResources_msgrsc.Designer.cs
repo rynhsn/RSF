@@ -286,11 +286,29 @@ namespace PMT06500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Input Reference Date!.
+        /// </summary>
+        internal static string MSG_INPUT_REF_DATE {
+            get {
+                return ResourceManager.GetString("MSG_INPUT_REF_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please input Ref No !.
         /// </summary>
         internal static string MSG_INPUT_REF_NO {
             get {
                 return ResourceManager.GetString("MSG_INPUT_REF_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Generate Invoice Plan Reference Date must be the same as the requested Invoice Period..
+        /// </summary>
+        internal static string MSG_REF_DATE_NOT_IN_PERIOD {
+            get {
+                return ResourceManager.GetString("MSG_REF_DATE_NOT_IN_PERIOD", resourceCulture);
             }
         }
         

@@ -148,10 +148,13 @@ public partial class PMT06500Invoice : R_Page
             // await _conductorRefInvoice.R_GetEntity(_viewModel.EntityInvoice);
             await _viewModel.GetInvoiceRecord(_viewModel.EntityInvoice);
 
-            _viewModel.SelectedPropertyId = _viewModel.EntityInvoice.CPROPERTY_ID;
-            _viewModel.SelectedPeriod = _viewModel.EntityInvoice.CINV_PRD;
-            _viewModel.SelectedAgreementNo = _viewModel.EntityInvoice.CAGREEMENT_NO;
-            await _gridRefSummary.R_RefreshGrid(null);
+            if (_viewModel.EntityInvoice != null)
+            {
+                _viewModel.SelectedPropertyId = _viewModel?.EntityInvoice?.CPROPERTY_ID;
+                _viewModel.SelectedPeriod = _viewModel?.EntityInvoice?.CINV_PRD;
+                _viewModel.SelectedAgreementNo = _viewModel?.EntityInvoice?.CAGREEMENT_NO;
+                await _gridRefSummary.R_RefreshGrid(poParameter: null);
+            }
         }
         catch (Exception ex)
         {

@@ -385,4 +385,7 @@
     <value>Tax Id</value>
     <comment>Tax Id</comment>
   </data>
+  <data name="PLEASE_DATE_IN_SMALLER" xml:space="preserve">
+    <value>Date In cannot be smaller than Date Soft Period</value>
+  </data>
 </root>

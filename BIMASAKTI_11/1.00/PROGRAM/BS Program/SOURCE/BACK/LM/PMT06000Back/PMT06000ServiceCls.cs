@@ -240,4 +240,6 @@ public class PMT06000ServiceCls : R_BusinessObject<PMT06000OvtServiceDTO>
 
         loEx.ThrowExceptionIfErrors();
     }
+
+    
 }

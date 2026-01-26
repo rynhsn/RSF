@@ -147,5 +147,10 @@ namespace PMT06000Model
 
             return loResult;
         }
+
+        public PMT06000SingleDTO<PMT06000GetSystemParamResultDTO> PMT06000GetSystemParam(PMT06000GetSystemParamParameterDTO poParam)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

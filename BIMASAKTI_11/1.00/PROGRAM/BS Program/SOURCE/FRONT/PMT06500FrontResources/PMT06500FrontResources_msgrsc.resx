@@ -329,4 +329,12 @@
     <value>Please input Description!</value>
     <comment>Please input Description!</comment>
   </data>
+  <data name="MSG_REF_DATE_NOT_IN_PERIOD" xml:space="preserve">
+    <value>The Generate Invoice Plan Reference Date must be the same as the requested Invoice Period.</value>
+    <comment>The Generate Invoice Plan Reference Date must be the same as the requested Invoice Period.</comment>
+  </data>
+  <data name="MSG_INPUT_REF_DATE" xml:space="preserve">
+    <value>Please Input Reference Date!</value>
+    <comment>Please Input Reference Date!</comment>
+  </data>
 </root>

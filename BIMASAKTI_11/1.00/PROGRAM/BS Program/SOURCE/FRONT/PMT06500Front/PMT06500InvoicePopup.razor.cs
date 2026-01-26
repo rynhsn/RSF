@@ -234,6 +234,23 @@ public partial class PMT06500InvoicePopup : R_Page
                 }
             }
 
+            if (loEntity.DREF_DATE == null)
+            {
+                loEx.Add("", _localizer["MSG_INPUT_REF_DATE"]);
+            }
+
+            if (loEntity.DREF_DATE!=null)
+            {
+                loEntity.CREF_DATE = loEntity.DREF_DATE?.ToString("yyyyMMdd");
+                string cRefDate = loEntity.CREF_DATE.Substring(0, 6);
+
+                if (cRefDate != loEntity.CINV_PRD)
+                {
+                    loEx.Add("", _localizer["MSG_REF_DATE_NOT_IN_PERIOD"]);
+                }
+            }
+            
+
             if (string.IsNullOrEmpty(loEntity.CDESCRIPTION))
             {
                 loEx.Add("", _localizer["MSG_INPUT_DESCRIPTION"]);

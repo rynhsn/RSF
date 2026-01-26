@@ -121,6 +121,7 @@ public partial class PMT06000Info : R_Page
             await _viewModel.GetPeriodList();
             await _viewModel.GetPropertyList();
             await _viewModel.GetYearRange();
+            await _viewModel.PMT06000GetSystemParam(_viewModel.SelectedPropertyId);
 
             _viewModel.Caller = (PMT06000ParameterDTO)poParam;
             var loParam = R_FrontUtility.ConvertObjectToObject<PMT06000OvtDTO>(_viewModel.Caller);
@@ -1132,6 +1133,19 @@ public partial class PMT06000Info : R_Page
                 loEx.Add(new Exception(_localizer["PLEASE_SELECT_DATE_IN"]));
             }
 
+            
+            if (!string.IsNullOrEmpty(loEntity.CDATE_IN))
+            {
+                string cdateIn = loEntity.CDATE_IN.Substring(0, 6); 
+                int iSoftPeriodDate = int.Parse(cdateIn);
+                int iSystemSoftPeriodDate = int.Parse(_viewModel.SystemParamResult.CSOFT_PERIOD);
+                if (iSoftPeriodDate < iSystemSoftPeriodDate)
+                {
+                    loEx.Add(new Exception(_localizer["PLEASE_DATE_IN_SMALLER"]));
+                }
+                    
+            }
+
             if (string.IsNullOrEmpty(loEntity.CTAX_ID) && (loEntity.LTAXABLE))
             {
                 loEx.Add(new Exception(_localizer["PLEASE_SELECT_TAX_ID"]));
@@ -1304,10 +1318,11 @@ public partial class PMT06000Info : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
-    private void OnChangeProperty(string? value)
+    private async Task OnChangeProperty(string? value)
     {
         if (_viewModel.Data.CPROPERTY_ID == value) return;
         _viewModel.Data.CPROPERTY_ID = value;
+        await _viewModel.PMT06000GetSystemParam(_viewModel.Data.CPROPERTY_ID);
         _viewModel.Data.CDEPT_CODE = "";
         _viewModel.Data.CDEPT_NAME = "";
 
