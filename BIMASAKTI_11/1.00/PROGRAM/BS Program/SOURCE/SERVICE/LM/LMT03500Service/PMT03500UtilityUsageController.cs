@@ -456,7 +456,7 @@ public class PMT03500UtilityUsageController : ControllerBase, IPMT03500UtilityUs
             _logger.LogInfo("Set Parameter");
             loDbParams.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
             loDbParams.CYEAR = poParam.CYEAR;
-            loDbParams.CPERIOD_NO = poParam.CPERIOD_NO;
+            loDbParams.CPERIOD_NO = poParam.CPERIOD_NO==null?"": poParam.CPERIOD_NO;
 
             _logger.LogInfo("Get Period Detail");
             loReturn.Data = loCls.GetPeriod(loDbParams);

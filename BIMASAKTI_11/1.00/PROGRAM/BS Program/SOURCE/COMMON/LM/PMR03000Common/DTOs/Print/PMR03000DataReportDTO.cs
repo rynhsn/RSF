@@ -107,6 +107,13 @@ namespace PMR03000Common.DTOs.Print
         public string TMESSAGE_DESCR_RTF { get; set; }
         public string TADDITIONAL_DESCR_RTF { get; set; }
 
+        //CR 28-01-2026
+        public decimal NDEDUCTION { get; set; }
+        public decimal NADDITION { get; set; }
+        public decimal NADJUSTMENT { get; set; }
+
+
+
         public PMR03000MessageInfoDTO MessageInfo { get; set; }
 
         public List<PMR03000VADTO> VirtualAccountData { get; set; }
@@ -147,6 +154,11 @@ namespace PMR03000Common.DTOs.Print
         public string CUNIT_DESCRIPTION { get; set; }
         public string CCHARGES_ID { get; set; }
         public string CCHARGES_NAME { get; set; }
+
+
+        //CR 28-01-2026
+        public decimal NTRANS_QTY { get; set; }
+        public string CINVOICE_TYPE { get; set; }
     }
 
     public class PMR03000DetailUtilityDTO
@@ -316,6 +328,14 @@ namespace PMR03000Common.DTOs.Print
         public string Label_StandingAmount { get; set; } = "Standing Amount";
         public string Label_Block1 { get; set; } = "Block 1";
         public string Label_Block2 { get; set; } = "Block 2";
+
+        // CR 28-01-2026
+        public string Label_DepositAmount { get; set; } = "Deposit Amount";
+
+        public string Label_Qty { get; set; } = "Qty";
+        public string Label_Deduction { get; set; } = "Deduction";
+        public string Label_Addition { get; set; } = "Addition";
+        public string Label_Addjustment { get; set; } = "Addjustment";
     }
 
     public class PMR03000ReportClientParameterDTO

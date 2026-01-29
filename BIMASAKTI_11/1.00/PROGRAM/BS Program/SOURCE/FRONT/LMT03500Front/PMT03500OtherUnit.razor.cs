@@ -250,13 +250,14 @@ public partial class PMT03500OtherUnit
 
         try
         {
-            if (int.Parse(_viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo) <
-                int.Parse(_viewModelUtility.UtilityPeriodYear + _viewModelUtility.UtilityPeriodNo))
-            {
-                await R_MessageBox.Show("", _localizer["UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD"]);
-                await _comboUtilityPrdRef.FocusAsync();
-                return;
-            }
+            // cr hapus validasi 29-01-2026
+            //if (int.Parse(_viewModelUtility.InvPeriodYear + _viewModelUtility.InvPeriodNo) <
+            //    int.Parse(_viewModelUtility.UtilityPeriodYear + _viewModelUtility.UtilityPeriodNo))
+            //{
+            //    await R_MessageBox.Show("", _localizer["UTILITY_PERIOD_GREATER_THAN_INVOICE_PERIOD"]);
+            //    await _comboUtilityPrdRef.FocusAsync();
+            //    return;
+            //}
 
             if (_viewModelUtility.UtilityTypeId is "01" or "02")
             {

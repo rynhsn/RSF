@@ -289,7 +289,7 @@ public partial class PMT03500OtherUnitCutOff : R_Page, R_ITabPage
 
             if (_viewModelUpload.IsError)
             {
-                loEx.Add("Error", "Cut Off saved is not successfully!");
+                //loEx.Add("Error", "Cut Off saved is not successfully!");
             }
 
             _enabledBtn = true;

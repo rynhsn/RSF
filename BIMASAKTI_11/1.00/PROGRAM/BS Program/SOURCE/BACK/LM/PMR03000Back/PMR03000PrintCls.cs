@@ -1139,6 +1139,9 @@ public class PMR03000PrintCls
                         TADDITIONAL_DESCR_RTF = poParam.TADDITIONAL_DESCR_RTF,
                         TMESSAGE_DESCRIPTION = poParam.TMESSAGE_DESCRIPTION,
                         TADDITIONAL_DESCRIPTION = poParam.TADDITIONAL_DESCRIPTION,
+                        NDEDUCTION=item.NDEDUCTION,
+                        NADDITION = item.NADDITION,
+                        NADJUSTMENT=item.NADJUSTMENT,
 
                         VirtualAccountData = dataVirtualAccount,
                         DataUnitList = FilteredUnitList,

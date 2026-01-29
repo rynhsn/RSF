@@ -61,6 +61,7 @@ namespace PMR03000Common.Model
             List<PMR03000DetailUnitDTO> DataUnit = new List<PMR03000DetailUnitDTO>();
             for (int i = 0; i < 3; i++)
             {
+                string ctyp= i % 2 == 0 ? "02" : "09";
                 DataUnit.Add(new PMR03000DetailUnitDTO()
                 {
                     CCOMPANY_ID = "C001",
@@ -73,7 +74,9 @@ namespace PMR03000Common.Model
                     CINV_PERIOD_DESC = "Jan 2024",
                     NFEE_AMT = 500m,
                     NCHARGE_AMOUNT = 50m * i,
-                    NTOTAL_AMOUNT = 550m
+                    NTOTAL_AMOUNT = 550m,
+                    CINVOICE_TYPE=i==0?"": ctyp,
+                    NTRANS_QTY= ctyp== "09" ? 2 : 0
                 });
             }
 
@@ -162,6 +165,9 @@ namespace PMR03000Common.Model
                     NPARKING = 0,
                     NOVERTIME = 0,
                     NGENERAL_UTILITY = 0,
+                    NDEDUCTION=0,
+                    NADDITION=100,
+                    NADJUSTMENT = 300,
                     TADDITIONAL_DESCR_RTF = "<p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\"><span style=\"font-weight: bold;font-family: Calibri;font-size: 10px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\">Terms &amp; Conditions Apply: </span></p><ol style=\"list-style-type: decimal;\"><li style=\"font-size: 14.666666666666666px;direction: ltr;font-family: Calibri;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\" value=\"1\"><span style=\"font-size: 10px;direction: ltr;\">Please direct your inquiries to A/R Officer, Four Seasons Residences at (62-021) 5790-1888 ext. 7001</span></li><li style=\"font-size: 14.666666666666666px;direction: ltr;font-family: Calibri;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\" value=\"2\"><span style=\"font-size: 10px;direction: ltr;\">Payment should be made in full amount upon receipt of this Debit Note. </span></li></ol><p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\"><span style=\"font-size: 10px;\">I agree that my liability for this bill is not waived and agree to be held personally liable in the event that the indicated person, Company or association fails to pay for any part or the full amount of these charges Remit transfer payment to : </span></p><p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\"><span style=\"font-size: 10px;\">Account Name : </span><span style=\"font-weight: bold;font-family: Calibri;font-size: 10px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\">PPPSRS Four Seasons Regent Residences</span><span style=\"font-size: 10px;\"> </span></p><p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\"><span style=\"font-size: 10px;\">Bank Name :</span><span style=\"font-weight: bold;font-family: Calibri;font-size: 10px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\"> Bank Central Asia (BCA) </span></p><p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\"><span style=\"font-size: 10px;\">Acct.No. : </span><span style=\"font-weight: bold;font-family: Calibri;font-size: 10px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\">5700330101 (IDR) </span></p><p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\"><span style=\"font-size: 10px;\">Bank Address : </span><span style=\"font-weight: bold;font-family: Calibri;font-size: 10px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\">Gedung MD Tower Jl Setiabudi Selatan No 7 Jakarta 12910 </span></p><p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\"><span style=\"font-size: 10px;\">Please indicate the Unit Number when making payment, to avoid unreported payments</span></p><p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;text-align: center;\"><span style=\"font-style: italic;font-family: Calibri;font-size: 10px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;font-weight: bold;\">*This is a computer-generated document. No signature is required*</span></p><p style=\"font-family: Calibri;font-size: 14.666666666666666px;margin-top: 0px;margin-bottom: 10.666666666666666px;line-height: 108%;\">&nbsp;</p>",
                     
                     TMESSAGE_DESCR_RTF = @"{\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff0\deff0\stshfdbch0\stshfloch31506\stshfhich31506\stshfbi31506\deflang14345\deflangfe14345\themelang14345\themelangfe0\themelangcs0{\fonttbl{\f0\fbidi \froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman;}{\f34\fbidi \froman\fcharset0\fprq2{\*\panose 02040503050406030204}Cambria Math;}

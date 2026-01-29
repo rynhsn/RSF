@@ -187,6 +187,24 @@ namespace PMR03000BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Addition.
+        /// </summary>
+        internal static string Label_Addition {
+            get {
+                return ResourceManager.GetString("Label_Addition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adjustment.
+        /// </summary>
+        internal static string Label_Addjustment {
+            get {
+                return ResourceManager.GetString("Label_Addjustment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Air Listrik.
         /// </summary>
         internal static string Label_AirListrik {
@@ -331,11 +349,29 @@ namespace PMR03000BackResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deduction.
+        /// </summary>
+        internal static string Label_Deduction {
+            get {
+                return ResourceManager.GetString("Label_Deduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deposit.
         /// </summary>
         internal static string Label_Deposit {
             get {
                 return ResourceManager.GetString("Label_Deposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit Amount.
+        /// </summary>
+        internal static string Label_DepositAmount {
+            get {
+                return ResourceManager.GetString("Label_DepositAmount", resourceCulture);
             }
         }
         
@@ -570,6 +606,15 @@ namespace PMR03000BackResources {
         internal static string Label_PromoLevy {
             get {
                 return ResourceManager.GetString("Label_PromoLevy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Qty.
+        /// </summary>
+        internal static string Label_Qty {
+            get {
+                return ResourceManager.GetString("Label_Qty", resourceCulture);
             }
         }
         

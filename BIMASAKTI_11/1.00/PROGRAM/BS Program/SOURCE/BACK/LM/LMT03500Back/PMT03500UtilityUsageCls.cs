@@ -611,7 +611,7 @@ public class PMT03500UtilityUsageCls
 
             loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
             loDb.R_AddCommandParameter(loCmd, "@CYEAR", DbType.String, 4, poParam.CYEAR);
-            loDb.R_AddCommandParameter(loCmd, "@CPERIOD_NO", DbType.String, 4, poParam.CPERIOD_NO);
+            loDb.R_AddCommandParameter(loCmd, "@CPERIOD_NO", DbType.String, 2, poParam.CPERIOD_NO);
 
             _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $" {p.ParameterName} ='{p.Value}'")));
 

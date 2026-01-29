@@ -10,7 +10,7 @@
         "dependencies": {
           "BaseHeaderResources": "1.0.0",
           "PMR03000Back": "1.0.0",
-          "PMR03000Common": "1.0.0",
+          "PMR03300BACK": "1.0.0",
           "BaseHeaderReportCOMMON": "1.0.0.0",
           "R_APIBackEnd": "1.0.0.0",
           "R_APICommon": "1.0.0.0",
@@ -28,7 +28,10 @@
       },
       "BaseHeaderResources/1.0.0": {
         "runtime": {
-          "BaseHeaderResources.dll": {}
+          "BaseHeaderResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         },
         "resources": {
           "id/BaseHeaderResources.resources.dll": {
@@ -44,27 +47,61 @@
           "RSP_PM_PMA00300Resources": "1.0.0"
         },
         "runtime": {
-          "PMR03000Back.dll": {}
+          "PMR03000Back.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMR03000BackResources/1.0.0": {
         "runtime": {
-          "PMR03000BackResources.dll": {}
+          "PMR03000BackResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "PMR03000Common/1.0.0": {
         "runtime": {
-          "PMR03000Common.dll": {}
+          "PMR03000Common.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "PMR03300BACK/1.0.0": {
+        "dependencies": {
+          "PMR03300COMMON": "1.0.0"
+        },
+        "runtime": {
+          "PMR03300BACK.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "PMR03300COMMON/1.0.0": {
+        "runtime": {
+          "PMR03300COMMON.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_GS_GET_STORAGE_TYPEResources/1.0.0": {
         "runtime": {
-          "RSP_GS_GET_STORAGE_TYPEResources.dll": {}
+          "RSP_GS_GET_STORAGE_TYPEResources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "RSP_PM_PMA00300Resources/1.0.0": {
         "runtime": {
-          "RSP_PM_PMA00300Resources.dll": {}
+          "RSP_PM_PMA00300Resources.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "BaseHeaderReportCOMMON/1.0.0.0": {
@@ -80,6 +117,14 @@
           "R_APIBackEnd.dll": {
             "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
+          }
+        },
+        "resources": {
+          "id/R_APIBackEnd.resources.dll": {
+            "locale": "id"
+          },
+          "ja/R_APIBackEnd.resources.dll": {
+            "locale": "ja"
           }
         }
       },
@@ -251,6 +296,16 @@
       "sha512": ""
     },
     "PMR03000Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMR03300BACK/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "PMR03300COMMON/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
