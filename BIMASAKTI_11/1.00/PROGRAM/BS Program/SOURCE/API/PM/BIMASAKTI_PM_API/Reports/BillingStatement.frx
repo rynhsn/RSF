@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="01/17/2025 16:26:44" ReportInfo.Modified="01/29/2026 17:51:04" ReportInfo.CreatorVersion="2023.2.21.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="01/17/2025 16:26:44" ReportInfo.Modified="01/30/2026 14:41:28" ReportInfo.CreatorVersion="2023.2.21.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -487,7 +487,7 @@ namespace FastReport
         <LineObject Name="Line81" Left="321.3" Height="113.4"/>
         <SubreportObject Name="Subreport5" Left="9.45" Top="9.45" Width="302.4" Height="18.9" ReportPage="Page2" PrintOnParent="true"/>
       </DataBand>
-      <DataBand Name="Data10" Top="275.27" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NADJUSTMENT]&gt;0" Border.Lines="Left, Right" DataSource="BusinessObjectDataSource14">
+      <DataBand Name="Data10" Top="275.27" Width="737.1" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.NADJUSTMENT]&gt;0||[ResponseDataModel.Datas.NADJUSTMENT]&lt;0" Border.Lines="Left, Right" DataSource="BusinessObjectDataSource14">
         <LineObject Name="Line99" Left="321.3" Height="18.9"/>
         <TextObject Name="Text731" Left="557.55" Width="37.8" Height="18.9" Text="[ResponseDataModel.Datas.CCURRENCY_CODE]" AutoWidth="true" Font="Arial Unicode MS, 8pt"/>
         <TextObject Name="Text739" Left="330.75" Width="226.8" Height="18.9" Text="[ResponseDataModel.Label.Label_Addjustment]" Font="Arial Unicode MS, 8pt"/>
@@ -794,7 +794,7 @@ namespace FastReport
             <GeneralFormat/>
           </Formats>
         </TextObject>
-        <TextObject Name="Text106" Left="585.9" Top="113.4" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;02&quot;&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;09&quot;" CanShrink="true" Text="[ResponseDataModel.Datas.DataUnitList.CCURRENCY_CODE] [ResponseDataModel.Datas.DataUnitList.NTOTAL_AMOUNT]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+        <TextObject Name="Text106" Left="585.9" Top="113.4" Width="141.75" Height="18.9" CanShrink="true" Text="[ResponseDataModel.Datas.DataUnitList.CCURRENCY_CODE] [ResponseDataModel.Datas.DataUnitList.NTOTAL_AMOUNT]" AutoWidth="true" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
           <Formats>
             <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
             <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
@@ -808,7 +808,7 @@ namespace FastReport
         <TextObject Name="Text102" Left="132.3" Top="94.5" Width="113.4" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;02&quot;&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;09&quot;" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_InvoicedPeriod]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
         <TextObject Name="Text103" Left="245.7" Top="94.5" Width="103.95" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;02&quot;&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;09&quot;" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_Fee]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
         <TextObject Name="Text104" Left="349.65" Top="94.5" Width="122.85" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;02&quot;&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;09&quot;" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_ChargeAmount]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
-        <TextObject Name="Text105" Left="585.9" Top="94.5" Width="141.75" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;02&quot;&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;09&quot;" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_Total]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text105" Left="585.9" Top="94.5" Width="141.75" Height="18.9" CanShrink="true" CanBreak="false" Text="[ResponseDataModel.Label.Label_Total]" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
         <TextObject Name="Text100" Left="9.45" Top="70.15" Width="481.95" Height="18.9" Text="[ResponseDataModel.Datas.DataUnitList.CTRANS_DESC]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold"/>
         <TextObject Name="Text319" Left="9.45" Top="9.45" Width="595.35" Height="18.9" Text="[ResponseDataModel.Label.Label_InvoiceNo] : [ResponseDataModel.Datas.DataUnitList.CINVOICE_NO] | [ResponseDataModel.Datas.DataUnitList.CREF_NO] | [ResponseDataModel.Datas.DataUnitList.CUNIT_DESCRIPTION]" AutoWidth="true" Font="Arial Unicode MS, 8pt, style=Bold">
           <Formats>
