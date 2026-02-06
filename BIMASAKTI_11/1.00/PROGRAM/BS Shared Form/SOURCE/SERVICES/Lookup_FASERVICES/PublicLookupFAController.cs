@@ -90,6 +90,38 @@ namespace Lookup_FAServices
             return loRtn!;
         }
 
+        [HttpPost]
+        public IAsyncEnumerable<FAL00300DTO> FAL00300AssetLookup()
+        {
+            string lcMethodName = nameof(FAL00300AssetLookup);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Controller", lcMethodName));
+            var loEx = new R_Exception();
+            IAsyncEnumerable<FAL00300DTO> loRtn = null;
+            List<FAL00300DTO> loReturnTemp;
+            try
+            {
+                var loCls = new PublicLookupFACls();
+                var poParameter = new FAL00300ParameterDTO();
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CTRANS_CODE = R_Utility.R_GetStreamingContext<string>(FAL00300ContextDTO.CTRANS_CODE);
+                poParameter.CASSET_CODE = R_Utility.R_GetStreamingContext<string>(FAL00300ContextDTO.CASSET_CODE);
+                poParameter.CLANGUAGE_ID = R_BackGlobalVar.CULTURE;
+                _loggerLookup.LogInfo(string.Format("Get Parameter {0} on Controller", lcMethodName));
+                _loggerLookup.LogDebug("DbParameter {@Parameter} ", poParameter);
+                _loggerLookup.LogInfo("Call method FAL00300AssetLookup");
+                loReturnTemp = loCls.FAL00300AssetLookupDb(poParameter);
+                loRtn = GetStream(loReturnTemp);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Controller", lcMethodName));
+            return loRtn!;
+        }
+
         #region Stream Data
         private async IAsyncEnumerable<T> GetStream<T>(List<T> poParam)
         {

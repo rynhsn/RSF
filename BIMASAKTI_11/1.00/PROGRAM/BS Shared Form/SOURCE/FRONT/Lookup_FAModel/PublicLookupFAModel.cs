@@ -89,5 +89,38 @@ namespace Lookup_FAModel
             return loResult;
         }
         #endregion
+
+        #region FAL00300
+        public IAsyncEnumerable<FAL00300DTO> FAL00300AssetLookup()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<FAL00300DTO>> FAL00300AssetLookupAsync()
+        {
+            var loEx = new R_Exception();
+            List<FAL00300DTO> loResult = null;
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAL00300DTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IPublicLookupFA.FAL00300AssetLookup),
+                    DEFAULT_MODULE,
+                    _SendWithContext,
+                    _SendWithToken);
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            return loResult;
+        }
+        #endregion
     }
 }

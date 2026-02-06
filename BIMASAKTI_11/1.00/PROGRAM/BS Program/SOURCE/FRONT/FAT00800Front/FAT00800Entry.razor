@@ -15,7 +15,7 @@
             <R_Label>@_localizer["_lblDepartment"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-             <R_TextBox @bind-Value="_viewModel.Data.CDEPT_CODE"
+             <R_TextBox @bind-Value="_VM.Data.CDEPT_CODE"
                        R_ConductorSource="_conductorRef"
                        OnLostFocused="OnLostFocusDept"
                        MaxLength="20"
@@ -28,10 +28,10 @@
                   R_EnableAdd="true"
                   R_EnableEdit="true">...</R_Lookup>
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="_lcDeptDesc" Enabled="false" />
+            <R_TextBox @bind-Value="_VM.Data.CDEPT_NAME" Enabled="false" />
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_Label FontColor="R_eFontColor.Danger">@_viewModel.Data.CSTATUS_DESC</R_Label>
+            <R_Label FontColor="R_eFontColor.Danger">@_VM.Data.CTRANS_STATUS</R_Label>
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -41,7 +41,7 @@
             <R_Label>@_localizer["_lblReferenceNo"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="_viewModel.Data.CREFERENCE_NO"
+            <R_TextBox @bind-Value="_VM.Data.CREFERENCE_NO"
                        R_ConductorSource="_conductorRef"
                        Enabled="false" />
         </R_ItemLayout>
@@ -51,7 +51,7 @@
             <R_Label>@_localizer["_lblRefDate"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2" style="padding-left: 2.5rem !important;">
-            <R_DatePicker @bind-Value="_viewModel.Data.DTRANSACTION_DATE"
+            <R_DatePicker @bind-Value="_VM.Data.DTRANSACTION_DATE"
                           R_ConductorSource="_conductorRef"
                           R_EnableAdd="true"
                           R_EnableEdit="true" />
@@ -64,7 +64,7 @@
             <R_Label>@_localizer["_lblAssetCode"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="_viewModel.Data.CASSET_CODE"
+            <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
                        R_ConductorSource="_conductorRef"
                        OnLostFocused="OnLostFocusAsset"
                        MaxLength="20"
@@ -82,7 +82,7 @@
             <R_Label>@_localizer["_lblAssetTransSequence"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="_viewModel.Data.CASSET_TRANS_SEQNO" Enabled="false" />
+                    <R_TextBox @bind-Value="_VM.Data.CASSET_TRANS_SEQ_NO" Enabled="false" />
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -92,7 +92,20 @@
             <R_Label>@_localizer["_lblAssetName"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="_viewModel.Data.CASSET_NAME" Enabled="false" />
+            <R_TextBox @bind-Value="_VM.Data.CASSET_NAME" Enabled="false" />
+        </R_ItemLayout>
+    </R_StackLayout>
+
+    
+    <R_StackLayout Row Class="mb-1">
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_lblAssetDepartment"]</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="_VM.CASSET_DEPT_CODE" Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+            <R_TextBox @bind-Value="_VM.CASSET_DEPT_NAME" Enabled="false" />
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -102,35 +115,13 @@
             <R_Label>@_localizer["_lblCurrency"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="_viewModel.Data.CCURRENCY_CODE"
-                       R_ConductorSource="_conductorRef"
-                       OnLostFocused="OnLostFocusCurrency"
-                       MaxLength="3"
-                       R_EnableAdd="true"
-                       R_EnableEdit="true" />
-        </R_ItemLayout>
-        <R_Lookup R_ConductorSource="_conductorRef"
-                  R_Before_Open_Lookup="BeforeOpenLookupCurrency"
-                  R_After_Open_Lookup="AfterOpenLookupCurrency"
-                  R_EnableAdd="true"
-                  R_EnableEdit="true">...</R_Lookup>
-    </R_StackLayout>
-
-    <!-- Row 6: Sale Amount -->
-    <R_StackLayout Row Class="mb-1">
-        <R_ItemLayout col="2">
-            <R_Label>@_localizer["_lblSaleAmount"]*</R_Label>
-        </R_ItemLayout>
-        <R_ItemLayout col="2">
-            <R_NumericTextBox @bind-Value="_viewModel.Data.NTRANSACTION_AMOUNT1"
-                              TValue="decimal"
-                              Decimals="2"
-                              ThousandSeparator="true"
-                              R_ConductorSource="_conductorRef"
-                              R_EnableAdd="true"
-                              R_EnableEdit="true"
-                              OnChanged="OnSaleAmountChanged"
-                              OnLostFocused="OnSaleAmountLostFocus" />
+                    <R_ComboBox Value="@_VM.Data.CCURRENCY_CODE"
+                                Data="@_VM.CurrencyList"
+                                ValueField="@nameof(FAT00800Common.DTOs.FAT00800GetCurrencyListResultDTO.CCURRENCY_CODE)"
+                                TextField="@nameof(FAT00800Common.DTOs.FAT00800GetCurrencyListResultDTO.CCURRENCY_NAME)"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true" />
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -143,28 +134,29 @@
             <R_Label>@_localizer["_lblLocalCurrency"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_NumericTextBox @bind-Value="_viewModel.Data.NLBASE_RATE_AMOUNT"
-                              TValue="decimal"
-                              Decimals="2"
-                              ThousandSeparator="true"
-                              R_ConductorSource="_conductorRef"
-                              R_EnableAdd="true"
-                              R_EnableEdit="true" />
+                    <R_NumericTextBox @bind-Value="_VM.Data.NLBASE_RATE"
+                                TValue="decimal"
+                                Decimals="6"
+                                ThousandSeparator="true"
+                                R_ConductorSource="_conductorRef"
+                                Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_TextBox @bind-Value="_viewModel.loCurrencyTemp" Enabled="false" />
+                    <R_Label>@_VM.Data.CCURRENCY_CODE</R_Label>
         </R_ItemLayout>
         <R_ItemLayout auto="true">
             <R_Label>=</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_NumericTextBox @bind-Value="_viewModel.Data.NLCURRENCY_RATE_AMOUNT"
-                              TValue="decimal"
-                              Decimals="2"
-                              Enabled="false" />
+                    <R_NumericTextBox @bind-Value="_VM.Data.NLCURRENCY_RATE"
+                                TValue="decimal"
+                                Decimals="6"
+                                ThousandSeparator="true"
+                                R_ConductorSource="_conductorRef"
+                                Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_TextBox @bind-Value="_viewModel.loCurrencyTemp" Enabled="false" />
+                    <R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label>
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -175,30 +167,88 @@
             <R_Label>@_localizer["_lblBaseCurrency"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_NumericTextBox @bind-Value="_viewModel.Data.NBBASE_RATE_AMOUNT"
-                              TValue="decimal"
-                              Decimals="2"
-                              ThousandSeparator="true"
-                              R_ConductorSource="_conductorRef"
-                              R_EnableAdd="true"
-                              R_EnableEdit="true" />
+                    <R_NumericTextBox @bind-Value="_VM.Data.NBBASE_RATE"
+                                TValue="decimal"
+                                Decimals="0"
+                                ThousandSeparator="true"
+                                R_ConductorSource="_conductorRef"
+                                Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_TextBox @bind-Value="_viewModel.loCurrencyTemp" Enabled="false" />
+                    <R_Label>@_VM.Data.CCURRENCY_CODE</R_Label>
         </R_ItemLayout>
         <R_ItemLayout auto="true">
             <R_Label>=</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_NumericTextBox @bind-Value="_viewModel.Data.NBCURRENCY_RATE_AMOUNT"
-                              TValue="decimal"
-                              Decimals="2"
-                              Enabled="false" />
+                    <R_NumericTextBox @bind-Value="_VM.Data.NBCURRENCY_RATE"
+                                TValue="decimal"
+                                Decimals="2"
+                                R_ConductorSource="_conductorRef"
+                                Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_TextBox @bind-Value="_viewModel.loCurrencyTemp" Enabled="false" />
+                    <R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label>
         </R_ItemLayout>
     </R_StackLayout>
+    <R_StackLayout Row Class="mb-1">
+                <R_ItemLayout col="2">
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_lblLocalAmount"]*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_Label>@_localizer["_lblBaseAmount"]*</R_Label>
+                </R_ItemLayout>
+    </R_StackLayout>
+
+    <!-- Row 6: Sale Amount -->
+    <R_StackLayout Row Class="mb-1">
+        <R_ItemLayout col="2">
+            <R_Label>@_localizer["_lblSaleAmount"]*</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+            <R_Label>@_VM.Data.CCURRENCY_CODE</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="2">
+                    <R_NumericTextBox Value="_VM.Data.NTRANS_AMOUNT"
+                              TValue="decimal"
+                              Decimals="2"
+                              ThousandSeparator="true"
+                              R_ConductorSource="_conductorRef"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true"
+                              OnChanged="OnSaleAmountChanged"
+                              OnLostFocused="OnSaleAmountLostFocus" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+                    <R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+                    <R_NumericTextBox @bind-Value="_VM.Data.NLTRANS_AMOUNT"
+                                TValue="decimal"
+                                Decimals="6"
+                                ThousandSeparator="true"
+                                Enabled="false" />
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+                    <R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label>
+        </R_ItemLayout>
+        <R_ItemLayout col="1">
+                    <R_NumericTextBox @bind-Value="_VM.Data.NBTRANS_AMOUNT"
+                                TValue="decimal"
+                                Decimals="6"
+                                ThousandSeparator="true"
+                                Enabled="false" />
+        </R_ItemLayout>
+                
+
+
+    </R_StackLayout>
+
+            @* next Book Value =======================================================================================================================*@
 
     <!-- Row 9: Sale Amount (Local & Base) -->
     <R_StackLayout Row Class="mb-1">
@@ -208,14 +258,14 @@
             <R_Label>@_localizer["_lblLocalAmount"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_NumericTextBox @bind-Value="_viewModel.Data.NLTRANSACTION_AMOUNT1"
+            <R_NumericTextBox @bind-Value="_VM.Data.NLTRANSACTION_AMOUNT1"
                               TValue="decimal"
                               Decimals="2"
                               ThousandSeparator="true"
                               Enabled="false" />
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_TextBox @bind-Value="_viewModel.loCurrencyTemp" Enabled="false" />
+            <R_TextBox @bind-Value="_VM.loCurrencyTemp" Enabled="false" />
         </R_ItemLayout>
         
     </R_StackLayout>
@@ -228,14 +278,14 @@
             <R_Label>@_localizer["_lblBaseAmount"]</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_NumericTextBox @bind-Value="_viewModel.Data.NBTRANSACTION_AMOUNT1"
+            <R_NumericTextBox @bind-Value="_VM.Data.NBTRANSACTION_AMOUNT1"
                               TValue="decimal"
                               Decimals="2"
                               ThousandSeparator="true"
                               Enabled="false" />
         </R_ItemLayout>
         <R_ItemLayout col="1">
-            <R_TextBox @bind-Value="_viewModel.loCurrencyTemp" Enabled="false" />
+            <R_TextBox @bind-Value="_VM.loCurrencyTemp" Enabled="false" />
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -246,7 +296,7 @@
             <R_Label>@_localizer["_lblAllocation"]*</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
-            <R_TextBox @bind-Value="_viewModel.Data.CALLOC_EXPENSE_CODE"
+            <R_TextBox @bind-Value="_VM.Data.CALLOC_EXPENSE_CODE"
                        R_ConductorSource="_conductorRef"
                        OnLostFocused="OnLostFocusAlloc"
                        MaxLength="20"
@@ -271,7 +321,7 @@
         <R_ItemLayout col="6">
             <R_StackLayout Row>
                 <R_ItemLayout col="10">
-                    <R_TextArea @bind-Value="_viewModel.Data.CTRANSACTION_DESCR"
+                            <R_TextArea @bind-Value="_VM.Data.CTRANS_DESC"
                         R_ConductorSource="_conductorRef"
                         R_EnableAdd="true"
                         R_EnableEdit="true" />
@@ -285,7 +335,7 @@
                     <R_Label Style="text-align:right">Updated By</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="5">
-                    <R_TextBox @bind-Value="_viewModel.Data.CUPDATE_BY" Enabled="false" />
+                    <R_TextBox @bind-Value="_VM.Data.CUPDATE_BY" Enabled="false" />
                 </R_ItemLayout>
                 <R_ItemLayout col="4">
                     <R_TextBox @bind-Value="_lcUpdateDate" Enabled="false" />
@@ -296,7 +346,7 @@
                     <R_Label Style="text-align:right">Created By</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="5">
-                    <R_TextBox @bind-Value="_viewModel.Data.CCREATE_BY" Enabled="false" />
+                    <R_TextBox @bind-Value="_VM.Data.CCREATE_BY" Enabled="false" />
                 </R_ItemLayout>
                 <R_ItemLayout col="4">
                     <R_TextBox @bind-Value="_lcCreateDate" Enabled="false" />
@@ -312,7 +362,7 @@
             <R_AddButton R_Conductor="_conductorRef" />
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_EditButton R_Conductor="_conductorRef" Enabled="@_viewModel.LenableEdit" />
+            <R_EditButton R_Conductor="_conductorRef" Enabled="@_VM.LenableEdit" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_DeleteButton R_Conductor="_conductorRef" />
@@ -323,7 +373,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="_conductorRef"
                       R_EnableOther="true"
-                      Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && !string.IsNullOrEmpty(_viewModel.Data.CREFERENCE_NO) && _viewModel.Data.CSTATUS == "00")"
+                      Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "00")"
                       OnClick="OnClickSubmit">
                 @_localizer["btnSubmit"]
             </R_Button>
@@ -331,7 +381,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="_conductorRef"
                       R_EnableOther="true"
-                      Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && !string.IsNullOrEmpty(_viewModel.Data.CREFERENCE_NO) && _viewModel.Data.CSTATUS == "01")"
+                      Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "01")"
                       OnClick="OnClickDraft">
                 @_localizer["btnDraft"]
             </R_Button>
@@ -339,7 +389,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="_conductorRef"
                       R_EnableOther="true"
-                      Enabled="@(!string.IsNullOrEmpty(_viewModel.Data.CREFERENCE_NO) && _viewModel.Data.CSTATUS == "08")"
+                      Enabled="@(!string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "08")"
                       OnClick="OnClickJournal">
                 @_localizer["btnJournal"]
             </R_Button>
@@ -358,13 +408,13 @@
         </R_StackLayout>
     </R_TabStripTab>
 
-    <R_TabStripTab @ref="_tabAssetInfo" Id="@nameof(FAT00800AssetInformation)" Title="@_localizer["_lblAssetInfo"]" Enabled="@(!string.IsNullOrEmpty(_viewModel.Data?.CREFERENCE_NO) && !string.IsNullOrEmpty(_viewModel.Data?.CASSET_CODE))">
+    <R_TabStripTab @ref="_tabAssetInfo" Id="@nameof(FAT00800AssetInformation)" Title="@_localizer["_lblAssetInfo"]" Enabled="@(!string.IsNullOrEmpty(_VM.Data?.CREFERENCE_NO) && !string.IsNullOrEmpty(_VM.Data?.CASSET_CODE))">
         <R_TabPage @ref="_pageAssetInfo" R_Before_Open_TabPage="BeforeOpenAssetInfoTab" R_TabEventCallback="AssetInfoTabEventCallBack"/>
     </R_TabStripTab>
 </R_TabStrip>
 
 <R_Conductor @ref="_conductorRef"
-             R_ViewModel="_viewModel"
+             R_ViewModel="_VM"
              R_IsHeader="true"
              R_ServiceGetRecord="ServiceGetRecord"
              R_CheckAdd="CheckAdd"

@@ -70,20 +70,38 @@ namespace Lookup_FAFrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asset Tax Category Lookup.
+        ///   Looks up a localized string similar to Asset Code.
         /// </summary>
-        internal static string _AssetTaxCategoryLookup {
+        internal static string _AssetCode {
             get {
-                return ResourceManager.GetString("_AssetTaxCategoryLookup", resourceCulture);
+                return ResourceManager.GetString("_AssetCode", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asset Tax Type Lookup.
+        ///   Looks up a localized string similar to Asset.
         /// </summary>
-        internal static string _AssetTaxTypeLookup {
+        internal static string _AssetLookup {
             get {
-                return ResourceManager.GetString("_AssetTaxTypeLookup", resourceCulture);
+                return ResourceManager.GetString("_AssetLookup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Name.
+        /// </summary>
+        internal static string _AssetName {
+            get {
+                return ResourceManager.GetString("_AssetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beg. Book Value.
+        /// </summary>
+        internal static string _BegBookValue {
+            get {
+                return ResourceManager.GetString("_BegBookValue", resourceCulture);
             }
         }
         
@@ -97,6 +115,24 @@ namespace Lookup_FAFrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curr..
+        /// </summary>
+        internal static string _Curr {
+            get {
+                return ResourceManager.GetString("_Curr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string _Location {
+            get {
+                return ResourceManager.GetString("_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ok.
         /// </summary>
         internal static string _OkBtn {
@@ -106,29 +142,20 @@ namespace Lookup_FAFrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Description.
+        ///   Looks up a localized string similar to Serial Number.
         /// </summary>
-        internal static string _TaxCategoryDesc {
+        internal static string _SerialNumber {
             get {
-                return ResourceManager.GetString("_TaxCategoryDesc", resourceCulture);
+                return ResourceManager.GetString("_SerialNumber", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tax Category ID.
+        ///   Looks up a localized string similar to Status.
         /// </summary>
-        internal static string _TaxCategoryId {
+        internal static string _Status {
             get {
-                return ResourceManager.GetString("_TaxCategoryId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax Category Name.
-        /// </summary>
-        internal static string _TaxCategoryName {
-            get {
-                return ResourceManager.GetString("_TaxCategoryName", resourceCulture);
+                return ResourceManager.GetString("_Status", resourceCulture);
             }
         }
         
@@ -138,33 +165,6 @@ namespace Lookup_FAFrontResources {
         internal static string _TaxTypeDesc {
             get {
                 return ResourceManager.GetString("_TaxTypeDesc", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax Type ID.
-        /// </summary>
-        internal static string _TaxTypeId {
-            get {
-                return ResourceManager.GetString("_TaxTypeId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tax Type Name.
-        /// </summary>
-        internal static string _TaxTypeName {
-            get {
-                return ResourceManager.GetString("_TaxTypeName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Useful Life (Year).
-        /// </summary>
-        internal static string _UsefulLife {
-            get {
-                return ResourceManager.GetString("_UsefulLife", resourceCulture);
             }
         }
     }

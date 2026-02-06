@@ -101,5 +101,47 @@ namespace Lookup_FABack
             _loggerLookup.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
             return loResult!;
         }
+
+        public List<FAL00300DTO> FAL00300AssetLookupDb(FAL00300ParameterDTO poEntity)
+        {
+            string lcMethodName = nameof(FAL00300AssetLookupDb);
+            using Activity activity = _activitySource.StartActivity(lcMethodName)!;
+            _loggerLookup.LogInfo(string.Format("START process method {0} on Cls", lcMethodName));
+
+            var loEx = new R_Exception();
+            List<FAL00300DTO> loResult = null;
+            R_Db loDb;
+            try
+            {
+                loDb = new R_Db();
+                var loConn = loDb.GetConnection();
+                var loCmd = loDb.GetCommand();
+
+                var lcQuery = @"RSP_FAL00300_ASSET";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poEntity.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10, poEntity.CTRANS_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, poEntity.CASSET_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 2, poEntity.CLANGUAGE_ID);
+
+                var loDbParam = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x => x != null && x.ParameterName.StartsWith("@"))
+                    .ToDictionary(x => x.ParameterName, x => x.Value);
+                _loggerLookup.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParam);
+
+                var loReturnTemp = loDb.SqlExecQuery(loConn, loCmd, true);
+                loResult = R_Utility.R_ConvertTo<FAL00300DTO>(loReturnTemp).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _loggerLookup.LogInfo(string.Format("END process method {0} on Cls", lcMethodName));
+            return loResult!;
+        }
     }
 }

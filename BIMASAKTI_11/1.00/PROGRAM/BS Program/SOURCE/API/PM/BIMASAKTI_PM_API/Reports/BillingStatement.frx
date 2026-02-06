@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="01/17/2025 16:26:44" ReportInfo.Modified="01/30/2026 14:41:28" ReportInfo.CreatorVersion="2023.2.21.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="01/17/2025 16:26:44" ReportInfo.Modified="02/05/2026 10:30:16" ReportInfo.CreatorVersion="2023.2.21.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -820,8 +820,8 @@ namespace FastReport
         </TextObject>
         <LineObject Name="Line41" Top="37.8" Width="737.1"/>
         <TextObject Name="Text360" Left="633.15" Top="9.45" Width="94.5" Height="18.9" Text="[ResponseDataModel.Datas.DataUnitList.DREF_DATE]" Format="Date" Format.Format="d" AutoWidth="true" HorzAlign="Right" Font="Arial Unicode MS, 8pt, style=Bold"/>
-        <TextObject Name="Text370" Left="472.5" Top="94.5" Width="113.4" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.LTAXABLE]&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;02&quot;&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;09&quot;" Text="[ResponseDataModel.Label.Label_Tax]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
-        <TextObject Name="Text371" Left="472.5" Top="113.4" Width="113.4" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.LTAXABLE]&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;02&quot;&amp;&amp;[ResponseDataModel.Datas.DataUnitList.CINVOICE_TYPE]!=&quot;09&quot;" Text="[ResponseDataModel.Datas.DataUnitList.NTAX_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
+        <TextObject Name="Text370" Left="472.5" Top="94.5" Width="113.4" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.LTAXABLE]" Text="[ResponseDataModel.Label.Label_Tax]" HorzAlign="Right" Font="Arial Unicode MS, 8pt"/>
+        <TextObject Name="Text371" Left="472.5" Top="113.4" Width="113.4" Height="18.9" VisibleExpression="[ResponseDataModel.Datas.DataUnitList.LTAXABLE]" Text="[ResponseDataModel.Datas.DataUnitList.NTAX_AMT]" HorzAlign="Right" WordWrap="false" Font="Arial Unicode MS, 8pt" Trimming="EllipsisCharacter">
           <Formats>
             <CurrencyFormat UseLocale="false" CurrencySymbol=""/>
             <CurrencyFormat UseLocale="false" CurrencySymbol=""/>

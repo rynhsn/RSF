@@ -1,0 +1,12 @@
+ERROR_PROCESS=Process failed! unable to submit transaction {0}
+
+INCOMPLETE_TRX=Incomplete Transaction! Unable to submit.
+FA_GLNO_NOT_FOUND=FA GL Account No. not found for Journal Group {0}!
+PFA_GLNO_NOT_FOUND=PFA GL Account No. not found for Journal Group {0}!
+RFA_GLNO_NOT_FOUND=RFA GL Account No. not found for Journal Group {0}!
+RC_GLNO_NOT_FOUND=RC GL Account No. not found for Journal Group {0}!
+AD_GLNO_NOT_FOUND=AD GL Account No. not found for Journal Group {0}!
+MI_GLNO_NOT_FOUND=MI GL Account No. not found for Journal Group {0}!
+RAD_GLNO_NOT_FOUND=RAD GL Account No. not found for Journal Group {0}!
+GLNO_NOT_FOUND=GL Account No. {0} not found in Master Chart of Account!
+ALLOC_GLNO_NOT_FOUND=GL Account No. not found for Allocation ID {0}

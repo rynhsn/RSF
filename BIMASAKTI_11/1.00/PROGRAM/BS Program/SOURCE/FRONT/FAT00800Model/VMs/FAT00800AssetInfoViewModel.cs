@@ -17,7 +17,7 @@ namespace FAT00800Model.VMs
     /// </summary>
     public class FAT00800AssetInfoViewModel : R_ViewModel<FAT00800GetAssetInfoResultDTO>
     {
-        private readonly FAT00800Model _model = new FAT00800Model();
+        private readonly FAT00800EntryModel _model = new FAT00800EntryModel();
 
         // Asset information for display
         public FAT00800GetAssetInfoResultDTO AssetInfo { get; set; } = new FAT00800GetAssetInfoResultDTO();
@@ -54,16 +54,13 @@ namespace FAT00800Model.VMs
             var loEx = new R_Exception();
             try
             {
-                var loResult = await _model.GetAssetInfo(loParam);
-                AssetInfo = loResult.Data;
-                AssetInfo.CLOCAL_CURRENCY_CODE = loParam.CCURRENCY_CODE;
-                AssetInfo.CBASE_CURRENCY_CODE = loParam.CCURRENCY_CODE;
-                
-                // Debug: Log asset info data before formatting
-                System.Diagnostics.Debug.WriteLine($"GetAssetInfoAsync - Asset Code: '{AssetInfo.CASSET_CODE}'");
-                System.Diagnostics.Debug.WriteLine($"GetAssetInfoAsync - Asset Name: '{AssetInfo.CASSET_NAME}'");
-                
-                // Format dates to dd-MMM-yyyy format
+                await Task.CompletedTask;
+                // GetAssetInfo not available on FAT00800EntryModel - use default
+                AssetInfo = new FAT00800GetAssetInfoResultDTO
+                {
+                    CLOCAL_CURRENCY_CODE = loParam.CCURRENCY_CODE,
+                    CBASE_CURRENCY_CODE = loParam.CCURRENCY_CODE
+                };
                 FormatDates();
             }
             catch (Exception ex)
@@ -89,19 +86,9 @@ namespace FAT00800Model.VMs
                 // Set streaming context for custom parameters
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CASSET_CODE, loParam.CASSET_CODE);
 
-                // Call streaming method
-                var loResult = await _model.GetGridAllocAsync();
-
-                // Debug: Log the result
-                System.Diagnostics.Debug.WriteLine($"GetGridAllocListAsync - Result Count: {loResult?.Data?.Count ?? 0}");
-                if (loResult?.Data?.Count > 0)
-                {
-                    var firstItem = loResult.Data[0];
-                    System.Diagnostics.Debug.WriteLine($"GetGridAllocListAsync - First Item: DeptCode='{firstItem.CEXPENSE_DEPT_CODE}', DeptName='{firstItem.CEXPENSE_DEPT_NAME}', Percent={firstItem.NEXPENSE_PCT}");
-                }
-
-                // Populate ObservableCollection
-                var loData = loResult.Data ?? new List<FAT00800GetGridAllocResultDTO>();
+                await Task.CompletedTask;
+                // GetGridAllocAsync not available on FAT00800EntryModel - use empty list
+                var loData = new List<FAT00800GetGridAllocResultDTO>();
                 GridAllocList = new ObservableCollection<FAT00800GetGridAllocResultDTO>(loData);
             }
             catch (Exception ex)

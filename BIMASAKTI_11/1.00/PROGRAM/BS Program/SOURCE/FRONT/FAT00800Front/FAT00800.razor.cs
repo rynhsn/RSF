@@ -28,24 +28,13 @@ namespace FAT00800Front
 
         #region Component References
         private R_TabStrip? _tabStripRef;
-        private R_Grid<FAT00800TransListResultDTO>? _gridTransListRef;
+        private R_Grid<FAT00800GetTransListResultDTO>? _gridTransListRef;
         private R_TabStripTab _tabTransList = new();
         private R_TabStripTab _tabEntry = new();
         #endregion
 
         #region ViewModels
-        private readonly FAT00800ViewModel _viewModel = new();
-        private readonly FAT00800ListViewModel _listViewModel = new();
-        #endregion
-
-        #region Display Fields
-        private string _lcDeptDesc = string.Empty;
-        private string _lcAssetName = string.Empty;
-        #endregion
-
-        #region Temp Variables for Lookup
-        private string _lcDeptTemp = string.Empty;
-        private string _lcAssetTemp = string.Empty;
+        private readonly FAT00800ViewModel _VM = new();
         #endregion
 
         #region Lifecycle Methods
@@ -54,19 +43,8 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                // DEBUG: ONCE FA IS INTEGRATED IN BIMASAKTI_11_BSI, THIS SHOULD BE DELETED
-                ClientHelper.Set_CompanyId("HGRBH");
-                ClientHelper.Set_UserId("ZF");
-
-                // Initialize default values (uses ListViewModel properties)
-                _listViewModel.PeriodFromYear = DateTime.Now.Year;
-                _listViewModel.PeriodToYear = DateTime.Now.Year;
-
-                // Initialize process - get period, currency, trans type desc, user rights
-                await _viewModel.GetInitialProcessAsync(
-                    ClientHelper.CompanyId,
-                    ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                    ClientHelper.UserId);
+                await _VM.FAT00800GetGetSystemParamAsync(ClientHelper.CompanyId, ClientHelper.CultureUI.TwoLetterISOLanguageName, ClientHelper.UserId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
+                await _VM.FAT00800GetYearRangeAsync(ClientHelper.CompanyId);
             }
             catch (Exception ex)
             {
@@ -114,20 +92,34 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                // Build period strings (YYYYMM format)
-                string lcFromPeriod = $"{_listViewModel.PeriodFromYear}{_listViewModel.PeriodFromMonth}";
-                string lcToPeriod = $"{_listViewModel.PeriodToYear}{_listViewModel.PeriodToMonth}";
+                await _VM.FAT00800GetTransListAsync();
+                eventArgs.ListEntityResult = _VM.TransList;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
 
-                // Get transaction list from ListViewModel
-                await _listViewModel.GetTransactionList(
-                    FAT00800ViewModel.VAR_CTRANS_CODE, // Transaction code for Sale
-                    _listViewModel.DeptCode,
-                    lcFromPeriod,
-                    lcToPeriod,
-                    _listViewModel.AssetCode,
-                    ClientHelper.CultureUI.TwoLetterISOLanguageName);
-
-                eventArgs.ListEntityResult = _listViewModel.TransactionList;
+        private async Task Conductor_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                // For Original grid type, return the selected row data
+                var loSelectedRow = R_FrontUtility.ConvertObjectToObject<FAT00800GetTransListResultDTO>(eventArgs.Data);
+                
+                if (loSelectedRow != null)
+                {
+                    // Return the selected row as the result
+                    eventArgs.Result = loSelectedRow;
+                }
+                else
+                {
+                    // If no valid row, return empty DTO
+                    eventArgs.Result = new FAT00800GetTransListResultDTO();
+                }
             }
             catch (Exception ex)
             {
@@ -144,32 +136,7 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                if (string.IsNullOrWhiteSpace(_listViewModel.DeptCode))
-                {
-                    _lcDeptDesc = string.Empty;
-                    return;
-                }
-
-                if (_lcDeptTemp != _listViewModel.DeptCode.Trim())
-                {
-                    // Validate department
-                    var liValidate = await _listViewModel.ValidateDepartmentAsync(
-                        ClientHelper.CompanyId,
-                        _listViewModel.DeptCode,
-                        ClientHelper.UserId);
-
-                    if (liValidate == 0)
-                    {
-                        loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS022"));
-                        _listViewModel.DeptCode = string.Empty;
-                        _lcDeptDesc = string.Empty;
-                    }
-                    else
-                    {
-                        _lcDeptTemp = _listViewModel.DeptCode;
-                        // TODO: Get description from lookup service
-                    }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -180,13 +147,7 @@ namespace FAT00800Front
 
         private void btnDeptLook_R_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            // TODO: Set eventArgs.TargetPageType = typeof(GSL00500);
-            eventArgs.Parameter = new
-            {
-                CCOMPANY_ID = ClientHelper.CompanyId,
-                CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
-                LACTIVE = true
-            };
+            
         }
 
         private async Task btnDeptLook_R_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
@@ -194,26 +155,7 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                if (eventArgs.Result == null) return;
-
-                // TODO: Cast to GSL00500DTO when lookup is implemented
-                dynamic loResult = eventArgs.Result;
-                string lcDeptCode = loResult.CDEPT_CODE?.ToString()?.Trim() ?? string.Empty;
-
-                // Validate department
-                var liValidate = await _listViewModel.ValidateDepartmentAsync(ClientHelper.CompanyId, lcDeptCode, ClientHelper.UserId);
-                if (liValidate == 0)
-                {
-                    _listViewModel.DeptCode = string.Empty;
-                    _lcDeptDesc = string.Empty;
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS022"));
-                }
-                else
-                {
-                    _listViewModel.DeptCode = lcDeptCode;
-                    _lcDeptDesc = loResult.CDEPT_NAME?.ToString() ?? string.Empty;
-                    _lcDeptTemp = lcDeptCode;
-                }
+                
             }
             catch (Exception ex)
             {
@@ -229,17 +171,7 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                if (string.IsNullOrWhiteSpace(_listViewModel.AssetCode))
-                {
-                    _lcAssetName = string.Empty;
-                    return;
-                }
-
-                if (_lcAssetTemp != _listViewModel.AssetCode.Trim())
-                {
-                    // TODO: Call lookup service to validate and get asset info
-                    _lcAssetTemp = _listViewModel.AssetCode;
-                }
+                
             }
             catch (Exception ex)
             {
@@ -250,17 +182,7 @@ namespace FAT00800Front
 
         private void btnAssetLook_R_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            // TODO: Set eventArgs.TargetPageType = typeof(FAL00500);
-            eventArgs.Parameter = new
-            {
-                CCOMPANY_ID = ClientHelper.CompanyId,
-                CDEPR_METHOD = string.Empty,
-                LSTATUS0 = 0,
-                LSTATUS1 = 1,
-                LSTATUS2 = 1,
-                LSTATUS8 = 0,
-                LSTATUS9 = 0
-            };
+           
         }
 
         private async Task btnAssetLook_R_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
@@ -268,14 +190,7 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                if (eventArgs.Result == null) return;
-
-                // TODO: Cast to FAL00500DTO when lookup is implemented
-                dynamic loResult = eventArgs.Result;
-
-                _listViewModel.AssetCode = loResult.CASSET_CODE?.ToString()?.Trim() ?? string.Empty;
-                _lcAssetName = loResult.CASSET_NAME?.ToString() ?? string.Empty;
-                _lcAssetTemp = _listViewModel.AssetCode;
+               
             }
             catch (Exception ex)
             {
@@ -291,40 +206,19 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                FAT00800TransListResultDTO? loSelectedItem = null;
-
-                // If selected data exists, use it
                 var loSelectedData = _gridTransListRef?.GetCurrentData();
                 if (loSelectedData != null)
                 {
-                    // Cast to the correct type
-                    loSelectedItem = R_FrontUtility.ConvertObjectToObject<FAT00800TransListResultDTO>(loSelectedData);
-                }
-                else
-                {
-                    // If no selected data, get first row using FirstOrDefault
-                    loSelectedItem = _listViewModel.TransactionList.FirstOrDefault();
-                }
-
-                // If no available transaction in list, send parameter null
-                if (loSelectedItem == null)
-                {
-                    eventArgs.Parameter = null;
-                }
-                else
-                {
-                    // Convert selected transaction list item to FAT00800DTO for entry
                     var loParam = new FAT00800DTO
                     {
-                        CCOMPANY_ID = ClientHelper.CompanyId,
-                        CTRANSACTION_CODE = FAT00800ViewModel.VAR_CTRANS_CODE, // Use constant from ViewModel
-                        CREFERENCE_NO = loSelectedItem.CREF_NO,
-                        CDEPT_CODE = _listViewModel.DeptCode,
-                        CASSET_CODE = loSelectedItem.CASSET_CODE,
-                        CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName
+                        CCOMPANY_ID = ClientHelper.CompanyId
                     };
 
                     eventArgs.Parameter = loParam;
+                }
+                else
+                {
+                    eventArgs.Parameter = new FAT00800DTO();
                 }
                 eventArgs.TargetPageType = typeof(FAT00800Entry);
             }
@@ -340,10 +234,7 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                // Follow PMT06000 pattern: Clear lists and refresh grid
-                _listViewModel.TransactionList.Clear();
-
-                await _gridTransListRef!.R_RefreshGrid(null);
+                
             }
             catch (Exception ex)
             {

@@ -121,48 +121,48 @@
     <value>Active</value>
     <comment>Active</comment>
   </data>
-  <data name="_AssetTaxCategoryLookup" xml:space="preserve">
-    <value>Asset Tax Category Lookup</value>
-    <comment>Asset Tax Category Lookup</comment>
+  <data name="_AssetCode" xml:space="preserve">
+    <value>Asset Code</value>
+    <comment>Asset Code</comment>
   </data>
-  <data name="_AssetTaxTypeLookup" xml:space="preserve">
-    <value>Asset Tax Type Lookup</value>
-    <comment>Asset Tax Type Lookup</comment>
+  <data name="_AssetLookup" xml:space="preserve">
+    <value>Asset</value>
+    <comment>Asset</comment>
+  </data>
+  <data name="_AssetName" xml:space="preserve">
+    <value>Asset Name</value>
+    <comment>Asset Name</comment>
+  </data>
+  <data name="_BegBookValue" xml:space="preserve">
+    <value>Beg. Book Value</value>
+    <comment>Beg. Book Value</comment>
   </data>
   <data name="_CancelBtn" xml:space="preserve">
     <value>Cancel</value>
     <comment>Cancel</comment>
   </data>
+  <data name="_Curr" xml:space="preserve">
+    <value>Curr.</value>
+    <comment>Curr.</comment>
+  </data>
+  <data name="_Location" xml:space="preserve">
+    <value>Location</value>
+    <comment>Location</comment>
+  </data>
   <data name="_OkBtn" xml:space="preserve">
     <value>Ok</value>
     <comment>Ok</comment>
   </data>
-  <data name="_TaxCategoryDesc" xml:space="preserve">
-    <value>Description</value>
-    <comment>Description</comment>
+  <data name="_SerialNumber" xml:space="preserve">
+    <value>Serial Number</value>
+    <comment>Serial Number</comment>
   </data>
-  <data name="_TaxCategoryId" xml:space="preserve">
-    <value>Tax Category ID</value>
-    <comment>Tax Category ID</comment>
-  </data>
-  <data name="_TaxCategoryName" xml:space="preserve">
-    <value>Tax Category Name</value>
-    <comment>Tax Category Name</comment>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+    <comment>Status</comment>
   </data>
   <data name="_TaxTypeDesc" xml:space="preserve">
     <value>Description</value>
     <comment>Description</comment>
-  </data>
-  <data name="_TaxTypeId" xml:space="preserve">
-    <value>Tax Type ID</value>
-    <comment>Tax Type ID</comment>
-  </data>
-  <data name="_TaxTypeName" xml:space="preserve">
-    <value>Tax Type Name</value>
-    <comment>Tax Type Name</comment>
-  </data>
-  <data name="_UsefulLife" xml:space="preserve">
-    <value>Useful Life (Year)</value>
-    <comment>Useful Life (Year)</comment>
   </data>
 </root>

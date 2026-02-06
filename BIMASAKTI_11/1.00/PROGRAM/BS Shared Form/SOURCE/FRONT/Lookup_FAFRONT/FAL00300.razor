@@ -1,0 +1,35 @@
+﻿@inherits R_Page
+@attribute [R_Page(ResourceId = "_AssetLookup")]
+@inject R_ILocalizer<Lookup_FAFrontResources.Resources_Dummy_Class> _localizer
+@using Lookup_FACommon.DTOs
+
+<R_StackLayout Style="width: 800px">
+     <R_StackLayout Row>
+        <R_Grid @ref="@GridRef"
+                DataSource="_viewModel.AssetGrid"
+                R_ServiceGetListRecord="R_ServiceGetListRecordAsync"
+                R_GridType="@R_eGridType.Navigator"
+                Pageable="true"
+                Height="300px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(FAL00300DTO.CASSET_CODE)" HeaderText="@_localizer["_AssetCode"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(FAL00300DTO.CASSET_NAME)" HeaderText="@_localizer["_AssetName"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(FAL00300DTO.CLOCATION_INFO)" HeaderText="@_localizer["_Location"]" Width="300px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(FAL00300DTO.CSERIAL_NO)" HeaderText="@_localizer["_SerialNumber"]" Width="200px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(FAL00300DTO.CASSET_STATUS_NAME)" HeaderText="@_localizer["_Status"]" Width="100px"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(FAL00300DTO.CCURRENCY_CODE)" HeaderText="@_localizer["_Curr"]" Width="100px"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(FAL00300DTO.NBEG_BOOK_VALUE)" HeaderText="@_localizer["_BegBookValue"]" Width="300px"></R_GridNumericColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_StackLayout>
+
+<R_StackLayout Row Class="justify-content-end">
+        <R_Button OnClick="Button_OnClickOkAsync">
+            @_localizer["_OkBtn"]
+        </R_Button>
+        <R_Button OnClick="Button_OnClickCloseAsync">
+            @_localizer["_CancelBtn"]
+        </R_Button>
+</R_StackLayout>
+
+</R_StackLayout>

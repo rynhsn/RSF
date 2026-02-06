@@ -8,6 +8,9 @@ namespace FAT00800Common
         // GetGridAlloc
         public const string CASSET_CODE = "FAT00800_CASSET_CODE";
 
+        // FAT00800GetDeptLookupList
+        public const string CPROGRAM_ID = "FAT00800_CPROGRAM_ID";
+
         // FAT00800TransList
         public const string CTRANS_CODE = "FAT00800_CTRANS_CODE";
         public const string CDEPT_CODE = "FAT00800_CDEPT_CODE";

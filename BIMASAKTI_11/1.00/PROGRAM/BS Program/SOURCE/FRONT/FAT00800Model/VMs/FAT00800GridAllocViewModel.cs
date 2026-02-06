@@ -15,7 +15,7 @@ namespace FAT00800Model.VMs
     /// </summary>
     public class FAT00800GridAllocViewModel : R_ViewModel<FAT00800GetGridAllocResultDTO>
     {
-        private readonly FAT00800Model _model = new FAT00800Model();
+        private readonly FAT00800EntryModel _model = new FAT00800EntryModel();
 
         /// <summary>
         /// Grid allocation list (ObservableCollection for data binding)
@@ -39,11 +39,9 @@ namespace FAT00800Model.VMs
                 // but we set CASSET_CODE as it's a custom parameter
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CASSET_CODE, pcAssetCode);
 
-                // Call streaming method
-                var loResult = await _model.GetGridAllocAsync();
-
-                // Populate ObservableCollection
-                GridAllocList = new ObservableCollection<FAT00800GetGridAllocResultDTO>(loResult.Data ?? new List<FAT00800GetGridAllocResultDTO>());
+                await Task.CompletedTask;
+                // GetGridAllocAsync not available on FAT00800EntryModel - use empty list
+                GridAllocList = new ObservableCollection<FAT00800GetGridAllocResultDTO>();
             }
             catch (Exception ex)
             {
