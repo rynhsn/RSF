@@ -115,6 +115,15 @@ namespace FAT00800FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string _hdrDescription {
+            get {
+                return ResourceManager.GetString("_hdrDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reference No..
         /// </summary>
         internal static string _hdrReferenceNo {
@@ -363,6 +372,15 @@ namespace FAT00800FrontResources {
         internal static string _lblGainLoss {
             get {
                 return ResourceManager.GetString("_lblGainLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gain Lost.
+        /// </summary>
+        internal static string _lblGainLost {
+            get {
+                return ResourceManager.GetString("_lblGainLost", resourceCulture);
             }
         }
         
@@ -1038,6 +1056,105 @@ namespace FAT00800FrontResources {
         internal static string PS023 {
             get {
                 return ResourceManager.GetString("PS023", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Allocation!.
+        /// </summary>
+        internal static string V_ALLOC_SELECT {
+            get {
+                return ResourceManager.GetString("V_ALLOC_SELECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Asset Code!.
+        /// </summary>
+        internal static string V_ASSET_SELECT {
+            get {
+                return ResourceManager.GetString("V_ASSET_SELECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select department!.
+        /// </summary>
+        internal static string V_DEPT_SELECT {
+            get {
+                return ResourceManager.GetString("V_DEPT_SELECT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description is required!.
+        /// </summary>
+        internal static string V_DESC_REQUIRED {
+            get {
+                return ResourceManager.GetString("V_DESC_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Currency Base Rate must be greater than 0!.
+        /// </summary>
+        internal static string V_NBBASE_RATE {
+            get {
+                return ResourceManager.GetString("V_NBBASE_RATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Currency Rate must be greater than 0!.
+        /// </summary>
+        internal static string V_NBCURRENCY_RATE {
+            get {
+                return ResourceManager.GetString("V_NBCURRENCY_RATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Currency Base Rate must be greater than 0!.
+        /// </summary>
+        internal static string V_NLBASE_RATE {
+            get {
+                return ResourceManager.GetString("V_NLBASE_RATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Currency Rate must be greater than 0!.
+        /// </summary>
+        internal static string V_NLCURRENCY_RATE {
+            get {
+                return ResourceManager.GetString("V_NLCURRENCY_RATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date is required!.
+        /// </summary>
+        internal static string V_REF_DATE_REQUIRED {
+            get {
+                return ResourceManager.GetString("V_REF_DATE_REQUIRED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date may not be earlier than Soft Period!.
+        /// </summary>
+        internal static string V_REF_DATE_SOFT {
+            get {
+                return ResourceManager.GetString("V_REF_DATE_SOFT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sales Amount must be greater than 0!.
+        /// </summary>
+        internal static string V_SALE_AMOUNT_POSITIVE {
+            get {
+                return ResourceManager.GetString("V_SALE_AMOUNT_POSITIVE", resourceCulture);
             }
         }
     }

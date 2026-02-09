@@ -22,6 +22,9 @@ namespace FAT00800Common.DTOs
         public string CACTION { get; set; } = string.Empty;
         public string CTRANSACTION_CODE { get; set; } = string.Empty;
         public string CREFERENCE_NO { get; set; } = string.Empty;
+        public string CEXPENSE_ALLOC_NAME { get; set; } = string.Empty;
+        public string CASSET_DEPT_CODE { get; set; } = string.Empty;
+        public string CASSET_DEPT_NAME { get; set; } = string.Empty;
 
         // Currency / rates
         public string CCURRENCY_CODE { get; set; } = string.Empty;

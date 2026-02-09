@@ -168,6 +168,7 @@ namespace FAT00800Back
 
             var loEx = new R_Exception();
             var loDb = new R_Db();
+            string lcQuery = string.Empty;
 
             try
             {
@@ -176,9 +177,9 @@ namespace FAT00800Back
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
                 loCmd.Parameters.Clear();
-
-                loCmd.CommandText = "RSP_FAT00800_SAVE_TRANS";
+                lcQuery = $"RSP_FAT00800_SAVE_TRANS ";
                 loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poNewEntity.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 30, poNewEntity.CUSER_ID);
@@ -194,17 +195,23 @@ namespace FAT00800Back
                 loDb.R_AddCommandParameter(loCmd, "@NLCURRENCY_RATE", DbType.Decimal, 20, poNewEntity.NLCURRENCY_RATE);
                 loDb.R_AddCommandParameter(loCmd, "@NBBASE_RATE", DbType.Decimal, 20, poNewEntity.NBBASE_RATE);
                 loDb.R_AddCommandParameter(loCmd, "@NBCURRENCY_RATE", DbType.Decimal, 20, poNewEntity.NBCURRENCY_RATE);
-                loDb.R_AddCommandParameter(loCmd, "@NSALES_AMOUNT", DbType.Decimal, 19, poNewEntity.NSALES_AMOUNT);
+                loDb.R_AddCommandParameter(loCmd, "@NSALES_AMOUNT", DbType.Decimal, 19, poNewEntity.NTRANS_AMOUNT);
                 loDb.R_AddCommandParameter(loCmd, "@NLBOOK_VALUE", DbType.Decimal, 19, poNewEntity.NLBOOK_VALUE);
                 loDb.R_AddCommandParameter(loCmd, "@NBBOOK_VALUE", DbType.Decimal, 19, poNewEntity.NBBOOK_VALUE);
                 loDb.R_AddCommandParameter(loCmd, "@CEXPENSE_ALLOC_ID", DbType.String, 20, poNewEntity.CEXPENSE_ALLOC_ID ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_DESC", DbType.String, 200, poNewEntity.CTRANS_DESC ?? string.Empty);
 
-                var loDbParams = loCmd.Parameters.Cast<DbParameter>()
-                    .Where(x => x != null && x.ParameterName != null && x.ParameterName.StartsWith("@"))
-                    .ToDictionary(x => x.ParameterName!, x => x.Value);
-
-                _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p =>
+                {
+                    string lcValue = p.Value?.ToString() ?? "NULL";
+                    // Add quotes for string and boolean types
+                    if (p.DbType == DbType.String || p.DbType == DbType.StringFixedLength || p.DbType == DbType.AnsiString || p.DbType == DbType.AnsiStringFixedLength ||
+                        p.DbType == DbType.Boolean || p.Value is bool || p.Value is string)
+                    {
+                        return $" {p.ParameterName} ='{lcValue}'";
+                    }
+                    return $" {p.ParameterName} ={lcValue}";
+                })));
 
                 var loRtnDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 var loRtnList = R_Utility.R_ConvertTo<FAT00800DTO>(loRtnDataTable);
@@ -438,7 +445,6 @@ namespace FAT00800Back
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 10, poParameter.CLANG_ID ?? string.Empty);
 
                 var loDbParams = loCmd.Parameters.Cast<DbParameter>()
                     .Where(x => x != null && x.ParameterName != null && x.ParameterName.StartsWith("@"))
@@ -644,7 +650,69 @@ namespace FAT00800Back
             return loResult;
         }
 
+        /// <summary>
+        /// Get last currency rate via stored procedure RSP_GS_GET_LAST_CURRENCY_RATE
+        /// </summary>
+        /// <param name="poParameter">Parameter containing company ID, currency code, rate type, and rate date</param>
+        /// <returns>Result DTO with last currency rate (single record, not list)</returns>
+        public async Task<FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>> FAT00800GetLastCurrencyRateAsync(FAT00800GetLastCurrencyRateParameterDTO poParameter)
+        {
+            string lcMethod = nameof(FAT00800GetLastCurrencyRateAsync);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            _logger.LogInfo("START method {MethodName}", lcMethod);
+
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
+            var loResult = new FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>
+            {
+                Data = new FAT00800GetLastCurrencyRateResultDTO()
+            };
+
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+
+                loCmd.Parameters.Clear();
+                var lcQuery = "RSP_GS_GET_LAST_CURRENCY_RATE";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCURRENCY_CODE", DbType.String, 10, poParameter.CCURRENCY_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CRATETYPE_CODE", DbType.String, 10, poParameter.CRATETYPE_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CRATE_DATE", DbType.String, 10, poParameter.CRATE_DATE);
+
+                _logger.LogDebug("EXEC " + lcQuery + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                var loRtn = R_Utility.R_ConvertTo<FAT00800GetLastCurrencyRateResultDTO>(loDataTable).FirstOrDefault();
+
+                if (loRtn != null)
+                {
+                    loResult.Data = loRtn;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loDb != null)
+                    loDb = null;
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _logger.LogInfo("END method {MethodName}", lcMethod);
+
+            return loResult;
+        }
+
         #endregion
+
+
 
        
     }

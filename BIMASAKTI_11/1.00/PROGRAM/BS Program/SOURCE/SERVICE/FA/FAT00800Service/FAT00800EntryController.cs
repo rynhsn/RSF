@@ -260,6 +260,35 @@ namespace FAT00800Service
             return loRtn;
         }
 
+        /// <summary>
+        /// Get last currency rate via RSP_GS_GET_LAST_CURRENCY_RATE
+        /// </summary>
+        [HttpPost]
+        public async Task<FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>> FAT00800GetLastCurrencyRate(FAT00800GetLastCurrencyRateParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00800GetLastCurrencyRate);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>();
+
+            try
+            {
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+
+                var loCls = new FAT00800EntryCls();
+                _logger.LogInfo("Start method {MethodName}", lcMethod);
+                loRtn = await loCls.FAT00800GetLastCurrencyRateAsync(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
         #endregion
 
         #region Streaming (Init)
@@ -281,8 +310,7 @@ namespace FAT00800Service
                 var loParam = new FAT00800GetCurrencyListParameterDTO
                 {
                     CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
-                    CUSER_ID = R_BackGlobalVar.USER_ID,
-                    CLANG_ID = R_BackGlobalVar.CULTURE ?? string.Empty
+                    CUSER_ID = R_BackGlobalVar.USER_ID
                 };
 
                 _logger.LogInfo("Start method {MethodName}", lcMethod);

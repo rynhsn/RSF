@@ -15,6 +15,11 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using R_BlazorFrontEnd.Interfaces;
+using Lookup_GSCOMMON.DTOs;
+using Lookup_GSFRONT;
+using Lookup_FACommon.DTOs;
+using Lookup_FAFront;
+using R_BlazorFrontEnd.Enums;
 
 namespace FAT00800Front
 {
@@ -147,7 +152,8 @@ namespace FAT00800Front
 
         private void btnDeptLook_R_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
-            
+            eventArgs.Parameter = new GSL00700ParameterDTO();
+            eventArgs.TargetPageType = typeof(GSL00700);
         }
 
         private async Task btnDeptLook_R_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
@@ -155,7 +161,12 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                
+                var loTempResult = (GSL00700DTO)eventArgs.Result;
+                if (loTempResult != null)
+                {
+                    _VM.ParameterDTO.CDEPT_CODE = loTempResult.CDEPT_CODE;
+                    _VM.DeptName = loTempResult.CDEPT_NAME;
+                }
             }
             catch (Exception ex)
             {
@@ -182,7 +193,15 @@ namespace FAT00800Front
 
         private void btnAssetLook_R_Before_Open_Lookup(R_BeforeOpenLookupEventArgs eventArgs)
         {
-           
+            string cassetCode = _VM.ParameterDTO.CASSET_CODE ?? "";
+            eventArgs.Parameter = new FAL00300ParameterDTO
+            {
+                CCOMPANY_ID = ClientHelper.CompanyId,
+                CTRANS_CODE = FAT00800EntryViewModel.DEFAULT_TRANSACTION_CODE,
+                CASSET_CODE = cassetCode,
+                CLANGUAGE_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName
+            };
+            eventArgs.TargetPageType = typeof(FAL00300);
         }
 
         private async Task btnAssetLook_R_After_Open_Lookup(R_AfterOpenLookupEventArgs eventArgs)
@@ -190,7 +209,12 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-               
+                var loData = (FAL00300DTO)eventArgs.Result;
+                if (loData == null)
+                    return;
+
+                _VM.ParameterDTO.CASSET_CODE = loData.CASSET_CODE;
+                _VM.AssetName = loData.CASSET_NAME;
             }
             catch (Exception ex)
             {
@@ -207,14 +231,10 @@ namespace FAT00800Front
             try
             {
                 var loSelectedData = _gridTransListRef?.GetCurrentData();
+                var lopar = R_FrontUtility.ConvertObjectToObject<FAT00800DTO>(loSelectedData);
                 if (loSelectedData != null)
                 {
-                    var loParam = new FAT00800DTO
-                    {
-                        CCOMPANY_ID = ClientHelper.CompanyId
-                    };
-
-                    eventArgs.Parameter = loParam;
+                    eventArgs.Parameter = lopar;
                 }
                 else
                 {

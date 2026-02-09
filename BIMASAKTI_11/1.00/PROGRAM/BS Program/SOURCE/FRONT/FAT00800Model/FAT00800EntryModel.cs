@@ -105,7 +105,7 @@ namespace FAT00800Model
 
         #endregion
 
-        #region Get Helper Methods (CompanyInfo, SystemParam, PeriodeDtInfo, DeptLookupList, TransCodeInfo, YearRange)
+        #region Get Helper Methods (CompanyInfo, SystemParam, PeriodeDtInfo, DeptLookupList, TransCodeInfo, YearRange, GetLastCurrencyRate)
 
         public async Task<FAT00800ResultDTO<FAT00800GetCompanyInfoResultDTO>> FAT00800GetCompanyInfoAsync(FAT00800GetCompanyInfoParameterDTO poParameter)
         {
@@ -290,6 +290,31 @@ namespace FAT00800Model
             return loResult;
         }
 
+        public async Task<FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>> FAT00800GetLastCurrencyRateAsync(FAT00800GetLastCurrencyRateParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO> loResult = new FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loResult = await R_HTTPClientWrapper.R_APIRequestObject<FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>, FAT00800GetLastCurrencyRateParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00800Entry.FAT00800GetLastCurrencyRate),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loResult;
+        }
+
         public Task<FAT00800ResultDTO<FAT00800GetCompanyInfoResultDTO>> FAT00800GetCompanyInfo(FAT00800GetCompanyInfoParameterDTO poParameter)
         {
             throw new NotImplementedException();
@@ -311,6 +336,11 @@ namespace FAT00800Model
         }
 
         public Task<FAT00800ResultDTO<FAT00800GetYearRangeResultDTO>> FAT00800GetYearRange(FAT00800GetYearRangeParameterDTO poParameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>> FAT00800GetLastCurrencyRate(FAT00800GetLastCurrencyRateParameterDTO poParameter)
         {
             throw new NotImplementedException();
         }

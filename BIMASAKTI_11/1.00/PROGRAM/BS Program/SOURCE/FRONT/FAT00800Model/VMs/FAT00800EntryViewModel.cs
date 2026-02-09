@@ -36,6 +36,7 @@ namespace FAT00800Model.VMs
         public FAT00800GetGetSystemParamResultDTO SystemParamData { get; set; } = new FAT00800GetGetSystemParamResultDTO();
         public FAT00800GetTransCodeInfoResultDTO TransCodeInfoData { get; set; } = new FAT00800GetTransCodeInfoResultDTO();
         public FAT00800GetYearRangeResultDTO YearRangeData { get; set; } = new FAT00800GetYearRangeResultDTO();
+        public FAT00800GetLastCurrencyRateResultDTO LastCurrencyRateData { get; set; } = new FAT00800GetLastCurrencyRateResultDTO();
 
         // Streaming list bindings
         public ObservableCollection<FAT00800GetCurrencyListResultDTO> CurrencyList { get; set; } = new ObservableCollection<FAT00800GetCurrencyListResultDTO>();
@@ -78,6 +79,8 @@ namespace FAT00800Model.VMs
         
         public decimal NLBOOK_VALUE { get; set; }
         public decimal NBOOK_VALUE { get; set; }
+
+        public string CEXPENSE_ALLOC_NAME { get; set; } = string.Empty;
 
 
         public int ILCAN_CLOSE { get; set; }
@@ -336,6 +339,36 @@ namespace FAT00800Model.VMs
             loEx.ThrowExceptionIfErrors();
         }
 
+        /// <summary>
+        /// Get last currency rate for the given currency, rate type and date (RSP_GS_GET_LAST_CURRENCY_RATE).
+        /// </summary>
+        /// <param name="pcCurrencyCode">Currency code (e.g. IDR)</param>
+        /// <param name="pcRateTypeCode">Rate type code (use ViewModel CRATETYPE_CODE or pass empty)</param>
+        /// <param name="pcRateDate">Rate date in yyyyMMdd format</param>
+        /// <returns>Task</returns>
+        public async Task GetLastCurrencyRateAsync(string pcCurrencyCode, string pcRateTypeCode, string pcRateDate)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = new FAT00800GetLastCurrencyRateParameterDTO
+                {
+                    CCURRENCY_CODE = pcCurrencyCode ?? string.Empty,
+                    CRATETYPE_CODE = pcRateTypeCode ?? string.Empty,
+                    CRATE_DATE = pcRateDate ?? string.Empty
+                };
+
+                var loResult = await _model.FAT00800GetLastCurrencyRateAsync(loParam);
+                LastCurrencyRateData = loResult.Data ?? new FAT00800GetLastCurrencyRateResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
         #endregion
 
         #region Helpers
@@ -362,56 +395,19 @@ namespace FAT00800Model.VMs
         {
             var loEx = new R_Exception();
 
-            // Date validations
-            if (ValDate1)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS005"));
-            }
-            if (ValDate2)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS006"));
-            }
-            if (ValDate3)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS023"));
-            }
-
-            // Required field validations
-            if (string.IsNullOrWhiteSpace(poEntity.CDEPT_CODE))
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS013"));
-            }
-            if (string.IsNullOrWhiteSpace(poEntity.CTRANSACTION_DATE))
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS014"));
-            }
-            if (string.IsNullOrWhiteSpace(poEntity.CASSET_CODE))
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS015"));
-            }
-            if (string.IsNullOrWhiteSpace(poEntity.CCURRENCY_CODE))
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS016"));
-            }
-            if (string.IsNullOrWhiteSpace(poEntity.CALLOC_EXPENSE_CODE))
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS017"));
-            }
-
-            // Amount validations
-            if (poEntity.NTRANSACTION_AMOUNT1 < 0)
-            {
-                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS018"));
-            }
-
-            // Currency rate validations (Note: These would need to be passed as parameters or stored in properties)
-            // The validation logic checks if both base and currency amounts are zero
-            // This is handled in the UI layer (Razor.cs) as it requires access to UI controls
+            // // Date validations
+            // if (ValDate1)
+            // {
+            //     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS005"));
+            // }
+            
+            
 
             return loEx;
         }
 
         #endregion
+        
 
         
 
@@ -426,6 +422,8 @@ namespace FAT00800Model.VMs
     {
         public string CPERIOD_NO { get; set; } = string.Empty;
     }
+
+
 
 
 }

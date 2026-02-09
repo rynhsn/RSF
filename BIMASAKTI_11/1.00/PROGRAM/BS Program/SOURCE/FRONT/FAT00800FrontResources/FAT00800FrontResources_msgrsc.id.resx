@@ -171,4 +171,43 @@
   <data name="_lblDescription" xml:space="preserve">
     <value />
   </data>
+  <data name="V_DEPT_SELECT" xml:space="preserve">
+    <value>Silakan pilih departemen!</value>
+  </data>
+  <data name="V_REF_DATE_REQUIRED" xml:space="preserve">
+    <value>Tanggal referensi wajib diisi!</value>
+  </data>
+  <data name="V_REF_DATE_SOFT" xml:space="preserve">
+    <value>Tanggal referensi tidak boleh lebih awal dari Periode Soft!</value>
+  </data>
+  <data name="V_ASSET_SELECT" xml:space="preserve">
+    <value>Silakan pilih Kode Aset!</value>
+  </data>
+  <data name="V_NLBASE_RATE" xml:space="preserve">
+    <value>Nilai Tukar Base Mata Uang Lokal harus lebih besar dari 0!</value>
+  </data>
+  <data name="V_NLCURRENCY_RATE" xml:space="preserve">
+    <value>Nilai Tukar Mata Uang Lokal harus lebih besar dari 0!</value>
+  </data>
+  <data name="V_NBBASE_RATE" xml:space="preserve">
+    <value>Nilai Tukar Base Mata Uang Base harus lebih besar dari 0!</value>
+  </data>
+  <data name="V_NBCURRENCY_RATE" xml:space="preserve">
+    <value>Nilai Tukar Mata Uang Base harus lebih besar dari 0!</value>
+  </data>
+  <data name="V_SALE_AMOUNT_POSITIVE" xml:space="preserve">
+    <value>Jumlah Penjualan harus lebih besar dari 0!</value>
+  </data>
+  <data name="V_ALLOC_SELECT" xml:space="preserve">
+    <value>Silakan pilih Alokasi!</value>
+  </data>
+  <data name="V_DESC_REQUIRED" xml:space="preserve">
+    <value>Deskripsi wajib diisi!</value>
+  </data>
+  <data name="_hdrDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_lblGainLost" xml:space="preserve">
+    <value>Gain Lost</value>
+  </data>
 </root>

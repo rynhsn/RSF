@@ -454,4 +454,43 @@
     <value>Description</value>
     <comment>Description</comment>
   </data>
+  <data name="V_DEPT_SELECT" xml:space="preserve">
+    <value>Please select department!</value>
+  </data>
+  <data name="V_REF_DATE_REQUIRED" xml:space="preserve">
+    <value>Reference Date is required!</value>
+  </data>
+  <data name="V_REF_DATE_SOFT" xml:space="preserve">
+    <value>Reference Date may not be earlier than Soft Period!</value>
+  </data>
+  <data name="V_ASSET_SELECT" xml:space="preserve">
+    <value>Please select Asset Code!</value>
+  </data>
+  <data name="V_NLBASE_RATE" xml:space="preserve">
+    <value>Local Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V_NLCURRENCY_RATE" xml:space="preserve">
+    <value>Local Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="V_NBBASE_RATE" xml:space="preserve">
+    <value>Base Currency Base Rate must be greater than 0!</value>
+  </data>
+  <data name="V_NBCURRENCY_RATE" xml:space="preserve">
+    <value>Base Currency Rate must be greater than 0!</value>
+  </data>
+  <data name="V_SALE_AMOUNT_POSITIVE" xml:space="preserve">
+    <value>Sales Amount must be greater than 0!</value>
+  </data>
+  <data name="V_ALLOC_SELECT" xml:space="preserve">
+    <value>Please select Allocation!</value>
+  </data>
+  <data name="V_DESC_REQUIRED" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="_hdrDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="_lblGainLost" xml:space="preserve">
+    <value>Gain Lost</value>
+  </data>
 </root>

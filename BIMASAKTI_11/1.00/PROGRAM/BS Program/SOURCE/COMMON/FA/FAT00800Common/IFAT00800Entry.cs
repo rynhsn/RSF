@@ -24,6 +24,7 @@ namespace FAT00800Common
         IAsyncEnumerable<FAT00800GetDeptLookupListResultDTO> FAT00800GetDeptLookupList();
         Task<FAT00800ResultDTO<FAT00800GetTransCodeInfoResultDTO>> FAT00800GetTransCodeInfo(FAT00800GetTransCodeInfoParameterDTO poParameter);
         Task<FAT00800ResultDTO<FAT00800GetYearRangeResultDTO>> FAT00800GetYearRange(FAT00800GetYearRangeParameterDTO poParameter);
+        Task<FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>> FAT00800GetLastCurrencyRate(FAT00800GetLastCurrencyRateParameterDTO poParameter);
     }
 }
 

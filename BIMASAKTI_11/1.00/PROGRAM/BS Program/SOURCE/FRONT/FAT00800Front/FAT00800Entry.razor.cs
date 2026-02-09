@@ -148,30 +148,68 @@ public partial class FAT00800Entry : R_Page
         {
             var loEntity = (FAT00800DTO)eventArgs.Data;
 
-            //if (string.IsNullOrEmpty(loEntity.CDEPT_CODE))
-            //{
-            //    loEx.Add(R_FrontUtility.R_GetError(typeof(FAT00800FrontResources.Resources_Dummy_Class), "PS013"));
-            //}
+            // Effective Ref Date: CREF_DATE or from DTRANSACTION_DATE (yyyyMMdd)
+            string lcRefDate = string.IsNullOrWhiteSpace(loEntity.CREF_DATE)
+                ? (loEntity.DTRANSACTION_DATE != default ? loEntity.DTRANSACTION_DATE.ToString("yyyyMMdd") : string.Empty)
+                : loEntity.CREF_DATE;
 
-            //if (string.IsNullOrEmpty(loEntity.CASSET_CODE))
-            //{
-            //    loEx.Add(R_FrontUtility.R_GetError(typeof(FAT00800FrontResources.Resources_Dummy_Class), "PS015"));
-            //}
+            if (string.IsNullOrWhiteSpace(loEntity.CDEPT_CODE))
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_DEPT_SELECT"));
+            }
 
-            //if (string.IsNullOrEmpty(loEntity.CCURRENCY_CODE))
-            //{
-            //    loEx.Add(R_FrontUtility.R_GetError(typeof(FAT00800FrontResources.Resources_Dummy_Class), "PS016"));
-            //}
+            if (string.IsNullOrEmpty(lcRefDate))
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_REF_DATE_REQUIRED"));
+            }
+            else if (!string.IsNullOrWhiteSpace(_VM.CSOFT_PERIOD))
+            {
+                string lcRefPeriod = lcRefDate.Length >= 6 ? lcRefDate.Substring(0, 6) : lcRefDate;
+                if (string.CompareOrdinal(lcRefPeriod, _VM.CSOFT_PERIOD) < 0)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_REF_DATE_SOFT"));
+                }
+            }
 
-            //if (string.IsNullOrEmpty(loEntity.CALLOC_EXPENSE_CODE))
-            //{
-            //    loEx.Add(R_FrontUtility.R_GetError(typeof(FAT00800FrontResources.Resources_Dummy_Class), "PS017"));
-            //}
+            if (string.IsNullOrWhiteSpace(loEntity.CASSET_CODE))
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_ASSET_SELECT"));
+            }
 
-            //if (loEntity.NTRANSACTION_AMOUNT <= 0)
-            //{
-            //    loEx.Add(R_FrontUtility.R_GetError(typeof(FAT00800FrontResources.Resources_Dummy_Class), "PS018"));
-            //}
+            if (loEntity.NLBASE_RATE <= 0)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_NLBASE_RATE"));
+            }
+
+            if (loEntity.NLCURRENCY_RATE <= 0)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_NLCURRENCY_RATE"));
+            }
+
+            if (loEntity.NBBASE_RATE <= 0)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_NBBASE_RATE"));
+            }
+
+            if (loEntity.NBCURRENCY_RATE <= 0)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_NBCURRENCY_RATE"));
+            }
+
+            if (loEntity.NTRANS_AMOUNT <= 0)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_SALE_AMOUNT_POSITIVE"));
+            }
+
+            if (string.IsNullOrWhiteSpace(loEntity.CEXPENSE_ALLOC_ID))
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_ALLOC_SELECT"));
+            }
+
+            if (string.IsNullOrWhiteSpace(loEntity.CTRANS_DESC))
+            {
+                loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "V_DESC_REQUIRED"));
+            }
         }
         catch (Exception ex)
         {
@@ -188,6 +226,11 @@ public partial class FAT00800Entry : R_Page
         try
         {
             var loEntity = (FAT00800DTO)eventArgs.Data;
+
+            if (string.IsNullOrWhiteSpace(loEntity.CREF_DATE) && loEntity.DTRANSACTION_DATE != default)
+            {
+                loEntity.CREF_DATE = loEntity.DTRANSACTION_DATE.ToString("yyyyMMdd");
+            }
             
             // Mode-specific processing
             if (eventArgs.ConductorMode == R_eConductorMode.Add)
@@ -256,12 +299,15 @@ public partial class FAT00800Entry : R_Page
         try
         {
             var loEntity = (FAT00800DTO)eventArgs.Data;
-            
-            // Set only essential default values
             loEntity.CDEPT_CODE = _VM.CDEFAULT_TRX_DEPT_CODE;
-            
-            // Set enableEdit to false in add mode
-            _VM.LenableEdit = false;
+            loEntity.DTRANSACTION_DATE = DateTime.Now;
+
+            var foundDept = _VM.DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == _VM.CDEFAULT_TRX_DEPT_CODE);
+            if (foundDept != null)
+            {
+                loEntity.CDEPT_CODE = foundDept.CDEPT_CODE;
+                loEntity.CDEPT_NAME = foundDept.CDEPT_NAME;
+            }
         }
         catch (Exception ex)
         {
@@ -580,10 +626,10 @@ public partial class FAT00800Entry : R_Page
             _VM.Data.CASSET_CODE = loData.CASSET_CODE;
             _VM.Data.CASSET_TRANS_SEQ_NO = loData.CASSET_TRANS_SEQ_NO;
             _VM.Data.CASSET_NAME = loData.CASSET_NAME;
-            _VM.CASSET_DEPT_CODE = loData.CASSET_DEPT_CODE;
-            _VM.CASSET_DEPT_NAME = loData.CASSET_DEPT_NAME;
-            _VM.NLBOOK_VALUE = loData.NLBOOK_VALUE;
-            _VM.NBOOK_VALUE = loData.NLBOOK_VALUE;
+            _VM.Data.CASSET_DEPT_CODE = loData.CASSET_DEPT_CODE;
+            _VM.Data.CASSET_DEPT_NAME = loData.CASSET_DEPT_NAME;
+            _VM.Data.NLBOOK_VALUE = loData.NLBOOK_VALUE;
+            _VM.Data.NBOOK_VALUE = loData.NLBOOK_VALUE;
         }
         catch (Exception ex)
         {
@@ -595,60 +641,68 @@ public partial class FAT00800Entry : R_Page
 
     #endregion
 
-    #region Lookup - Currency
-
-    private async Task OnLostFocusCurrency()
+    private async Task OnCurrencyChanged(string? value)
     {
-        var loEx = new R_Exception();
-
-        try
+        if (_VM.Data != null)
         {
-           
-        }
-        catch (Exception ex)
-        {
-            loEx.Add(ex);
-        }
+            _VM.Data.CCURRENCY_CODE = value;
+            await CurrencyRateProcess(value);
+            LocalBaseAmountProcess(_VM.Data.NTRANS_AMOUNT);
 
-        await R_DisplayExceptionAsync(loEx);
+        }
     }
 
-    private void BeforeOpenLookupCurrency(R_BeforeOpenLookupEventArgs eventArgs)
+    public async Task CurrencyRateProcess(string value)
     {
-        var loEx = new R_Exception();
+        _VM.Data.CCURRENCY_CODE = value;
+        string pcRateDate = _VM.Data.DTRANSACTION_DATE.ToString("yyyyMMdd") ?? "";
+        await _VM.GetLastCurrencyRateAsync(
+            value,
+            _VM.SystemParamData.CCUR_RATETYPE_CODE,
+            pcRateDate);
 
-        try
+        if (_VM.LastCurrencyRateData != null)
         {
-            // TODO: Implement lookup parameter
+            _VM.Data.NLBASE_RATE = _VM.LastCurrencyRateData.NLBASE_RATE_AMOUNT;
+            _VM.Data.NLCURRENCY_RATE = _VM.LastCurrencyRateData.NLCURRENCY_RATE_AMOUNT;
+            _VM.Data.NBBASE_RATE = _VM.LastCurrencyRateData.NBBASE_RATE_AMOUNT;
+            _VM.Data.NBCURRENCY_RATE = _VM.LastCurrencyRateData.NBCURRENCY_RATE_AMOUNT;
         }
-        catch (Exception ex)
+        else
         {
-            loEx.Add(ex);
+            _VM.Data.NLBASE_RATE = 1;
+            _VM.Data.NLCURRENCY_RATE = 1;
+            _VM.Data.NBBASE_RATE = 1;
+            _VM.Data.NBCURRENCY_RATE = 1;
         }
 
-        loEx.ThrowExceptionIfErrors();
     }
 
-    private async void AfterOpenLookupCurrency(R_AfterOpenLookupEventArgs eventArgs)
+    
+
+    public void LocalBaseAmountProcess(decimal value)
     {
-        var loEx = new R_Exception();
-
-        try
+        if (value != 0m)
         {
-            if (eventArgs.Result == null) return;
-
-            // Handle currency lookup result - trigger the same logic as OnLostFocusCurrency
-            await OnLostFocusCurrency();
+            _VM.Data.NTRANS_AMOUNT = value;
         }
-        catch (Exception ex)
+        else
         {
-            loEx.Add(ex);
+            return;
         }
 
-        loEx.ThrowExceptionIfErrors();
+        if (_VM.Data != null)
+        {
+            decimal lnLocalBaseRate = _VM.Data.NLBASE_RATE == 0m ? 1m : _VM.Data.NLBASE_RATE;
+            decimal lnBaseRate = _VM.Data.NBBASE_RATE == 0m ? 1m : _VM.Data.NBBASE_RATE;
+
+            _VM.Data.NLTRANS_AMOUNT = (_VM.Data.NTRANS_AMOUNT / lnLocalBaseRate) * _VM.Data.NLCURRENCY_RATE;
+            _VM.Data.NBTRANS_AMOUNT = (_VM.Data.NTRANS_AMOUNT / lnBaseRate) * _VM.Data.NBCURRENCY_RATE;
+
+            _VM.Data.NLGAINLOSS = _VM.Data.NLTRANS_AMOUNT - _VM.NLBOOK_VALUE;
+            _VM.Data.NBGAINLOSS = _VM.Data.NBTRANS_AMOUNT - _VM.NBOOK_VALUE;
+        }
     }
-
-    #endregion
 
     #region Lookup - Allocation
 
@@ -680,7 +734,17 @@ public partial class FAT00800Entry : R_Page
 
         try
         {
-            // TODO: Implement lookup parameter
+            string cAllocId = _VM.Entity.CEXPENSE_ALLOC_ID ?? "";
+            cAllocId = _conductorRef.R_ConductorMode == R_eConductorMode.Add ? "" : cAllocId;
+            eventArgs.Parameter = new GSL03200ParameterDTO
+            {
+                CACTIVE_TYPE = "1",
+                CDEPT_CODE = _VM.Entity.CDEPT_CODE,
+                CALLOC_ID = cAllocId
+            };
+
+            eventArgs.Parameter = new GSL03200ParameterDTO();
+            eventArgs.TargetPageType = typeof(GSL03200);
         }
         catch (Exception ex)
         {
@@ -696,9 +760,12 @@ public partial class FAT00800Entry : R_Page
 
         try
         {
-            if (eventArgs.Result == null) return;
-
-            // TODO: Handle lookup result
+            var loTempResult = (GSL03200DTO)eventArgs.Result;
+            if (loTempResult != null)
+            {
+                _VM.Data.CEXPENSE_ALLOC_ID = loTempResult.CALLOC_ID ?? string.Empty;
+                _VM.CEXPENSE_ALLOC_NAME = loTempResult.CALLOC_NAME ?? string.Empty;           
+            }
         }
         catch (Exception ex)
         {
