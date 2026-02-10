@@ -13,6 +13,7 @@ namespace FAT00800Common
         /// Get transaction list via RSP_FAT00800_GET_TRANS_LIST (streaming)
         /// </summary>
         IAsyncEnumerable<FAT00800GetTransListResultDTO> FAT00800GetTransList();
+        IAsyncEnumerable<FAT00800GetDeptLookupListResultDTO> FAT00800GetDeptLookupList();
 
         /// <summary>
         /// Get system parameters (delegates to FAT00800Cls)

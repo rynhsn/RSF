@@ -25,6 +25,8 @@ namespace FAT00800Common
         Task<FAT00800ResultDTO<FAT00800GetTransCodeInfoResultDTO>> FAT00800GetTransCodeInfo(FAT00800GetTransCodeInfoParameterDTO poParameter);
         Task<FAT00800ResultDTO<FAT00800GetYearRangeResultDTO>> FAT00800GetYearRange(FAT00800GetYearRangeParameterDTO poParameter);
         Task<FAT00800ResultDTO<FAT00800GetLastCurrencyRateResultDTO>> FAT00800GetLastCurrencyRate(FAT00800GetLastCurrencyRateParameterDTO poParameter);
+        Task<FAT00800ResultDTO<object>> FAT00800UpdateTransHdStatus(FAT00800UpdateTransHdStatusParameterDTO poParameter);
+        Task<FAT00800ResultDTO<object>> FAT00800SubmitTrans(FAT00800SubmitTransParameterDTO poParameter);
     }
 }
 

@@ -47,9 +47,7 @@ namespace FAT00800Front
 
             try
             {
-                // DEBUG: ONCE FA IS INTEGRATED IN BIMASAKTI_11_BSI, THIS SHOULD BE DELETED
-                ClientHelper.Set_CompanyId("HGRBH");
-                ClientHelper.Set_UserId("ZF");
+                
                 var loParam = R_FrontUtility.ConvertObjectToObject<FAT00800GetAssetInfoParameterDTO>(poParam);
                 
                 // Load asset information and grid data using the provided parameters

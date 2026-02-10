@@ -1,0 +1,6 @@
+ERROR_PROCESS=Process failed! unable to submit transaction {0}
+
+INCOMPLETE_TRX=Incomplete Transaction! Unable to submit.
+DET_GLNO_NOT_FOUND=DET GL Account No. not found for Journal Group {0}!
+AD_GLNO_NOT_FOUND=AD GL Account No. not found for Journal Group {0}!
+GLNO_NOT_FOUND=GL Account No. {0} not found in Master Chart of Account!

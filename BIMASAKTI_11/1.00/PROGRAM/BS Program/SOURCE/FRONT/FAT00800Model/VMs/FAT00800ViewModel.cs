@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using FAT00800Common;
 using FAT00800Common.DTOs;
@@ -35,6 +37,7 @@ namespace FAT00800Model.VMs
 
         // declare parameter DTO
         public FAT00800GetTransListParameterDTO ParameterDTO { get; set; } = new FAT00800GetTransListParameterDTO();
+        public ObservableCollection<FAT00800GetDeptLookupListResultDTO> DeptLookupList { get; set; } = new ObservableCollection<FAT00800GetDeptLookupListResultDTO>();
 
         public FAT00800ViewModel()
         {
@@ -87,6 +90,27 @@ namespace FAT00800Model.VMs
 
                 var loResult = await _listModel.FAT00800GetTransListAsync();
                 TransList = new ObservableCollection<FAT00800GetTransListResultDTO>(loResult.Data ?? new List<FAT00800GetTransListResultDTO>());
+
+                foreach (var item in TransList)
+                {
+                    if (!string.IsNullOrWhiteSpace(item.CREF_DATE) && item.CREF_DATE.Length == 8)
+                    {
+                        try
+                        {
+                            item.CREF_DATE_DISPLAY = DateTime.ParseExact(item.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+                        }
+                        catch
+                        {
+                            item.CREF_DATE_DISPLAY = item.CREF_DATE;
+                        }
+                    }
+                    else
+                    {
+                        item.CREF_DATE_DISPLAY = item.CREF_DATE;
+                    }
+
+
+                }
             }
             catch (Exception ex)
             {
@@ -157,6 +181,33 @@ namespace FAT00800Model.VMs
 
                 var loResult = await _listModel.FAT00800GetYearRange(loParam);
                 YearRangeData = loResult.Data ?? new FAT00800GetYearRangeResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Get department lookup list; sets streaming context CPROGRAM_ID then calls model.
+        /// </summary>
+        /// <param name="pcProgramId">Program ID for department filter</param>
+        public async Task GetDeptLookupListAsync(string pcProgramId)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                R_FrontContext.R_SetStreamingContext(ContextConstants.CPROGRAM_ID, pcProgramId ?? string.Empty);
+                var loResult = await _listModel.FAT00800GetDeptLookupListAsync();
+                DeptLookupList = new ObservableCollection<FAT00800GetDeptLookupListResultDTO>(loResult.Data ?? new List<FAT00800GetDeptLookupListResultDTO>());
+                var foundDept = DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == SystemParamData.CTRANS_DEPT_CODE);
+                if (foundDept != null)
+                {
+                    ParameterDTO.CDEPT_CODE = foundDept.CDEPT_CODE;
+                    DeptName = foundDept.CDEPT_NAME;
+                }
             }
             catch (Exception ex)
             {

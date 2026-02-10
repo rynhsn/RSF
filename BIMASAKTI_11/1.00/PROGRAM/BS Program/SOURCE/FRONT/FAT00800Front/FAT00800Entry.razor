@@ -50,7 +50,7 @@
         <R_ItemLayout col="2" style="padding-left: 2.5rem !important;">
             <R_Label>@_localizer["_lblRefDate"]*</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="2" style="padding-left: 2.5rem !important;">
+        <R_ItemLayout col="3" style="padding-left: 2.5rem !important;">
             <R_DatePicker @bind-Value="_VM.Data.DTRANSACTION_DATE"
                           R_ConductorSource="_conductorRef"
                           R_EnableAdd="true"
@@ -67,7 +67,7 @@
             <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
                        R_ConductorSource="_conductorRef"
                        OnLostFocused="OnLostFocusAsset"
-                       MaxLength="20"
+                       MaxLength="50"
                        R_EnableAdd="true"
                        R_EnableEdit="true" />
         </R_ItemLayout>
@@ -197,10 +197,10 @@
                 </R_ItemLayout>
                 <R_ItemLayout col="2" >
                 </R_ItemLayout>
-                <R_ItemLayout col="2" Class="ps-5">
+                <R_ItemLayout col="2" Class="psLocalAmount">
                     <R_Label>@_localizer["_lblLocalAmount"]*</R_Label>
                 </R_ItemLayout>
-                <R_ItemLayout col="3" Class="ps-7">
+                <R_ItemLayout col="3" Class="psBasemount">
                     <R_Label>@_localizer["_lblBaseAmount"]*</R_Label>
                 </R_ItemLayout>
     </R_StackLayout>
@@ -256,7 +256,7 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblBookValue"]</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout auto="true">
+                <R_ItemLayout auto="true" Class="psBookValGainLoss">
             <R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
@@ -287,7 +287,7 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblGainLost"]</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout auto="true" Class="ps-2">
+                <R_ItemLayout auto="true" Class="psBookValGainLoss">
             <R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label>
         </R_ItemLayout>
         <R_ItemLayout col="2">
@@ -383,10 +383,12 @@
             <R_AddButton R_Conductor="_conductorRef" />
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_EditButton R_Conductor="_conductorRef" Enabled="@_VM.LenableEdit" />
+            <R_EditButton R_Conductor="_conductorRef"
+                Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && _VM.Data.CTRANS_STATUS == "00")" />
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_DeleteButton R_Conductor="_conductorRef" />
+                        <R_DeleteButton R_Conductor="_conductorRef"
+                                        Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && (_VM.Data.CTRANS_STATUS == "00"||_VM.Data.CTRANS_STATUS == "80"))" />
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -394,7 +396,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="_conductorRef"
                       R_EnableOther="true"
-                      Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "00")"
+                      Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && _VM.Data.CTRANS_STATUS == "00")"
                       OnClick="OnClickSubmit">
                 @_localizer["btnSubmit"]
             </R_Button>
@@ -402,18 +404,13 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="_conductorRef"
                       R_EnableOther="true"
-                      Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "01")"
+                                  Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && _VM.Data.CTRANS_STATUS == "10")"
                       OnClick="OnClickDraft">
                 @_localizer["btnDraft"]
             </R_Button>
         </R_ItemLayout>
         <R_ItemLayout>
-            <R_Button R_ConductorSource="_conductorRef"
-                      R_EnableOther="true"
-                      Enabled="@(!string.IsNullOrEmpty(_VM.Data.CREFERENCE_NO) && _VM.Data.CSTATUS == "08")"
-                      OnClick="OnClickJournal">
-                @_localizer["btnJournal"]
-            </R_Button>
+            <R_Popup R_ConductorSource="@_conductorRef" Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.Data?.CTRANS_STATUS != null && int.TryParse(_VM.Data.CTRANS_STATUS, out int liStatus) && liStatus > 0 && !string.IsNullOrEmpty(_VM.Data?.CGL_REF_NO))" R_Before_Open_Popup="R_Before_Open_PopupJournal">@_localizer["_Journal"]</R_Popup>
         </R_ItemLayout>
     </R_StackLayout>
 
@@ -429,7 +426,7 @@
         </R_StackLayout>
     </R_TabStripTab>
 
-    <R_TabStripTab @ref="_tabAssetInfo" Id="@nameof(FAT00800AssetInformation)" Title="@_localizer["_lblAssetInfo"]" Enabled="@(!string.IsNullOrEmpty(_VM.Data?.CREFERENCE_NO) && !string.IsNullOrEmpty(_VM.Data?.CASSET_CODE))">
+    <R_TabStripTab @ref="_tabAssetInfo" Id="@nameof(FAT00800AssetInformation)" Title="@_localizer["_lblAssetInfo"]" Enabled="@(!string.IsNullOrEmpty(_VM.Data?.CASSET_CODE))">
         <R_TabPage @ref="_pageAssetInfo" R_Before_Open_TabPage="BeforeOpenAssetInfoTab" R_TabEventCallback="AssetInfoTabEventCallBack"/>
     </R_TabStripTab>
 </R_TabStrip>
@@ -450,3 +447,15 @@
              R_BeforeDelete="BeforeDelete"
              R_ServiceDelete="ServiceDelete"
              R_SetOther="SetOther" />
+<style>
+    .psBookValGainLoss {
+        padding-left: 2.3rem !important;
+    }
+    .psLocalAmount {
+        padding-left: 4.1rem !important;
+    }
+
+    .psBasemount {
+        padding-left: 6.8rem !important;
+    }
+</style>

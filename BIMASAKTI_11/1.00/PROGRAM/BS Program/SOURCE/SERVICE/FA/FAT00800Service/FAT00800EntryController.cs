@@ -369,6 +369,63 @@ namespace FAT00800Service
         }
 
         #endregion
+
+        [HttpPost]
+        public async Task<FAT00800ResultDTO<object>> FAT00800UpdateTransHdStatus(FAT00800UpdateTransHdStatusParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00800UpdateTransHdStatus);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00800ResultDTO<object>();
+
+            try
+            {
+                var loCls = new FAT00800EntryCls();
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                _logger.LogInfo("Start method FAT00800UpdateTransHdStatus in {0}", lcMethod);
+                await loCls.FAT00800UpdateTransHdStatus(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
+        /// <summary>
+        /// Submit transaction via RSP_FAT00800_SUBMIT_TRANS. Returns empty result DTO so client can deserialize response.
+        /// </summary>
+        [HttpPost]
+        public async Task<FAT00800ResultDTO<object>> FAT00800SubmitTrans(FAT00800SubmitTransParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT00800SubmitTrans);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT00800ResultDTO<object>();
+
+            try
+            {
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
+
+                var loCls = new FAT00800EntryCls();
+                _logger.LogInfo("Start method {MethodName}", lcMethod);
+                await loCls.FAT00800SubmitTrans(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
     }
 }
 

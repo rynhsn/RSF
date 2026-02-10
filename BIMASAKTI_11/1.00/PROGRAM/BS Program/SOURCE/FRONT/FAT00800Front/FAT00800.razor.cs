@@ -20,6 +20,8 @@ using Lookup_GSFRONT;
 using Lookup_FACommon.DTOs;
 using Lookup_FAFront;
 using R_BlazorFrontEnd.Enums;
+using Lookup_GSModel.ViewModel;
+using Lookup_FAModel.ViewModel.FAL00200;
 
 namespace FAT00800Front
 {
@@ -50,6 +52,7 @@ namespace FAT00800Front
             {
                 await _VM.FAT00800GetGetSystemParamAsync(ClientHelper.CompanyId, ClientHelper.CultureUI.TwoLetterISOLanguageName, ClientHelper.UserId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
                 await _VM.FAT00800GetYearRangeAsync(ClientHelper.CompanyId);
+                await _VM.GetDeptLookupListAsync(string.Empty);
             }
             catch (Exception ex)
             {
@@ -141,7 +144,36 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                
+                if (string.IsNullOrWhiteSpace(_VM.ParameterDTO.CDEPT_CODE))
+                {
+                    _VM.ParameterDTO.CDEPT_CODE = "";
+                    _VM.DeptName = "";
+                    return;
+                }
+
+
+                LookupGSL00700ViewModel loLookupViewModel = new();
+                var param = new GSL00700ParameterDTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CUSER_ID = ClientHelper.UserId,
+                    CSEARCH_TEXT = _VM.ParameterDTO.CDEPT_CODE
+                };
+                var loResult = await loLookupViewModel.GetDepartment(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _VM.ParameterDTO.CDEPT_CODE = "";
+                    _VM.DeptName = "";
+                }
+                else
+                {
+                    _VM.ParameterDTO.CDEPT_CODE = loResult.CDEPT_CODE;
+                    _VM.DeptName = loResult.CDEPT_NAME;
+                }
             }
             catch (Exception ex)
             {
@@ -182,7 +214,38 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
-                
+                if (string.IsNullOrWhiteSpace(_VM.ParameterDTO.CASSET_CODE))
+                {
+                    _VM.ParameterDTO.CASSET_CODE = "";
+                    _VM.AssetName = "";
+                    return;
+                }
+
+
+                LookupFAL00300ViewModel loLookupViewModel = new();
+                string cassetCode = _VM.ParameterDTO.CASSET_CODE ?? "";
+                var param = new FAL00300ParameterDTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CTRANS_CODE = FAT00800EntryViewModel.DEFAULT_TRANSACTION_CODE,
+                    CASSET_CODE = cassetCode,
+                    CLANGUAGE_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName
+                };
+                var loResult = await loLookupViewModel.GetTaxCategory(param);
+
+                if (loResult == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(
+                        typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                        "_ErrLookup01"));
+                    _VM.ParameterDTO.CASSET_CODE = "";
+                    _VM.AssetName = "";
+                }
+                else
+                {
+                    _VM.ParameterDTO.CASSET_CODE = loResult.CASSET_CODE;
+                    _VM.AssetName = loResult.CASSET_NAME;
+                }
             }
             catch (Exception ex)
             {
@@ -199,7 +262,8 @@ namespace FAT00800Front
                 CCOMPANY_ID = ClientHelper.CompanyId,
                 CTRANS_CODE = FAT00800EntryViewModel.DEFAULT_TRANSACTION_CODE,
                 CASSET_CODE = cassetCode,
-                CLANGUAGE_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName
+                CLANGUAGE_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
+                
             };
             eventArgs.TargetPageType = typeof(FAL00300);
         }

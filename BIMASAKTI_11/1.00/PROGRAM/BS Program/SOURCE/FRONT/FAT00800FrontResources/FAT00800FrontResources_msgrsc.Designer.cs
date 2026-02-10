@@ -628,6 +628,24 @@ namespace FAT00800FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transaction Redrafted Successfully!.
+        /// </summary>
+        internal static string _reDrafSuccess {
+            get {
+                return ResourceManager.GetString("_reDrafSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Submitted Successfully!.
+        /// </summary>
+        internal static string _submitSuccess {
+            get {
+                return ResourceManager.GetString("_submitSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transaction Entry.
         /// </summary>
         internal static string _tabTransactionEntry {

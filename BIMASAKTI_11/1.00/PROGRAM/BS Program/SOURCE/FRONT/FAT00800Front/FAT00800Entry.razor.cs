@@ -18,6 +18,11 @@ using Lookup_GSCOMMON.DTOs;
 using Lookup_GSFRONT;
 using Lookup_FAFront;
 using Lookup_FACommon.DTOs;
+using Lookup_GSModel.ViewModel;
+using Lookup_FAModel.ViewModel.FAL00200;
+using System.Xml.Linq;
+using GLF00100COMMON;
+using GLF00100FRONT;
 
 namespace FAT00800Front;
 
@@ -69,6 +74,7 @@ public partial class FAT00800Entry : R_Page
                 _clientHelper.UserId,
                 _clientHelper.CultureUI.TwoLetterISOLanguageName);
             await _VM.GetCurrencyListAsync();
+            await _VM.GetDeptLookupListAsync(string.Empty);
 
             if (poParam != null && _conductorRef != null)
             {
@@ -278,11 +284,8 @@ public partial class FAT00800Entry : R_Page
         try
         {
             var loParam = (FAT00800DTO)eventArgs.Data;
-            loParam.CCOMPANY_ID = _clientHelper.CompanyId;
-            loParam.CUSER_ID = _clientHelper.UserId;
-            loParam.CTRANSACTION_CODE = FAT00800EntryViewModel.VAR_CTRANS_CODE; // Fixed Asset Sale
-
             await _VM.DeleteRecordAsync(loParam);
+            await _conductorRef.R_GetEntity(_VM.Data);
         }
         catch (Exception ex)
         {
@@ -356,14 +359,14 @@ public partial class FAT00800Entry : R_Page
                 return;
             }
 
-            // Submit transaction
-            //await _VM.SubmitAsync(
-            //    _clientHelper.CompanyId,
-            //    _clientHelper.CultureUI.TwoLetterISOLanguageName,
-            //    _clientHelper.UserId,
-            //    _VM.Data.CDEPT_CODE,
-            //    _VM.Data.CREFERENCE_NO);
+            await _VM.SubmitTransAsync(
+                _clientHelper.CompanyId,
+                _clientHelper.UserId,
+                _VM.Data.CREC_ID);
 
+            var lcMsgSuccess = _localizer["_submitSuccess"];
+
+            var leMsg2 = await R_MessageBox.Show("", lcMsgSuccess, R_eMessageBoxButtonType.OK);
             await _conductorRef.R_GetEntity(_VM.Data);
         }
         catch (Exception ex)
@@ -389,14 +392,15 @@ public partial class FAT00800Entry : R_Page
                 return;
             }
 
-            //// Redraft transaction
-            //await _VM.SubmitAsync(
-            //    _clientHelper.CompanyId,
-            //    _clientHelper.CultureUI.TwoLetterISOLanguageName,
-            //    _clientHelper.UserId,
-            //    _VM.Data.CDEPT_CODE,
-            //    _VM.Data.CREFERENCE_NO);
+            await _VM.UpdateTransHdStatusAsync(
+                _clientHelper.CompanyId,
+                _clientHelper.UserId,
+                _VM.Data.CREC_ID,
+                "00");
 
+            var lcMsgSuccess = _localizer["_reDrafSuccess"];
+
+            var leMsg2 = await R_MessageBox.Show("", lcMsgSuccess, R_eMessageBoxButtonType.OK);
             await _conductorRef.R_GetEntity(_VM.Data);
         }
         catch (Exception ex)
@@ -422,6 +426,17 @@ public partial class FAT00800Entry : R_Page
         }
 
         loEx.ThrowExceptionIfErrors();
+    }
+
+    private void R_Before_Open_PopupJournal(R_BeforeOpenPopupEventArgs eventArgs)
+    {
+        eventArgs.Parameter = new GLF00100ParameterDTO()
+        {
+            CDEPT_CODE = _VM.Data.CDEPT_CODE,
+            CTRANS_CODE = FAT00800EntryViewModel.DEFAULT_TRANSACTION_CODE,
+            CREF_NO = _VM.Data.CGL_REF_NO
+        };
+        eventArgs.TargetPageType = typeof(GLF00100);
     }
 
     #endregion
@@ -515,14 +530,36 @@ public partial class FAT00800Entry : R_Page
 
         try
         {
-            if (string.IsNullOrWhiteSpace(_VM.Entity.CDEPT_CODE))
+            if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE))
             {
-                _lcDeptDesc = "";
+                _VM.Data.CDEPT_CODE = "";
+                _VM.Data.CDEPT_NAME = "";
                 return;
             }
 
-            // TODO: Implement department lookup
-            _lcDeptDesc = "";
+
+            LookupGSL00700ViewModel loLookupViewModel = new();
+            var param = new GSL00700ParameterDTO
+            {
+                CCOMPANY_ID = _clientHelper.CompanyId,
+                CUSER_ID = _clientHelper.UserId,
+                CSEARCH_TEXT = _VM.Data.CDEPT_CODE
+            };
+            var loResult = await loLookupViewModel.GetDepartment(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _VM.Data.CDEPT_CODE = "";
+                _VM.Data.CDEPT_NAME = "";
+            }
+            else
+            {
+                _VM.Data.CDEPT_CODE = loResult.CDEPT_CODE;
+                _VM.Data.CDEPT_NAME = loResult.CDEPT_NAME;
+            }
         }
         catch (Exception ex)
         {
@@ -580,7 +617,59 @@ public partial class FAT00800Entry : R_Page
 
         try
         {
-            
+            if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
+            {
+                _VM.Data.CASSET_CODE = "";
+                _VM.Data.CASSET_NAME = "";
+                _VM.Data.CASSET_CODE = "";
+                _VM.Data.CASSET_TRANS_SEQ_NO = "";
+                _VM.Data.CASSET_NAME = "";
+                _VM.Data.CASSET_DEPT_CODE = "";
+                _VM.Data.CASSET_DEPT_NAME = "";
+                _VM.Data.NLBOOK_VALUE = 0;
+                _VM.Data.NBOOK_VALUE = 0;
+                return;
+            }
+
+
+            LookupFAL00300ViewModel loLookupViewModel = new();
+            string cassetCode = _VM.Data.CASSET_CODE ?? "";
+            var param = new FAL00300ParameterDTO
+            {
+                CCOMPANY_ID = _clientHelper.CompanyId,
+                CTRANS_CODE = FAT00800EntryViewModel.DEFAULT_TRANSACTION_CODE,
+                CASSET_CODE = cassetCode,
+                CLANGUAGE_ID = _clientHelper.CultureUI.TwoLetterISOLanguageName
+            };
+            var loResult = await loLookupViewModel.GetTaxCategory(param);
+
+            if (loResult == null)
+            {
+                loEx.Add(R_FrontUtility.R_GetError(
+                    typeof(Lookup_GSFrontResources.Resources_Dummy_Class),
+                    "_ErrLookup01"));
+                _VM.Data.CASSET_CODE = "";
+                _VM.Data.CASSET_NAME = "";
+                _VM.Data.CASSET_CODE = "";
+                _VM.Data.CASSET_TRANS_SEQ_NO = "";
+                _VM.Data.CASSET_NAME = "";
+                _VM.Data.CASSET_DEPT_CODE = "";
+                _VM.Data.CASSET_DEPT_NAME = "";
+                _VM.Data.NLBOOK_VALUE = 0;
+                _VM.Data.NBOOK_VALUE =0;
+            }
+            else
+            {
+                _VM.Data.CASSET_CODE = loResult.CASSET_CODE;
+                _VM.Data.CASSET_NAME = loResult.CASSET_NAME;
+                _VM.Data.CASSET_CODE = loResult.CASSET_CODE;
+                _VM.Data.CASSET_TRANS_SEQ_NO = loResult.CASSET_TRANS_SEQ_NO;
+                _VM.Data.CASSET_NAME = loResult.CASSET_NAME;
+                _VM.Data.CASSET_DEPT_CODE = loResult.CASSET_DEPT_CODE;
+                _VM.Data.CASSET_DEPT_NAME = loResult.CASSET_DEPT_NAME;
+                _VM.Data.NLBOOK_VALUE = loResult.NLBOOK_VALUE;
+                _VM.Data.NBOOK_VALUE = loResult.NLBOOK_VALUE;
+            }
         }
         catch (Exception ex)
         {
@@ -812,11 +901,8 @@ public partial class FAT00800Entry : R_Page
 
         try
         {
-            // Create parameter object for the Asset Information tab page
-            var loParam = _VM.Entity;
-            
-            eventArgs.Parameter = loParam;
-            eventArgs.TargetPageType = typeof(FAT00800AssetInformation);
+            eventArgs.TargetPageType = typeof(FAF00100FRONT.FAF00100);
+            eventArgs.Parameter = _VM.Data.CASSET_CODE;
         }
         catch (Exception ex)
         {

@@ -131,6 +131,41 @@ namespace FAT00800Service
             return loRtn;
         }
 
+        [HttpPost]
+        public async IAsyncEnumerable<FAT00800GetDeptLookupListResultDTO> FAT00800GetDeptLookupList()
+        {
+            var lcMethod = nameof(FAT00800GetDeptLookupList);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            List<FAT00800GetDeptLookupListResultDTO> loResult = new();
+
+            try
+            {
+                var loCls = new FAT00800EntryCls();
+                var loParam = new FAT00800GetDeptLookupListParameterDTO
+                {
+                    CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
+                    CUSER_ID = R_BackGlobalVar.USER_ID,
+                    CPROGRAM_ID = R_Utility.R_GetStreamingContext<string>(ContextConstants.CPROGRAM_ID) ?? string.Empty
+                };
+
+                _logger.LogInfo("Start method {MethodName}", lcMethod);
+                loResult = await loCls.FAT00800GetDeptLookupListAsync(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            foreach (var loItem in loResult)
+            {
+                yield return loItem;
+            }
+        }
+
         #endregion
     }
 }

@@ -28,6 +28,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\FA\FAT00800Common\FAT00800Common.csproj" />
     <ProjectReference Include="..\FAT00800BackResources\FAT00800BackResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT00800_SAVE_TRANSResources\RSP_FAT00800_SAVE_TRANSResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT00800_SUBMIT_TRANSResources\RSP_FAT00800_SUBMIT_TRANSResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FA_UPDATE_TRANS_HD_STATUSResources\RSP_FA_UPDATE_TRANS_HD_STATUSResources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,11 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.21" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.22" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\GLF00100COMMON\GLF00100COMMON.csproj" />
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\BACK\Lookup_GSCOMMON\Lookup_GSCOMMON.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\FAF00100FRONT\FAF00100FRONT.csproj" />
+    <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\GLF00100FRONT\GLF00100FRONT.csproj" />
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_FAFRONT\Lookup_FAFront.csproj" />
     <ProjectReference Include="..\..\..\..\BS Shared Form\SOURCE\FRONT\Lookup_GSFRONT\Lookup_GSFRONT.csproj" />
     <ProjectReference Include="..\FAT00800FrontResources\FAT00800FrontResources.csproj" />

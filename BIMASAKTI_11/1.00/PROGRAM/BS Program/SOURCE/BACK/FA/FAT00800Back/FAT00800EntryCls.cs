@@ -11,6 +11,7 @@ using R_CommonFrontBackAPI;
 using FAT00800Back.DTOs;
 using FAT00800BackResources;
 using FAT00800Common.DTOs;
+using System.Reflection.Metadata;
 
 namespace FAT00800Back
 {
@@ -21,6 +22,9 @@ namespace FAT00800Back
     public class FAT00800EntryCls : R_BusinessObjectAsync<FAT00800DTO>
     {
         private readonly FAT00800BackResources.Resources_Dummy_Class loRsp = new();
+        RSP_FAT00800_SAVE_TRANSResources.Resources_Dummy_Class loRsp2 = new();
+        RSP_FAT00800_SUBMIT_TRANSResources.Resources_Dummy_Class loRsp3 = new();
+        RSP_FA_UPDATE_TRANS_HD_STATUSResources.Resources_Dummy_Class loRsp4 = new();
         private readonly LoggerFAT00800 _logger;
         private readonly ActivitySource _activitySource;
 
@@ -66,22 +70,25 @@ namespace FAT00800Back
             {
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
+
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
                 loCmd.Parameters.Clear();
+                var lcQuery = "RSP_FA_UPDATE_TRANS_HD_STATUS ";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
 
-                loCmd.CommandText = " EXEC RSP_FAT_DELETE @CCOMPANY_ID, @CDEPT_CODE, @CTRANSACTION_CODE, @CREFERENCE_NO, @CUSER_ID ";
+                string newStatus = poEntity.CTRANS_STATUS == "00" ? "99" : "98";
+
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poEntity.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 8, poEntity.CDEPT_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANSACTION_CODE", DbType.String, 6, poEntity.CTRANSACTION_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CREFERENCE_NO", DbType.String, 30, poEntity.CREFERENCE_NO);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poEntity.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poEntity.CREC_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CNEW_STATUS", DbType.String, 2, newStatus);
 
-                var loDbParams = loCmd.Parameters.Cast<DbParameter>()
-                    .Where(x => x != null && x.ParameterName.StartsWith("@"))
-                    .ToDictionary(x => x.ParameterName, x => x.Value);
-
-                _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
 
                 await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
             {
@@ -119,7 +126,7 @@ namespace FAT00800Back
                 using DbCommand loCmd = loDb.GetCommand();
                 loCmd.Parameters.Clear();
 
-                loCmd.CommandText = "RSP_FAT00800_GET_TRANS_DETAIL";
+                loCmd.CommandText = "RSP_FAT00800_GET_TRANS_DETAIL ";
                 loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poEntity.CCOMPANY_ID);
@@ -128,11 +135,7 @@ namespace FAT00800Back
                 loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poEntity.CREF_NO ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 10, poEntity.CLANG_ID ?? string.Empty);
 
-                var loDbParams = loCmd.Parameters.Cast<DbParameter>()
-                    .Where(x => x != null && x.ParameterName != null && x.ParameterName.StartsWith("@"))
-                    .ToDictionary(x => x.ParameterName!, x => x.Value);
-
-                _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
 
                 var loRtnDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 var loRtnList = R_Utility.R_ConvertTo<FAT00800DTO>(loRtnDataTable);
@@ -176,6 +179,8 @@ namespace FAT00800Back
 
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
                 loCmd.Parameters.Clear();
                 lcQuery = $"RSP_FAT00800_SAVE_TRANS ";
                 loCmd.CommandType = CommandType.StoredProcedure;
@@ -212,14 +217,21 @@ namespace FAT00800Back
                     }
                     return $" {p.ParameterName} ={lcValue}";
                 })));
-
-                var loRtnDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
-                var loRtnList = R_Utility.R_ConvertTo<FAT00800DTO>(loRtnDataTable);
-                var loRtnRow = loRtnList.FirstOrDefault();
-                if (loRtnRow != null && !string.IsNullOrEmpty(loRtnRow.CREC_ID))
+                try
                 {
-                    poNewEntity.CREC_ID = loRtnRow.CREC_ID;
+                    var loRtnDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                    var loRtnList = R_Utility.R_ConvertTo<FAT00800DTO>(loRtnDataTable);
+                    var loRtnRow = loRtnList.FirstOrDefault();
+                    if (loRtnRow != null && !string.IsNullOrEmpty(loRtnRow.CREC_ID))
+                    {
+                        poNewEntity.CREC_ID = loRtnRow.CREC_ID;
+                    }
                 }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
             {
@@ -241,6 +253,62 @@ namespace FAT00800Back
         }
 
         #endregion
+
+        /// <summary>
+        /// Update transaction header status via stored procedure RSP_FA_UPDATE_TRANS_HD_STATUS
+        /// </summary>
+        /// <param name="poParameter">Parameter containing company ID, user ID, record ID, and new status</param>
+        public async Task FAT00800UpdateTransHdStatus(FAT00800UpdateTransHdStatusParameterDTO poParameter)
+        {
+            string lcMethod = nameof(FAT00800UpdateTransHdStatus);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            _logger.LogInfo("START method {MethodName}", lcMethod);
+
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
+
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
+                loCmd.Parameters.Clear();
+                var lcQuery = "RSP_FA_UPDATE_TRANS_HD_STATUS ";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poParameter.CREC_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CNEW_STATUS", DbType.String, 2, poParameter.CNEW_STATUS);
+
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+                try
+                {
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loDb != null)
+                    loDb = null;
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _logger.LogInfo("END method {MethodName}", lcMethod);
+        }
 
         #region init
 
@@ -712,8 +780,59 @@ namespace FAT00800Back
 
         #endregion
 
+        /// <summary>
+        /// Submit transaction via stored procedure RSP_FAT00800_SUBMIT_TRANS (no result).
+        /// </summary>
+        /// <param name="poParameter">Parameter containing company ID, user ID, and record ID</param>
+        public async Task FAT00800SubmitTrans(FAT00800SubmitTransParameterDTO poParameter)
+        {
+            string lcMethod = nameof(FAT00800SubmitTrans);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            _logger.LogInfo("START method {MethodName}", lcMethod);
 
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
 
-       
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
+                loCmd.Parameters.Clear();
+                var lcQuery = "RSP_FAT00800_SUBMIT_TRANS ";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poParameter.CREC_ID);
+
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+                try
+                {
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loDb != null)
+                    loDb = null;
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _logger.LogInfo("END method {MethodName}", lcMethod);
+        }
     }
 }

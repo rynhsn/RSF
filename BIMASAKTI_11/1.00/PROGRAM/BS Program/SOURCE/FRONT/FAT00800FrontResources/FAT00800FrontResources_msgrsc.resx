@@ -493,4 +493,10 @@
   <data name="_lblGainLost" xml:space="preserve">
     <value>Gain Lost</value>
   </data>
+  <data name="_submitSuccess" xml:space="preserve">
+    <value>Transaction Submitted Successfully!</value>
+  </data>
+  <data name="_reDrafSuccess" xml:space="preserve">
+    <value>Transaction Redrafted Successfully!</value>
+  </data>
 </root>

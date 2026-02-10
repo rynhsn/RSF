@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="_btnApprove" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="_btnChanges" xml:space="preserve">
+    <value>Changes</value>
+  </data>
+  <data name="_btnChgDesc" xml:space="preserve">
+    <value>Change Desc</value>
+  </data>
+  <data name="_btnClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="_btnDraft" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="_btnFind" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="_btnJournal" xml:space="preserve">
+    <value>Journal</value>
+  </data>
+  <data name="_btnPrint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="_btnSubmit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="_btnVoid" xml:space="preserve">
+    <value>Void</value>
+  </data>
+  <data name="_GarisMiring" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="_gbManualDepreciation" xml:space="preserve">
+    <value>Manual Depreciation</value>
+  </data>
+  <data name="_gvDepartment" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_gvName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="_lblAssetCat" xml:space="preserve">
+    <value>Asset Category</value>
+  </data>
+  <data name="_lblAssetCd" xml:space="preserve">
+    <value>Asset Code</value>
+  </data>
+  <data name="_lblAssetCd1" xml:space="preserve">
+    <value>Asset Code</value>
+  </data>
+  <data name="_lblAssetDept" xml:space="preserve">
+    <value>Asset Department</value>
+  </data>
+  <data name="_lblAssetNm" xml:space="preserve">
+    <value>Asset Name</value>
+  </data>
+  <data name="_lblAssetNm1" xml:space="preserve">
+    <value>Asset Name</value>
+  </data>
+  <data name="_lblAssetTrans" xml:space="preserve">
+    <value>Asset Trans Sequence</value>
+  </data>
+  <data name="_lblBaseAmt" xml:space="preserve">
+    <value>Base Amount</value>
+  </data>
+  <data name="_lblBaseCurrency" xml:space="preserve">
+    <value>Base Currency  </value>
+  </data>
+  <data name="_lblBookValue" xml:space="preserve">
+    <value>Book Value</value>
+  </data>
+  <data name="_lblBookValue1" xml:space="preserve">
+    <value>Book Value</value>
+  </data>
+  <data name="_lblCreated" xml:space="preserve">
+    <value>Created/Updated</value>
+  </data>
+  <data name="_lblDepreciationAmt" xml:space="preserve">
+    <value>Depreciation Amt</value>
+  </data>
+  <data name="_lblDepreciationQty" xml:space="preserve">
+    <value>Depreciation Qty</value>
+  </data>
+  <data name="_lblDeprM" xml:space="preserve">
+    <value>Depreciation Method</value>
+  </data>
+  <data name="_lblDept" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_lblLastDt" xml:space="preserve">
+    <value>Last Trans Date</value>
+  </data>
+  <data name="_lblLocalAmt" xml:space="preserve">
+    <value>Local Amount</value>
+  </data>
+  <data name="_lblLocation" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="_lblMonths" xml:space="preserve">
+    <value>Month(s)</value>
+  </data>
+  <data name="_lblQuantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="_lblResidualValue" xml:space="preserve">
+    <value>Residual Value</value>
+  </data>
+  <data name="_lblSerialNo" xml:space="preserve">
+    <value>Serial Number</value>
+  </data>
+  <data name="_lblStartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="_lblTransDt" xml:space="preserve">
+    <value>Transaction Date</value>
+  </data>
+  <data name="_lblTransNo" xml:space="preserve">
+    <value>Transaction Number</value>
+  </data>
+  <data name="_lblTransNt" xml:space="preserve">
+    <value>Transaction Note</value>
+  </data>
+  <data name="_lblTransTy" xml:space="preserve">
+    <value>Transaction Type</value>
+  </data>
+  <data name="_lblUsefulLive" xml:space="preserve">
+    <value>Useful Live</value>
+  </data>
+  <data name="_lblYear" xml:space="preserve">
+    <value>Year(s)</value>
+  </data>
+  <data name="_lblYearlyDepr" xml:space="preserve">
+    <value>Yearly Depreciation</value>
+  </data>
+  <data name="_message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="_pvAssetInfo" xml:space="preserve">
+    <value>Asset Information</value>
+  </data>
+  <data name="_pvTransEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+  </data>
+  <data name="_rlookTransNo" xml:space="preserve">
+    <value>Lookup Transaction Number</value>
+  </data>
+  <data name="_rlookupAsset" xml:space="preserve">
+    <value>Lookup Asset</value>
+  </data>
+  <data name="_rlookupDept" xml:space="preserve">
+    <value>Lookup Department</value>
+  </data>
+  <data name="_Sukses" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="CloseConfirmation" xml:space="preserve">
+    <value>Please be aware, you can not modify this transaction anymore after this process. Continue?</value>
+  </data>
+  <data name="PS005" xml:space="preserve">
+    <value>You have no rights to access this Department</value>
+  </data>
+  <data name="PS006" xml:space="preserve">
+    <value>Department not found</value>
+  </data>
+  <data name="PS007" xml:space="preserve">
+    <value>Asset not found</value>
+  </data>
+  <data name="PS008" xml:space="preserve">
+    <value>Transaction Number not found</value>
+  </data>
+  <data name="PS009" xml:space="preserve">
+    <value>Transaction date should be not less than the soft period</value>
+  </data>
+  <data name="PS010" xml:space="preserve">
+    <value>Transaction date should be not greater than today</value>
+  </data>
+  <data name="PS011" xml:space="preserve">
+    <value>Transaction date should be in the year of current period</value>
+  </data>
+  <data name="PS013" xml:space="preserve">
+    <value>Please select department!</value>
+  </data>
+  <data name="PS014" xml:space="preserve">
+    <value>Reference Date is required!</value>
+  </data>
+  <data name="PS015" xml:space="preserve">
+    <value>Please select Asset Code!</value>
+  </data>
+  <data name="PS016" xml:space="preserve">
+    <value>Depreciation Amount may not be 0!</value>
+  </data>
+  <data name="PS017" xml:space="preserve">
+    <value>Please enter a valid Depreciation Quantity</value>
+  </data>
+  <data name="PS018" xml:space="preserve">
+    <value>This asset has outstanding transaction. Please settle it first</value>
+  </data>
+  <data name="PS019" xml:space="preserve">
+    <value>Status of the asset is not allowed for adding this transaction</value>
+  </data>
+  <data name="PS020" xml:space="preserve">
+    <value>Transaction Date should not be before the last one of this asset</value>
+  </data>
+  <data name="PS021" xml:space="preserve">
+    <value>Depreciation Amount should not exceed the asset remaining (Book Value - Residual Value)</value>
+  </data>
+  <data name="PS022" xml:space="preserve">
+    <value>Depreciation quantity should not exceed the asset remaining</value>
+  </data>
+  <data name="PS023" xml:space="preserve">
+    <value>Transaction Number should not be empty</value>
+  </data>
+  <data name="PS024" xml:space="preserve">
+    <value>Can not Void transaction of asset already has the next one</value>
+  </data>
+  <data name="PS030" xml:space="preserve">
+    <value>Are you sure to change to submit for this transaction?</value>
+  </data>
+  <data name="PS031" xml:space="preserve">
+    <value>Are you sure to change to draft for this transaction?</value>
+  </data>
+  <data name="PS032" xml:space="preserve">
+    <value>GL account for journal is not available</value>
+  </data>
+  <data name="_lblPeriodFrom" xml:space="preserve">
+    <value>Period From</value>
+  </data>
+  <data name="_btnRefresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="_gvCurr" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="_gvDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="_gvDeprAmount" xml:space="preserve">
+    <value>Depr. Amount</value>
+  </data>
+  <data name="_gvDeprQty" xml:space="preserve">
+    <value>Depr. Qty</value>
+  </data>
+  <data name="_gvDept" xml:space="preserve">
+    <value>Dept.</value>
+  </data>
+  <data name="_gvRefNo" xml:space="preserve">
+    <value>Reference No.</value>
+  </data>
+  <data name="_gvStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_gvTransDesc" xml:space="preserve">
+    <value>Trans Desc</value>
+  </data>
+  <data name="_lblTo" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="_pageTransactionList" xml:space="preserve">
+    <value>Transaction List</value>
+  </data>
+  <data name="_pageTransEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+  </data>
+  <data name="_lblDeptM" xml:space="preserve">
+    <value>Department *</value>
+  </data>
+  <data name="_tabTransactionEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+  </data>
+  <data name="_lblAssetCodeM" xml:space="preserve">
+    <value>Asset Code*</value>
+  </data>
+  <data name="_lblRefDateM" xml:space="preserve">
+    <value>Ref. Date*</value>
+  </data>
+  <data name="_lblRefM" xml:space="preserve">
+    <value>Reference No.*</value>
+  </data>
+  <data name="_lblAssetName" xml:space="preserve">
+    <value>Asset Name</value>
+  </data>
+  <data name="_lblCurRate" xml:space="preserve">
+    <value>Currency Rate</value>
+  </data>
+  <data name="_lblDepr*" xml:space="preserve">
+    <value>Depr. Amount*</value>
+  </data>
+  <data name="_lblDepreciationQtyM" xml:space="preserve">
+    <value>Depr. Amount*</value>
+  </data>
+  <data name="_lblDescription" xml:space="preserve">
+    <value>Description*</value>
+  </data>
+  <data name="_lblLocalCurrency" xml:space="preserve">
+    <value>Local Currency</value>
+  </data>
+  <data name="_lblTransSeqNo" xml:space="preserve">
+    <value>Trans. Seq. No</value>
+  </data>
+  <data name="_gvDeprQtyM" xml:space="preserve">
+    <value>Depr. Qty*</value>
+  </data>
+  <data name="_lblCreateby" xml:space="preserve">
+    <value>Create By</value>
+  </data>
+  <data name="_lblUpdateby" xml:space="preserve">
+    <value>Update By</value>
+  </data>
+  <data name="_btnJournals" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_btnRedraft" xml:space="preserve">
+    <value>Redraft</value>
+  </data>
+  <data name="_confirmMessagge" xml:space="preserve">
+    <value>Are you sure to change to submit for this transaction ?</value>
+  </data>
+  <data name="_confirmMessagge2" xml:space="preserve">
+    <value>Are you sure to change to draft for this transaction ?</value>
+  </data>
+  <data name="_confirmTitle" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="PS033" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="_gvPercentage" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="_lblBaseAmount" xml:space="preserve">
+    <value>Base Amount</value>
+  </data>
+  <data name="_lblDeprInfo" xml:space="preserve">
+    <value>Depreciation Information</value>
+  </data>
+  <data name="_lblExpenseLocation" xml:space="preserve">
+    <value>Expense Location</value>
+  </data>
+  <data name="_lblLocalAmount" xml:space="preserve">
+    <value>Local Amount</value>
+  </data>
+  <data name="_tabAssetInformation" xml:space="preserve">
+    <value>Asset Information</value>
+  </data>
+  <data name="_lblAssetJrnlGrp" xml:space="preserve">
+    <value>Asset Journal Group</value>
+  </data>
+  <data name="_lblAssetTxtCat" xml:space="preserve">
+    <value>Asset Tax  Category</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>No data found!</value>
+  </data>
+  <data name="ErrLookup01" xml:space="preserve">
+    <value>Department Not Found!</value>
+  </data>
+  <data name="ErrLookup02" xml:space="preserve">
+    <value>Asset Not Found!</value>
+  </data>
+  <data name="PS034" xml:space="preserve">
+    <value>Department Cannot Be Empty!</value>
+  </data>
+  <data name="PS035" xml:space="preserve">
+    <value>Asset Cannot Be Empty!</value>
+  </data>
+  <data name="PS036" xml:space="preserve">
+    <value>Reference Date is required!</value>
+  </data>
+  <data name="PS037" xml:space="preserve">
+    <value>Reference Date may not be earlier than Soft Period!</value>
+  </data>
+  <data name="PS038" xml:space="preserve">
+    <value>Please select Asset Code!</value>
+  </data>
+  <data name="PS039" xml:space="preserve">
+    <value>Depreciation Amount may not be 0!</value>
+  </data>
+  <data name="PS040" xml:space="preserve">
+    <value>Description is required!</value>
+  </data>
+  <data name="_confirmMessage3" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="_btnDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="_lblAssetTaxCat" xml:space="preserve">
+    <value>Asset Tax Category</value>
+  </data>
+  <data name="_lblBuilding" xml:space="preserve">
+    <value>Building</value>
+  </data>
+  <data name="_lblFloor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="_lblProperty" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="_redraftTransaction" xml:space="preserve">
+    <value>Transaction Redrafted Successfully!</value>
+  </data>
+  <data name="_submitTransaction" xml:space="preserve">
+    <value>Transaction Submitted Successfully!</value>
+  </data>
+  <data name="_success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="ErrorDepartment" xml:space="preserve">
+    <value>Deparment not in the list!</value>
+  </data>
+  <data name="ErrorSystemParam" xml:space="preserve">
+    <value>The program cannot continue because the FA System Parameter has not been set. Please configure the system parameter before proceeding</value>
+  </data>
+</root>

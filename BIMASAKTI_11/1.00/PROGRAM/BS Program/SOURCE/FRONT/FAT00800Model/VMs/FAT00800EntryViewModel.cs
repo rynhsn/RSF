@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using FAT00800Common;
 using FAT00800Common.DTOs;
@@ -330,6 +331,13 @@ namespace FAT00800Model.VMs
                 R_FrontContext.R_SetStreamingContext(ContextConstants.CPROGRAM_ID, pcProgramId ?? string.Empty);
                 var loResult = await _model.FAT00800GetDeptLookupListAsync();
                 DeptLookupList = new ObservableCollection<FAT00800GetDeptLookupListResultDTO>(loResult.Data ?? new List<FAT00800GetDeptLookupListResultDTO>());
+                var foundDept = DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == SystemParamData.CTRANS_DEPT_CODE);
+                if (foundDept != null)
+                {
+                    Entity.CDEPT_CODE = foundDept.CDEPT_CODE;
+                    Entity.CDEPT_NAME = foundDept.CDEPT_NAME;
+                }
+
             }
             catch (Exception ex)
             {
@@ -360,6 +368,66 @@ namespace FAT00800Model.VMs
 
                 var loResult = await _model.FAT00800GetLastCurrencyRateAsync(loParam);
                 LastCurrencyRateData = loResult.Data ?? new FAT00800GetLastCurrencyRateResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Update transaction header status via FAT00800UpdateTransHdStatus.
+        /// </summary>
+        /// <param name="pcCompanyId">Company ID</param>
+        /// <param name="pcUserId">User ID</param>
+        /// <param name="pcRecId">Record ID (CREC_ID)</param>
+        /// <param name="pcNewStatus">New status code (CNEW_STATUS)</param>
+        /// <returns>Task</returns>
+        public async Task UpdateTransHdStatusAsync(string pcCompanyId, string pcUserId, string pcRecId, string pcNewStatus)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = new FAT00800UpdateTransHdStatusParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId ?? string.Empty,
+                    CUSER_ID = pcUserId ?? string.Empty,
+                    CREC_ID = pcRecId ?? string.Empty,
+                    CNEW_STATUS = pcNewStatus ?? string.Empty
+                };
+
+                await _model.FAT00800UpdateTransHdStatus(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        /// <summary>
+        /// Submit transaction via FAT00800SubmitTrans (RSP_FAT00800_SUBMIT_TRANS).
+        /// </summary>
+        /// <param name="pcCompanyId">Company ID</param>
+        /// <param name="pcUserId">User ID</param>
+        /// <param name="pcRecId">Record ID (CREC_ID)</param>
+        /// <returns>Task</returns>
+        public async Task SubmitTransAsync(string pcCompanyId, string pcUserId, string pcRecId)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = new FAT00800SubmitTransParameterDTO
+                {
+                    CCOMPANY_ID = pcCompanyId ?? string.Empty,
+                    CUSER_ID = pcUserId ?? string.Empty,
+                    CREC_ID = pcRecId ?? string.Empty
+                };
+
+                await _model.FAT00800SubmitTrans(loParam);
             }
             catch (Exception ex)
             {

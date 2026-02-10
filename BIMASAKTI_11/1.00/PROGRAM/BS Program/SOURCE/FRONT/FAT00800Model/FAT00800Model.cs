@@ -122,6 +122,35 @@ namespace FAT00800Model
             return loRtn;
         }
 
+        public IAsyncEnumerable<FAT00800GetDeptLookupListResultDTO> FAT00800GetDeptLookupList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<FAT00800ResultDTO<List<FAT00800GetDeptLookupListResultDTO>>> FAT00800GetDeptLookupListAsync()
+        {
+            var loEx = new R_Exception();
+            var loRtn = new FAT00800ResultDTO<List<FAT00800GetDeptLookupListResultDTO>>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT00800GetDeptLookupListResultDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT00800Entry.FAT00800GetDeptLookupList),
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
         #endregion
     }
 }
