@@ -271,10 +271,45 @@ public partial class FAT00800Entry : R_Page
         loEx.ThrowExceptionIfErrors();
     }
 
+    public async Task R_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+    {
+        R_Exception loException = new R_Exception();
+
+        try
+        {
+            var res = await R_MessageBox.Show("", @_localizer["ValidationBeforeCancel"],
+                R_eMessageBoxButtonType.YesNo);
+            if (res == R_eMessageBoxResult.No)
+            {
+                eventArgs.Cancel = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            loException.Add(ex);
+        }
+
+        R_DisplayException(loException);
+    }
+
     private async Task BeforeDelete(R_BeforeDeleteEventArgs eventArgs)
     {
         var leMsg = await R_MessageBox.Show("", _localizer["PS008"], R_eMessageBoxButtonType.YesNo);
         eventArgs.Cancel = leMsg != R_eMessageBoxResult.Yes;
+    }
+    private async Task AfterDelete()
+    {
+        var loEx = new R_Exception();
+        try
+        {
+            await R_MessageBox.Show("", @_localizer["Delete_Success"], R_eMessageBoxButtonType.OK);
+        }
+        catch (Exception ex)
+        {
+            loEx.Add(ex);
+        }
+        loEx.ThrowExceptionIfErrors();
+
     }
 
     private async Task ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
@@ -304,6 +339,8 @@ public partial class FAT00800Entry : R_Page
             var loEntity = (FAT00800DTO)eventArgs.Data;
             loEntity.CDEPT_CODE = _VM.CDEFAULT_TRX_DEPT_CODE;
             loEntity.DTRANSACTION_DATE = DateTime.Now;
+            loEntity.DCREATE_DATE = DateTime.Now;
+            loEntity.DUPDATE_DATE = DateTime.Now;
 
             var foundDept = _VM.DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == _VM.CDEFAULT_TRX_DEPT_CODE);
             if (foundDept != null)
@@ -627,7 +664,7 @@ public partial class FAT00800Entry : R_Page
                 _VM.Data.CASSET_DEPT_CODE = "";
                 _VM.Data.CASSET_DEPT_NAME = "";
                 _VM.Data.NLBOOK_VALUE = 0;
-                _VM.Data.NBOOK_VALUE = 0;
+                _VM.Data.NBBOOK_VALUE = 0;
                 return;
             }
 
@@ -656,7 +693,7 @@ public partial class FAT00800Entry : R_Page
                 _VM.Data.CASSET_DEPT_CODE = "";
                 _VM.Data.CASSET_DEPT_NAME = "";
                 _VM.Data.NLBOOK_VALUE = 0;
-                _VM.Data.NBOOK_VALUE =0;
+                _VM.Data.NBBOOK_VALUE = 0;
             }
             else
             {
@@ -668,7 +705,7 @@ public partial class FAT00800Entry : R_Page
                 _VM.Data.CASSET_DEPT_CODE = loResult.CASSET_DEPT_CODE;
                 _VM.Data.CASSET_DEPT_NAME = loResult.CASSET_DEPT_NAME;
                 _VM.Data.NLBOOK_VALUE = loResult.NLBOOK_VALUE;
-                _VM.Data.NBOOK_VALUE = loResult.NLBOOK_VALUE;
+                _VM.Data.NBBOOK_VALUE = loResult.NBBOOK_VALUE;
             }
         }
         catch (Exception ex)
@@ -718,7 +755,7 @@ public partial class FAT00800Entry : R_Page
             _VM.Data.CASSET_DEPT_CODE = loData.CASSET_DEPT_CODE;
             _VM.Data.CASSET_DEPT_NAME = loData.CASSET_DEPT_NAME;
             _VM.Data.NLBOOK_VALUE = loData.NLBOOK_VALUE;
-            _VM.Data.NBOOK_VALUE = loData.NLBOOK_VALUE;
+            _VM.Data.NBBOOK_VALUE = loData.NBBOOK_VALUE;
         }
         catch (Exception ex)
         {
@@ -747,7 +784,7 @@ public partial class FAT00800Entry : R_Page
         string pcRateDate = _VM.Data.DTRANSACTION_DATE.ToString("yyyyMMdd") ?? "";
         await _VM.GetLastCurrencyRateAsync(
             value,
-            _VM.SystemParamData.CCUR_RATETYPE_CODE,
+            _VM.SystemParamData.CRATETYPE_CODE,
             pcRateDate);
 
         if (_VM.LastCurrencyRateData != null)
@@ -788,8 +825,8 @@ public partial class FAT00800Entry : R_Page
             _VM.Data.NLTRANS_AMOUNT = (_VM.Data.NTRANS_AMOUNT / lnLocalBaseRate) * _VM.Data.NLCURRENCY_RATE;
             _VM.Data.NBTRANS_AMOUNT = (_VM.Data.NTRANS_AMOUNT / lnBaseRate) * _VM.Data.NBCURRENCY_RATE;
 
-            _VM.Data.NLGAINLOSS = _VM.Data.NLTRANS_AMOUNT - _VM.NLBOOK_VALUE;
-            _VM.Data.NBGAINLOSS = _VM.Data.NBTRANS_AMOUNT - _VM.NBOOK_VALUE;
+            _VM.Data.NLGAINLOSS = _VM.Data.NLTRANS_AMOUNT - _VM.Data.NLBOOK_VALUE;
+            _VM.Data.NBGAINLOSS = _VM.Data.NBTRANS_AMOUNT - _VM.Data.NBBOOK_VALUE;
         }
     }
 
@@ -853,7 +890,7 @@ public partial class FAT00800Entry : R_Page
             if (loTempResult != null)
             {
                 _VM.Data.CEXPENSE_ALLOC_ID = loTempResult.CALLOC_ID ?? string.Empty;
-                _VM.CEXPENSE_ALLOC_NAME = loTempResult.CALLOC_NAME ?? string.Empty;           
+                _VM.Data.CEXPENSE_ALLOC_NAME = loTempResult.CALLOC_NAME ?? string.Empty;           
             }
         }
         catch (Exception ex)

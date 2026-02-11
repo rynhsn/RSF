@@ -208,7 +208,7 @@
     <value>Asset Name</value>
   </data>
   <data name="_lblAssetTransSequence" xml:space="preserve">
-    <value>Asset Trans Sequence</value>
+    <value>Trans. Seq. No</value>
   </data>
   <data name="_lblBaseAmount" xml:space="preserve">
     <value>Base Amount</value>
@@ -256,7 +256,7 @@
     <value>Residual Value</value>
   </data>
   <data name="_lblSaleAmount" xml:space="preserve">
-    <value>Sale Amount</value>
+    <value>Sales Amount</value>
   </data>
   <data name="_lblTransactionDate" xml:space="preserve">
     <value>Transaction Date</value>
@@ -439,7 +439,7 @@
     <value>Status</value>
   </data>
   <data name="_lblReferenceNo" xml:space="preserve">
-    <value>Reference No</value>
+    <value>Reference No.</value>
     <comment>ReferenceNo</comment>
   </data>
   <data name="_lblRefDate" xml:space="preserve">
@@ -498,5 +498,14 @@
   </data>
   <data name="_reDrafSuccess" xml:space="preserve">
     <value>Transaction Redrafted Successfully!</value>
+  </data>
+  <data name="ValidationBeforeCancel" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="Delete_Success" xml:space="preserve">
+    <value>Transaction Deleted Successfully!</value>
+  </data>
+  <data name="_Journal" xml:space="preserve">
+    <value>Journal</value>
   </data>
 </root>

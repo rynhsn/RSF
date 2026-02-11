@@ -1204,6 +1204,47 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
+        public async Task R_BeforeCancel(R_BeforeCancelEventArgs eventArgs)
+        {
+            R_Exception loException = new R_Exception();
+
+            try
+            {
+                var res = await R_MessageBox.Show("", Localizer["ValidationBeforeCancel"],
+                    R_eMessageBoxButtonType.YesNo);
+                if (res == R_eMessageBoxResult.No)
+                {
+                    eventArgs.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            R_DisplayException(loException);
+        }
+
+        private async Task BeforeDelete(R_BeforeDeleteEventArgs eventArgs)
+        {
+            var leMsg = await R_MessageBox.Show("", Localizer["deleteConfirmation"], R_eMessageBoxButtonType.YesNo);
+            eventArgs.Cancel = leMsg != R_eMessageBoxResult.Yes;
+        }
+        private async Task AfterDelete()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                await R_MessageBox.Show("", Localizer["Delete_Success"], R_eMessageBoxButtonType.OK);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+
+        }
+
         private void Conductor_R_Validation(R_ValidationEventArgs eventArgs)
         {
             var loEx = new R_Exception();
@@ -1621,6 +1662,15 @@ namespace FAT00100Front
                 );
 
                 // Refresh grid after submit
+
+                string lcMessageSuccess = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_msgSubmitSuccess");
+
+                var leResultSuccess = await R_MessageBox.Show(
+                    "",
+                    lcMessageSuccess,
+                    R_eMessageBoxButtonType.OK
+                );
+
                 if (_gridRef != null)
                     await _gridRef.R_RefreshGrid(null);
             }
@@ -1676,6 +1726,14 @@ namespace FAT00100Front
                     ClientHelper.UserId,
                     loEntity.CREC_ID,
                     FAT00100ViewModel.DEFAULT_STATUS_DRAFT
+                );
+
+                string lcMessageSuccess = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_msgDrafSuccess");
+
+                var leResultSuccess = await R_MessageBox.Show(
+                    "",
+                    lcMessageSuccess,
+                    R_eMessageBoxButtonType.OK
                 );
 
                 // Refresh grid after update

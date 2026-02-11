@@ -308,7 +308,7 @@
     <value>Source</value>
   </data>
   <data name="_SourceRefNo" xml:space="preserve">
-    <value>Source Ref No</value>
+    <value>Source Ref. No</value>
   </data>
   <data name="_Status" xml:space="preserve">
     <value>Status</value>
@@ -338,10 +338,10 @@
     <value>Please be aware, you can not modify this transaction anymore after this process</value>
   </data>
   <data name="_msgDraft" xml:space="preserve">
-    <value>Are you sure to change to draft for this transaction ?</value>
+    <value>Are you sure want to redraft this Transaction? </value>
   </data>
   <data name="_msgSubmit" xml:space="preserve">
-    <value>Are you sure to change to submit for this transaction ?</value>
+    <value>Are you sure want to submit this transaction?</value>
   </data>
   <data name="btnCurrency" xml:space="preserve">
     <value>Currency Table Lookup</value>
@@ -416,7 +416,7 @@
     <value />
   </data>
   <data name="_SourceTrans" xml:space="preserve">
-    <value>Source Trans.</value>
+    <value>Source Trans. Type</value>
   </data>
   <data name="_SourceDepartment" xml:space="preserve">
     <value>Source Department</value>
@@ -651,5 +651,20 @@
   </data>
   <data name="val_Quantity" xml:space="preserve">
     <value>Quantity must be greater than 0! </value>
+  </data>
+  <data name="ValidationBeforeCancel" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="deleteConfirmation" xml:space="preserve">
+    <value>Are you sure want to delete this transaction?</value>
+  </data>
+  <data name="Delete_Success" xml:space="preserve">
+    <value>Transaction Deleted Successfully!</value>
+  </data>
+  <data name="_msgSubmitSuccess" xml:space="preserve">
+    <value>Transaction Submitted Successfully!</value>
+  </data>
+  <data name="_msgDrafSuccess" xml:space="preserve">
+    <value>Transaction Redrafted Successfully!</value>
   </data>
 </root>

@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="_lblAssetTransSequence" xml:space="preserve">
+    <value>Trans. Seq. No</value>
+  </data>
+  <data name="_lblSaleAmount" xml:space="preserve">
+    <value>Sales Amount</value>
+  </data>
   <data name="_tabTransactionList" xml:space="preserve">
     <value />
   </data>
@@ -160,7 +166,7 @@
     <value />
   </data>
   <data name="_lblReferenceNo" xml:space="preserve">
-    <value />
+    <value>Reference No.</value>
   </data>
   <data name="_lblRefDate" xml:space="preserve">
     <value />
@@ -215,5 +221,14 @@
   </data>
   <data name="_reDrafSuccess" xml:space="preserve">
     <value>Transaction Redrafted Successfully!</value>
+  </data>
+  <data name="ValidationBeforeCancel" xml:space="preserve">
+    <value>You haven’t saved your changes. Are you sure want to cancel?</value>
+  </data>
+  <data name="Delete_Success" xml:space="preserve">
+    <value />
+  </data>
+  <data name="_Journal" xml:space="preserve">
+    <value />
   </data>
 </root>

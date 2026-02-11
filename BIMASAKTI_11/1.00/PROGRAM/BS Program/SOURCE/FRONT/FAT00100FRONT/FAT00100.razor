@@ -7,7 +7,7 @@
 
             <R_StackLayout Row>
                 <R_ItemLayout col="3">
-                    <R_Label>@Localizer["_Department"]</R_Label>
+                    <R_Label>@Localizer["_Department"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_VM.PoDeptCode" 
@@ -69,7 +69,10 @@
                     <R_NumericTextBox @bind-Value="_VM.PeriodToYear"
                                      Arrows="true"
                                      TValue="int"
-                                     ThousandSeparator="false" />
+                                    Min="_VM.YearRangeData.IMIN_YEAR"
+                                    Max="_VM.YearRangeData.IMAX_YEAR"
+                                    Step="1"
+                                    ThousandSeparator="false" />
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_ComboBox @bind-Value="_VM.PeriodToMonth"
@@ -151,8 +154,8 @@
                         <R_TextBox @bind-Value="_VM.Data.CDEPT_NAME" Enabled="false" />
                     </R_ItemLayout>
 
-                    <R_ItemLayout col="2" Style="text-align: right;">
-                        <R_Label FontSize="18px" FontStyle="@R_eFontStyle.Bold">
+                    <R_ItemLayout col="2">
+                        <R_Label FontColor="R_eFontColor.Primary">
                             @_VM.Data.CTRANS_STATUS_NAME
                         </R_Label>
                     </R_ItemLayout>
@@ -423,7 +426,8 @@
                         <R_TextBox @bind-Value="_VM.Data.CUPDATE_BY" Enabled="false" />
                     </R_ItemLayout>
                     <R_ItemLayout col="4">
-                        <R_TextBox @bind-Value="_VM.Data.CCREATE_DATE" Enabled="false" />
+                        <R_DateTimePicker R_ConductorSource="_conductorRef" Enabled="false" @bind-value="_VM.Data.DUPDATE_DATE">
+                        </R_DateTimePicker>
                     </R_ItemLayout>
                 </R_StackLayout>
                 <R_StackLayout Row class="d-flex justify-content-end">
@@ -434,7 +438,8 @@
                         <R_TextBox @bind-Value="_VM.Data.CCREATE_BY" Enabled="false" />
                     </R_ItemLayout>
                     <R_ItemLayout col="4">
-                        <R_TextBox @bind-Value="_VM.Data.CUPDATE_DATE" Enabled="false" />
+                        <R_DateTimePicker R_ConductorSource="_conductorRef" Enabled="false" @bind-value="_VM.Data.DCREATE_DATE">
+                        </R_DateTimePicker>
                     </R_ItemLayout>
                 </R_StackLayout>
 
@@ -486,14 +491,16 @@
                 @Localizer["_Draft"]
             </R_Button>
         </R_ItemLayout>
-        <R_ItemLayout>
-            <R_Button R_ConductorSource="@_conductorRef" 
-                    R_EnableOther="true"
-                    Enabled="@(!string.IsNullOrEmpty(_VM.Data.CREF_NO))"
-                    OnClick="btnPrint_OnClick">
-                @Localizer["_Print"]
-            </R_Button>
-        </R_ItemLayout>
+
+        @* <R_ItemLayout> *@
+        @*     <R_Button R_ConductorSource="@_conductorRef"  *@
+        @*             R_EnableOther="true" *@
+        @*             Enabled="@(!string.IsNullOrEmpty(_VM.Data.CREF_NO))" *@
+        @*             OnClick="btnPrint_OnClick"> *@
+        @*         @Localizer["_Print"] *@
+        @*     </R_Button> *@
+        @* </R_ItemLayout> *@
+
         <R_ItemLayout>
             <R_Popup R_ConductorSource="@_conductorRef" Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.Data?.CTRANS_STATUS != null && int.TryParse(_VM.Data.CTRANS_STATUS, out int liStatus) && liStatus > 0 && !string.IsNullOrEmpty(_VM.Data?.CGL_REF_NO))" R_Before_Open_Popup="R_Before_Open_PopupJournal">@Localizer["_Journal"]</R_Popup>
         </R_ItemLayout>
@@ -513,7 +520,7 @@
 <R_ConductorGrid @ref="_conductorGridRef"
                  R_IsHeader />
 
-<!-- R_Conductor Component -->
+<!-- R_Conductor Component  R_BeforeDelete="BeforeDelete"-->
 <R_Conductor @ref="_conductorRef"
              R_ViewModel="@_VM"
              R_IsHeader="true"
@@ -524,4 +531,6 @@
              R_ServiceSave="@Conductor_R_ServiceSave"
              R_AfterSave="Conductor_AfterSave"
              R_ServiceDelete="@Conductor_R_ServiceDelete"
+             R_BeforeCancel="@R_BeforeCancel"
+             R_AfterDelete="AfterDelete"
              R_Validation="@Conductor_R_Validation" />

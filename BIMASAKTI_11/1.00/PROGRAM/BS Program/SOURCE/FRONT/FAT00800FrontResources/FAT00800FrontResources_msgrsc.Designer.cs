@@ -151,6 +151,15 @@ namespace FAT00800FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Journal.
+        /// </summary>
+        internal static string _Journal {
+            get {
+                return ResourceManager.GetString("_Journal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Asset Information.
         /// </summary>
         internal static string _lbl_AssetInformation {
@@ -268,7 +277,7 @@ namespace FAT00800FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Asset Trans Sequence.
+        ///   Looks up a localized string similar to Trans. Seq. No.
         /// </summary>
         internal static string _lblAssetTransSequence {
             get {
@@ -520,7 +529,7 @@ namespace FAT00800FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reference No.
+        ///   Looks up a localized string similar to Reference No..
         /// </summary>
         internal static string _lblReferenceNo {
             get {
@@ -538,7 +547,7 @@ namespace FAT00800FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sale Amount.
+        ///   Looks up a localized string similar to Sales Amount.
         /// </summary>
         internal static string _lblSaleAmount {
             get {
@@ -862,6 +871,15 @@ namespace FAT00800FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Transaction Deleted Successfully!.
+        /// </summary>
+        internal static string Delete_Success {
+            get {
+                return ResourceManager.GetString("Delete_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to cancel the current operation?.
         /// </summary>
         internal static string MSG_BEFORE_CANCEL {
@@ -1173,6 +1191,15 @@ namespace FAT00800FrontResources {
         internal static string V_SALE_AMOUNT_POSITIVE {
             get {
                 return ResourceManager.GetString("V_SALE_AMOUNT_POSITIVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You haven’t saved your changes. Are you sure want to cancel?.
+        /// </summary>
+        internal static string ValidationBeforeCancel {
+            get {
+                return ResourceManager.GetString("ValidationBeforeCancel", resourceCulture);
             }
         }
     }

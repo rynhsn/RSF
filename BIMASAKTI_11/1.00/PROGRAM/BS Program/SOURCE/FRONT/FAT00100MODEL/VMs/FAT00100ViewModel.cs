@@ -319,7 +319,7 @@ namespace FAT00100Model.VMs
                 if (string.IsNullOrWhiteSpace(PoDeptCode))
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS001"));
-                    loEx.ThrowExceptionIfErrors();
+                    goto EndTry;
                 }
 
                 // Set streaming context for all custom parameters from ViewModel properties
@@ -359,7 +359,7 @@ namespace FAT00100Model.VMs
             {
                 loEx.Add(ex);
             }
-
+        EndTry:
             loEx.ThrowExceptionIfErrors();
         }
 

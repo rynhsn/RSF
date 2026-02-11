@@ -157,6 +157,12 @@ namespace FAT00800Model.VMs
                     Entity.DTRANSACTION_DATE = DateTime.Now;
                 }
 
+
+
+                //Entity.CCREATE_DATE = CurrentRecord.DCREATE_DATE.ToString("dd-MMM-yyyy HH:mm");
+                //Entity.CUPDATE_DATE = CurrentRecord.DUPDATE_DATE.ToString("dd-MMM-yyyy HH:mm");
+                
+
                 loCurrencyTemp = Entity.CCURRENCY_CODE;
                 LenableEdit = R_IsStatusEditable(Entity.CSTATUS);
             }
@@ -475,11 +481,6 @@ namespace FAT00800Model.VMs
         }
 
         #endregion
-        
-
-        
-
-        
 
     }
 

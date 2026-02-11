@@ -100,6 +100,11 @@ namespace FAT00800Front
             var loEx = new R_Exception();
             try
             {
+                if (string.IsNullOrWhiteSpace(_VM.ParameterDTO.CDEPT_CODE))
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "PS001"));
+                    goto EndTry;
+                }
                 await _VM.FAT00800GetTransListAsync();
                 eventArgs.ListEntityResult = _VM.TransList;
             }
@@ -107,6 +112,7 @@ namespace FAT00800Front
             {
                 loEx.Add(ex);
             }
+        EndTry:
             loEx.ThrowExceptionIfErrors();
         }
 

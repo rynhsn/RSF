@@ -108,10 +108,6 @@ namespace FAT00100Model.VMs
                     if (TransDetailData == null)
                         return string.Empty;
 
-                    //if (TransDetailData.NLBASE_RATE <= 0 ||
-                    //    TransDetailData.NLCURRENCY_RATE <= 0)
-                    //    return string.Empty;
-
                     if (string.IsNullOrWhiteSpace(TransDetailData.CCURRENCY_CODE) ||
                         string.IsNullOrWhiteSpace(LocalCurrencyCode))
                         return string.Empty;
@@ -392,16 +388,6 @@ namespace FAT00100Model.VMs
                     
                     ReferenceNo = TransDetailData.CREF_NO;
                     DeptCode = HeaderData.CDEPT_CODE;
-                    //LocalRate = HeaderData.NLRATE;
-                    //BaseRate = HeaderData.NBRATE;
-                    //BaseXRate = HeaderData.NBXRATE;
-                    //FrDeptCode = HeaderData.CFR_DEPT_CODE;
-                    //FrTransactionCode = HeaderData.CFR_TRANSACTION_CODE;
-                    //FrReferenceNo = HeaderData.CFR_REFERENCE_NO;
-                    //FrModule = HeaderData.CFR_MODULE;
-                    //DocumentDate = HeaderData.CDOCUMENT_DATE;
-                    //SupplierId = HeaderData.CSUPPLIER_ID;
-                    //SupplierName = HeaderData.CSUPPLIER_NAME;
                 }
                 
             }

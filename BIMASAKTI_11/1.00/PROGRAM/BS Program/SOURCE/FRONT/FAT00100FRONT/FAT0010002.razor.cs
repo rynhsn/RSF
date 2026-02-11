@@ -737,7 +737,8 @@ namespace FAT00100Front
             {
                 if (_VM.Data != null)
                 {
-                    _VM.Data.OASSET_IMAGE = null;
+                    _VM.Data.OIMAGE = null;
+                    _VM.Data.CSTORAGE_ID = "";
                 }
             }
             catch (Exception ex)

@@ -428,7 +428,6 @@
                                 <R_StackLayout Row Class="justify-content-center">
                                     <R_ItemLayout col="10">
                                         <div style="width: 90%; height: 150px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; background-color: #f5f5f5;">
-                                            @* Picture display area - TODO: Implement image display from OASSET_IMAGE *@
                                                                     <R_ImageBox @bind-Value="@_VM.Data.OIMAGE" MaxWidth="150px" MaxHeight="150px"></R_ImageBox>
 
                                         </div>
@@ -439,7 +438,7 @@
                                         <R_OpenFileDialogButton R_ConductorSource="@_conductorAssetInfoRef" R_EnableAdd R_EnableEdit OnChange="OnChangeInputFile" Accepts="@accepts">@Localizer["_Upload"]</R_OpenFileDialogButton>
                                     </R_ItemLayout>
                                     <R_ItemLayout auto="true">
-                                        <R_Button OnClick="btnResetPicture_OnClick">@Localizer["_Reset"]</R_Button>
+                                        <R_Button R_ConductorSource="@_conductorAssetInfoRef" R_EnableAdd R_EnableEdit OnClick="btnResetPicture_OnClick">@Localizer["_Reset"]</R_Button>
                                     </R_ItemLayout>
                                 </R_StackLayout>
                             </R_StackLayout>
@@ -1210,11 +1209,11 @@
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_EditButton R_Conductor="@_conductorAssetInfoRef"  
-                    Enabled="@(_conductorAssetInfoRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.TransDetailData?.CTRANS_STATUS == "00")"/>
+                    Enabled="@(_conductorAssetInfoRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.AssetList.Count>0 && _VM.TransDetailData?.CTRANS_STATUS == "00")"/>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_DeleteButton R_Conductor="@_conductorAssetInfoRef"  
-                    Enabled="@(_conductorAssetInfoRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.TransDetailData?.CTRANS_STATUS == "00")"/>
+                <R_DeleteButton R_Conductor="@_conductorAssetInfoRef"
+                                Enabled="@(_conductorAssetInfoRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.AssetList.Count>0 && _VM.TransDetailData?.CTRANS_STATUS == "00")" />
             </R_ItemLayout>
             <R_ItemLayout>
                 <R_Button R_ConductorSource="@_conductorAssetInfoRef"
@@ -1266,6 +1265,6 @@
                 R_BeforeCancel="@ConductorAssetInfo_BeforeCancel"
                 R_SetOther="@AssetInfoAndDepreciationInfo_SetOther"
                 R_CheckAdd="@ConductorAssetInfo_R_CheckAdd"
-                R_CheckEdit="@ConductorAssetInfo_R_CheckEdit"
-                R_CheckDelete="@ConductorAssetInfo_R_CheckDelete" />
+                R_CheckEdit="@ConductorAssetInfo_R_CheckEdit"/>
+
 

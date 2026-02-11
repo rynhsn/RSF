@@ -628,7 +628,16 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure to change to draft for this transaction ?.
+        ///   Looks up a localized string similar to Transaction Redrafted Successfully!.
+        /// </summary>
+        internal static string _msgDrafSuccess {
+            get {
+                return ResourceManager.GetString("_msgDrafSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to redraft this Transaction? .
         /// </summary>
         internal static string _msgDraft {
             get {
@@ -637,11 +646,20 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure to change to submit for this transaction ?.
+        ///   Looks up a localized string similar to Are you sure want to submit this transaction?.
         /// </summary>
         internal static string _msgSubmit {
             get {
                 return ResourceManager.GetString("_msgSubmit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Submitted Successfully!.
+        /// </summary>
+        internal static string _msgSubmitSuccess {
+            get {
+                return ResourceManager.GetString("_msgSubmitSuccess", resourceCulture);
             }
         }
         
@@ -862,7 +880,7 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Source Ref No.
+        ///   Looks up a localized string similar to Source Ref. No.
         /// </summary>
         internal static string _SourceRefNo {
             get {
@@ -871,7 +889,7 @@ namespace FAT00100FrontResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Source Trans..
+        ///   Looks up a localized string similar to Source Trans. Type.
         /// </summary>
         internal static string _SourceTrans {
             get {
@@ -1173,6 +1191,24 @@ namespace FAT00100FrontResources {
         internal static string CUNIT {
             get {
                 return ResourceManager.GetString("CUNIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Deleted Successfully!.
+        /// </summary>
+        internal static string Delete_Success {
+            get {
+                return ResourceManager.GetString("Delete_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to delete this transaction?.
+        /// </summary>
+        internal static string deleteConfirmation {
+            get {
+                return ResourceManager.GetString("deleteConfirmation", resourceCulture);
             }
         }
         
@@ -1812,6 +1848,15 @@ namespace FAT00100FrontResources {
         internal static string Val_Unit {
             get {
                 return ResourceManager.GetString("Val_Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You haven’t saved your changes. Are you sure want to cancel?.
+        /// </summary>
+        internal static string ValidationBeforeCancel {
+            get {
+                return ResourceManager.GetString("ValidationBeforeCancel", resourceCulture);
             }
         }
     }
