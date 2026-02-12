@@ -148,20 +148,14 @@ namespace FAT00800Model.VMs
                 Entity = loResult.data ?? new FAT00800DTO();
                 R_SetCurrentData(Entity);
 
-                if (!string.IsNullOrWhiteSpace(Entity.CTRANSACTION_DATE))
+                if (!string.IsNullOrWhiteSpace(Entity.CREF_DATE))
                 {
-                    Entity.DTRANSACTION_DATE = DateTime.ParseExact(Entity.CTRANSACTION_DATE, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    Entity.DREF_DATE = DateTime.ParseExact(Entity.CREF_DATE, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
                 }
                 else
                 {
-                    Entity.DTRANSACTION_DATE = DateTime.Now;
-                }
-
-
-
-                //Entity.CCREATE_DATE = CurrentRecord.DCREATE_DATE.ToString("dd-MMM-yyyy HH:mm");
-                //Entity.CUPDATE_DATE = CurrentRecord.DUPDATE_DATE.ToString("dd-MMM-yyyy HH:mm");
-                
+                    Entity.DREF_DATE = DateTime.Now;
+                }   
 
                 loCurrencyTemp = Entity.CCURRENCY_CODE;
                 LenableEdit = R_IsStatusEditable(Entity.CSTATUS);
@@ -193,6 +187,19 @@ namespace FAT00800Model.VMs
 
                 var loResult = await _model.R_ServiceSave(loParam);
                 Entity = loResult.data ?? new FAT00800DTO();
+
+                if (!string.IsNullOrWhiteSpace(Entity.CREF_DATE))
+                {
+                    Entity.DREF_DATE = DateTime.ParseExact(Entity.CREF_DATE, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    Entity.DREF_DATE = DateTime.Now;
+                }
+
+                loCurrencyTemp = Entity.CCURRENCY_CODE;
+                LenableEdit = R_IsStatusEditable(Entity.CSTATUS);
+
                 R_SetCurrentData(Entity);
             }
             catch (Exception ex)

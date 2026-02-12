@@ -131,7 +131,7 @@
                         <R_Label>@Localizer["_LocalAmount"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_TextBox Value="@LocalCurrencyDisplay" Enabled="false" />
+                        <R_TextBox Value="@VM.Data.CLOCAL_CURRENCY_CODE" Enabled="false" />
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_NumericTextBox @bind-Value="VM.Data.NLOCAL_AMOUNT"
@@ -149,7 +149,7 @@
                         <R_Label>@Localizer["_BaseAmount"]</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="2">
-                        <R_TextBox Value="@BaseCurrencyDisplay" Enabled="false" />
+                        <R_TextBox Value="@VM.Data.CBASE_CURRENCY_CODE" Enabled="false" />
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_NumericTextBox @bind-Value="VM.Data.NBASE_AMOUNT"

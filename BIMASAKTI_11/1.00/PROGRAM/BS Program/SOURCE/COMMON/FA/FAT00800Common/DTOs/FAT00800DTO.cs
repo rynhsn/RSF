@@ -18,6 +18,7 @@ namespace FAT00800Common.DTOs
         public string CDEPT_NAME { get; set; } = string.Empty;
         public string CREF_NO { get; set; } = string.Empty;
         public string CREF_DATE { get; set; } = string.Empty;
+        public DateTime DREF_DATE { get; set; }
         public string CGL_REF_NO { get; set; } = string.Empty;
         public string CACTION { get; set; } = string.Empty;
         public string CTRANSACTION_CODE { get; set; } = string.Empty;

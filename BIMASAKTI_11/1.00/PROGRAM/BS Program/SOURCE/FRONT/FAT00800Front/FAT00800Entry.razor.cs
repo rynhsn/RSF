@@ -156,7 +156,7 @@ public partial class FAT00800Entry : R_Page
 
             // Effective Ref Date: CREF_DATE or from DTRANSACTION_DATE (yyyyMMdd)
             string lcRefDate = string.IsNullOrWhiteSpace(loEntity.CREF_DATE)
-                ? (loEntity.DTRANSACTION_DATE != default ? loEntity.DTRANSACTION_DATE.ToString("yyyyMMdd") : string.Empty)
+                ? (loEntity.DREF_DATE != default ? loEntity.DREF_DATE.ToString("yyyyMMdd") : string.Empty)
                 : loEntity.CREF_DATE;
 
             if (string.IsNullOrWhiteSpace(loEntity.CDEPT_CODE))
@@ -233,9 +233,9 @@ public partial class FAT00800Entry : R_Page
         {
             var loEntity = (FAT00800DTO)eventArgs.Data;
 
-            if (string.IsNullOrWhiteSpace(loEntity.CREF_DATE) && loEntity.DTRANSACTION_DATE != default)
+            if (string.IsNullOrWhiteSpace(loEntity.CREF_DATE) && loEntity.DREF_DATE != default)
             {
-                loEntity.CREF_DATE = loEntity.DTRANSACTION_DATE.ToString("yyyyMMdd");
+                loEntity.CREF_DATE = loEntity.DREF_DATE.ToString("yyyyMMdd");
             }
             
             // Mode-specific processing
@@ -338,7 +338,7 @@ public partial class FAT00800Entry : R_Page
         {
             var loEntity = (FAT00800DTO)eventArgs.Data;
             loEntity.CDEPT_CODE = _VM.CDEFAULT_TRX_DEPT_CODE;
-            loEntity.DTRANSACTION_DATE = DateTime.Now;
+            loEntity.DREF_DATE = DateTime.Now;
             loEntity.DCREATE_DATE = DateTime.Now;
             loEntity.DUPDATE_DATE = DateTime.Now;
 
@@ -781,7 +781,7 @@ public partial class FAT00800Entry : R_Page
     public async Task CurrencyRateProcess(string value)
     {
         _VM.Data.CCURRENCY_CODE = value;
-        string pcRateDate = _VM.Data.DTRANSACTION_DATE.ToString("yyyyMMdd") ?? "";
+        string pcRateDate = _VM.Data.DREF_DATE.ToString("yyyyMMdd") ?? "";
         await _VM.GetLastCurrencyRateAsync(
             value,
             _VM.SystemParamData.CRATETYPE_CODE,

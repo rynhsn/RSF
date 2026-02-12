@@ -77,9 +77,9 @@ namespace PMB01800BACK
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 20, poParam.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CPROPERTY_ID", DbType.String, 20, poParam.CPROPERTY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_TYPE", DbType.String, 2, poParam.CTRANS_TYPE);
-                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10, poParam.CPAR_TRANS_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 100, poParam.CPAR_TRANS_CODE);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 10, poParam.CPAR_DEPT_CODE);
-                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 10, poParam.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 8, poParam.CUSER_ID);
 
 
                 var loDbParam = loCmd.Parameters.Cast<DbParameter>()

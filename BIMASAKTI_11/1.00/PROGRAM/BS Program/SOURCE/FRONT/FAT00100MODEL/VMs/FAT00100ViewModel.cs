@@ -341,19 +341,26 @@ namespace FAT00100Model.VMs
                         try
                         {
                             item.CREF_DATE_DISPLAY = DateTime.ParseExact(item.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
+                            item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
+                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                        ? refDate
+                        : (DateTime?)null;
                         }
                         catch
                         {
                             item.CREF_DATE_DISPLAY = item.CREF_DATE;
                         }
+
                     }
                     else
                     {
                         item.CREF_DATE_DISPLAY = item.CREF_DATE;
                     }
-
-                    
                 }
+
+
+
+
             }
             catch (Exception ex)
             {

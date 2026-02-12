@@ -304,6 +304,11 @@ namespace FAT00100Front
             R_DisplayException(loEx);
         }
 
+        private bool enableButton = true;
+        private void onActivetab(R_TabStripTab args)
+        {
+            enableButton = args.Id == nameof(FAT00100);
+        }
         private async Task txtDepartmentCodeEntry_OnLostFocused()
         {
             R_Exception loEx = new();

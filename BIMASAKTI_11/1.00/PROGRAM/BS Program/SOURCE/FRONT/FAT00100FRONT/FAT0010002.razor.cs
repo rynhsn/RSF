@@ -185,6 +185,7 @@ namespace FAT00100Front
 
                 // Set the result from ViewModel
                 eventArgs.ListEntityResult = _VM.AssetList ?? new System.Collections.ObjectModel.ObservableCollection<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>();
+
             }
             catch (Exception ex)
             {
@@ -1690,6 +1691,13 @@ namespace FAT00100Front
                     {
                         await gvAssetList.R_RefreshGrid(null);
                     }
+                    await _VM.GetTransDetailAsync(
+                        ClientHelper.CompanyId,
+                        ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
+                        _VM.RecId,
+                        _VM.DeptCode,
+                        _VM.ReferenceNo
+                    );
                 }
             }
             catch (Exception ex)
@@ -1786,46 +1794,7 @@ namespace FAT00100Front
 
             try
             {
-                // TODO: Implement Import PJ functionality when FAT0010003 is available
-                // Create parameter for FAT0010003 (Project Import form)
-                // var loParam = new FAT0010003DTO
-                // {
-                //     PCFR_DEPT_CODE = _VM.DeptCode,
-                //     PCFR_TRANSACTION_CODE = _VM.TransactionCode,
-                //     PCFR_REFERENCE_NO = _VM.ReferenceNo,
-                //     CLOCAL_CURRENCY_CODE = _VM.LocalCurrencyCode,
-                //     CBASE_CURRENCY_CODE = _VM.BaseCurrencyCode
-                // };
-
-                // Create popup settings
-                // var loPopupSettings = new R_PopupSettings
-                // {
-                //     PageTitle = Localizer["_ImportPJ"],
-                //     WithLock = true,
-                //     Page = this
-                // };
-
-                // Show popup
-                // var loResult = await PopupService.Show(typeof(FAT0010003), loParam, poPopupSettings: loPopupSettings);
-
-                // Handle result
-                // if (loResult != null)
-                // {
-                //     // TODO: Process imported project assets
-                //     // After import, trigger Add mode in conductor
-                //     if (_conductorAssetInfoRef != null)
-                //     {
-                //         // _conductorAssetInfoRef.R_Add();
-                //     }
-
-                //     // Refresh asset list grid
-                //     if (gvAssetList != null)
-                //     {
-                //         await gvAssetList.R_RefreshGrid(null);
-                //     }
-                // }
                 
-                // Placeholder - functionality not yet implemented
                 await Task.CompletedTask;
             }
             catch (Exception ex)
@@ -1862,21 +1831,6 @@ namespace FAT00100Front
                     WithLock = true,
                     Page = this
                 };
-
-                // Show popup
-                // TODO: Replace with actual import form type when available
-                // var loResult = await PopupService.Show(typeof(FAT00100Import), loParam, poPopupSettings: loPopupSettings);
-
-                // Handle result
-                // if (loResult != null)
-                // {
-                //     // TODO: Process imported existing assets
-                //     // Refresh asset list grid
-                //     if (gvAssetList != null)
-                //     {
-                //         await gvAssetList.R_RefreshGrid(null);
-                //     }
-                // }
             }
             catch (Exception ex)
             {

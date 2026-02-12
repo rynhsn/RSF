@@ -34,9 +34,9 @@ namespace FAT00100Common.DTOs
         public decimal NLCURRENCY_RATE { get; set; }
         public decimal NBBASE_RATE { get; set; }
         public decimal NBCURRENCY_RATE { get; set; }
-        public int NTOTAL_AMOUNT { get; set; }
-        public int NLTOTAL_AMOUNT { get; set; }
-        public int NBTOTAL_AMOUNT { get; set; }
+        public decimal NTOTAL_AMOUNT { get; set; }
+        public decimal NLTOTAL_AMOUNT { get; set; }
+        public decimal NBTOTAL_AMOUNT { get; set; }
         public string CCREATE_BY { get; set; } = string.Empty;
         public DateTime? DCREATE_DATE { get; set; }
         public string CUPDATE_BY { get; set; } = string.Empty;

@@ -198,9 +198,7 @@
                                 <R_GridCheckBoxSelectColumn FieldName="@nameof(PMT03500UtilityUsageDTO.LSELECTED)"
                                                             Width="30px" ShowSelectAllHeader Filterable="false"
                                                             Resizable="false"/>
-                                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CREF_NO)"
-                                                  HeaderText="@_localizer["LBL_LOIAGREEMENT"]"
-                                                  TextAlignment="R_eTextAlignment.Left" Width="160px"/>
+                                
                                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CFLOOR_NAME)"
                                                   HeaderText="@_localizer["LBL_FLOOR"]"
                                                   TextAlignment="R_eTextAlignment.Left" Width="130px"/>
@@ -235,8 +233,7 @@
                                                          HeaderText="@_localizer["LBL_END"]" Width="80px" R_EnableEdit/>
                                 </R_GridMultiHeaderColumn>
                                 
-                                <R_GridNumericColumn TValue="decimal" 
-                                                     Min="0"
+                                <R_GridNumericColumn TValue="decimal"  
                                                      FieldName="@nameof(PMT03500UtilityUsageDTO.NBEBAN_BERSAMA)"
                                                      HeaderText="@_localizer["LBL_BEBANBERSAMA"]" Width="170px"
                                                      Visible="@_visibleColumnEC" R_EnableEdit/>
@@ -313,7 +310,10 @@
                                                      Min="0"
                                                      FieldName="@nameof(PMT03500UtilityUsageDTO.NTOTAL_AMOUNT)"
                                                      HeaderText="@_localizer["LBL_TOTALAMOUNT"]" Width="150px"
-                                                     Visible="@_visibleColumnWG"/>
+                                                     Visible="@_visibleColumnWG" />
+                                <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CREF_NO)"
+                                                    HeaderText="@_localizer["LBL_LOIAGREEMENT"]"
+                                                    TextAlignment="R_eTextAlignment.Left" Width="160px" />
 
                                 <R_GridTextColumn FieldName="@nameof(PMT03500UtilityUsageDTO.CUPDATE_BY)"
                                                   HeaderText="@_localizer["LBL_UPDBY"]"

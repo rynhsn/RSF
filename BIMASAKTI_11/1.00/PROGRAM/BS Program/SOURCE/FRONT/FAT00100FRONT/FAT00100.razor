@@ -115,9 +115,12 @@
                 <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREF_NO)" 
                                  HeaderText="@Localizer["_ReferenceNo"]" 
                                  Width="120px" />
-                <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREF_DATE_DISPLAY)"
-                                  HeaderText="@Localizer["_Date"]" 
-                                 Width="100px" />
+                @* <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CREF_DATE_DISPLAY)" *@
+                @*                   HeaderText="@Localizer["_Date"]"  *@
+                @*                  Width="100px" /> *@
+                <R_GridDatePickerColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.DREF_DATE)"
+                                  HeaderText="@Localizer["_Date"]"
+                                  Width="100px" />
                 <R_GridTextColumn FieldName="@nameof(FAT00100GetDataGridResultDTO.CTRANS_STATUS_NAME)" 
                                  HeaderText="@Localizer["_Status"]" 
                                  Width="100px" />                 
@@ -130,7 +133,7 @@
     </R_ItemLayout>
     <R_ItemLayout col="8">
         <!-- Detail Form Section (Displayed when grid row is selected) -->
-        <R_TabStrip @ref="_tabStripRef">
+        <R_TabStrip @ref="_tabStripRef" OnActiveTabIndexChanged="onActivetab">
             <R_TabStripTab Title="@Localizer["rpvAcqEntry"]" Id="@nameof(FAT00100)">
 
                 <!-- Header Information Section -->
@@ -458,15 +461,15 @@
     <!-- Left Button Group -->
     <R_StackLayout Row>
         <R_ItemLayout>
-            <R_AddButton R_Conductor="@_conductorRef" />
+            <R_AddButton R_Conductor="@_conductorRef" Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && enableButton==true )" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_EditButton R_Conductor="@_conductorRef" 
-                          Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.Data?.CTRANS_STATUS == "00")" />
+                          Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && _VM.Data?.CTRANS_STATUS == "00" && enableButton==true )" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_DeleteButton R_Conductor="@_conductorRef" 
-                            Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && (_VM.Data?.CTRANS_STATUS == "00" || _VM.Data?.CTRANS_STATUS == "08"))" />
+                            Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && enableButton==true && (_VM.Data?.CTRANS_STATUS == "00" || _VM.Data?.CTRANS_STATUS == "08"))" />
         </R_ItemLayout>
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef"
@@ -478,7 +481,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef" 
                     R_EnableOther="true"
-                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREF_NO) && _VM.Data.CTRANS_STATUS == "00")"
+                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && enableButton==true && !string.IsNullOrEmpty(_VM.Data.CREF_NO) && _VM.Data.CTRANS_STATUS == "00")"
                     OnClick="btnSubmit_OnClick">
                 @Localizer["_Submit"]
             </R_Button>
@@ -486,7 +489,7 @@
         <R_ItemLayout>
             <R_Button R_ConductorSource="@_conductorRef" 
                     R_EnableOther="true"
-                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && !string.IsNullOrEmpty(_VM.Data.CREF_NO) && _VM.Data.CTRANS_STATUS == "10")"
+                      Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal && enableButton==true && !string.IsNullOrEmpty(_VM.Data.CREF_NO) && _VM.Data.CTRANS_STATUS == "10")"
                     OnClick="btnRedraft_OnClick">
                 @Localizer["_Draft"]
             </R_Button>
@@ -520,10 +523,11 @@
 <R_ConductorGrid @ref="_conductorGridRef"
                  R_IsHeader />
 
-<!-- R_Conductor Component  R_BeforeDelete="BeforeDelete"-->
+<!-- R_Conductor Component  -->
 <R_Conductor @ref="_conductorRef"
              R_ViewModel="@_VM"
              R_IsHeader="true"
+             R_DisableDeleteConfirmation="true"
              R_ServiceGetRecord="@Conductor_R_ServiceGetRecord"
              R_Display="@Conductor_R_Display"
              R_AfterAdd="@Conductor_R_AfterAdd"
@@ -532,5 +536,6 @@
              R_AfterSave="Conductor_AfterSave"
              R_ServiceDelete="@Conductor_R_ServiceDelete"
              R_BeforeCancel="@R_BeforeCancel"
+             R_BeforeDelete="BeforeDelete"
              R_AfterDelete="AfterDelete"
              R_Validation="@Conductor_R_Validation" />

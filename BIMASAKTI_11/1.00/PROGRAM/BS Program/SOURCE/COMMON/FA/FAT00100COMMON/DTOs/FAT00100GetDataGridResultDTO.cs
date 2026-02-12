@@ -14,6 +14,7 @@ namespace FAT00100Common.DTOs
         public string CREFERENCE_NO { get; set; } = string.Empty;
         public string CREF_DATE { get; set; } = string.Empty;
         public string CREF_DATE_DISPLAY { get; set; } = string.Empty; // Computed display property
+        public DateTime? DREF_DATE { get; set; }
         public string CSUPPLIER_ID { get; set; } = string.Empty;
         public string CSUPPLIER_NAME { get; set; } = string.Empty;
         public string CSUPPLIER_ID_NAME { get; set; } = string.Empty;
