@@ -404,7 +404,8 @@ namespace FAT00100Service
                 var loCls = new FAT00100Cls();
 
                 // Set global variables from R_BackGlobalVar
-                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                //poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                poParameter.CCOMPANY_ID = "bsu";
                 poParameter.CLANG_ID = R_BackGlobalVar.CULTURE;
                 poParameter.CUSER_ID = R_BackGlobalVar.USER_ID;
 
