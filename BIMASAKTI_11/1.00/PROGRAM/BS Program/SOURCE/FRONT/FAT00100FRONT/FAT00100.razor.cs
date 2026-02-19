@@ -123,11 +123,23 @@ namespace FAT00100Front
                     _VM.CurrentRecord.CDEPT_CODE = lcDeptCode;
                 }
 
-                // Call GetCompanyInfoAsync
-                await _VM.GetCompanyInfoAsync(ClientHelper.CompanyId, ClientHelper.UserId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
-
                 // Call GetGetSystemParamAsync
                 await _VM.GetGetSystemParamAsync(ClientHelper.CompanyId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
+                if (_VM.SystemParamData == null)
+                {
+                    string lcMessage = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "val_systemParam");
+
+                    await R_MessageBox.Show(
+                        "",
+                        lcMessage,
+                        R_eMessageBoxButtonType.OK
+                    );
+                    await this.CloseProgramAsync();
+                    goto EndTry;
+                }
+
+                // Call GetCompanyInfoAsync
+                await _VM.GetCompanyInfoAsync(ClientHelper.CompanyId, ClientHelper.UserId, ClientHelper.CultureUI.TwoLetterISOLanguageName);
 
                 // Call GetPeriodeDtInfoAsync if SoftPeriod is available
                 if (!string.IsNullOrEmpty(_VM.SoftPeriod) && _VM.SoftPeriod.Length >= 6)
@@ -175,6 +187,7 @@ namespace FAT00100Front
             {
                 loEx.Add(ex);
             }
+        EndTry:
 
             loEx.ThrowExceptionIfErrors();
         }

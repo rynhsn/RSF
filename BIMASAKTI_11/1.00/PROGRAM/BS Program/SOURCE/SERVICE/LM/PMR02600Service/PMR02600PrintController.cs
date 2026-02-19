@@ -204,8 +204,8 @@ public class PMR02600PrintController : R_ReportControllerBase
             loData.Header = new PMR02600ReportHeaderDTO
             {
                 CPROPERTY = poParam.CPROPERTY_NAME + $"({poParam.CPROPERTY})",
-                CFROM_BUILDING = poParam.CFROM_BUILDING_NAME + $" ({poParam.CFROM_BUILDING})",
-                CTO_BUILDING = poParam.CTO_BUILDING_NAME + $" ({poParam.CTO_BUILDING})",
+                CFROM_BUILDING = poParam.CFROM_BUILDING_NAME + $"({poParam.CFROM_BUILDING})",
+                CTO_BUILDING = poParam.CTO_BUILDING_NAME + $"({poParam.CTO_BUILDING})",
                 CPERIOD_DISPLAY = DateTime.TryParseExact(poParam.CPERIOD, "yyyyMMdd",
                     CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
                     ? refDate.ToString("dd MMM yyyy")

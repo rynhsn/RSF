@@ -1084,10 +1084,11 @@ namespace FAT00100Back
                 var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 var loRtn = R_Utility.R_ConvertTo<FAT00100GetGetSystemParamResultDTO>(loDataTable).FirstOrDefault();
 
-                if (loRtn != null)
-                {
-                    loResult.Data = loRtn;
-                }
+                loResult.Data = loRtn;
+                //if (loRtn != null)
+                //{
+                //    loResult.Data = loRtn;
+                //}
             }
             catch (Exception ex)
             {

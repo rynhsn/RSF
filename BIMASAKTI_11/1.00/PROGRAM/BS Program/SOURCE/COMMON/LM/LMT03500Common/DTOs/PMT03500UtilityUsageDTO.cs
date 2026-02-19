@@ -93,5 +93,8 @@ namespace PMT03500Common.DTOs
         public bool LOVER_USAGE { get; set; }
 
         public string CSTATUS_CODE { get; set; }
+
+        //CR 13-02-2026
+        public string CPREVIOUS_REF_NO { get; set; }
     }
 }

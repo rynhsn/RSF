@@ -28,7 +28,7 @@
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_viewModel.ReportParam.CFROM_BUILDING"
                                MaxLength="20"
-                               OnLostFocused="OnLostFocusFromBuilding"/>
+                               OnLostFocus="OnLostFocusFromBuilding"/>
                 </R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupFromBuilding"
                           R_After_Open_Lookup="AfterOpenLookupFromBuilding">
@@ -46,7 +46,7 @@
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_viewModel.ReportParam.CTO_BUILDING"
                                MaxLength="20"
-                               OnLostFocused="OnLostFocusToBuilding"/>
+                               OnLostFocus="OnLostFocusToBuilding"/>
                 </R_ItemLayout>
                 <R_Lookup R_Before_Open_Lookup="BeforeOpenLookupToBuilding"
                           R_After_Open_Lookup="AfterOpenLookupToBuilding">

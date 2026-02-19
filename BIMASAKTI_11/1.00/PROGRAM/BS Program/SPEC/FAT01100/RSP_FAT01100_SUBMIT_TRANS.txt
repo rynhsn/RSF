@@ -1,0 +1,2 @@
+ERROR_PROCESS=Process failed! unable to submit transaction {0}
+INCOMPLETE_TRX		=Incomplete Transaction! Unable to submit.

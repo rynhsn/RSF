@@ -177,18 +177,18 @@ namespace FAT00100Model.VMs
             {
                 var loParam = new FAT00100GetGetSystemParamParameterDTO
                 {
-                    CCOMPANY_ID = pcCompanyId,
+                    CCOMPANY_ID =pcCompanyId,
                     CLANGUAGE_ID = pcLanguageId
                 };
 
                 var loResult = await _model.FAT00100GetGetSystemParam(loParam);
-                SystemParamData = loResult.Data ?? new FAT00100GetGetSystemParamResultDTO();
+                SystemParamData = loResult.Data;
             }
             catch (Exception ex)
             {
                 loEx.Add(ex);
             }
-
+        EndTry:
             loEx.ThrowExceptionIfErrors();
         }
 

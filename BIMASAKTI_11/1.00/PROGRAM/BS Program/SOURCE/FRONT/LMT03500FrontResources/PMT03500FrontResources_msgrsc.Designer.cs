@@ -439,6 +439,15 @@ namespace PMT03500FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Previous No..
+        /// </summary>
+        internal static string LBL_CPREVIOUS_REF_NO {
+            get {
+                return ResourceManager.GetString("LBL_CPREVIOUS_REF_NO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created By.
         /// </summary>
         internal static string LBL_CRTBY {

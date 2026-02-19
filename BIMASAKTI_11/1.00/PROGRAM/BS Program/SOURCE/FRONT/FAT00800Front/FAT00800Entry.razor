@@ -14,7 +14,7 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblDepartment"]*</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
              <R_TextBox @bind-Value="_VM.Data.CDEPT_CODE"
                        R_ConductorSource="_conductorRef"
                        OnLostFocused="OnLostFocusDept"
@@ -27,7 +27,7 @@
                   R_After_Open_Lookup="AfterOpenLookupDept"
                   R_EnableAdd="true"
                   R_EnableEdit="true">...</R_Lookup>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
             <R_TextBox @bind-Value="_VM.Data.CDEPT_NAME" Enabled="false" />
         </R_ItemLayout>
         <R_ItemLayout col="2">
@@ -40,7 +40,7 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblReferenceNo"]*</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_VM.Data.CREF_NO"
                        R_ConductorSource="_conductorRef"
                        Enabled="false" />
@@ -63,7 +63,7 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblAssetCode"]*</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
             <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
                        R_ConductorSource="_conductorRef"
                        OnLostFocused="OnLostFocusAsset"
@@ -81,7 +81,7 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblAssetTransSequence"]</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_VM.Data.CASSET_TRANS_SEQ_NO" Enabled="false" />
         </R_ItemLayout>
     </R_StackLayout>
@@ -91,7 +91,7 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblAssetName"]</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
             <R_TextBox @bind-Value="_VM.Data.CASSET_NAME" Enabled="false" />
         </R_ItemLayout>
     </R_StackLayout>
@@ -101,10 +101,10 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblAssetDepartment"]</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
             <R_TextBox @bind-Value="_VM.Data.CASSET_DEPT_CODE" Enabled="false" />
         </R_ItemLayout>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
             <R_TextBox @bind-Value="_VM.Data.CASSET_DEPT_NAME" Enabled="false" />
         </R_ItemLayout>
     </R_StackLayout>
@@ -114,7 +114,7 @@
         <R_ItemLayout col="2">
             <R_Label>@_localizer["_lblCurrency"]*</R_Label>
         </R_ItemLayout>
-        <R_ItemLayout col="2">
+        <R_ItemLayout col="3">
                     <R_ComboBox Value="@_VM.Data.CCURRENCY_CODE"
                                 Data="@_VM.CurrencyList"
                                 ValueChanged="@((string? value) => OnCurrencyChanged(value))"
@@ -140,6 +140,7 @@
                                 Decimals="6"
                                 ThousandSeparator="true"
                                 R_ConductorSource="_conductorRef"
+                                Arrows="false"
                                 Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
         </R_ItemLayout>
         <R_ItemLayout auto="true">
@@ -154,6 +155,7 @@
                                 Decimals="6"
                                 ThousandSeparator="true"
                                 R_ConductorSource="_conductorRef"
+                                Arrows="false"
                                 Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE)" />
         </R_ItemLayout>
         <R_ItemLayout auto="true">
@@ -173,6 +175,7 @@
                                 Decimals="0"
                                 ThousandSeparator="true"
                                 R_ConductorSource="_conductorRef"
+                                Arrows="false"
                                 Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CBASE_CURRENCY_CODE)" />
         </R_ItemLayout>
         <R_ItemLayout auto="true">
@@ -186,6 +189,7 @@
                                 TValue="decimal"
                                 Decimals="2"
                                 R_ConductorSource="_conductorRef"
+                                Arrows="false"
                                 Enabled="@(_conductorRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.Data.CCURRENCY_CODE != _VM.CompanyInfoData.CBASE_CURRENCY_CODE)" />
         </R_ItemLayout>
         <R_ItemLayout auto="true">
@@ -220,6 +224,7 @@
                               Decimals="2"
                               ValueChanged="LocalBaseAmountProcess"
                               ThousandSeparator="true"
+                              Arrows="false"
                               R_ConductorSource="_conductorRef"
                               R_EnableAdd="true"
                               R_EnableEdit="true" />
@@ -232,6 +237,7 @@
                                 TValue="decimal"
                                 Decimals="6"
                                 ThousandSeparator="true"
+                                Arrows="false"
                                 Enabled="false" />
         </R_ItemLayout>
         <R_ItemLayout auto="true" Class="ps-2">
@@ -242,6 +248,7 @@
                                 TValue="decimal"
                                 Decimals="6"
                                 ThousandSeparator="true"
+                                Arrows="false"
                                 Enabled="false" />
         </R_ItemLayout>
                 
@@ -264,6 +271,7 @@
                               TValue="decimal"
                               Decimals="2"
                               ThousandSeparator="true"
+                              Arrows="false"
                               Enabled="false" />
         </R_ItemLayout>
         <R_ItemLayout auto="true" Class="ps-2">
@@ -274,6 +282,7 @@
                                 TValue="decimal"
                                 Decimals="2"
                                 ThousandSeparator="true"
+                                Arrows="false"
                                 Enabled="false" />
         </R_ItemLayout>
         
@@ -295,6 +304,7 @@
                               TValue="decimal"
                               Decimals="2"
                               ThousandSeparator="true"
+                              Arrows="false"
                               Enabled="false" />
         </R_ItemLayout>
         <R_ItemLayout auto="true" Class="ps-2">
@@ -305,6 +315,7 @@
                                 TValue="decimal"
                                 Decimals="2"
                                 ThousandSeparator="true"
+                                Arrows="false"
                                 Enabled="false" />
         </R_ItemLayout>
                 
