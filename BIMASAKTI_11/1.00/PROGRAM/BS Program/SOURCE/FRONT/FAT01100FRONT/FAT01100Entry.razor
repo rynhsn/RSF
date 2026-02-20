@@ -1,0 +1,791 @@
+@page "/FAT01100Entry"
+@inherits R_Page
+@using R_BlazorFrontEnd.Enums
+
+<R_TabStrip @ref="_tabMain" OnActiveTabIndexChanging="OnChangeTab">
+    <R_TabStripTab @ref="_tabEntry" Id="@nameof(FAT01100Entry)" Title="Transaction Entry">
+        <R_StackLayout>
+            <!-- Row 1: Department* & Status -->
+            <R_StackLayout Row Class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label Required="true">Department*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_VM.Data.CDEPT_CODE"
+                               R_ConductorSource="_conductorRef"
+                               R_EnableAdd="true"
+                               R_EnableEdit="true" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Lookup R_ConductorSource="_conductorRef"
+                              R_Before_Open_Lookup="BeforeOpenLookupDept"
+                              R_After_Open_Lookup="AfterOpenLookupDept"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_VM.Data.CDEPT_NAME" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label FontColor="R_eFontColor.Primary">@_VM.Data.CTRANS_STATUS_NAME</R_Label>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Row 2: Reference No* & Ref. Date* -->
+            <R_StackLayout Row Class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label Required="true">Reference No.*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_VM.Data.CREF_NO" R_ConductorSource="_conductorRef" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2" class="ps-4">
+                    <R_Label Required="true">Ref. Date*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_DatePicker @bind-Value="_VM.Data.DREF_DATE"
+                                 R_ConductorSource="_conductorRef"
+                                 R_EnableAdd="true"
+                                 R_EnableEdit="true" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Row 3: Asset Code* & Trans. Seq. No -->
+            <R_StackLayout Row Class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label Required="true">Asset Code*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
+                              R_ConductorSource="_conductorRef"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Lookup R_ConductorSource="_conductorRef"
+                              R_Before_Open_Lookup="BeforeOpenLookupAsset"
+                              R_After_Open_Lookup="AfterOpenLookupAsset"
+                              R_EnableAdd="true"
+                              R_EnableEdit="true">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_Label>Trans. Seq. No</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.Data.CASSET_TRANS_SEQ_NO" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Row 4: Asset Name -->
+            <R_StackLayout Row Class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label>Asset Name</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox @bind-Value="_VM.Data.CASSET_NAME" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Row 5: Description* -->
+            <R_StackLayout Row Class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label Required="true">Description*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextArea @bind-Value="_VM.Data.CTRANS_DESC"
+                                R_ConductorSource="@_conductorRef"
+                                R_EnableAdd="true"
+                                R_EnableEdit="true"
+                                Rows="3" />
+                </R_ItemLayout>
+
+            </R_StackLayout>
+
+            <!-- Row 6: Updated By -->
+            <R_StackLayout Row class="d-flex justify-content-end mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label>Updated By</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox Value="@_VM.Data.CUPDATE_BY" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox Value="@FormatAuditDateTime(_VM.Data.DUPDATE_DATE)" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Row 7: Created By -->
+            <R_StackLayout Row class="d-flex justify-content-end mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label>Created By</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox Value="@_VM.Data.CCREATE_BY" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox Value="@FormatAuditDateTime(_VM.Data.DCREATE_DATE)" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            
+            <R_StackLayout Row class="justify-content-between mt-2">
+                <!-- Buttons: Add, Edit, Delete, Submit, Redraft -->
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_AddButton R_Conductor="_conductorRef" />
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_EditButton R_Conductor="_conductorRef"
+                                      Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && _VM.Data.CTRANS_STATUS == "00")" />
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_DeleteButton R_Conductor="_conductorRef"
+                                        Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && (_VM.Data.CTRANS_STATUS == "00" || _VM.Data.CTRANS_STATUS == "80"))" />
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Button R_ConductorSource="_conductorRef"
+                                  R_EnableOther="true"
+                                  Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && _VM.Data.CTRANS_STATUS == "00")"
+                                  OnClick="OnClickSubmit">Submit</R_Button>
+                    </R_ItemLayout>
+                    <R_ItemLayout>
+                        <R_Button R_ConductorSource="_conductorRef"
+                                  R_EnableOther="true"
+                                  Enabled="@(_conductorRef?.R_ConductorMode is R_eConductorMode.Normal && _VM.Data.CTRANS_STATUS == "10")"
+                                  OnClick="OnClickRedraft">Redraft</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+
+                <!-- Buttons: Cancel, Next -->
+                <R_StackLayout Row>
+                    <R_ItemLayout>
+                        <R_CancelButton R_Conductor="_conductorRef" />
+                    </R_ItemLayout>
+                    <R_ItemLayout class="ms-2">
+                        <R_Button OnClick="OnClickNextAssetInfo">Next</R_Button>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_StackLayout>
+            
+        </R_StackLayout>
+    </R_TabStripTab>
+    <R_TabStripTab Title="@Localizer["_AssetInfo"]" Id="AssetInfo">
+        <R_StackLayout Row class="mb-1">
+            <R_ItemLayout col="4">
+                <R_Label>@Localizer["_AssetCode"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false"/>
+
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_StackLayout Row class="mb-1">
+            <R_ItemLayout col="4">
+                <R_Label>@Localizer["_AssetName"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox @bind-Value="_VM.Data.CASSET_NAME"
+                           R_ConductorSource="@_conductorRef"
+                           Enabled="false" />
+
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_GroupBox Title="@Localizer["_OldAssetInformation"]" Class="p-2">
+            <R_StackLayout Class="FAT01100Entry_r_groupbox">
+                <R_StackLayout Row class="mb-2">
+                    <!-- Left column: Asset Details -->
+                    <R_ItemLayout col="6">
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetDepartment"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CASSET_DEPT_CODE_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox @bind-Value="_VM.Data.CASSET_DEPT_NAME_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetJournalGroup"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CJRNGRP_CODE_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CJRNGRP_NAME_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetCategory"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox Value="@_VM.Data.CCATEGORY_ID_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CCATEGORY_NAME_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetTaxCategory"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox Value="@_VM.Data.CTAX_CATEGORY_ID_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CTAX_CATEGORY_NAME_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_Quantity"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox Value="@_VM.Data.IQTY_OLD.ToString()" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@_VM.Data.CUNIT_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_SerialNumber"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@_VM.Data.CSERIAL_NO_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_UserOwner"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@_VM.Data.CASSET_OWNER_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_Description"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="7">
+                                <R_TextArea @bind-Value="_VM.Data.CASSET_DESC_OLD"
+                                            Enabled="false"
+                                            Rows="3" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <!-- Right column: Location Details -->
+                    <R_ItemLayout col="6" Class="ps-5">
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Location"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox Value="@_VM.Data.CLOCATION_ID_OLD" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CLOCATION_NAME_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Property"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox Value="@(_VM.Data?.CPROPERTY_ID_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CPROPERTY_NAME_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Building"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox Value="@(_VM.Data?.CBUILDING_ID_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CBUILDING_NAME_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Floor"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox Value="@(_VM.Data?.CFLOOR_ID_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CFLOOR_NAME_OLD ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <!-- IMAGE placeholder -->
+                        <R_StackLayout Row class="mt-2">
+                            <R_ItemLayout col="6">
+                                <div style="width: 90%; height: 150px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; background-color: #f5f5f5;">
+                                    <R_ImageBox @bind-Value="@_VM.Data.OASSET_IMAGE_OLD" MaxWidth="150px" MaxHeight="150px"></R_ImageBox>
+                                </div>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+        <!-- New Asset Information -->
+        <R_GroupBox Title="@Localizer["_NewAssetInformation"]" Class="p-2 mt-2">
+            <R_StackLayout Class="FAT01100Entry_r_groupbox">
+                <R_StackLayout Row class="mb-2">
+                    <!-- Left column: Asset Details (editable) -->
+                    <R_ItemLayout col="6">
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetName"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="6">
+                                <R_TextBox @bind-Value="_VM.Data.CASSET_NAME"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetDepartment"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CASSET_DEPT_CODE"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout auto="true">
+                                <R_Lookup R_ConductorSource="_conductorRef"
+                                          R_Before_Open_Lookup="BeforeOpenLookupDept"
+                                          R_After_Open_Lookup="AfterOpenLookupDept"
+                                          R_EnableAdd="true"
+                                          R_EnableEdit="true">...</R_Lookup>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CASSET_DEPT_NAME ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetJournalGroup"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CJRNGRP_CODE"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout auto="true">
+                                <R_Lookup R_ConductorSource="_conductorRef"
+                                          R_Before_Open_Lookup="BeforeOpenLookupJournalGroup"
+                                          R_After_Open_Lookup="AfterOpenLookupJournalGroup"
+                                          R_EnableAdd="true"
+                                          R_EnableEdit="true">...</R_Lookup>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CJRNGRP_NAME ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetCategory"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CCATEGORY_ID"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout auto="true">
+                                <R_Lookup R_ConductorSource="_conductorRef"
+                                          R_Before_Open_Lookup="BeforeOpenLookupAssetCategory"
+                                          R_After_Open_Lookup="AfterOpenLookupAssetCategory"
+                                          R_EnableAdd="true"
+                                          R_EnableEdit="true">...</R_Lookup>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CCATEGORY_NAME ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_AssetTaxCategory"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CTAX_CATEGORY_ID"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout auto="true">
+                                <R_Lookup R_ConductorSource="_conductorRef"
+                                          R_Before_Open_Lookup="BeforeOpenLookupAssetTaxCategory"
+                                          R_After_Open_Lookup="AfterOpenLookupAssetTaxCategory"
+                                          R_EnableAdd="true"
+                                          R_EnableEdit="true">...</R_Lookup>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CTAX_CATEGORY_NAME ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_Quantity"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_NumericTextBox @bind-Value="_VM.Data.IQTY"
+                                                  R_ConductorSource="_conductorRef"
+                                                  R_EnableAdd="true"
+                                                  R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox @bind-Value="_VM.Data.CUNIT"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_SerialNumber"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="6">
+                                <R_TextBox @bind-Value="_VM.Data.CSERIAL_NO"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_UserOwner"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="6">
+                                <R_TextBox @bind-Value="_VM.Data.CASSET_OWNER"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="4">
+                                <R_Label>@Localizer["_Description"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="7">
+                                <R_TextArea @bind-Value="_VM.Data.CASSET_DESC"
+                                            R_ConductorSource="_conductorRef"
+                                            R_EnableAdd="true"
+                                            R_EnableEdit="true"
+                                            Rows="3" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                    <!-- Right column: Location Details + Image -->
+                    <R_ItemLayout col="6" Class="ps-5">
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Location"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CLOCATION_ID"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout auto="true">
+                                <R_Lookup R_ConductorSource="_conductorRef"
+                                          R_Before_Open_Lookup="BeforeOpenLookupLocation"
+                                          R_After_Open_Lookup="AfterOpenLookupLocation"
+                                          R_EnableAdd="true"
+                                          R_EnableEdit="true">...</R_Lookup>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CLOCATION_NAME ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Property"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CPROPERTY_ID"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CPROPERTY_NAME ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Building"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CBUILDING_ID"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CBUILDING_NAME ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3">
+                                <R_Label>@Localizer["_Floor"]</R_Label>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="2">
+                                <R_TextBox @bind-Value="_VM.Data.CFLOOR_ID"
+                                           R_ConductorSource="_conductorRef"
+                                           R_EnableAdd="true"
+                                           R_EnableEdit="true" />
+                            </R_ItemLayout>
+                            <R_ItemLayout col="5">
+                                <R_TextBox Value="@(_VM.Data?.CFLOOR_NAME ?? "")" Enabled="false" />
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                        <!-- Image placeholder + Upload / Reset -->
+                        <R_StackLayout Row class="mt-2">
+                            <R_ItemLayout col="6">
+                                <div style="width: 90%; height: 150px; border: 1px solid #ccc; display: flex; align-items: center; justify-content: center; background-color: #f5f5f5;">
+                                    <R_ImageBox @bind-Value="_VM.Data.OASSET_IMAGE" MaxWidth="150px" MaxHeight="150px" />
+                                </div>
+                            </R_ItemLayout>
+                            <R_ItemLayout col="6" style="display: flex;justify-content: space-between; margin-top: auto;padding: 10px;">
+                                <R_Button R_ConductorSource="_conductorRef" R_EnableOther="true" OnClick="OnClickUploadImage">@Localizer["_Upload"]</R_Button>
+                                <R_Button R_ConductorSource="_conductorRef" R_EnableOther="true" OnClick="OnClickResetImage" Class="ms-2">@Localizer["_Reset"]</R_Button>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+        <R_StackLayout Row Class="justify-content-end mt-3">
+            <R_ItemLayout>
+                <R_Button OnClick="@OnClickPreviousButton" R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit>@Localizer["_Previous"]</R_Button>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+            </R_ItemLayout>
+            <R_ItemLayout class="ms-2">
+                <R_Button OnClick="OnClickNextDepreciation">Next</R_Button>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+    <!-- Depreciation Info tab -->
+    <R_TabStripTab Title="@Localizer["_DepreciationInfo"]" Id="DepreciationInfo">
+        <R_StackLayout>
+            <!-- General Asset Information -->
+            <R_StackLayout Row class="mb-2">
+                <R_ItemLayout col="2">
+                    <R_Label>@Localizer["_AssetCode"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox Value="@_VM.Data.CASSET_CODE" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="2" class="ps-3">
+                    <R_Label>@Localizer["_InServiceDate"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_DatePicker @bind-Value="_VM.Data.DINSERVICE_DATE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" />
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row class="mb-2">
+                <R_ItemLayout col="2">
+                    <R_Label>@Localizer["_Reference"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_TextBox @bind-Value="_VM.Data.CREF_NO" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" />
+                </R_ItemLayout>
+                <R_ItemLayout col="3">
+                    <R_DatePicker @bind-Value="_VM.Data.DREF_DATE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" />
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row class="mb-2">
+                <R_ItemLayout col="2">
+                    <R_Label>@Localizer["_AssetName"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="6">
+                    <R_TextBox Value="@_VM.Data.CASSET_NAME" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row class="mb-2">
+                <R_ItemLayout col="2">
+                    <R_Label>@Localizer["_CurrencyExchangeRates"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="6">
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="2"><R_Label>@Localizer["_LocalCurrency"]</R_Label></R_ItemLayout>
+                                <R_ItemLayout col="2"><R_NumericTextBox Value="1" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                                <R_ItemLayout col="1"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                                <R_ItemLayout col="1"><R_Label>=</R_Label></R_ItemLayout>
+                                <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.NLCURRENCY_RATE" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                                <R_ItemLayout col="1"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="6">
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="2"><R_Label>@Localizer["_BaseCurrency"]</R_Label></R_ItemLayout>
+                                <R_ItemLayout col="2"><R_NumericTextBox Value="1" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                                <R_ItemLayout col="1"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                                <R_ItemLayout col="1"><R_Label>=</R_Label></R_ItemLayout>
+                                <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.NBCURRENCY_RATE" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                                <R_ItemLayout col="1"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row class="mb-3">
+                <R_ItemLayout col="2">
+                    <R_Label>@Localizer["_Currency"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.Data.CCURRENCY_CODE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" />
+                </R_ItemLayout>
+                <R_ItemLayout col="4">
+                    <R_TextBox Value="@(_VM.Data?.CCURRENCY_NAME ?? "")" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Old Depreciation Information -->
+            <R_GroupBox Title="@Localizer["_OldDepreciationInformation"]" Class="p-2">
+                <R_StackLayout Class="FAT01100Entry_r_groupbox">
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_DeprMethod"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="4"><R_TextBox Value="@_VM.Data.CDEPR_METHOD_OLD" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_StartDate"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="4"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE_OLD" Enabled="false" /></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_BookValue"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NLBOOK_VALUE_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NBBOOK_VALUE_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_ResidualValue"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NLRESIDUAL_VALUE_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NBRESIDUAL_VALUE_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_UsefulLife"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_YY_OLD" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="1"><R_Label>@Localizer["_Years"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_MM_OLD" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="1"><R_Label>@Localizer["_Months"]</R_Label></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_YearlyDepr"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NYEAR_DEPR_PCT_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="1"><R_Label>%</R_Label></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NLYEAR_DEPR_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NBYEAR_DEPR_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+            </R_GroupBox>
+
+            <!-- New Depreciation Information -->
+            <R_GroupBox Title="@Localizer["_NewDepreciationInformation"]" Class="p-2 mt-2">
+                <R_StackLayout Class="FAT01100Entry_r_groupbox">
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_DeprMethod"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="4"><R_TextBox @bind-Value="_VM.Data.CDEPR_METHOD" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_StartDate"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="4"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" /></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_BookValue"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NLBOOK_VALUE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NBBOOK_VALUE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_ResidualValue"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NLRESIDUAL_VALUE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NBRESIDUAL_VALUE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_UsefulLife"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.IUSEFUL_LIFE_YY" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" /></R_ItemLayout>
+                        <R_ItemLayout col="1"><R_Label>@Localizer["_Years"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.IUSEFUL_LIFE_MM" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" /></R_ItemLayout>
+                        <R_ItemLayout col="1"><R_Label>@Localizer["_Months"]</R_Label></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_YearlyDepr"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.NYEAR_DEPR_PCT" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                        <R_ItemLayout col="1"><R_Label>%</R_Label></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="2"></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NLYEAR_DEPR" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NBYEAR_DEPR" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+            </R_GroupBox>
+
+            <!-- Buttons -->
+            <R_StackLayout Row class="justify-content-end mt-3">
+                <R_ItemLayout>
+                    <R_Button OnClick="@OnClickPreviousButton" R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit>@Localizer["_Previous"]</R_Button>
+                </R_ItemLayout>
+                <R_ItemLayout>
+                    <R_CancelButton R_Conductor="@_conductorRef" />
+                </R_ItemLayout>
+                <R_ItemLayout class="ms-2">
+                    <R_SaveButton R_Conductor="@_conductorRef" />
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_StackLayout>
+    </R_TabStripTab>
+</R_TabStrip>
+
+<!-- R_Conductor Component for Asset Info CRUD -->
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="@_VM"
+             R_IsHeader
+             R_ServiceGetRecord="@ConductorAssetInfo_R_ServiceGetRecord"
+             R_Display="@ConductorAssetInfo_R_Display"
+             R_AfterAdd="@ConductorAssetInfo_R_AfterAdd"
+             R_Saving="@ConductorAssetInfo_R_Saving"
+             R_ServiceSave="@ConductorAssetInfo_R_ServiceSave"
+             R_ServiceDelete="@ConductorAssetInfo_R_ServiceDelete"
+             R_Validation="@ConductorAssetInfo_R_Validation"
+             R_BeforeCancel="@ConductorAssetInfo_BeforeCancel"
+             R_SetOther="@AssetInfoAndDepreciationInfo_SetOther"
+             R_CheckAdd="@ConductorAssetInfo_R_CheckAdd"
+             R_CheckEdit="@ConductorAssetInfo_R_CheckEdit" />
+
+<style>
+    .FAT01100Entry_r_groupbox {
+        padding-left: 4px;
+        padding-right: 5px;
+    }
+</style>

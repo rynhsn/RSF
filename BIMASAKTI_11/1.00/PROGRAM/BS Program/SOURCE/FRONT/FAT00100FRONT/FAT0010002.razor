@@ -456,7 +456,7 @@
 
                     
                 </R_TabStripTab>
-                <R_TabStripTab Title="@Localizer["_DepreciationInfo"]" Id="DepreciationInfo">
+                <R_TabStripTab Title="@Localizer["_DepreciationInfo"]" Id="DepreciationInfo" Enabled="@(_VM.AssetList?.Count() > 0)">
                     <R_StackLayout>
                         <!-- Header Section -->
                         <R_StackLayout Row class="mb-2">

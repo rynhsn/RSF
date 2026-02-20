@@ -1,0 +1,107 @@
+@page "/FAT01100"
+@inherits R_Page
+
+<R_TabStrip @ref="_tabStripRef" OnActiveTabIndexChanged="TabStrip_OnActiveTabIndexChanged">
+    <R_TabStripTab @ref="_tabTransList" Title="Transaction List" Id="@nameof(FAT01100)">
+        <R_StackLayout>
+            <!-- Row 1: Department & Period From -->
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label Required="true">Department*</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.ParameterDTO.CDEPT_CODE"
+                               OnLostFocused="txtDeptCode_OnLostFocused" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Lookup R_Before_Open_Lookup="btnDeptLook_R_Before_Open_Lookup"
+                              R_After_Open_Lookup="btnDeptLook_R_After_Open_Lookup">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.DeptName" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true" class="ps-5">
+                    <R_Label Style="text-align:right">Period From</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_NumericTextBox @bind-Value="_VM.YearFrom"
+                                      Arrows="true"
+                                      TValue="int"
+                                      Min="_VM.YearRangeData.IMIN_YEAR"
+                                      Max="_VM.YearRangeData.IMAX_YEAR"
+                                      Step="1"
+                                      ThousandSeparator="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_ComboBox @bind-Value="_VM.MonthFrom"
+                                Data="_VM.MonthList"
+                                ValueField="@nameof(FAT01100Model.VMs.PeriodMonthDTO.CPERIOD_NO)"
+                                TextField="@nameof(FAT01100Model.VMs.PeriodMonthDTO.CPERIOD_NO)" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Label>to</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_NumericTextBox @bind-Value="_VM.YearTo"
+                                      Arrows="true"
+                                      TValue="int"
+                                      Min="_VM.YearRangeData.IMIN_YEAR"
+                                      Max="_VM.YearRangeData.IMAX_YEAR"
+                                      Step="1"
+                                      ThousandSeparator="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="1">
+                    <R_ComboBox @bind-Value="_VM.MonthTo"
+                                Data="_VM.MonthList"
+                                ValueField="@nameof(FAT01100Model.VMs.PeriodMonthDTO.CPERIOD_NO)"
+                                TextField="@nameof(FAT01100Model.VMs.PeriodMonthDTO.CPERIOD_NO)" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Button OnClick="OnRefreshClick">Refresh</R_Button>
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Row 2: Asset -->
+            <R_StackLayout Row>
+                <R_ItemLayout col="1">
+                    <R_Label>Asset</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.ParameterDTO.CASSET_CODE"
+                               OnLostFocused="txtAssetCode_OnLostFocused" />
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Lookup R_Before_Open_Lookup="btnAssetLook_R_Before_Open_Lookup"
+                              R_After_Open_Lookup="btnAssetLook_R_After_Open_Lookup">...</R_Lookup>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
+                    <R_TextBox @bind-Value="_VM.AssetName" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+
+            <!-- Transaction List Grid -->
+            <R_Grid @ref="_gridTransListRef"
+                    DataSource="@_VM.TransList"
+                    R_ServiceGetListRecord="Grid_R_ServiceGetListRecord"
+                    R_ServiceGetRecord="Conductor_R_ServiceGetRecord"
+                    R_GridType="@R_eGridType.Original"
+                    Height="400px"
+                    Pageable="true"
+                    PageSize="20">
+                <R_GridColumns>
+                    <R_GridTextColumn FieldName="@nameof(FAT01100GeTransListResultDTO.CDEPT_CODE)" HeaderText="Dept" Width="80px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT01100GeTransListResultDTO.CREF_NO)" HeaderText="Ref No" Width="120px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT01100GeTransListResultDTO.CREF_DATE)" HeaderText="Date" Width="100px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT01100GeTransListResultDTO.CTRANS_STATUS_NAME)" HeaderText="Status" Width="100px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT01100GeTransListResultDTO.CASSET_CODE)" HeaderText="Asset Code" Width="120px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT01100GeTransListResultDTO.CASSET_NAME)" HeaderText="Asset Name" Width="200px" />
+                    <R_GridTextColumn FieldName="@nameof(FAT01100GeTransListResultDTO.CTRANS_DESC)" HeaderText="Description" Width="150px" />
+                </R_GridColumns>
+            </R_Grid>
+        </R_StackLayout>
+    </R_TabStripTab>
+
+    <R_TabStripTab @ref="_tabEntry" Title="Transaction Entry" Id="@nameof(FAT01100Entry)">
+        <R_TabPage R_Before_Open_TabPage="BeforeOpenEntry" R_After_Open_TabPage="AfterOpenEntry" R_TabEventCallback="EntryTabEventCallBack" />
+    </R_TabStripTab>
+</R_TabStrip>

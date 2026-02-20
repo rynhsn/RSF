@@ -86,7 +86,8 @@ namespace FAT00100Front
                     _VM.Mode = loParam.CMODE ?? string.Empty;
                     _VM.LocalCurrencyCode = loParam.CLOCAL_CURRENCY_CODE ?? string.Empty;
                     _VM.BaseCurrencyCode = loParam.CBASE_CURRENCY_CODE ?? string.Empty;
-                    _VM.AssetIncrementFlag = loParam.LASSET_INCREMENT_FLAG;
+                    //_VM.AssetIncrementFlag = loParam.LASSET_INCREMENT_FLAG;
+                    _VM.AssetIncrementFlag = loParam.LINCREMENT_FLAG;
                     _VM.JrngrpCode = loParam.LJRNGRP_MODE;
                     _VM.DeptMode = loParam.LDEPT_MODE;
                     _VM.RecId = loParam.CREC_ID ?? string.Empty;
