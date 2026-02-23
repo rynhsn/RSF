@@ -91,7 +91,7 @@ namespace GLM00500Model.ViewModel
 
             try
             {
-                poEntity.CYEAR = SelectedYear.ToString();
+                poEntity.CYEAR = SelectedYear.ToString(); // updated 23/02/2026
                 loResult = await _model.R_ServiceSaveAsync(poEntity, peCRUDMode);
                 BudgetHDEntity = loResult;
             }
