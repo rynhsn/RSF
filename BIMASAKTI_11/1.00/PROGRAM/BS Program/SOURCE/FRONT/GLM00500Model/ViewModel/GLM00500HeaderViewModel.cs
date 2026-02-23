@@ -91,7 +91,7 @@ namespace GLM00500Model.ViewModel
 
             try
             {
-                poEntity.CYEAR = R_FrontUtility.ConvertObjectToObject<string>(SelectedYear);
+                poEntity.CYEAR = SelectedYear.ToString();
                 loResult = await _model.R_ServiceSaveAsync(poEntity, peCRUDMode);
                 BudgetHDEntity = loResult;
             }
