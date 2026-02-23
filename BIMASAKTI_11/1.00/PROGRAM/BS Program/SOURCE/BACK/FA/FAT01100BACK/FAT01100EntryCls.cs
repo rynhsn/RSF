@@ -712,6 +712,56 @@ namespace FAT01100Back
             return loResult;
         }
 
+        /// <summary>RSP_GS_GET_GSB_CODE_LIST</summary>
+        public async Task<List<FAT01100GetGsbCodeListResultDTO>> FAT01100GetGsbCodeList(FAT01100GetGsbCodeListParameterDTO poParameter)
+        {
+            string lcMethod = nameof(FAT01100GetGsbCodeList);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            _logger.LogInfo("START method {MethodName}", lcMethod);
+
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
+            List<FAT01100GetGsbCodeListResultDTO> loResult = new();
+
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+                loCmd.Parameters.Clear();
+
+                loCmd.CommandText = "RSP_GS_GET_GSB_CODE_LIST ";
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loDb.R_AddCommandParameter(loCmd, "@CAPPLICATION", DbType.String, 20, poParameter.CAPPLICATION);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCLASS_ID", DbType.String, 40, poParameter.CCLASS_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 2, poParameter.CLANGUAGE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CREC_ID_LIST", DbType.String, -1, poParameter.CREC_ID_LIST);
+
+                var loDbParams = loCmd.Parameters.Cast<DbParameter>()
+                    .Where(x => x != null && x.ParameterName != null && x.ParameterName.StartsWith("@"))
+                    .ToDictionary(x => x.ParameterName!, x => x.Value);
+
+                _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
+
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                loResult = R_Utility.R_ConvertTo<FAT01100GetGsbCodeListResultDTO>(loDataTable).ToList();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loDb != null)
+                    loDb = null;
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _logger.LogInfo("END method {MethodName}", lcMethod);
+            return loResult;
+        }
+
         #endregion
 
         private async Task<FAT01100ImageStorageTypeDTO> GetStorageType()

@@ -44,6 +44,9 @@ namespace FAT01100Model.VMs
         public ObservableCollection<FAT01100GetCurrencyListResultDTO> CurrencyList { get; set; } = new ObservableCollection<FAT01100GetCurrencyListResultDTO>();
         public ObservableCollection<FAT01100GetDeptLookupListResultDTO> DeptLookupList { get; set; } = new ObservableCollection<FAT01100GetDeptLookupListResultDTO>();
 
+        public ObservableCollection<FAT01100GetGsbCodeListResultDTO> GsbCodeList { get; set; } = new ObservableCollection<FAT01100GetGsbCodeListResultDTO>();
+
+
         // Mode / flags
         public bool LenableEdit { get; set; }
 
@@ -331,6 +334,23 @@ namespace FAT01100Model.VMs
             try
             {
                 await _model.FAT01100SubmitTrans(poParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        // call FAT01100GetGsbCodeListAsync from model
+        public async Task GetGsbCodeListAsync()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loResult = await _model.FAT01100GetGsbCodeListAsync();
+                GsbCodeList = new ObservableCollection<FAT01100GetGsbCodeListResultDTO>(loResult.Data ?? new List<FAT01100GetGsbCodeListResultDTO>());
             }
             catch (Exception ex)
             {

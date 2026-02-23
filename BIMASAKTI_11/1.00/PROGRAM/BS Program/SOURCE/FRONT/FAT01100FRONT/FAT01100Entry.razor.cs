@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Interfaces;
+using FAT01100FrontResources;
 
 namespace FAT01100Front
 {
@@ -31,6 +32,8 @@ namespace FAT01100Front
 
         private R_TabStrip _tabMain = new();
         private R_TabStripTab _tabEntry = new();
+        //private R_TabStripTab? _tabExpenseAllocation;
+        //private R_TabPage? _tabPageExpenseAllocation;
 
         #region Dependency Injection
         [Inject] private IClientHelper ClientHelper { get; set; } = default!;
@@ -38,6 +41,8 @@ namespace FAT01100Front
         private R_eFileSelectAccept[] accepts = { R_eFileSelectAccept.Image };
         [Inject] private R_ILocalizer<FAT01100FrontResources.Resources_Dummy_Class> Localizer { get; set; } = default!;
         #endregion
+
+        private bool IsSuccess { get; set; } = false;
 
         protected override async Task R_Init_From_Master(object? poParam)
         {
@@ -50,6 +55,7 @@ namespace FAT01100Front
                     ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty);
                 await _VM.GetCurrencyListAsync(ClientHelper.CompanyId, ClientHelper.UserId, ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty);
                 await _VM.GetDeptLookupListAsync(ClientHelper.CompanyId, ClientHelper.UserId);
+                await _VM.GetGsbCodeListAsync();
 
                 if (poParam != null && _conductorRef != null)
                 {
@@ -177,58 +183,111 @@ namespace FAT01100Front
                     _VM.Data.CASSET_CODE = loData.CASSET_CODE;
                     _VM.Data.CASSET_NAME = loData.CASSET_NAME;
                     _VM.Data.CASSET_TRANS_SEQ_NO = loData.CASSET_TRANS_SEQ_NO ?? string.Empty;
-                    await _VM.FAT01100GetAsset(ClientHelper.CompanyId, loData.CASSET_CODE, ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty);
+                    if (_conductorRef?.R_ConductorMode == R_eConductorMode.Add)
+                    {
+                        await _VM.FAT01100GetAsset(ClientHelper.CompanyId, loData.CASSET_CODE, ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty);
 
-                    // set old data from get asset data
-                    _VM.Data.CINSERVICE_DATE = _VM.GetAssetData.CINSERVICE_DATE;
-                    _VM.Data.CASSET_DEPT_CODE_OLD = _VM.GetAssetData.CASSET_DEPT_CODE;
-                    _VM.Data.CASSET_DEPT_NAME_OLD = _VM.GetAssetData.CASSET_DEPT_NAME;
-                    _VM.Data.CJRNGRP_CODE_OLD= _VM.GetAssetData.CJRNGRP_CODE;
-                    _VM.Data.CJRNGRP_NAME_OLD = _VM.GetAssetData.CJRNGRP_NAME;
-                    _VM.Data.CCATEGORY_ID_OLD = _VM.GetAssetData.CCATEGORY_ID;
-                    _VM.Data.CCATEGORY_NAME_OLD = _VM.GetAssetData.CCATEGORY_NAME;
-                    _VM.Data.CTAX_CATEGORY_ID_OLD = _VM.GetAssetData.CTAX_CATEGORY_ID;
-                    _VM.Data.CTAX_CATEGORY_NAME_OLD = _VM.GetAssetData.CTAX_CATEGORY_NAME;
-                    _VM.Data.IQTY_OLD = _VM.GetAssetData.IASSET_QTY;
-                    _VM.Data.CASSET_UNIT_OLD = _VM.GetAssetData.CUNIT;
-                    _VM.Data.CSERIAL_NO_OLD = _VM.GetAssetData.CSERIAL_NO;
-                    _VM.Data.CASSET_OWNER_OLD = _VM.GetAssetData.CASSET_OWNER;
-                    _VM.Data.CASSET_DESC_OLD = _VM.GetAssetData.CTRANS_DESCRIPTION;
-                    _VM.Data.CLOCATION_ID_OLD = _VM.GetAssetData.CLOCATION_ID;
-                    _VM.Data.CLOCATION_NAME_OLD = _VM.GetAssetData.CLOCATION_NAME;
-                    _VM.Data.CPROPERTY_ID_OLD = _VM.GetAssetData.CPROPERTY_ID;
-                    _VM.Data.CPROPERTY_NAME_OLD = _VM.GetAssetData.CPROPERTY_NAME;
-                    _VM.Data.CBUILDING_ID_OLD = _VM.GetAssetData.CBUILDING_ID;
-                    _VM.Data.CBUILDING_NAME_OLD = _VM.GetAssetData.CBUILDING_NAME;
-                    _VM.Data.CFLOOR_ID_OLD = _VM.GetAssetData.CFLOOR_ID;
-                    _VM.Data.CFLOOR_NAME_OLD = _VM.GetAssetData.CFLOOR_NAME;
-                    _VM.Data.CSTORAGE_ID_OLD = _VM.GetAssetData.CSTORAGE_ID;
-                    _VM.Data.OASSET_IMAGE_OLD= _VM.GetAssetData.OASSET_IMAGE;
+                        // set old data from get asset data
+                        _VM.Data.CINSERVICE_DATE = _VM.GetAssetData.CINSERVICE_DATE;
+                        _VM.Data.DINSERVICE_DATE = DateTime.ParseExact(_VM.GetAssetData.CINSERVICE_DATE, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        _VM.Data.CASSET_DEPT_CODE_OLD = _VM.GetAssetData.CASSET_DEPT_CODE;
+                        _VM.Data.CASSET_DEPT_NAME_OLD = _VM.GetAssetData.CASSET_DEPT_NAME;
+                        _VM.Data.CJRNGRP_CODE_OLD = _VM.GetAssetData.CJRNGRP_CODE;
+                        _VM.Data.CJRNGRP_NAME_OLD = _VM.GetAssetData.CJRNGRP_NAME;
+                        _VM.Data.CCATEGORY_ID_OLD = _VM.GetAssetData.CCATEGORY_ID;
+                        _VM.Data.CCATEGORY_NAME_OLD = _VM.GetAssetData.CCATEGORY_NAME;
+                        _VM.Data.CTAX_CATEGORY_ID_OLD = _VM.GetAssetData.CTAX_CATEGORY_ID;
+                        _VM.Data.CTAX_CATEGORY_NAME_OLD = _VM.GetAssetData.CTAX_CATEGORY_NAME;
+                        _VM.Data.IQTY_OLD = _VM.GetAssetData.IASSET_QTY;
+                        _VM.Data.CASSET_UNIT_OLD = _VM.GetAssetData.CUNIT;
+                        _VM.Data.CSERIAL_NO_OLD = _VM.GetAssetData.CSERIAL_NO;
+                        _VM.Data.CASSET_OWNER_OLD = _VM.GetAssetData.CASSET_OWNER;
+                        _VM.Data.CASSET_DESC_OLD = _VM.GetAssetData.CTRANS_DESCRIPTION;
+                        _VM.Data.CLOCATION_ID_OLD = _VM.GetAssetData.CLOCATION_ID;
+                        _VM.Data.CLOCATION_NAME_OLD = _VM.GetAssetData.CLOCATION_NAME;
+                        _VM.Data.CPROPERTY_ID_OLD = _VM.GetAssetData.CPROPERTY_ID;
+                        _VM.Data.CPROPERTY_NAME_OLD = _VM.GetAssetData.CPROPERTY_NAME;
+                        _VM.Data.CBUILDING_ID_OLD = _VM.GetAssetData.CBUILDING_ID;
+                        _VM.Data.CBUILDING_NAME_OLD = _VM.GetAssetData.CBUILDING_NAME;
+                        _VM.Data.CFLOOR_ID_OLD = _VM.GetAssetData.CFLOOR_ID;
+                        _VM.Data.CFLOOR_NAME_OLD = _VM.GetAssetData.CFLOOR_NAME;
+                        _VM.Data.CSTORAGE_ID_OLD = _VM.GetAssetData.CSTORAGE_ID;
+                        _VM.Data.OASSET_IMAGE_OLD = _VM.GetAssetData.OASSET_IMAGE;
 
-                    // set new data from get asset data
-                    _VM.Data.CASSET_DEPT_CODE = _VM.GetAssetData.CASSET_DEPT_CODE;
-                    _VM.Data.CASSET_DEPT_NAME = _VM.GetAssetData.CASSET_DEPT_NAME;
-                    _VM.Data.CJRNGRP_CODE = _VM.GetAssetData.CJRNGRP_CODE;
-                    _VM.Data.CJRNGRP_NAME = _VM.GetAssetData.CJRNGRP_NAME;
-                    _VM.Data.CCATEGORY_ID = _VM.GetAssetData.CCATEGORY_ID;
-                    _VM.Data.CCATEGORY_NAME = _VM.GetAssetData.CCATEGORY_NAME;
-                    _VM.Data.CTAX_CATEGORY_ID = _VM.GetAssetData.CTAX_CATEGORY_ID;
-                    _VM.Data.CTAX_CATEGORY_NAME = _VM.GetAssetData.CTAX_CATEGORY_NAME;
-                    _VM.Data.IQTY = _VM.GetAssetData.IASSET_QTY;
-                    _VM.Data.CASSET_UNIT = _VM.GetAssetData.CUNIT;
-                    _VM.Data.CSERIAL_NO = _VM.GetAssetData.CSERIAL_NO;
-                    _VM.Data.CASSET_OWNER = _VM.GetAssetData.CASSET_OWNER;
-                    _VM.Data.CASSET_DESC = _VM.GetAssetData.CTRANS_DESCRIPTION;
-                    _VM.Data.CLOCATION_ID = _VM.GetAssetData.CLOCATION_ID;
-                    _VM.Data.CLOCATION_NAME = _VM.GetAssetData.CLOCATION_NAME;
-                    _VM.Data.CPROPERTY_ID = _VM.GetAssetData.CPROPERTY_ID;
-                    _VM.Data.CPROPERTY_NAME = _VM.GetAssetData.CPROPERTY_NAME;
-                    _VM.Data.CBUILDING_ID = _VM.GetAssetData.CBUILDING_ID;
-                    _VM.Data.CBUILDING_NAME = _VM.GetAssetData.CBUILDING_NAME;
-                    _VM.Data.CFLOOR_ID = _VM.GetAssetData.CFLOOR_ID;
-                    _VM.Data.CFLOOR_NAME = _VM.GetAssetData.CFLOOR_NAME;
-                    _VM.Data.CSTORAGE_ID = _VM.GetAssetData.CSTORAGE_ID;
-                    _VM.Data.OASSET_IMAGE = _VM.GetAssetData.OASSET_IMAGE;
+                        // set new data from get asset data
+                        _VM.Data.CASSET_DEPT_CODE = _VM.GetAssetData.CASSET_DEPT_CODE;
+                        _VM.Data.CASSET_DEPT_NAME = _VM.GetAssetData.CASSET_DEPT_NAME;
+                        _VM.Data.CJRNGRP_CODE = _VM.GetAssetData.CJRNGRP_CODE;
+                        _VM.Data.CJRNGRP_NAME = _VM.GetAssetData.CJRNGRP_NAME;
+                        _VM.Data.CCATEGORY_ID = _VM.GetAssetData.CCATEGORY_ID;
+                        _VM.Data.CCATEGORY_NAME = _VM.GetAssetData.CCATEGORY_NAME;
+                        _VM.Data.CTAX_CATEGORY_ID = _VM.GetAssetData.CTAX_CATEGORY_ID;
+                        _VM.Data.CTAX_CATEGORY_NAME = _VM.GetAssetData.CTAX_CATEGORY_NAME;
+                        _VM.Data.IQTY = _VM.GetAssetData.IASSET_QTY;
+                        _VM.Data.CASSET_UNIT = _VM.GetAssetData.CUNIT;
+                        _VM.Data.CSERIAL_NO = _VM.GetAssetData.CSERIAL_NO;
+                        _VM.Data.CASSET_OWNER = _VM.GetAssetData.CASSET_OWNER;
+                        _VM.Data.CASSET_DESC = _VM.GetAssetData.CTRANS_DESCRIPTION;
+                        _VM.Data.CLOCATION_ID = _VM.GetAssetData.CLOCATION_ID;
+                        _VM.Data.CLOCATION_NAME = _VM.GetAssetData.CLOCATION_NAME;
+                        _VM.Data.CPROPERTY_ID = _VM.GetAssetData.CPROPERTY_ID;
+                        _VM.Data.CPROPERTY_NAME = _VM.GetAssetData.CPROPERTY_NAME;
+                        _VM.Data.CBUILDING_ID = _VM.GetAssetData.CBUILDING_ID;
+                        _VM.Data.CBUILDING_NAME = _VM.GetAssetData.CBUILDING_NAME;
+                        _VM.Data.CFLOOR_ID = _VM.GetAssetData.CFLOOR_ID;
+                        _VM.Data.CFLOOR_NAME = _VM.GetAssetData.CFLOOR_NAME;
+                        _VM.Data.CSTORAGE_ID = _VM.GetAssetData.CSTORAGE_ID;
+                        _VM.Data.OASSET_IMAGE = _VM.GetAssetData.OASSET_IMAGE;
+
+
+                        // tab depreciation info
+                        _VM.Data.CCURRENCY_CODE = _VM.GetAssetData.CCURRENCY_CODE;
+                        _VM.Data.CCURRENCY_NAME = _VM.GetAssetData.CCURRENCY_NAME;
+
+                        _VM.Data.NLBASE_RATE = _VM.GetAssetData.NLBASE_RATE;
+                        _VM.Data.CCURRENCY_CODE = _VM.GetAssetData.CCURRENCY_CODE;
+                        _VM.Data.NLCURRENCY_RATE = _VM.GetAssetData.NLCURRENCY_RATE;
+
+                        _VM.Data.NBBASE_RATE = _VM.GetAssetData.NBBASE_RATE;
+                        _VM.Data.NBCURRENCY_RATE = _VM.GetAssetData.NBCURRENCY_RATE;
+                        _VM.Data.CBASE_CURRENCY_CODE = _VM.GetAssetData.CBASE_CURRENCY_CODE;
+
+                        // set old depreciation info
+                        _VM.Data.CDEPR_METHOD_OLD = _VM.GetAssetData.CDEPR_METHOD;
+                        _VM.Data.CSTART_DATE_OLD = _VM.GetAssetData.CSTART_DATE;
+                        _VM.Data.DSTART_DATE_OLD = DateTime.ParseExact(_VM.GetAssetData.CSTART_DATE, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        _VM.Data.NBOOK_VALUE_OLD = _VM.GetAssetData.NBOOK_VALUE;
+                        _VM.Data.NLBOOK_VALUE_OLD = _VM.GetAssetData.NLBOOK_VALUE;
+                        _VM.Data.NBBOOK_VALUE_OLD = _VM.GetAssetData.NBBOOK_VALUE;
+                        _VM.Data.NRESIDUAL_VALUE_OLD = _VM.GetAssetData.NRESIDUAL_VALUE;
+                        _VM.Data.NLRESIDUAL_VALUE_OLD = _VM.GetAssetData.NLRESIDUAL_VALUE;
+                        _VM.Data.NBRESIDUAL_VALUE_OLD = _VM.GetAssetData.NBRESIDUAL_VALUE;
+                        _VM.Data.IUSEFUL_LIFE_YY_OLD = _VM.GetAssetData.IUSEFUL_LIFE_YY;
+                        _VM.Data.IUSEFUL_LIFE_MM_OLD = _VM.GetAssetData.IUSEFUL_LIFE_MM;
+                        _VM.Data.NYEAR_DEPR_PCT_OLD = _VM.GetAssetData.NYEAR_DEPR_PCT;
+                        _VM.Data.NYEAR_DEPR_OLD = _VM.GetAssetData.NYEAR_DEPR;
+                        _VM.Data.NLYEAR_DEPR_OLD = _VM.GetAssetData.NLYEAR_DEPR;
+                        _VM.Data.NBYEAR_DEPR_OLD = _VM.GetAssetData.NBYEAR_DEPR;
+
+                        // set new depreciation info
+                        _VM.Data.CDEPR_METHOD = _VM.GetAssetData.CDEPR_METHOD;
+                        _VM.Data.CSTART_DATE = _VM.GetAssetData.CSTART_DATE;
+                        _VM.Data.DSTART_DATE = DateTime.ParseExact(_VM.GetAssetData.CSTART_DATE, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        _VM.Data.NBOOK_VALUE = _VM.GetAssetData.NBOOK_VALUE;
+                        _VM.Data.NLBOOK_VALUE = _VM.GetAssetData.NLBOOK_VALUE;
+                        _VM.Data.NBBOOK_VALUE = _VM.GetAssetData.NBBOOK_VALUE;
+                        _VM.Data.NRESIDUAL_VALUE = _VM.GetAssetData.NRESIDUAL_VALUE;
+                        _VM.Data.NLRESIDUAL_VALUE = _VM.GetAssetData.NLRESIDUAL_VALUE;
+                        _VM.Data.NBRESIDUAL_VALUE = _VM.GetAssetData.NBRESIDUAL_VALUE;
+                        _VM.Data.IUSEFUL_LIFE_YY = _VM.GetAssetData.IUSEFUL_LIFE_YY;
+                        _VM.Data.IUSEFUL_LIFE_MM = _VM.GetAssetData.IUSEFUL_LIFE_MM;
+                        _VM.Data.NYEAR_DEPR_PCT = _VM.GetAssetData.NYEAR_DEPR_PCT;
+                        _VM.Data.NYEAR_DEPR = _VM.GetAssetData.NYEAR_DEPR;
+                        _VM.Data.NLYEAR_DEPR = _VM.GetAssetData.NLYEAR_DEPR;
+                        _VM.Data.NBYEAR_DEPR = _VM.GetAssetData.NBYEAR_DEPR;
+                    }
+                    
+
                 }
             }
             catch (Exception ex)
@@ -437,11 +496,150 @@ namespace FAT01100Front
 
         private async Task OnClickNextAssetInfo()
         {
-            await CloseProgramAsync();
+            R_Exception loException = new R_Exception();
+            try
+            {
+                //validation when next
+                if (_VM == null || _VM.Data == null)
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_dataNull"));
+                }
+                else
+                {
+                    
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_department"));
+                    }
+                    if (_VM.Data.DREF_DATE == null)
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_ReferenceDate"));
+                    }
+
+                    //DateTime DsystemParamSoftPeriod = DateTime.ParseExact(_VM.SystemParamData.CSOFT_PERIOD, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                    int IsystemParamSoftPeriod = int.TryParse(_VM.SystemParamData.CSOFT_PERIOD, out var result) ? result : 0;
+                    string CrefDate = _VM.Data.DREF_DATE.ToString("yyyyMM");
+                    int IrefDate= int.TryParse(CrefDate, out var resultRef) ? resultRef : 0;
+                    if (IrefDate < IsystemParamSoftPeriod)
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_ReferenceDateSoftPeriod"));
+                    }
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetCode"));
+                    }
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
+                    {
+                        loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_transactionDescription"));
+                    }
+
+                }
+
+                if (!loException.HasError)
+                {
+                    IsSuccess = true;
+                    await _tabMain.SetActiveTabAsync("tab_AssetInfo");
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
         }
         private async Task OnClickNextDepreciation()
         {
-            await CloseProgramAsync();
+            R_Exception loException = new R_Exception();
+            try
+            {
+                //if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE))
+                //{
+                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_department"));
+                //}
+                //if (_VM.Data.DREF_DATE == null)
+                //{
+                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_ReferenceDate"));
+                //}
+
+                ////DateTime DsystemParamSoftPeriod = DateTime.ParseExact(_VM.SystemParamData.CSOFT_PERIOD, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                //int IsystemParamSoftPeriod = int.TryParse(_VM.SystemParamData.CSOFT_PERIOD, out var result) ? result : 0;
+                //string CrefDate = _VM.Data.DREF_DATE.ToString("yyyyMM");
+                //int IrefDate = int.TryParse(CrefDate, out var resultRef) ? resultRef : 0;
+                //if (IrefDate < IsystemParamSoftPeriod)
+                //{
+                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_ReferenceDateSoftPeriod"));
+                //}
+                //if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
+                //{
+                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetCode"));
+                //}
+                //if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
+                //{
+                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_transactionDescription"));
+                //}
+
+                //Asset Code	Empty	Asset Code is required!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetCode"));
+                }
+                //Asset Name	Empty 	Asset Name is required!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_NAME))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetName"));
+                }
+                //Asset Department	Empty	Please select Asset Department!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetDepartment"));
+                }
+                //Asset Journal Group	Empty	Please select Asset Journal Group!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CJRNGRP_CODE))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetJournalGroup"));
+                }
+                //Asset Category	Empty 	Please select Asset Category!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CCATEGORY_ID))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetCategory"));
+                }
+                //Asset Tax Category	Empty	Please select Asset Tax Category!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CTAX_CATEGORY_ID))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetTaxCategory"));
+                }		
+                //Quantity	<=0	Quantity must be greater than 0! 
+                if (_VM.Data.IQTY <= 0)
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_Quantity"));
+                }
+                //Unit	Empty 	Unit is required!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_UNIT))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_Unit"));
+                }
+                //Location	Empty	Location is required!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CLOCATION_ID))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_Location"));
+                }
+                //User / Owner	Empty	User / Owner is required!
+                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_OWNER))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_UserOwner"));
+                }
+
+                if (!loException.HasError)
+                {
+                    IsSuccess = true;
+                    await _tabMain.SetActiveTabAsync("tab_DepreciationInfo");
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
         }
 
         private Task OnClickPreviousButton() => Task.CompletedTask;
@@ -469,18 +667,169 @@ namespace FAT01100Front
             return Task.CompletedTask;
         }
 
+        
+        private void OnDepreciationMethodChanged(string value)
+        {
+
+            if (_VM.Data != null)
+            {
+                _VM.Data.CDEPR_METHOD = value;
+                CalculateYearlyDepreciationProcess(value);
+            }
+        }
+        private void CalculateYearlyDepreciationProcess(string value)
+        {
+            //VAR_NO_DEPRECIATION = 00-ND
+            //VAR_MANUAL = 10-MN
+            //VAR_STRAIGHT_LINE = 20-SL
+            //VAR_DECLINING = 30-DC
+            //VAR_DOUBLE_DECLINING = 40-DD
+
+            if (value == "00-ND" || value == "10-MN")
+
+            {
+                _VM.Data.NYEAR_DEPR_PCT = 0;
+            }
+            else
+            if (value == "40-DD")
+            {
+                decimal lnDenominator = (_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM;
+                if (lnDenominator == 0)
+                {
+                    _VM.Data.NYEAR_DEPR_PCT = 0;
+                }
+                else
+                {
+                    _VM.Data.NYEAR_DEPR_PCT = ((1m / lnDenominator) * 12) * 200;
+                }
+            }
+            else
+            {
+                decimal lnDenominator = (_VM.Data.IREMAINING_LIFE_YY * 12) + _VM.Data.IREMAINING_LIFE_MM;
+                if (lnDenominator == 0)
+                {
+                    _VM.Data.NYEAR_DEPR_PCT = 0;
+                }
+                else
+                {
+                    _VM.Data.NYEAR_DEPR_PCT = ((1m / lnDenominator) * 12) * 100;
+                }
+            }
+
+            decimal decVal = 0.01m;
+            if (value == "20-SL")
+            {
+                decimal lnDenominator = (_VM.Data.NBOOK_VALUE - _VM.Data.NRESIDUAL_VALUE);
+                if (lnDenominator == 0)
+                {
+                    _VM.Data.NYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator * decVal;
+                }
+                decimal lnDenominator2 = (_VM.Data.NLBOOK_VALUE - _VM.Data.NLRESIDUAL_VALUE);
+                if (lnDenominator2 == 0)
+                {
+                    _VM.Data.NLYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator2 * decVal;
+                }
+                decimal lnDenominator3 = (_VM.Data.NBBOOK_VALUE - _VM.Data.NBRESIDUAL_VALUE);
+                if (lnDenominator3 == 0)
+                {
+                    _VM.Data.NBYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator3 * decVal;
+                }
+            }
+            else
+            {
+                decimal lnDenominator4 = _VM.Data.NBOOK_VALUE;
+                if (lnDenominator4 == 0)
+                {
+                    _VM.Data.NYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator4 * decVal;
+                }
+                decimal lnDenominator5 = _VM.Data.NLBOOK_VALUE;
+                if (lnDenominator5 == 0)
+                {
+                    _VM.Data.NLYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator5 * decVal;
+                }
+                decimal lnDenominator6 = _VM.Data.NBBOOK_VALUE;
+                if (lnDenominator6 == 0)
+                {
+                    _VM.Data.NBYEAR_DEPR = 0;
+                }
+                else
+                {
+                    _VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator6 * decVal;
+                }
+            }
+        }
+        private void OnResidualChanged(decimal val)
+        {
+            _VM.Data.NRESIDUAL_VALUE = val;
+            _VM.Data.NLRESIDUAL_VALUE = (val / _VM.Data.NLBASE_RATE) * _VM.Data.NLCURRENCY_RATE;
+            _VM.Data.NBRESIDUAL_VALUE = (val / _VM.Data.NBBASE_RATE) * _VM.Data.NBCURRENCY_RATE;
+            CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
+        }
+
+        private void OnUsefulLifeYearChanged(int val)
+        {
+            _VM.Data.IUSEFUL_LIFE_YY = val;
+            _VM.Data.IREMAINING_LIFE_YY = val;
+            CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
+        }
+
+        private void OnUsefulLifeMonthChanged(int val)
+        {
+            _VM.Data.IUSEFUL_LIFE_MM = val;
+            _VM.Data.IREMAINING_LIFE_MM = val;
+            CalculateYearlyDepreciationProcess(_VM.Data.CDEPR_METHOD);
+        }
+
         #region Asset Info Conductor (Asset Info tab)
-        private Task ConductorAssetInfo_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_R_Display(R_DisplayEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_R_AfterAdd(R_AfterAddEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_R_Saving(R_SavingEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_R_ServiceSave(R_ServiceSaveEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_R_ServiceDelete(R_ServiceDeleteEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_R_Validation(R_ValidationEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_BeforeCancel(R_BeforeCancelEventArgs eventArgs) => Task.CompletedTask;
-        private Task AssetInfoAndDepreciationInfo_SetOther(R_SetEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_R_CheckAdd(R_CheckAddEventArgs eventArgs) => Task.CompletedTask;
-        private Task ConductorAssetInfo_R_CheckEdit(R_CheckEditEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_R_Display(R_DisplayEventArgs eventArgs) => Task.CompletedTask;
+
+        private async void Conductor_R_AfterAdd(R_AfterAddEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+                var loEntity = (FAT01100DTO)eventArgs.Data;
+                loEntity.DREF_DATE = DateTime.Now;
+                loEntity.CREF_DATE = DateTime.Now.ToString("yyyyMMdd");
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        private Task Conductor_R_Saving(R_SavingEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_R_ServiceSave(R_ServiceSaveEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_R_ServiceDelete(R_ServiceDeleteEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_R_Validation(R_ValidationEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_BeforeCancel(R_BeforeCancelEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_SetOther(R_SetEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_R_CheckAdd(R_CheckAddEventArgs eventArgs) => Task.CompletedTask;
+        private Task Conductor_R_CheckEdit(R_CheckEditEventArgs eventArgs) => Task.CompletedTask;
         #endregion
     }
 }

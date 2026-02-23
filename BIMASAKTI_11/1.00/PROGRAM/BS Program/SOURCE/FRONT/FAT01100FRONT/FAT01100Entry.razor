@@ -3,7 +3,7 @@
 @using R_BlazorFrontEnd.Enums
 
 <R_TabStrip @ref="_tabMain" OnActiveTabIndexChanging="OnChangeTab">
-    <R_TabStripTab @ref="_tabEntry" Id="@nameof(FAT01100Entry)" Title="Transaction Entry">
+    <R_TabStripTab @ref="_tabEntry" Id="tab_Entry" Title="Transaction Entry">
         <R_StackLayout>
             <!-- Row 1: Department* & Status -->
             <R_StackLayout Row Class="mb-1">
@@ -14,14 +14,14 @@
                     <R_TextBox @bind-Value="_VM.Data.CDEPT_CODE"
                                R_ConductorSource="_conductorRef"
                                R_EnableAdd="true"
-                               R_EnableEdit="true" />
+                               R_EnableEdit="false" />
                 </R_ItemLayout>
                 <R_ItemLayout auto="true">
                     <R_Lookup R_ConductorSource="_conductorRef"
                               R_Before_Open_Lookup="BeforeOpenLookupDept"
                               R_After_Open_Lookup="AfterOpenLookupDept"
                               R_EnableAdd="true"
-                              R_EnableEdit="true">...</R_Lookup>
+                              R_EnableEdit="false">...</R_Lookup>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_VM.Data.CDEPT_NAME" Enabled="false" />
@@ -37,7 +37,9 @@
                     <R_Label Required="true">Reference No.*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
-                    <R_TextBox @bind-Value="_VM.Data.CREF_NO" R_ConductorSource="_conductorRef" Enabled="false" />
+                    <R_TextBox @bind-Value="_VM.Data.CREF_NO" R_ConductorSource="_conductorRef"
+                               R_EnableAdd="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Add && _VM.TransCodeInfoData.LINCREMENT_FLAG==false)"
+                               R_EnableEdit="true" />
                 </R_ItemLayout>
                 <R_ItemLayout col="2" class="ps-4">
                     <R_Label Required="true">Ref. Date*</R_Label>
@@ -59,14 +61,14 @@
                     <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
                               R_ConductorSource="_conductorRef"
                               R_EnableAdd="true"
-                              R_EnableEdit="true" />
+                              R_EnableEdit="false" />
                 </R_ItemLayout>
                 <R_ItemLayout auto="true">
                     <R_Lookup R_ConductorSource="_conductorRef"
                               R_Before_Open_Lookup="BeforeOpenLookupAsset"
                               R_After_Open_Lookup="AfterOpenLookupAsset"
                               R_EnableAdd="true"
-                              R_EnableEdit="true">...</R_Lookup>
+                              R_EnableEdit="false">...</R_Lookup>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_Label>Trans. Seq. No</R_Label>
@@ -169,30 +171,39 @@
             
         </R_StackLayout>
     </R_TabStripTab>
-    <R_TabStripTab Title="@Localizer["_AssetInfo"]" Id="AssetInfo">
+    <R_TabStripTab Title="@Localizer["_AssetInfo"]" Id="tab_AssetInfo">
         <R_StackLayout Row class="mb-1">
-            <R_ItemLayout col="4">
-                <R_Label>@Localizer["_AssetCode"]*</R_Label>
+            <R_ItemLayout col="2">
+                <R_Label>@Localizer["_AssetCode"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="3">
-                <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
-                           R_ConductorSource="@_conductorRef"
-                           Enabled="false"/>
-
+                <R_TextBox Value="@_VM.Data.CASSET_CODE" Enabled="false" />
             </R_ItemLayout>
-        </R_StackLayout>
-        <R_StackLayout Row class="mb-1">
-            <R_ItemLayout col="4">
-                <R_Label>@Localizer["_AssetName"]*</R_Label>
+            <R_ItemLayout col="2" class="ps-5">
+                <R_Label>@Localizer["_InServiceDate"]</R_Label>
             </R_ItemLayout>
             <R_ItemLayout col="3">
-                <R_TextBox @bind-Value="_VM.Data.CASSET_NAME"
-                           R_ConductorSource="@_conductorRef"
-                           Enabled="false" />
-
+                <R_DatePicker @bind-Value="_VM.Data.DINSERVICE_DATE" Enabled="false" />
             </R_ItemLayout>
         </R_StackLayout>
-        <R_GroupBox Title="@Localizer["_OldAssetInformation"]" Class="p-2">
+        <R_StackLayout Row class="mb-3">
+            <R_ItemLayout col="2">
+                <R_Label>@Localizer["_AssetName"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox Value="@_VM.Data.CASSET_NAME" Enabled="false" />
+            </R_ItemLayout>
+            <R_ItemLayout col="1" Class="ms-4 pe-1" style="text-align:right;">
+                <R_Label>@Localizer["_Reference"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="_VM.Data.CREF_NO" Enabled="false" />
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DatePicker @bind-Value="_VM.Data.DREF_DATE" Enabled="false" />
+            </R_ItemLayout>
+        </R_StackLayout>
+        <R_GroupBox TitleClass="text-danger" Title="@Localizer["_OldAssetInformation"]" Class="p-2">
             <R_StackLayout Class="FAT01100Entry_r_groupbox">
                 <R_StackLayout Row class="mb-2">
                     <!-- Left column: Asset Details -->
@@ -246,10 +257,10 @@
                                 <R_Label>@Localizer["_Quantity"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="2">
-                                <R_TextBox Value="@_VM.Data.IQTY_OLD.ToString()" Enabled="false" />
+                                <R_TextBox Value="@_VM.Data.IQTY_OLD.ToString()" Max="9999999" Min="1" Step="1" Enabled="false" />
                             </R_ItemLayout>
                             <R_ItemLayout col="5">
-                                <R_TextBox Value="@_VM.Data.CUNIT_OLD" Enabled="false" />
+                                <R_TextBox Value="@_VM.Data.CASSET_UNIT_OLD" Enabled="false" />
                             </R_ItemLayout>
                         </R_StackLayout>
                         <R_StackLayout Row class="mb-1">
@@ -265,7 +276,7 @@
                                 <R_Label>@Localizer["_UserOwner"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="5">
-                                <R_TextBox Value="@_VM.Data.CASSET_OWNER_OLD" Enabled="false" />
+                                <R_TextBox MaxLength="50" Value="@_VM.Data.CASSET_OWNER_OLD" Enabled="false" />
                             </R_ItemLayout>
                         </R_StackLayout>
                         <R_StackLayout Row class="mb-1">
@@ -338,7 +349,7 @@
             </R_StackLayout>
         </R_GroupBox>
         <!-- New Asset Information -->
-        <R_GroupBox Title="@Localizer["_NewAssetInformation"]" Class="p-2 mt-2">
+        <R_GroupBox TitleClass="text-primary" Title="@Localizer["_NewAssetInformation"]" Class="p-2 mt-2">
             <R_StackLayout Class="FAT01100Entry_r_groupbox">
                 <R_StackLayout Row class="mb-2">
                     <!-- Left column: Asset Details (editable) -->
@@ -350,6 +361,7 @@
                             <R_ItemLayout col="6">
                                 <R_TextBox @bind-Value="_VM.Data.CASSET_NAME"
                                            R_ConductorSource="_conductorRef"
+                                           MaxLength="50"
                                            R_EnableAdd="true"
                                            R_EnableEdit="true" />
                             </R_ItemLayout>
@@ -449,7 +461,7 @@
                                                   R_EnableEdit="true" />
                             </R_ItemLayout>
                             <R_ItemLayout col="5">
-                                <R_TextBox @bind-Value="_VM.Data.CUNIT"
+                                <R_TextBox @bind-Value="_VM.Data.CASSET_UNIT"
                                            R_ConductorSource="_conductorRef"
                                            R_EnableAdd="true"
                                            R_EnableEdit="true" />
@@ -471,7 +483,7 @@
                                 <R_Label>@Localizer["_UserOwner"]</R_Label>
                             </R_ItemLayout>
                             <R_ItemLayout col="6">
-                                <R_TextBox @bind-Value="_VM.Data.CASSET_OWNER"
+                                <R_TextBox MaxLength="50" @bind-Value="_VM.Data.CASSET_OWNER"
                                            R_ConductorSource="_conductorRef"
                                            R_EnableAdd="true"
                                            R_EnableEdit="true" />
@@ -584,169 +596,222 @@
         </R_StackLayout>
     </R_TabStripTab>
     <!-- Depreciation Info tab -->
-    <R_TabStripTab Title="@Localizer["_DepreciationInfo"]" Id="DepreciationInfo">
+    <R_TabStripTab Title="@Localizer["_DepreciationInfo"]" Id="tab_DepreciationInfo">
         <R_StackLayout>
             <!-- General Asset Information -->
-            <R_StackLayout Row class="mb-2">
+            <R_StackLayout Row class="mb-1">
                 <R_ItemLayout col="2">
                     <R_Label>@Localizer["_AssetCode"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox Value="@_VM.Data.CASSET_CODE" Enabled="false" />
                 </R_ItemLayout>
-                <R_ItemLayout col="2" class="ps-3">
+                <R_ItemLayout col="2" class="ps-5">
                     <R_Label>@Localizer["_InServiceDate"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
-                    <R_DatePicker @bind-Value="_VM.Data.DINSERVICE_DATE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" />
-                </R_ItemLayout>
-            </R_StackLayout>
-            <R_StackLayout Row class="mb-2">
-                <R_ItemLayout col="2">
-                    <R_Label>@Localizer["_Reference"]</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout col="3">
-                    <R_TextBox @bind-Value="_VM.Data.CREF_NO" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" />
-                </R_ItemLayout>
-                <R_ItemLayout col="3">
-                    <R_DatePicker @bind-Value="_VM.Data.DREF_DATE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" />
-                </R_ItemLayout>
-            </R_StackLayout>
-            <R_StackLayout Row class="mb-2">
-                <R_ItemLayout col="2">
-                    <R_Label>@Localizer["_AssetName"]</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout col="6">
-                    <R_TextBox Value="@_VM.Data.CASSET_NAME" Enabled="false" />
-                </R_ItemLayout>
-            </R_StackLayout>
-            <R_StackLayout Row class="mb-2">
-                <R_ItemLayout col="2">
-                    <R_Label>@Localizer["_CurrencyExchangeRates"]</R_Label>
-                </R_ItemLayout>
-                <R_ItemLayout col="8">
-                    <R_StackLayout Row>
-                        <R_ItemLayout col="6">
-                            <R_StackLayout Row>
-                                <R_ItemLayout col="2"><R_Label>@Localizer["_LocalCurrency"]</R_Label></R_ItemLayout>
-                                <R_ItemLayout col="2"><R_NumericTextBox Value="1" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
-                                <R_ItemLayout col="1"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
-                                <R_ItemLayout col="1"><R_Label>=</R_Label></R_ItemLayout>
-                                <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.NLCURRENCY_RATE" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
-                                <R_ItemLayout col="1"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
-                            </R_StackLayout>
-                        </R_ItemLayout>
-                        <R_ItemLayout col="6">
-                            <R_StackLayout Row>
-                                <R_ItemLayout col="2"><R_Label>@Localizer["_BaseCurrency"]</R_Label></R_ItemLayout>
-                                <R_ItemLayout col="2"><R_NumericTextBox Value="1" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
-                                <R_ItemLayout col="1"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
-                                <R_ItemLayout col="1"><R_Label>=</R_Label></R_ItemLayout>
-                                <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.NBCURRENCY_RATE" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
-                                <R_ItemLayout col="1"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
-                            </R_StackLayout>
-                        </R_ItemLayout>
-                    </R_StackLayout>
+                    <R_DatePicker @bind-Value="_VM.Data.DINSERVICE_DATE" Enabled="false" />
                 </R_ItemLayout>
             </R_StackLayout>
             <R_StackLayout Row class="mb-3">
                 <R_ItemLayout col="2">
-                    <R_Label>@Localizer["_Currency"]</R_Label>
+                    <R_Label>@Localizer["_AssetName"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="3" >
+                    <R_TextBox Value="@_VM.Data.CASSET_NAME" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="1" Class="ms-4 pe-1" style="text-align:right;">
+                    <R_Label>@Localizer["_Reference"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_TextBox @bind-Value="_VM.Data.CCURRENCY_CODE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" />
+                    <R_TextBox @bind-Value="_VM.Data.CREF_NO" Enabled="false" />
                 </R_ItemLayout>
-                <R_ItemLayout col="4">
+                <R_ItemLayout col="3">
+                    <R_DatePicker @bind-Value="_VM.Data.DREF_DATE" Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row class="mb-1">
+                <R_ItemLayout col="2">
+                    <R_Label>@Localizer["_Currency"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout auto="true">
+                    <R_Label>@_VM.Data.CCURRENCY_CODE</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="2">
                     <R_TextBox Value="@(_VM.Data?.CCURRENCY_NAME ?? "")" Enabled="false" />
+                </R_ItemLayout>
+                <R_ItemLayout col="7">
+                        <R_StackLayout Row class="mb-1">
+                            <R_ItemLayout col="3" Class="ms-4"><R_Label>@Localizer["_LocalCurrency"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="4"><R_NumericTextBox @bind-Value="_VM.Data.NLBASE_RATE" Arrows="false" TValue="decimal" Decimals="6" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                            <R_ItemLayout auto="true"><R_Label>=</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="4"><R_NumericTextBox @bind-Value="_VM.Data.NLCURRENCY_RATE" Arrows="false" TValue="decimal" Decimals="6" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        </R_StackLayout>
+                        <R_StackLayout Row class="mb-1">
+                        <R_ItemLayout col="3" Class="ms-4"><R_Label>@Localizer["_BaseCurrency"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="4"><R_NumericTextBox @bind-Value="_VM.Data.NBBASE_RATE" Arrows="false" TValue="decimal" Decimals="0" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                            <R_ItemLayout auto="true"><R_Label>=</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="4"><R_NumericTextBox @bind-Value="_VM.Data.NBCURRENCY_RATE" Arrows="false" TValue="decimal" Decimals="6" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        </R_StackLayout>
                 </R_ItemLayout>
             </R_StackLayout>
 
             <!-- Old Depreciation Information -->
-            <R_GroupBox Title="@Localizer["_OldDepreciationInformation"]" Class="p-2">
+            <R_GroupBox TitleClass="text-danger" Title="@Localizer["_OldDepreciationInformation"]" Class="p-2">
                 <R_StackLayout Class="FAT01100Entry_r_groupbox">
-                    <R_StackLayout Row class="mb-1">
+                    <R_StackLayout Row class="mb-3">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_DeprMethod"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="4"><R_TextBox Value="@_VM.Data.CDEPR_METHOD_OLD" Enabled="false" /></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@Localizer["_StartDate"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="4"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE_OLD" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_ComboBox @bind-Value="_VM.Data.CDEPR_METHOD_OLD"
+                                        Data="@_VM.GsbCodeList"
+                                        ValueField="@nameof(FAT01100Common.DTOs.FAT01100GetGsbCodeListResultDTO.CCODE)"
+                                        TextField="@nameof(FAT01100Common.DTOs.FAT01100GetGsbCodeListResultDTO.CNAME)"
+                                        R_ConductorSource="@_conductorRef"
+                                        Enabled="false" />
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="ms-4"><R_Label>@Localizer["_StartDate"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE" Enabled="false" /></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row class="mb-0">
+                        <R_ItemLayout col="4" Class="ms-5"></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_LocalAmount"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_BaseAmount"]</R_Label></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_BookValue"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NLBOOK_VALUE_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NBBOOK_VALUE_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NBOOK_VALUE" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NLBOOK_VALUE" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NBBOOK_VALUE" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_ResidualValue"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NLRESIDUAL_VALUE_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NBRESIDUAL_VALUE_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"> 
+                            <R_NumericTextBox Value="@_VM.Data.NRESIDUAL_VALUE_OLD" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" />
+                        </R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NLRESIDUAL_VALUE_OLD" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NBRESIDUAL_VALUE_OLD" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_UsefulLife"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_YY_OLD" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="1"><R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_YY_OLD" Enabled="false" TValue="int" ThousandSeparator="true" /></R_ItemLayout>
                         <R_ItemLayout col="1"><R_Label>@Localizer["_Years"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_MM_OLD" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="1"><R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_MM_OLD" Enabled="false" TValue="int" ThousandSeparator="true" /></R_ItemLayout>
                         <R_ItemLayout col="1"><R_Label>@Localizer["_Months"]</R_Label></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_YearlyDepr"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NYEAR_DEPR_PCT_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NYEAR_DEPR_PCT_OLD" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
                         <R_ItemLayout col="1"><R_Label>%</R_Label></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NLYEAR_DEPR_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox Value="@_VM.Data.NBYEAR_DEPR_OLD" ValueFormat="N2" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NYEAR_DEPR_OLD" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NLYEAR_DEPR_OLD" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NBYEAR_DEPR_OLD" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
                     </R_StackLayout>
                 </R_StackLayout>
             </R_GroupBox>
 
             <!-- New Depreciation Information -->
-            <R_GroupBox Title="@Localizer["_NewDepreciationInformation"]" Class="p-2 mt-2">
+            <R_GroupBox TitleClass="text-primary" Title="@Localizer["_NewDepreciationInformation"]" Class="p-2 mt-2">
                 <R_StackLayout Class="FAT01100Entry_r_groupbox">
-                    <R_StackLayout Row class="mb-1">
+                    <R_StackLayout Row class="mb-3">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_DeprMethod"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="4"><R_TextBox @bind-Value="_VM.Data.CDEPR_METHOD" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" /></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@Localizer["_StartDate"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="4"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" /></R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_ComboBox Value="@_VM.Data.CDEPR_METHOD"
+                                        ValueChanged="@((string? value) => { _VM.Data.CDEPR_METHOD = value ?? "0"; OnDepreciationMethodChanged(value); })"
+                                        Data="@_VM.GsbCodeList"
+                                        ValueField="@nameof(FAT01100Common.DTOs.FAT01100GetGsbCodeListResultDTO.CCODE)"
+                                        TextField="@nameof(FAT01100Common.DTOs.FAT01100GetGsbCodeListResultDTO.CNAME)"
+                                        R_ConductorSource="@_conductorRef"
+                                        R_EnableAdd R_EnableEdit  />
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2" Class="ms-4"><R_Label>@Localizer["_StartDate"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE_OLD" Enabled="false" /></R_ItemLayout>
+                    </R_StackLayout>
+                    <R_StackLayout Row Class="mb-0">
+                        <R_ItemLayout col="4" Class="ms-5"></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_LocalAmount"]</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_Label>@Localizer["_BaseAmount"]</R_Label></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_BookValue"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NLBOOK_VALUE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NBBOOK_VALUE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NBOOK_VALUE" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NLBOOK_VALUE" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NBBOOK_VALUE" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_ResidualValue"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NLRESIDUAL_VALUE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NBRESIDUAL_VALUE" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3">
+                            <R_NumericTextBox Value="@_VM.Data.NRESIDUAL_VALUE"
+                                              ValueChanged="@((decimal value) => OnResidualChanged(value))"
+                                              Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" 
+                                              R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit />
+                        </R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NLRESIDUAL_VALUE" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NBRESIDUAL_VALUE" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_UsefulLife"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.IUSEFUL_LIFE_YY" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" /></R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_YY"
+                                              ValueChanged="@((int value) => OnUsefulLifeYearChanged(value))"
+                                              TValue="int"
+                                              Max="999"
+                                              Min="0"
+                                              Step="1"
+                                              ThousandSeparator="false"
+                                              R_ConductorSource="@_conductorRef"
+                                              R_EnableAdd
+                                              R_EnableEdit />
+                        </R_ItemLayout>
                         <R_ItemLayout col="1"><R_Label>@Localizer["_Years"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.IUSEFUL_LIFE_MM" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" /></R_ItemLayout>
+                        <R_ItemLayout col="1">
+                            <R_NumericTextBox Value="@_VM.Data.IUSEFUL_LIFE_MM"
+                                              ValueChanged="@((int value) => OnUsefulLifeMonthChanged(value))"
+                                              TValue="int"
+                                              Max="11"
+                                              Min="0"
+                                              Step="1"
+                                              ThousandSeparator="false"
+                                              R_ConductorSource="@_conductorRef"
+                                              R_EnableAdd
+                                              R_EnableEdit />
+                        </R_ItemLayout>
                         <R_ItemLayout col="1"><R_Label>@Localizer["_Months"]</R_Label></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"><R_Label>@Localizer["_YearlyDepr"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_NumericTextBox @bind-Value="_VM.Data.NYEAR_DEPR_PCT" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NYEAR_DEPR_PCT" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
                         <R_ItemLayout col="1"><R_Label>%</R_Label></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-1">
                         <R_ItemLayout col="2"></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NLYEAR_DEPR" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
-                        <R_ItemLayout col="2"><R_Label>@_VM.Data.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_NumericTextBox @bind-Value="_VM.Data.NBYEAR_DEPR" R_ConductorSource="_conductorRef" R_EnableAdd="true" R_EnableEdit="true" ValueFormat="N2" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.Data.CCURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NYEAR_DEPR" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CLOCAL_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2" Class="me-3"><R_NumericTextBox Value="@_VM.Data.NLYEAR_DEPR" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout auto="true"><R_Label>@_VM.CompanyInfoData.CBASE_CURRENCY_CODE</R_Label></R_ItemLayout>
+                        <R_ItemLayout col="2"><R_NumericTextBox Value="@_VM.Data.NBYEAR_DEPR" Arrows="false" TValue="decimal" Decimals="2" ThousandSeparator="true" Enabled="false" /></R_ItemLayout>
                     </R_StackLayout>
                 </R_StackLayout>
             </R_GroupBox>
@@ -771,17 +836,17 @@
 <R_Conductor @ref="_conductorRef"
              R_ViewModel="@_VM"
              R_IsHeader
-             R_ServiceGetRecord="@ConductorAssetInfo_R_ServiceGetRecord"
-             R_Display="@ConductorAssetInfo_R_Display"
-             R_AfterAdd="@ConductorAssetInfo_R_AfterAdd"
-             R_Saving="@ConductorAssetInfo_R_Saving"
-             R_ServiceSave="@ConductorAssetInfo_R_ServiceSave"
-             R_ServiceDelete="@ConductorAssetInfo_R_ServiceDelete"
-             R_Validation="@ConductorAssetInfo_R_Validation"
-             R_BeforeCancel="@ConductorAssetInfo_BeforeCancel"
-             R_SetOther="@AssetInfoAndDepreciationInfo_SetOther"
-             R_CheckAdd="@ConductorAssetInfo_R_CheckAdd"
-             R_CheckEdit="@ConductorAssetInfo_R_CheckEdit" />
+             R_ServiceGetRecord="@Conductor_R_ServiceGetRecord"
+             R_Display="@Conductor_R_Display"
+             R_AfterAdd="@Conductor_R_AfterAdd"
+             R_Saving="@Conductor_R_Saving"
+             R_ServiceSave="@Conductor_R_ServiceSave"
+             R_ServiceDelete="@Conductor_R_ServiceDelete"
+             R_Validation="@Conductor_R_Validation"
+             R_BeforeCancel="@Conductor_BeforeCancel"
+             R_SetOther="@Conductor_SetOther"
+             R_CheckAdd="@Conductor_R_CheckAdd"
+             R_CheckEdit="@Conductor_R_CheckEdit" />
 
 <style>
     .FAT01100Entry_r_groupbox {

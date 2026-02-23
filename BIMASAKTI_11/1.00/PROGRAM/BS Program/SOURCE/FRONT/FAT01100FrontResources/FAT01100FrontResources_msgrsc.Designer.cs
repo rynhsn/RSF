@@ -61,6 +61,510 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset Category.
+        /// </summary>
+        internal static string _AssetCategory {
+            get {
+                return ResourceManager.GetString("_AssetCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Code.
+        /// </summary>
+        internal static string _AssetCode {
+            get {
+                return ResourceManager.GetString("_AssetCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Department.
+        /// </summary>
+        internal static string _AssetDepartment {
+            get {
+                return ResourceManager.GetString("_AssetDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Info.
+        /// </summary>
+        internal static string _AssetInfo {
+            get {
+                return ResourceManager.GetString("_AssetInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Journal Group.
+        /// </summary>
+        internal static string _AssetJournalGroup {
+            get {
+                return ResourceManager.GetString("_AssetJournalGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Name.
+        /// </summary>
+        internal static string _AssetName {
+            get {
+                return ResourceManager.GetString("_AssetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Tax Category.
+        /// </summary>
+        internal static string _AssetTaxCategory {
+            get {
+                return ResourceManager.GetString("_AssetTaxCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Amount.
+        /// </summary>
+        internal static string _BaseAmount {
+            get {
+                return ResourceManager.GetString("_BaseAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base Currency.
+        /// </summary>
+        internal static string _BaseCurrency {
+            get {
+                return ResourceManager.GetString("_BaseCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Book Value.
+        /// </summary>
+        internal static string _BookValue {
+            get {
+                return ResourceManager.GetString("_BookValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Building.
+        /// </summary>
+        internal static string _Building {
+            get {
+                return ResourceManager.GetString("_Building", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string _Currency {
+            get {
+                return ResourceManager.GetString("_Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency Exchange Rates.
+        /// </summary>
+        internal static string _CurrencyExchangeRates {
+            get {
+                return ResourceManager.GetString("_CurrencyExchangeRates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depreciation Info.
+        /// </summary>
+        internal static string _DepreciationInfo {
+            get {
+                return ResourceManager.GetString("_DepreciationInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Depr. Method.
+        /// </summary>
+        internal static string _DeprMethod {
+            get {
+                return ResourceManager.GetString("_DeprMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string _Description {
+            get {
+                return ResourceManager.GetString("_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Floor.
+        /// </summary>
+        internal static string _Floor {
+            get {
+                return ResourceManager.GetString("_Floor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IMAGE.
+        /// </summary>
+        internal static string _Image {
+            get {
+                return ResourceManager.GetString("_Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In Service Date.
+        /// </summary>
+        internal static string _InServiceDate {
+            get {
+                return ResourceManager.GetString("_InServiceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Amount.
+        /// </summary>
+        internal static string _LocalAmount {
+            get {
+                return ResourceManager.GetString("_LocalAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Local Currency.
+        /// </summary>
+        internal static string _LocalCurrency {
+            get {
+                return ResourceManager.GetString("_LocalCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location.
+        /// </summary>
+        internal static string _Location {
+            get {
+                return ResourceManager.GetString("_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Month(s).
+        /// </summary>
+        internal static string _Months {
+            get {
+                return ResourceManager.GetString("_Months", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Asset Information.
+        /// </summary>
+        internal static string _NewAssetInformation {
+            get {
+                return ResourceManager.GetString("_NewAssetInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Depreciation Information.
+        /// </summary>
+        internal static string _NewDepreciationInformation {
+            get {
+                return ResourceManager.GetString("_NewDepreciationInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Asset Information.
+        /// </summary>
+        internal static string _OldAssetInformation {
+            get {
+                return ResourceManager.GetString("_OldAssetInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Depreciation Information.
+        /// </summary>
+        internal static string _OldDepreciationInformation {
+            get {
+                return ResourceManager.GetString("_OldDepreciationInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Previous.
+        /// </summary>
+        internal static string _Previous {
+            get {
+                return ResourceManager.GetString("_Previous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Property.
+        /// </summary>
+        internal static string _Property {
+            get {
+                return ResourceManager.GetString("_Property", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity.
+        /// </summary>
+        internal static string _Quantity {
+            get {
+                return ResourceManager.GetString("_Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference.
+        /// </summary>
+        internal static string _Reference {
+            get {
+                return ResourceManager.GetString("_Reference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string _Reset {
+            get {
+                return ResourceManager.GetString("_Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Residual Value.
+        /// </summary>
+        internal static string _ResidualValue {
+            get {
+                return ResourceManager.GetString("_ResidualValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        internal static string _Save {
+            get {
+                return ResourceManager.GetString("_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serial Number.
+        /// </summary>
+        internal static string _SerialNumber {
+            get {
+                return ResourceManager.GetString("_SerialNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Date.
+        /// </summary>
+        internal static string _StartDate {
+            get {
+                return ResourceManager.GetString("_StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload.
+        /// </summary>
+        internal static string _Upload {
+            get {
+                return ResourceManager.GetString("_Upload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Useful Life.
+        /// </summary>
+        internal static string _UsefulLife {
+            get {
+                return ResourceManager.GetString("_UsefulLife", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User / Owner.
+        /// </summary>
+        internal static string _UserOwner {
+            get {
+                return ResourceManager.GetString("_UserOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yearly Depr..
+        /// </summary>
+        internal static string _YearlyDepr {
+            get {
+                return ResourceManager.GetString("_YearlyDepr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year(s).
+        /// </summary>
+        internal static string _Years {
+            get {
+                return ResourceManager.GetString("_Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Asset Category!.
+        /// </summary>
+        internal static string val_assetInfo_AssetCategory {
+            get {
+                return ResourceManager.GetString("val_assetInfo_AssetCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Code is required!.
+        /// </summary>
+        internal static string val_assetInfo_AssetCode {
+            get {
+                return ResourceManager.GetString("val_assetInfo_AssetCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Asset Department!.
+        /// </summary>
+        internal static string val_assetInfo_AssetDepartment {
+            get {
+                return ResourceManager.GetString("val_assetInfo_AssetDepartment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Asset Journal Group!.
+        /// </summary>
+        internal static string val_assetInfo_AssetJournalGroup {
+            get {
+                return ResourceManager.GetString("val_assetInfo_AssetJournalGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Name is required!.
+        /// </summary>
+        internal static string val_assetInfo_AssetName {
+            get {
+                return ResourceManager.GetString("val_assetInfo_AssetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select Asset Tax Category!.
+        /// </summary>
+        internal static string val_assetInfo_AssetTaxCategory {
+            get {
+                return ResourceManager.GetString("val_assetInfo_AssetTaxCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Location is required!.
+        /// </summary>
+        internal static string val_assetInfo_Location {
+            get {
+                return ResourceManager.GetString("val_assetInfo_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity must be greater than 0!.
+        /// </summary>
+        internal static string val_assetInfo_Quantity {
+            get {
+                return ResourceManager.GetString("val_assetInfo_Quantity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit is required!.
+        /// </summary>
+        internal static string val_assetInfo_Unit {
+            get {
+                return ResourceManager.GetString("val_assetInfo_Unit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User / Owner is required!.
+        /// </summary>
+        internal static string val_assetInfo_UserOrOwner {
+            get {
+                return ResourceManager.GetString("val_assetInfo_UserOrOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data Empty.
+        /// </summary>
+        internal static string val_entry_dataNull {
+            get {
+                return ResourceManager.GetString("val_entry_dataNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select department!.
+        /// </summary>
+        internal static string val_entry_department {
+            get {
+                return ResourceManager.GetString("val_entry_department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description is required!.
+        /// </summary>
+        internal static string val_entry_Description {
+            get {
+                return ResourceManager.GetString("val_entry_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date is required!.
+        /// </summary>
+        internal static string val_entry_ReferenceDate {
+            get {
+                return ResourceManager.GetString("val_entry_ReferenceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date may not be earlier than Soft Period!.
+        /// </summary>
+        internal static string val_entry_ReferenceDateNotEarlier {
+            get {
+                return ResourceManager.GetString("val_entry_ReferenceDateNotEarlier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to System parameter not found. Unable to load system parameters..
         /// </summary>
         internal static string val_systemParam {

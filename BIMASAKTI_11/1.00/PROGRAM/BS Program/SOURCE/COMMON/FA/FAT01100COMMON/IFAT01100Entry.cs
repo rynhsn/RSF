@@ -21,5 +21,6 @@ namespace FAT01100Common
         Task<FAT01100ResultDTO<object>> FAT01100UpdateTransHdStatus(FAT01100UpdateTransHdStatusParameterDTO poParameter);
         Task<FAT01100ResultDTO<object>> FAT01100SubmitTrans(FAT01100SubmitTransParameterDTO poParameter);
         Task<FAT01100ResultDTO<FAT01100GetAssetResultDTO>> FAT01100GetAsset(FAT01100GetAssetParameterDTO poParameter);
+        IAsyncEnumerable<FAT01100GetGsbCodeListResultDTO> FAT01100GetGsbCodeList();
     }
 }

@@ -382,6 +382,36 @@ namespace FAT01100Model
             return loRtn;
         }
 
+        // implementasi method FAT01100GetGsbCodeList
+        public async Task<FAT01100ResultDTO<List<FAT01100GetGsbCodeListResultDTO>>> FAT01100GetGsbCodeListAsync()
+        {
+            var loEx = new R_Exception();
+            var loRtn = new FAT01100ResultDTO<List<FAT01100GetGsbCodeListResultDTO>>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loRtn.Data = await R_HTTPClientWrapper.R_APIRequestStreamingObject<FAT01100GetGsbCodeListResultDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT01100Entry.FAT01100GetGsbCodeList),
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
+        public IAsyncEnumerable<FAT01100GetGsbCodeListResultDTO> FAT01100GetGsbCodeList()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

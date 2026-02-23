@@ -399,6 +399,44 @@ namespace FAT01100Service
             return loRtn;
         }
 
+        [HttpPost]
+        public async IAsyncEnumerable<FAT01100GetGsbCodeListResultDTO> FAT01100GetGsbCodeList()
+        {
+            var lcMethod = nameof(FAT01100GetGsbCodeList);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            List<FAT01100GetGsbCodeListResultDTO> loResult = new();
+
+            try
+            {
+                var loCls = new FAT01100EntryCls();
+                var loParam = new FAT01100GetGsbCodeListParameterDTO
+                {
+                    CAPPLICATION = "BIMASAKTI",
+                    CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID,
+                    CCLASS_ID = "_FA_DEPR_METHOD",
+                    CLANGUAGE_ID = R_BackGlobalVar.CULTURE,
+                    CREC_ID_LIST = ""
+                };
+
+                _logger.LogInfo("Start method {MethodName}", lcMethod);
+                loResult = await loCls.FAT01100GetGsbCodeList(loParam);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+
+            foreach (var loItem in loResult)
+            {
+                yield return loItem;
+            }
+        }
+
+
         #endregion
     }
 }

@@ -141,5 +141,7 @@ namespace FAT01100Common.DTOs
         public string CINSERVICE_DATE { get; set; } = string.Empty;
         public string CASSET_UNIT_OLD { get; set; } = string.Empty;
         public string CASSET_UNIT { get; set; } = string.Empty;
+        public int IREMAINING_LIFE_YY { get; set; }
+        public int IREMAINING_LIFE_MM { get; set; }
     }
 }
