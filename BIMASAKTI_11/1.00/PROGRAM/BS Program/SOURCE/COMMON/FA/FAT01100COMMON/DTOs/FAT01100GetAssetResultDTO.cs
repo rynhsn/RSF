@@ -132,7 +132,10 @@ namespace FAT01100Common.DTOs
     public string CNEXT_START_DATE { get; set; }
 
         // ADDTIONAL
-   public byte[] OASSET_IMAGE { get; set; } = Array.Empty<byte>();
+    public byte[] OASSET_IMAGE { get; set; } = Array.Empty<byte>();
+    public string CFILE_NAME { get; set; } = string.Empty;
+    public string CFILE_TYPE { get; set; } = string.Empty;
+    public string CFILE_EXTENSION { get; set; } = string.Empty;
 
     }
 }

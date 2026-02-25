@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using FAT01100Common;
@@ -176,7 +177,19 @@ namespace FAT01100Model.VMs
                 ParameterDTO.CTO_PERIOD = YearTo + MonthTo;
 
                 var loResult = await _listModel.FAT01100GeTransList(ParameterDTO);
-                TransList = new ObservableCollection<FAT01100GeTransListResultDTO>(loResult.Data ?? new List<FAT01100GeTransListResultDTO>());
+                TransList = new ObservableCollection<FAT01100GeTransListResultDTO>(
+                    (loResult.Data ?? new List<FAT01100GeTransListResultDTO>())
+                        .Select(item => 
+                        {
+                            item.DREF_DATE = !string.IsNullOrWhiteSpace(item.CREF_DATE) && item.CREF_DATE.Length == 8
+                                ? DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
+                                    CultureInfo.InvariantCulture, DateTimeStyles.None, out var refDate)
+                                    ? refDate
+                                    : DateTime.MinValue
+                                : DateTime.MinValue;
+                            return item;
+                        })
+                );
             }
             catch (Exception ex)
             {

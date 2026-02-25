@@ -294,7 +294,27 @@ namespace FAT01100Front
         #region Entry Tab
         private void BeforeOpenEntry(R_BeforeOpenTabPageEventArgs eventArgs)
         {
-            eventArgs.TargetPageType = typeof(FAT01100Entry);
+            
+            var loEx = new R_Exception();
+            try
+            {
+                var loSelectedData = _gridTransListRef?.GetCurrentData();
+                var lopar = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(loSelectedData);
+                if (loSelectedData != null)
+                {
+                    eventArgs.Parameter = lopar;
+                }
+                else
+                {
+                    eventArgs.Parameter = new FAT01100DTO();
+                }
+                eventArgs.TargetPageType = typeof(FAT01100Entry);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
         }
 
         private void AfterOpenEntry(R_AfterOpenTabPageEventArgs eventArgs)

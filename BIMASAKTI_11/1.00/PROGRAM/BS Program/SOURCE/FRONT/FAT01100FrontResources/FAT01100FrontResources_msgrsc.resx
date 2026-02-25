@@ -222,6 +222,9 @@
   <data name="_Save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="_TransactionEntry" xml:space="preserve">
+    <value>Transaction Entry</value>
+  </data>
   <data name="_AssetInfo" xml:space="preserve">
     <value>Asset Info</value>
   </data>
@@ -230,7 +233,6 @@
   </data>
   <data name="_AssetName" xml:space="preserve">
     <value>Asset Name</value>
-    <comment>Asset Name</comment>
   </data>
   <data name="_OldAssetInformation" xml:space="preserve">
     <value>Old Asset Information</value>
@@ -288,5 +290,68 @@
   </data>
   <data name="val_entry_dataNull" xml:space="preserve">
     <value>Data Empty</value>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="_PeriodFrom" xml:space="preserve">
+    <value>Period From</value>
+  </data>
+  <data name="_To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="_Asset" xml:space="preserve">
+    <value>Asset</value>
+  </data>
+  <data name="_ReferenceNo" xml:space="preserve">
+    <value>Reference No</value>
+  </data>
+  <data name="_ReferenceDate" xml:space="preserve">
+    <value>Reference Date</value>
+  </data>
+  <data name="_TransactionSequenceNumber" xml:space="preserve">
+    <value>Trans. Seq. No</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_UpdatedDate" xml:space="preserve">
+    <value>Updated Date</value>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="_Dept" xml:space="preserve">
+    <value>Dept.</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Ref. Date</value>
+  </data>
+  <data name="msg_delete" xml:space="preserve">
+    <value>Are you sure want to delete this transaction?</value>
+  </data>
+  <data name="msg_delete_success" xml:space="preserve">
+    <value>Transaction Deleted Successfully!</value>
+  </data>
+  <data name="msg_submit" xml:space="preserve">
+    <value>Are you sure want to submit this transaction?</value>
+  </data>
+  <data name="msg_submit_success" xml:space="preserve">
+    <value>Transaction Submitted Successfully!</value>
+  </data>
+  <data name="msg_redraf" xml:space="preserve">
+    <value>Are you sure want to redraft this Transaction?</value>
+  </data>
+  <data name="msg_redraf_success" xml:space="preserve">
+    <value>Transaction Redrafted Successfully!</value>
   </data>
 </root>

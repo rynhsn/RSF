@@ -19,7 +19,7 @@ namespace FAT01100Common.DTOs
         public string CDEPT_NAME { get; set; } = string.Empty;
         public string CREF_NO { get; set; } = string.Empty;
         public string CREF_DATE { get; set; } = string.Empty;
-        public DateTime DREF_DATE { get; set; }
+        public DateTime? DREF_DATE { get; set; }
         public string CGL_REF_NO { get; set; } = string.Empty;
         public string CACTION { get; set; } = string.Empty;
 
@@ -28,7 +28,7 @@ namespace FAT01100Common.DTOs
         public string CCURRENCY_NAME { get; set; } = string.Empty;
         public string CLOCAL_CURRENCY_CODE { get; set; } = string.Empty;
         public string CBASE_CURRENCY_CODE { get; set; } = string.Empty;
-        public DateTime DINSERVICE_DATE { get; set; }
+        public DateTime? DINSERVICE_DATE { get; set; }
         public decimal NLBASE_RATE { get; set; }
         public decimal NLCURRENCY_RATE { get; set; }
         public decimal NBBASE_RATE { get; set; }
@@ -94,8 +94,8 @@ namespace FAT01100Common.DTOs
         public string CDEPR_METHOD { get; set; } = string.Empty;
         public string CSTART_DATE_OLD { get; set; } = string.Empty;
         public string CSTART_DATE { get; set; } = string.Empty;
-        public DateTime DSTART_DATE_OLD { get; set; }
-        public DateTime DSTART_DATE { get; set; }
+        public DateTime? DSTART_DATE_OLD { get; set; }
+        public DateTime? DSTART_DATE { get; set; }
         public int IUSEFUL_LIFE_YY_OLD { get; set; }
         public int IUSEFUL_LIFE_MM_OLD { get; set; }
         public int IUSEFUL_LIFE_YY { get; set; }
@@ -143,5 +143,13 @@ namespace FAT01100Common.DTOs
         public string CASSET_UNIT { get; set; } = string.Empty;
         public int IREMAINING_LIFE_YY { get; set; }
         public int IREMAINING_LIFE_MM { get; set; }
+
+        public string CFILE_NAME { get; set; } = string.Empty;
+        public string CFILE_TYPE { get; set; } = string.Empty;
+        public string CFILE_EXTENSION { get; set; } = string.Empty;
+
+        public string CFILE_NAME_OLD { get; set; } = string.Empty;
+        public string CFILE_TYPE_OLD { get; set; } = string.Empty;
+        public string CFILE_EXTENSION_OLD { get; set; } = string.Empty;
     }
 }

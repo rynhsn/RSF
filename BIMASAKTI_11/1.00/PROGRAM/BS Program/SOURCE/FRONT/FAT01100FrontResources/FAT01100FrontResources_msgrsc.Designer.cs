@@ -61,6 +61,15 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset.
+        /// </summary>
+        internal static string _Asset {
+            get {
+                return ResourceManager.GetString("_Asset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Asset Category.
         /// </summary>
         internal static string _AssetCategory {
@@ -160,6 +169,24 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created By.
+        /// </summary>
+        internal static string _CreatedBy {
+            get {
+                return ResourceManager.GetString("_CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created Date.
+        /// </summary>
+        internal static string _CreatedDate {
+            get {
+                return ResourceManager.GetString("_CreatedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Currency.
         /// </summary>
         internal static string _Currency {
@@ -178,6 +205,15 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Department.
+        /// </summary>
+        internal static string _Department {
+            get {
+                return ResourceManager.GetString("_Department", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Depreciation Info.
         /// </summary>
         internal static string _DepreciationInfo {
@@ -192,6 +228,15 @@ namespace FAT01100FrontResources {
         internal static string _DeprMethod {
             get {
                 return ResourceManager.GetString("_DeprMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dept..
+        /// </summary>
+        internal static string _Dept {
+            get {
+                return ResourceManager.GetString("_Dept", resourceCulture);
             }
         }
         
@@ -304,6 +349,15 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Period From.
+        /// </summary>
+        internal static string _PeriodFrom {
+            get {
+                return ResourceManager.GetString("_PeriodFrom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Previous.
         /// </summary>
         internal static string _Previous {
@@ -331,11 +385,47 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ref. Date.
+        /// </summary>
+        internal static string _RefDate {
+            get {
+                return ResourceManager.GetString("_RefDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reference.
         /// </summary>
         internal static string _Reference {
             get {
                 return ResourceManager.GetString("_Reference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference Date.
+        /// </summary>
+        internal static string _ReferenceDate {
+            get {
+                return ResourceManager.GetString("_ReferenceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reference No.
+        /// </summary>
+        internal static string _ReferenceNo {
+            get {
+                return ResourceManager.GetString("_ReferenceNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        internal static string _Refresh {
+            get {
+                return ResourceManager.GetString("_Refresh", resourceCulture);
             }
         }
         
@@ -385,6 +475,60 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        internal static string _Status {
+            get {
+                return ResourceManager.GetString("_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To.
+        /// </summary>
+        internal static string _To {
+            get {
+                return ResourceManager.GetString("_To", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Entry.
+        /// </summary>
+        internal static string _TransactionEntry {
+            get {
+                return ResourceManager.GetString("_TransactionEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trans. Seq. No.
+        /// </summary>
+        internal static string _TransactionSequenceNumber {
+            get {
+                return ResourceManager.GetString("_TransactionSequenceNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated By.
+        /// </summary>
+        internal static string _UpdatedBy {
+            get {
+                return ResourceManager.GetString("_UpdatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated Date.
+        /// </summary>
+        internal static string _UpdatedDate {
+            get {
+                return ResourceManager.GetString("_UpdatedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upload.
         /// </summary>
         internal static string _Upload {
@@ -426,6 +570,60 @@ namespace FAT01100FrontResources {
         internal static string _Years {
             get {
                 return ResourceManager.GetString("_Years", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to delete this transaction?.
+        /// </summary>
+        internal static string msg_delete {
+            get {
+                return ResourceManager.GetString("msg_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Deleted Successfully!.
+        /// </summary>
+        internal static string msg_delete_success {
+            get {
+                return ResourceManager.GetString("msg_delete_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to redraft this Transaction?.
+        /// </summary>
+        internal static string msg_redraf {
+            get {
+                return ResourceManager.GetString("msg_redraf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Redrafted Successfully!.
+        /// </summary>
+        internal static string msg_redraf_success {
+            get {
+                return ResourceManager.GetString("msg_redraf_success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure want to submit this transaction?.
+        /// </summary>
+        internal static string msg_submit {
+            get {
+                return ResourceManager.GetString("msg_submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Submitted Successfully!.
+        /// </summary>
+        internal static string msg_submit_success {
+            get {
+                return ResourceManager.GetString("msg_submit_success", resourceCulture);
             }
         }
         

@@ -23,5 +23,8 @@ namespace FAT01100Common.DTOs
         public string CUPDATE_BY { get; set; } = string.Empty;
         public DateTime DUPDATE_DATE { get; set; }
         public int IQTY { get; set; }
+
+        //additional
+        public DateTime DREF_DATE { get; set; }
     }
 }

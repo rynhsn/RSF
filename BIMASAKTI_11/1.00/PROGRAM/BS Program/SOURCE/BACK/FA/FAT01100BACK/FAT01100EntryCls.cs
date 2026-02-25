@@ -122,6 +122,8 @@ namespace FAT01100Back
             var loEx = new R_Exception();
             var loDb = new R_Db();
             FAT01100DTO loRtn = new();
+            R_ReadParameter loReadParameter = null;
+            R_ReadResult loReadResult = null;
 
             try
             {
@@ -129,7 +131,7 @@ namespace FAT01100Back
                 using DbCommand loCmd = loDb.GetCommand();
                 loCmd.Parameters.Clear();
 
-                loCmd.CommandText = "RSP_FAT01100_GET_TRANS_DETAIL";
+                loCmd.CommandText = "RSP_FAT01100_GET_TRANS_DETAIL ";
                 loCmd.CommandType = CommandType.StoredProcedure;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poEntity.CCOMPANY_ID);
@@ -143,6 +145,35 @@ namespace FAT01100Back
                 var loRtnDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 var loRtnList = R_Utility.R_ConvertTo<FAT01100DTO>(loRtnDataTable);
                 loRtn = loRtnList.FirstOrDefault() ?? new FAT01100DTO();
+                if (loRtn != null)
+                {
+                    if (string.IsNullOrEmpty(loRtn.CSTORAGE_ID) == false)
+                    {
+                        loReadParameter = new R_ReadParameter()
+                        {
+                            StorageId = loRtn.CSTORAGE_ID
+                        };
+
+                        loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                        loRtn.OASSET_IMAGE = loReadResult.Data;
+                        loRtn.CFILE_EXTENSION = loReadResult.FileExtension;
+                        loRtn.CFILE_NAME = loReadResult.FileName;
+                    }
+                    if (string.IsNullOrEmpty(loRtn.CSTORAGE_ID_OLD) == false)
+                    {
+                        loReadParameter = new R_ReadParameter()
+                        {
+                            StorageId = loRtn.CSTORAGE_ID_OLD
+                        };
+
+                        loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
+
+                        loRtn.OASSET_IMAGE_OLD = loReadResult.Data;
+                        loRtn.CFILE_EXTENSION_OLD = loReadResult.FileExtension;
+                        loRtn.CFILE_NAME_OLD = loReadResult.FileName;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -170,31 +201,47 @@ namespace FAT01100Back
             using var activity = _activitySource.StartActivity(lcMethod);
             _logger.LogInfo("START method {MethodName}", lcMethod);
 
+            FAT01100ImageStorageTypeDTO loStorageType = null;
+
             var loEx = new R_Exception();
             var loDb = new R_Db();
-            string lcQuery = "RSP_FAT01100_SAVE_TRANS";
+            string lcQuery = string.Empty;
 
             try
             {
                 string lcAction = peCRUDMode == eCRUDMode.AddMode ? "NEW" : "EDIT";
+                // if NEW create new GIU
+                if (lcAction == "NEW")
+                {
+                    poNewEntity.CREC_ID = Guid.NewGuid().ToString();
+                }
+                if (poNewEntity.OASSET_IMAGE != null)
+                {
+                    loStorageType = await GetStorageType();
+                    if (loStorageType != null)
+                    {
+                        await SetStorageID(poNewEntity, loStorageType);
+                    }
+                }
 
-                string lcRefDate = string.Empty;
-                if (poNewEntity.DREF_DATE != default(DateTime))
-                {
-                    lcRefDate = poNewEntity.DREF_DATE.ToString("yyyyMMdd");
-                }
-                else if (!string.IsNullOrWhiteSpace(poNewEntity.CREF_DATE) && poNewEntity.CREF_DATE.Length >= 8)
-                {
-                    lcRefDate = poNewEntity.CREF_DATE.Substring(0, 8);
-                }
+                //string lcRefDate = string.Empty;
+                //if (poNewEntity.DREF_DATE != default(DateTime))
+                //{
+                //    lcRefDate = poNewEntity.DREF_DATE.ToString("yyyyMMdd");
+                //}
+                //else if (!string.IsNullOrWhiteSpace(poNewEntity.CREF_DATE) && poNewEntity.CREF_DATE.Length >= 8)
+                //{
+                //    lcRefDate = poNewEntity.CREF_DATE.Substring(0, 8);
+                //}
 
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
                 R_ExternalException.R_SP_Init_Exception(loConn);
-
+                // Map DTO properties to stored procedure parameters
                 loCmd.Parameters.Clear();
-                loCmd.CommandText = lcQuery;
+                lcQuery = $"RSP_FAT01100_SAVE_TRANS ";
                 loCmd.CommandType = CommandType.StoredProcedure;
+                loCmd.CommandText = lcQuery;
 
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, R_BackGlobalVar.COMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 30, R_BackGlobalVar.USER_ID);
@@ -203,7 +250,7 @@ namespace FAT01100Back
                 loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poNewEntity.CDEPT_CODE ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poNewEntity.CREF_NO ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CASSET_TRANS_SEQ_NO", DbType.String, 6, poNewEntity.CASSET_TRANS_SEQ_NO ?? string.Empty);
-                loDb.R_AddCommandParameter(loCmd, "@CREF_DATE", DbType.String, 8, lcRefDate);
+                loDb.R_AddCommandParameter(loCmd, "@CREF_DATE", DbType.String, 8, poNewEntity.CREF_DATE);
                 loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, poNewEntity.CASSET_CODE ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CTRANS_DESC", DbType.String, 200, poNewEntity.CTRANS_DESC ?? string.Empty);
 
@@ -219,14 +266,16 @@ namespace FAT01100Back
                 loDb.R_AddCommandParameter(loCmd, "@CTAX_CATEGORY_ID", DbType.String, 20, poNewEntity.CTAX_CATEGORY_ID ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@IQTY_OLD", DbType.Int32, 0, poNewEntity.IQTY_OLD);
                 loDb.R_AddCommandParameter(loCmd, "@IQTY", DbType.Int32, 0, poNewEntity.IQTY);
-                loDb.R_AddCommandParameter(loCmd, "@CUNIT_OLD", DbType.String, 30, poNewEntity.CUNIT_OLD ?? string.Empty);
-                loDb.R_AddCommandParameter(loCmd, "@CUNIT", DbType.String, 30, poNewEntity.CUNIT ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_UNIT_OLD", DbType.String, 30, poNewEntity.CASSET_UNIT_OLD ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_UNIT", DbType.String, 30, poNewEntity.CASSET_UNIT ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CASSET_OWNER_OLD", DbType.String, 50, poNewEntity.CASSET_OWNER_OLD ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CASSET_OWNER", DbType.String, 50, poNewEntity.CASSET_OWNER ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CSERIAL_NO_OLD", DbType.String, 30, poNewEntity.CSERIAL_NO_OLD ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CSERIAL_NO", DbType.String, 30, poNewEntity.CSERIAL_NO ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CASSET_DESC_OLD", DbType.String, 300, poNewEntity.CASSET_DESC_OLD ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CASSET_DESC", DbType.String, 300, poNewEntity.CASSET_DESC ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CLOCATION_ID_OLD", DbType.String, 300, poNewEntity.CLOCATION_ID_OLD ?? string.Empty);
+                loDb.R_AddCommandParameter(loCmd, "@CLOCATION_ID", DbType.String, 300, poNewEntity.CLOCATION_ID ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID_OLD", DbType.String, 50, poNewEntity.CSTORAGE_ID_OLD ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CSTORAGE_ID", DbType.String, 50, poNewEntity.CSTORAGE_ID ?? string.Empty);
                 loDb.R_AddCommandParameter(loCmd, "@CDEPR_METHOD_OLD", DbType.String, 20, poNewEntity.CDEPR_METHOD_OLD ?? string.Empty);
@@ -325,11 +374,9 @@ namespace FAT01100Back
                         };
 
                         loReadResult = R_StorageUtility.ReadFile(loReadParameter, loConn);
-
-                        loRtn.OASSET_IMAGE= loReadResult.Data;
-                        //loRtn.CFILE= loReadResult.FileExtension;
-                        //loRtn.CFILE_NAME = loReadResult.FileName;
-                        //loResult.Data.CFILE_NAME_EXTENSION = loReadResult.FileName + loReadResult.FileExtension;
+                        loRtn.OASSET_IMAGE = loReadResult.Data;
+                        loRtn.CFILE_EXTENSION = loReadResult.FileExtension;
+                        loRtn.CFILE_NAME = loReadResult.FileName;
                     }
                 }
 

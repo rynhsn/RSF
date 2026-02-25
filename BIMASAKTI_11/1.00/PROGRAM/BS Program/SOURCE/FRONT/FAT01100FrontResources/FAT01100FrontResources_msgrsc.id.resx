@@ -222,6 +222,9 @@
   <data name="_Save" xml:space="preserve">
     <value>Simpan</value>
   </data>
+  <data name="_TransactionEntry" xml:space="preserve">
+    <value>Entri Transaksi</value>
+  </data>
   <data name="_AssetInfo" xml:space="preserve">
     <value>Info Aset</value>
   </data>
@@ -287,5 +290,65 @@
   </data>
   <data name="val_entry_dataNull" xml:space="preserve">
     <value>Data Kosong</value>
+  </data>
+  <data name="_Department" xml:space="preserve">
+    <value>Departemen</value>
+  </data>
+  <data name="_PeriodFrom" xml:space="preserve">
+    <value>Periode Dari</value>
+  </data>
+  <data name="_To" xml:space="preserve">
+    <value>Periode Sampai</value>
+  </data>
+  <data name="_Asset" xml:space="preserve">
+    <value>Aset</value>
+  </data>
+  <data name="_ReferenceNo" xml:space="preserve">
+    <value>Referensi No</value>
+  </data>
+  <data name="_ReferenceDate" xml:space="preserve">
+    <value>Referensi Tanggal</value>
+  </data>
+  <data name="_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="_CreatedDate" xml:space="preserve">
+    <value>Tanggal Dibuat</value>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Dibuat Oleh</value>
+  </data>
+  <data name="_UpdatedDate" xml:space="preserve">
+    <value>Tanggal Diubah</value>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Diubah Oleh</value>
+  </data>
+  <data name="_Dept" xml:space="preserve">
+    <value>Dept.</value>
+  </data>
+  <data name="_RefDate" xml:space="preserve">
+    <value>Tanggal</value>
+  </data>
+  <data name="msg_delete" xml:space="preserve">
+    <value>Are you sure want to delete this transaction?</value>
+  </data>
+  <data name="msg_delete_success" xml:space="preserve">
+    <value>Transaction Deleted Successfully!</value>
+  </data>
+  <data name="msg_submit" xml:space="preserve">
+    <value>Are you sure want to submit this transaction?</value>
+  </data>
+  <data name="msg_submit_success" xml:space="preserve">
+    <value>Transaction Submitted Successfully!</value>
+  </data>
+  <data name="msg_redraf" xml:space="preserve">
+    <value>Are you sure want to redraft this Transaction?</value>
+  </data>
+  <data name="msg_redraf_success" xml:space="preserve">
+    <value>Transaction Redrafted Successfully!</value>
   </data>
 </root>

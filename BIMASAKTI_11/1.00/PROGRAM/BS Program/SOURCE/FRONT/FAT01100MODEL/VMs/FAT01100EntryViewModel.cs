@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using FAT01100Common;
 using FAT01100Common.DTOs;
@@ -68,6 +69,74 @@ namespace FAT01100Model.VMs
 
                 var loResult = await _model.R_ServiceGetRecord(loParam);
                 Entity = loResult.data ?? new FAT01100DTO();
+                //Entity.DINSERVICE_DATE = DateTime.ParseExact(Entity.CINSERVICE_DATE, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                //Entity.DREF_DATE = DateTime.ParseExact(Entity.CREF_DATE, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+
+                if (!string.IsNullOrWhiteSpace(Entity.CINSERVICE_DATE) &&
+                    DateTime.TryParseExact( 
+                    Entity.CINSERVICE_DATE,
+                   "yyyyMMdd",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.None,
+                    out DateTime inServiceDate))
+                {
+                    Entity.DINSERVICE_DATE = inServiceDate;
+                }
+                else
+                {
+                    Entity.DINSERVICE_DATE = null; // or throw your custom exception
+                }
+
+                if (!string.IsNullOrWhiteSpace(Entity.CREF_DATE) &&
+                    DateTime.TryParseExact(
+                        Entity.CREF_DATE,
+                        "yyyyMMdd",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.None,
+                        out DateTime refDate))
+                {
+                    Entity.DREF_DATE = refDate;
+                }
+                else
+                {
+                    Entity.DREF_DATE = null;
+                }
+
+                if (!string.IsNullOrWhiteSpace(Entity.CSTART_DATE) &&
+                    DateTime.TryParseExact(
+                        Entity.CSTART_DATE,
+                        "yyyyMMdd",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.None,
+                        out DateTime startDate))
+                {
+                    Entity.DSTART_DATE = startDate;
+                }
+                else
+                {
+                    Entity.DSTART_DATE = null;
+                }
+
+                if (!string.IsNullOrWhiteSpace(Entity.CSTART_DATE_OLD) &&
+                    DateTime.TryParseExact(
+                        Entity.CSTART_DATE_OLD,
+                        "yyyyMMdd",
+                        CultureInfo.InvariantCulture,
+                        DateTimeStyles.None,
+                        out DateTime startDateOld))
+                {
+                    Entity.DSTART_DATE_OLD = startDateOld;
+                }
+                else
+                {
+                    Entity.DSTART_DATE_OLD = null;
+                }
+
+
+
+
+
+
                 R_SetCurrentData(Entity);
                 LenableEdit = R_IsStatusEditable(Entity.CTRANS_STATUS);
             }
@@ -97,7 +166,6 @@ namespace FAT01100Model.VMs
 
                 var loResult = await _model.R_ServiceSave(loParam);
                 Entity = loResult.data ?? new FAT01100DTO();
-                LenableEdit = R_IsStatusEditable(Entity.CTRANS_STATUS);
                 R_SetCurrentData(Entity);
             }
             catch (Exception ex)

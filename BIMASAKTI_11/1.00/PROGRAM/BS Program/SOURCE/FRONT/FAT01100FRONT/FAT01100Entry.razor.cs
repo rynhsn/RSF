@@ -22,6 +22,8 @@ using System.Threading.Tasks;
 using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Interfaces;
 using FAT01100FrontResources;
+using R_CommonFrontBackAPI;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace FAT01100Front
 {
@@ -32,8 +34,8 @@ namespace FAT01100Front
 
         private R_TabStrip _tabMain = new();
         private R_TabStripTab _tabEntry = new();
-        //private R_TabStripTab? _tabExpenseAllocation;
-        //private R_TabPage? _tabPageExpenseAllocation;
+        private R_TabStripTab? _tabExpenseAllocation;
+        private R_TabPage? _tabPageExpenseAllocation;
 
         #region Dependency Injection
         [Inject] private IClientHelper ClientHelper { get; set; } = default!;
@@ -43,6 +45,7 @@ namespace FAT01100Front
         #endregion
 
         private bool IsSuccess { get; set; } = false;
+        private bool IsErrorEmptyFile = false;
 
         protected override async Task R_Init_From_Master(object? poParam)
         {
@@ -71,60 +74,60 @@ namespace FAT01100Front
         }
 
         #region CRUD
-        private async Task ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-            try
-            {
-                var loParam = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(eventArgs.Data);
-                loParam.CCOMPANY_ID = ClientHelper.CompanyId;
-                loParam.CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty;
-                await _VM.GetRecordAsync(loParam);
-                eventArgs.Result = _VM.Entity;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-            loEx.ThrowExceptionIfErrors();
-        }
+        //private async Task ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        //{
+        //    var loEx = new R_Exception();
+        //    try
+        //    {
+        //        var loParam = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(eventArgs.Data);
+        //        loParam.CCOMPANY_ID = ClientHelper.CompanyId;
+        //        loParam.CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty;
+        //        await _VM.GetRecordAsync(loParam);
+        //        eventArgs.Result = _VM.Entity;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
+        //    loEx.ThrowExceptionIfErrors();
+        //}
 
-        private async Task ServiceSave(R_ServiceSaveEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-            try
-            {
-                var loEntity = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(eventArgs.Data);
-                loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
-                loEntity.CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty;
-                if (!string.IsNullOrEmpty(loEntity.CREF_DATE) && loEntity.DREF_DATE != default)
-                    loEntity.CREF_DATE = loEntity.DREF_DATE.ToString("yyyyMMdd");
-                await _VM.SaveRecordAsync(loEntity, (R_eConductorMode)eventArgs.ConductorMode);
-                eventArgs.Result = _VM.Entity;
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-            loEx.ThrowExceptionIfErrors();
-        }
+        //private async Task ServiceSave(R_ServiceSaveEventArgs eventArgs)
+        //{
+        //    var loEx = new R_Exception();
+        //    try
+        //    {
+        //        var loEntity = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(eventArgs.Data);
+        //        loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
+        //        loEntity.CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty;
+        //        if (!string.IsNullOrEmpty(loEntity.CREF_DATE) && loEntity.DREF_DATE != default)
+        //            loEntity.CREF_DATE = loEntity.DREF_DATE.Value.ToString("yyyyMMdd");
+        //        await _VM.SaveRecordAsync(loEntity, (R_eConductorMode)eventArgs.ConductorMode);
+        //        eventArgs.Result = _VM.Entity;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
+        //    loEx.ThrowExceptionIfErrors();
+        //}
 
-        private async Task ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
-        {
-            var loEx = new R_Exception();
-            try
-            {
-                var loEntity = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(eventArgs.Data);
-                loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
-                loEntity.CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty;
-                await _VM.DeleteRecordAsync(loEntity);
-            }
-            catch (Exception ex)
-            {
-                loEx.Add(ex);
-            }
-            loEx.ThrowExceptionIfErrors();
-        }
+        //private async Task ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
+        //{
+        //    var loEx = new R_Exception();
+        //    try
+        //    {
+        //        var loEntity = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(eventArgs.Data);
+        //        loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
+        //        loEntity.CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty;
+        //        await _VM.DeleteRecordAsync(loEntity);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        loEx.Add(ex);
+        //    }
+        //    loEx.ThrowExceptionIfErrors();
+        //}
         #endregion
 
         #region Department Lookup
@@ -447,13 +450,22 @@ namespace FAT01100Front
                 {
                     return;
                 }
+                var lcMsg = Localizer["msg_submit"]; // Submit confirmation
+
+                var leMsg = await R_MessageBox.Show("", lcMsg, R_eMessageBoxButtonType.YesNo);
+
+                if (leMsg == R_eMessageBoxResult.No)
+                {
+                    return;
+                }
+
                 await _VM.SubmitTransAsync(new FAT01100SubmitTransParameterDTO
                 {
                     CCOMPANY_ID = ClientHelper.CompanyId,
                     CUSER_ID = ClientHelper.UserId,
                     CREC_ID = _VM.Data.CREC_ID
                 });
-                await R_MessageBox.Show("", "Transaction submitted successfully.", R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("", Localizer["msg_submit_success"], R_eMessageBoxButtonType.OK);
                 if (_conductorRef != null)
                     await _conductorRef.R_GetEntity(_VM.Data);
             }
@@ -473,7 +485,8 @@ namespace FAT01100Front
                 {
                     return;
                 }
-                var leMsg = await R_MessageBox.Show("", "Redraft this transaction?", R_eMessageBoxButtonType.YesNo);
+
+                var leMsg = await R_MessageBox.Show("", Localizer["msg_redraf"], R_eMessageBoxButtonType.YesNo);
                 if (leMsg == R_eMessageBoxResult.No)
                     return;
                 await _VM.UpdateTransHdStatusAsync(new FAT01100UpdateTransHdStatusParameterDTO
@@ -483,7 +496,7 @@ namespace FAT01100Front
                     CREC_ID = _VM.Data.CREC_ID,
                     CNEW_STATUS = "00"
                 });
-                await R_MessageBox.Show("", "Transaction redrafted successfully.", R_eMessageBoxButtonType.OK);
+                await R_MessageBox.Show("", Localizer["msg_redraf_success"], R_eMessageBoxButtonType.OK);
                 if (_conductorRef != null)
                     await _conductorRef.R_GetEntity(_VM.Data);
             }
@@ -518,7 +531,7 @@ namespace FAT01100Front
 
                     //DateTime DsystemParamSoftPeriod = DateTime.ParseExact(_VM.SystemParamData.CSOFT_PERIOD, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
                     int IsystemParamSoftPeriod = int.TryParse(_VM.SystemParamData.CSOFT_PERIOD, out var result) ? result : 0;
-                    string CrefDate = _VM.Data.DREF_DATE.ToString("yyyyMM");
+                    string CrefDate = _VM.Data.DREF_DATE.Value.ToString("yyyyMM");
                     int IrefDate= int.TryParse(CrefDate, out var resultRef) ? resultRef : 0;
                     if (IrefDate < IsystemParamSoftPeriod)
                     {
@@ -552,32 +565,6 @@ namespace FAT01100Front
             R_Exception loException = new R_Exception();
             try
             {
-                //if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE))
-                //{
-                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_department"));
-                //}
-                //if (_VM.Data.DREF_DATE == null)
-                //{
-                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_ReferenceDate"));
-                //}
-
-                ////DateTime DsystemParamSoftPeriod = DateTime.ParseExact(_VM.SystemParamData.CSOFT_PERIOD, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
-                //int IsystemParamSoftPeriod = int.TryParse(_VM.SystemParamData.CSOFT_PERIOD, out var result) ? result : 0;
-                //string CrefDate = _VM.Data.DREF_DATE.ToString("yyyyMM");
-                //int IrefDate = int.TryParse(CrefDate, out var resultRef) ? resultRef : 0;
-                //if (IrefDate < IsystemParamSoftPeriod)
-                //{
-                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_ReferenceDateSoftPeriod"));
-                //}
-                //if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
-                //{
-                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetCode"));
-                //}
-                //if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
-                //{
-                //    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_transactionDescription"));
-                //}
-
                 //Asset Code	Empty	Asset Code is required!
                 if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
                 {
@@ -642,7 +629,40 @@ namespace FAT01100Front
             loException.ThrowExceptionIfErrors();
         }
 
-        private Task OnClickPreviousButton() => Task.CompletedTask;
+        private async Task OnClickPreviousToEntry()
+        {
+            R_Exception loException = new R_Exception();
+            try
+            {
+                if (!loException.HasError)
+                {
+                    await _tabMain.SetActiveTabAsync("tab_Entry");
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
+
+        private async Task OnClickPreviousToAsset()
+        {
+            R_Exception loException = new R_Exception();
+            try
+            {
+                if (!loException.HasError)
+                {
+                    await _tabMain.SetActiveTabAsync("tab_AssetInfo");
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+            loException.ThrowExceptionIfErrors();
+        }
+
         #endregion
 
         /// <summary>
@@ -659,11 +679,43 @@ namespace FAT01100Front
         {
         }
 
-        private Task OnClickUploadImage() => Task.CompletedTask;
+        private async Task OnClickUploadImage(InputFileChangeEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loByteFile = await R_FrontUtility.ConvertStreamToByteAsync(eventArgs.File.OpenReadStream());
+                string loFile = eventArgs.File.Name;
+
+                _VM.Data.OASSET_IMAGE = loByteFile;
+                _VM.Data.CFILE_NAME = Path.GetFileNameWithoutExtension(loFile);
+                _VM.Data.CFILE_EXTENSION = Path.GetExtension(loFile);
+            }
+            catch (Exception ex)
+            {
+                if (IsErrorEmptyFile)
+                {
+                    await R_MessageBox.Show("", "File is Empty", R_eMessageBoxButtonType.OK);
+                }
+                else
+                {
+                    loEx.Add(ex);
+                }
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
         private Task OnClickResetImage()
         {
             if (_VM?.Data != null)
+            {
                 _VM.Data.OASSET_IMAGE = Array.Empty<byte>();
+                _VM.Data.CSTORAGE_ID = "";
+                _VM.Data.CFILE_NAME = string.Empty;
+                _VM.Data.CFILE_EXTENSION = string.Empty;
+            }
+                
+
             return Task.CompletedTask;
         }
 
@@ -801,7 +853,23 @@ namespace FAT01100Front
         }
 
         #region Asset Info Conductor (Asset Info tab)
-        private Task Conductor_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs) => Task.CompletedTask;
+        private async Task Conductor_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(eventArgs.Data);
+                loParam.CCOMPANY_ID = ClientHelper.CompanyId;
+                loParam.CLANG_ID = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? string.Empty;
+                await _VM.GetRecordAsync(loParam);
+                eventArgs.Result = _VM.Entity;
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
         private Task Conductor_R_Display(R_DisplayEventArgs eventArgs) => Task.CompletedTask;
 
         private async void Conductor_R_AfterAdd(R_AfterAddEventArgs eventArgs)
@@ -822,14 +890,236 @@ namespace FAT01100Front
 
             loEx.ThrowExceptionIfErrors();
         }
-        private Task Conductor_R_Saving(R_SavingEventArgs eventArgs) => Task.CompletedTask;
-        private Task Conductor_R_ServiceSave(R_ServiceSaveEventArgs eventArgs) => Task.CompletedTask;
-        private Task Conductor_R_ServiceDelete(R_ServiceDeleteEventArgs eventArgs) => Task.CompletedTask;
-        private Task Conductor_R_Validation(R_ValidationEventArgs eventArgs) => Task.CompletedTask;
+
+        private void Conductor_R_Saving(R_SavingEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+                var loEntity = (FAT01100DTO)eventArgs.Data;
+                loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
+                loEntity.CUSER_ID = ClientHelper.UserId;
+                // Set start date
+                if (loEntity.DREF_DATE.HasValue)
+                {
+                    loEntity.CREF_DATE = loEntity.DREF_DATE.Value.ToString("yyyyMMdd");
+                }
+                else
+                {
+                    loEntity.CREF_DATE = string.Empty;
+                }
+
+                // Set in-service date
+                if (loEntity.DINSERVICE_DATE.HasValue)
+                {
+                    loEntity.CINSERVICE_DATE = loEntity.DINSERVICE_DATE.Value.ToString("yyyyMMdd");
+                }
+                else
+                {
+                    loEntity.CINSERVICE_DATE = string.Empty;
+                }
+
+                if (loEntity.DSTART_DATE_OLD.HasValue)
+                {
+                    loEntity.CSTART_DATE_OLD = loEntity.DSTART_DATE_OLD.Value.ToString("yyyyMMdd");
+                }
+                else
+                {
+                    loEntity.CSTART_DATE_OLD = string.Empty;
+                }
+
+                if (loEntity.DSTART_DATE.HasValue)
+                {
+                    loEntity.CSTART_DATE = loEntity.DSTART_DATE.Value.ToString("yyyyMMdd");
+                }
+                else
+                {
+                    loEntity.CSTART_DATE = string.Empty;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        private async Task Conductor_R_ServiceSave(R_ServiceSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // Get entity from event args
+                var loEntity = (FAT01100DTO)eventArgs.Data;
+
+                // Ensure entity is not null
+                if (loEntity == null)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "nullEntity"));
+                }
+                else
+                {
+
+                    await _VM.SaveRecordAsync(
+                        loEntity,
+                        eventArgs.ConductorMode
+                    );
+                    eventArgs.Result = _VM.Entity;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task BeforeDelete(R_BeforeDeleteEventArgs eventArgs)
+        {
+            var leMsg = await R_MessageBox.Show("", Localizer["msg_delete"], R_eMessageBoxButtonType.YesNo);
+            eventArgs.Cancel = leMsg != R_eMessageBoxResult.Yes;
+        }
+        private async Task AfterDelete()
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                await R_MessageBox.Show("", Localizer["msg_delete_success"], R_eMessageBoxButtonType.OK);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+
+        }
+
+        private async Task Conductor_R_ServiceDelete(R_ServiceDeleteEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                var loParam = (FAT01100DTO)eventArgs.Data;
+                await _VM.DeleteRecordAsync(loParam);
+                await _conductorRef.R_GetEntity(_VM.Data);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+        private async void Conductor_R_Validation(R_ValidationEventArgs eventArgs)
+        {
+            var loException = new R_Exception();
+
+            try
+            {
+                if (_VM.Data == null)
+                    return;
+
+                if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_department"));
+                }
+                if (_VM.Data.DREF_DATE == null)
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_ReferenceDate"));
+                }
+
+                //DateTime DsystemParamSoftPeriod = DateTime.ParseExact(_VM.SystemParamData.CSOFT_PERIOD, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                int IsystemParamSoftPeriod = int.TryParse(_VM.SystemParamData.CSOFT_PERIOD, out var result) ? result : 0;
+                string CrefDate = _VM.Data.DREF_DATE.Value.ToString("yyyyMM");
+                int IrefDate = int.TryParse(CrefDate, out var resultRef) ? resultRef : 0;
+                if (IrefDate < IsystemParamSoftPeriod)
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_ReferenceDateSoftPeriod"));
+                }
+                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetCode"));
+                }
+                if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
+                {
+                    loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_transactionDescription"));
+                }
+            }
+            catch (Exception ex)
+            {
+                loException.Add(ex);
+            }
+
+            if (loException.HasError)
+            {
+                eventArgs.Cancel = true;
+            }
+
+            loException.ThrowExceptionIfErrors();
+        }
         private Task Conductor_BeforeCancel(R_BeforeCancelEventArgs eventArgs) => Task.CompletedTask;
         private Task Conductor_SetOther(R_SetEventArgs eventArgs) => Task.CompletedTask;
         private Task Conductor_R_CheckAdd(R_CheckAddEventArgs eventArgs) => Task.CompletedTask;
         private Task Conductor_R_CheckEdit(R_CheckEditEventArgs eventArgs) => Task.CompletedTask;
+
+        private void BeforeOpenExpenseAllocation(R_BeforeOpenTabPageEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                eventArgs.Parameter = _VM?.Data ?? new FAT01100DTO();
+                eventArgs.TargetPageType = typeof(FAT01100ExpenseAllocation);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task AfterOpenExpenseAllocation(R_AfterOpenTabPageEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                // Load expense allocation data when tab is opened
+                // NET4: gvAllocExpense.R_RefreshGrid(loParam) is called when tab is activated
+                if (_tabPageExpenseAllocation != null && _VM?.Data != null)
+                {
+                    // The component will be initialized via R_Init_From_Master with the parameter
+                    // Additional refresh can be done here if needed
+                    await Task.CompletedTask;
+                }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void ExpenseAllocationTabEventCallBack(object poParam)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                // Handle callbacks from ExpenseAllocation component if needed
+                // For now, no specific callback handling required
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+
         #endregion
     }
 }

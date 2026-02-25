@@ -3,12 +3,12 @@
 @using R_BlazorFrontEnd.Enums
 
 <R_TabStrip @ref="_tabMain" OnActiveTabIndexChanging="OnChangeTab">
-    <R_TabStripTab @ref="_tabEntry" Id="tab_Entry" Title="Transaction Entry">
+    <R_TabStripTab @ref="_tabEntry" Id="tab_Entry" Title="@Localizer["_TransactionEntry"]">
         <R_StackLayout>
             <!-- Row 1: Department* & Status -->
             <R_StackLayout Row Class="mb-1">
                 <R_ItemLayout col="2">
-                    <R_Label Required="true">Department*</R_Label>
+                    <R_Label Required="true">@Localizer["_Department"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_VM.Data.CDEPT_CODE"
@@ -34,7 +34,7 @@
             <!-- Row 2: Reference No* & Ref. Date* -->
             <R_StackLayout Row Class="mb-1">
                 <R_ItemLayout col="2">
-                    <R_Label Required="true">Reference No.*</R_Label>
+                    <R_Label Required="true">@Localizer["_ReferenceNo"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_VM.Data.CREF_NO" R_ConductorSource="_conductorRef"
@@ -42,7 +42,7 @@
                                R_EnableEdit="true" />
                 </R_ItemLayout>
                 <R_ItemLayout col="2" class="ps-4">
-                    <R_Label Required="true">Ref. Date*</R_Label>
+                    <R_Label Required="true">@Localizer["_ReferenceDate"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_DatePicker @bind-Value="_VM.Data.DREF_DATE"
@@ -55,7 +55,7 @@
             <!-- Row 3: Asset Code* & Trans. Seq. No -->
             <R_StackLayout Row Class="mb-1">
                 <R_ItemLayout col="2">
-                    <R_Label Required="true">Asset Code*</R_Label>
+                    <R_Label Required="true">@Localizer["_AssetCode"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="3">
                     <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
@@ -71,7 +71,7 @@
                               R_EnableEdit="false">...</R_Lookup>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
-                    <R_Label>Trans. Seq. No</R_Label>
+                    <R_Label>@Localizer["_TransactionSequenceNumber"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox @bind-Value="_VM.Data.CASSET_TRANS_SEQ_NO" Enabled="false" />
@@ -81,7 +81,7 @@
             <!-- Row 4: Asset Name -->
             <R_StackLayout Row Class="mb-1">
                 <R_ItemLayout col="2">
-                    <R_Label>Asset Name</R_Label>
+                    <R_Label>@Localizer["_AssetName"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="6">
                     <R_TextBox @bind-Value="_VM.Data.CASSET_NAME" Enabled="false" />
@@ -91,7 +91,7 @@
             <!-- Row 5: Description* -->
             <R_StackLayout Row Class="mb-1">
                 <R_ItemLayout col="2">
-                    <R_Label Required="true">Description*</R_Label>
+                    <R_Label Required="true">@Localizer["_Description"]*</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="6">
                     <R_TextArea @bind-Value="_VM.Data.CTRANS_DESC"
@@ -106,7 +106,7 @@
             <!-- Row 6: Updated By -->
             <R_StackLayout Row class="d-flex justify-content-end mb-1">
                 <R_ItemLayout col="2">
-                    <R_Label>Updated By</R_Label>
+                    <R_Label>@Localizer["_UpdatedBy"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox Value="@_VM.Data.CUPDATE_BY" Enabled="false" />
@@ -119,7 +119,7 @@
             <!-- Row 7: Created By -->
             <R_StackLayout Row class="d-flex justify-content-end mb-1">
                 <R_ItemLayout col="2">
-                    <R_Label>Created By</R_Label>
+                    <R_Label>@Localizer["_CreatedBy"]</R_Label>
                 </R_ItemLayout>
                 <R_ItemLayout col="2">
                     <R_TextBox Value="@_VM.Data.CCREATE_BY" Enabled="false" />
@@ -161,17 +161,17 @@
                 <!-- Buttons: Cancel, Next -->
                 <R_StackLayout Row>
                     <R_ItemLayout>
-                        <R_CancelButton R_Conductor="_conductorRef" />
+                        <R_CancelButton R_Conductor="@_conductorRef" />
                     </R_ItemLayout>
                     <R_ItemLayout class="ms-2">
-                        <R_Button OnClick="OnClickNextAssetInfo">Next</R_Button>
+                        <R_Button R_ConductorSource="_conductorRef"  OnClick="OnClickNextAssetInfo"  R_EnableAdd R_EnableEdit>Next</R_Button>
                     </R_ItemLayout>
                 </R_StackLayout>
             </R_StackLayout>
             
         </R_StackLayout>
     </R_TabStripTab>
-    <R_TabStripTab Title="@Localizer["_AssetInfo"]" Id="tab_AssetInfo">
+    <R_TabStripTab Title="@Localizer["_AssetInfo"]" Id="tab_AssetInfo" Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal)">
         <R_StackLayout Row class="mb-1">
             <R_ItemLayout col="2">
                 <R_Label>@Localizer["_AssetCode"]</R_Label>
@@ -575,8 +575,8 @@
                                 </div>
                             </R_ItemLayout>
                             <R_ItemLayout col="6" style="display: flex;justify-content: space-between; margin-top: auto;padding: 10px;">
-                                <R_Button R_ConductorSource="_conductorRef" R_EnableOther="true" OnClick="OnClickUploadImage">@Localizer["_Upload"]</R_Button>
-                                <R_Button R_ConductorSource="_conductorRef" R_EnableOther="true" OnClick="OnClickResetImage" Class="ms-2">@Localizer["_Reset"]</R_Button>
+                                <R_OpenFileDialogButton R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit OnChange="OnClickUploadImage" Accepts="@accepts">@Localizer["_Upload"]</R_OpenFileDialogButton>
+                                <R_Button R_ConductorSource="_conductorRef" R_EnableAdd R_EnableEdit OnClick="OnClickResetImage" Class="ms-2">@Localizer["_Reset"]</R_Button>
                             </R_ItemLayout>
                         </R_StackLayout>
                     </R_ItemLayout>
@@ -585,18 +585,18 @@
         </R_GroupBox>
         <R_StackLayout Row Class="justify-content-end mt-3">
             <R_ItemLayout>
-                <R_Button OnClick="@OnClickPreviousButton" R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit>@Localizer["_Previous"]</R_Button>
+                <R_Button OnClick="@OnClickPreviousToEntry" R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit>@Localizer["_Previous"]</R_Button>
             </R_ItemLayout>
             <R_ItemLayout>
-                <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+                <R_CancelButton R_Conductor="@_conductorRef" />
             </R_ItemLayout>
             <R_ItemLayout class="ms-2">
-                <R_Button OnClick="OnClickNextDepreciation">Next</R_Button>
+                <R_Button R_ConductorSource="@_conductorRef" OnClick="OnClickNextDepreciation"  R_EnableAdd R_EnableEdit>Next</R_Button>
             </R_ItemLayout>
         </R_StackLayout>
     </R_TabStripTab>
     <!-- Depreciation Info tab -->
-    <R_TabStripTab Title="@Localizer["_DepreciationInfo"]" Id="tab_DepreciationInfo">
+    <R_TabStripTab Title="@Localizer["_DepreciationInfo"]" Id="tab_DepreciationInfo" Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal)">
         <R_StackLayout>
             <!-- General Asset Information -->
             <R_StackLayout Row class="mb-1">
@@ -674,7 +674,7 @@
                                         Enabled="false" />
                         </R_ItemLayout>
                         <R_ItemLayout col="2" Class="ms-4"><R_Label>@Localizer["_StartDate"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE_OLD" Enabled="false" /></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row class="mb-0">
                         <R_ItemLayout col="4" Class="ms-5"></R_ItemLayout>
@@ -740,7 +740,7 @@
                                         R_EnableAdd R_EnableEdit  />
                         </R_ItemLayout>
                         <R_ItemLayout col="2" Class="ms-4"><R_Label>@Localizer["_StartDate"]</R_Label></R_ItemLayout>
-                        <R_ItemLayout col="3"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE_OLD" Enabled="false" /></R_ItemLayout>
+                        <R_ItemLayout col="3"><R_DatePicker @bind-Value="_VM.Data.DSTART_DATE" Enabled="false" /></R_ItemLayout>
                     </R_StackLayout>
                     <R_StackLayout Row Class="mb-0">
                         <R_ItemLayout col="4" Class="ms-5"></R_ItemLayout>
@@ -819,7 +819,7 @@
             <!-- Buttons -->
             <R_StackLayout Row class="justify-content-end mt-3">
                 <R_ItemLayout>
-                    <R_Button OnClick="@OnClickPreviousButton" R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit>@Localizer["_Previous"]</R_Button>
+                    <R_Button OnClick="@OnClickPreviousToAsset" R_ConductorSource="@_conductorRef" R_EnableAdd R_EnableEdit>@Localizer["_Previous"]</R_Button>
                 </R_ItemLayout>
                 <R_ItemLayout>
                     <R_CancelButton R_Conductor="@_conductorRef" />
@@ -829,6 +829,12 @@
                 </R_ItemLayout>
             </R_StackLayout>
         </R_StackLayout>
+    </R_TabStripTab>
+
+    <R_TabStripTab @ref="_tabExpenseAllocation" Title="@Localizer["_ExpenseAllocation"]" Id="@nameof(FAT01100ExpenseAllocation)">
+        <CascadingValue Value="@_VM" Name="FAT0010002ViewModel" IsFixed="true">
+            <R_TabPage @ref="_tabPageExpenseAllocation" R_Before_Open_TabPage="BeforeOpenExpenseAllocation" R_After_Open_TabPage="AfterOpenExpenseAllocation" R_TabEventCallback="ExpenseAllocationTabEventCallBack"/>
+        </CascadingValue>
     </R_TabStripTab>
 </R_TabStrip>
 
@@ -841,6 +847,9 @@
              R_AfterAdd="@Conductor_R_AfterAdd"
              R_Saving="@Conductor_R_Saving"
              R_ServiceSave="@Conductor_R_ServiceSave"
+             R_DisableDeleteConfirmation="true"
+             R_BeforeDelete="@BeforeDelete"
+             R_AfterDelete="@AfterDelete"
              R_ServiceDelete="@Conductor_R_ServiceDelete"
              R_Validation="@Conductor_R_Validation"
              R_BeforeCancel="@Conductor_BeforeCancel"
