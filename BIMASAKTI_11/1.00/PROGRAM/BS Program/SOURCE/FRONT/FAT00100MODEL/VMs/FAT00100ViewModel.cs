@@ -342,7 +342,7 @@ namespace FAT00100Model.VMs
                         {
                             item.CREF_DATE_DISPLAY = DateTime.ParseExact(item.CREF_DATE, "yyyyMMdd", CultureInfo.InvariantCulture).ToString("dd-MMM-yyyy");
                             item.DREF_DATE = DateTime.TryParseExact(item.CREF_DATE, "yyyyMMdd",
-                        CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal, out var refDate)
+                        CultureInfo.InvariantCulture, DateTimeStyles.None, out var refDate)
                         ? refDate
                         : (DateTime?)null;
                         }

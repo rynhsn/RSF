@@ -25,6 +25,8 @@ using Lookup_GSFRONT;
 using FAT01100Model;
 using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.MessageBox;
+using R_BlazorFrontEnd.Controls.Popup;
+using System.Reflection.PortableExecutable;
 
 namespace FAT01100Front
 {
@@ -40,8 +42,10 @@ namespace FAT01100Front
 
         // Component references
         private R_Grid<FAT01100ExpenseAllocationRSP_FA_GET_ASSET_EXP_ALLOC_LISTResultDTO>? _gridAsset;
-        
+        private R_Grid<FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO>? _gridTrans;
+
         private R_ConductorGrid? _conductorGridAsset;
+        private R_ConductorGrid? _conductorGridTrans;
 
         // State management
         private bool _isEditMode = false;
@@ -56,13 +60,18 @@ namespace FAT01100Front
                 if (poParameter is FAT01100DTO loDTO)
                 {
                     _VM.Entity = R_FrontUtility.ConvertObjectToObject<FAT01100ExpenseAllocationDTO>(loDTO); 
-
-                    // Refresh grid to load data - use InvokeAsync to ensure it happens after rendering
                     await InvokeAsync(async () =>
                     {
-                        if (_conductorGridAsset != null)
+                        //if (_conductorGridAsset != null)
+                        //{
+                        //    await _gridAsset.R_RefreshGrid(null);
+
+                        //}
+                        await _gridAsset.R_RefreshGrid(null);
+                        if (_conductorGridTrans != null)
                         {
                             await _gridAsset.R_RefreshGrid(null);
+
                         }
                     });
                 }
@@ -76,12 +85,8 @@ namespace FAT01100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-
-
-        #region Grid Data Loading
-
-      
-        private async Task Grid_R_ServiceGetListRecord(R_ServiceGetListRecordEventArgs eventArgs)
+        #region Grid Asset
+        private async Task Grid_R_ServiceGetListRecordAsset(R_ServiceGetListRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
@@ -100,11 +105,43 @@ namespace FAT01100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        /// <summary>
-        /// Grid service handler to get single record (for R_ConductorGrid)
-        /// NET4: gvAllocExpense_R_ServiceGetRecord (line 2142-2144)
-        /// </summary>
-        private void GridAllocExpense_R_ServiceGetRecord(R_ServiceGetRecordEventArgs eventArgs)
+        private async Task Conductor_R_ServiceGetRecordAsset(R_ServiceGetRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loSelectedRow = R_FrontUtility.ConvertObjectToObject<FAT01100ExpenseAllocationRSP_FA_GET_ASSET_EXP_ALLOC_LISTResultDTO>(eventArgs.Data);
+                eventArgs.Result = loSelectedRow ?? new FAT01100ExpenseAllocationRSP_FA_GET_ASSET_EXP_ALLOC_LISTResultDTO();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        #endregion
+        #region Grid trans
+        private async Task Grid_R_ServiceGetListRecordTrans(R_ServiceGetListRecordEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+
+                string lcAssetCodeTrans = _VM.Entity?.CASSET_CODE ?? string.Empty;
+                await _VM.GetTransExpAllocListAsync(lcAssetCodeTrans);
+                eventArgs.ListEntityResult = _VM.TransExpAllocList ?? new ObservableCollection<FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO>();
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private void Grid_R_ServiceGetRecordTrans(R_ServiceGetRecordEventArgs eventArgs)
         {
             var loEx = new R_Exception();
             try

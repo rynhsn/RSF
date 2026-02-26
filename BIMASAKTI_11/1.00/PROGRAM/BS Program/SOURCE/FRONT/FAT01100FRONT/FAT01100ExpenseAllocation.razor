@@ -2,66 +2,57 @@
 @using R_BlazorFrontEnd.Enums
 
 <R_StackLayout>
-    <R_StackLayout Row class="mb-2">
-        <R_ItemLayout col="3">
-            <R_Label>@Localizer["_AssetCode"]</R_Label>
+    <R_StackLayout Row>
+        <R_ItemLayout col="6">
+            <R_StackLayout Row class="mb-2">
+                <R_ItemLayout col="3">
+                    <R_Label>@Localizer["_AssetCode"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_TextBox @bind-Value="_VM.Entity.CASSET_CODE"
+                               Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+             <R_StackLayout Row class="mb-2">
+                <R_ItemLayout col="3">
+                    <R_Label>@Localizer["_AssetName"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_TextBox @bind-Value="_VM.Entity.CASSET_NAME"
+                               Enabled="false"/>
+                </R_ItemLayout>
+            </R_StackLayout>
         </R_ItemLayout>
-        <R_ItemLayout col="4">
-            <R_TextBox bind-Value="_VM.Entity.CASSET_CODE"
-                       Enabled="false"
-                       R_ConductorGridSource="@_conductorGridAsset" />
+        <R_ItemLayout col="6">
+            <R_StackLayout Row class="mb-2">
+                <R_ItemLayout col="3">
+                    <R_Label>@Localizer["_Reference"]</R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_TextBox @bind-Value="_VM.Entity.CREF_NO"
+                               Enabled="false" />
+                </R_ItemLayout>
+            </R_StackLayout>
+            <R_StackLayout Row class="mb-2">
+                <R_ItemLayout col="3">
+                    <R_Label></R_Label>
+                </R_ItemLayout>
+                <R_ItemLayout col="8">
+                    <R_DatePicker @bind-Value="_VM.Data.DREF_DATE" />
+                </R_ItemLayout>
+            </R_StackLayout>
         </R_ItemLayout>
     </R_StackLayout>
-    <!-- Row 3: Asset Name -->
-    <R_StackLayout Row class="mb-2">
-        <R_ItemLayout col="3">
-            <R_Label>@Localizer["_AssetName"]</R_Label>
-        </R_ItemLayout>
-        <R_ItemLayout col="4">
-            <R_TextBox bind-Value="_VM.Entity.CASSET_NAME"
-                       Enabled="false"
-                       R_ConductorGridSource="@_conductorGridAsset" />
-        </R_ItemLayout>
-    </R_StackLayout>
-
-    <!-- Row 2: Asset Department -->
-    <R_StackLayout Row class="mb-2">
-        <R_ItemLayout col="3">
-            <R_Label>@Localizer["_AssetDepartment"]</R_Label>
-        </R_ItemLayout>
-        <R_ItemLayout col="4">
-            <R_TextBox bind-Value="_VM.Entity.CDEPT_CODE"
-                       Enabled="false" />
-        </R_ItemLayout>
-        <R_ItemLayout auto="false">
-            <R_TextBox bind-Value="_VM.Entity.CDEPT_NAME"
-                       Enabled="false"/>
-        </R_ItemLayout>
-    </R_StackLayout>
-
     <!-- Grid Section: Expense Allocation -->
+
+
     <R_StackLayout Row class="mb-2">
-        <R_ItemLayout col="12">
+        <R_ItemLayout col="6">
             <R_Grid @ref="_gridAsset"
                     DataSource="@(_VM?.AssetExpAllocList ?? new System.Collections.ObjectModel.ObservableCollection<FAT01100ExpenseAllocationRSP_FA_GET_ASSET_EXP_ALLOC_LISTResultDTO>())"
-                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecord"
-                    R_GridType="@R_eGridType.Batch"
-                    R_ConductorGridSource="@_conductorGridAsset"
-                    AllowAddNewRow="@_isEditMode"
-                    AllowEditRow="@_isEditMode"
-                    AllowDeleteRow="@_isEditMode"
-                    R_Before_Open_Grid_Lookup="@GridDepartmentLookup_R_Before_Open_Lookup"
-                    R_After_Open_Grid_Lookup="@GridDepartmentLookup_R_After_Open_Lookup"
-                    R_CellValueChanged="@GridAllocExpense_R_CellValueChanged"
-                    R_CellLostFocused="@GridAllocExpense_R_CellLostFocused"
-                    R_ServiceGetRecord="@GridAllocExpense_R_ServiceGetRecord"
-                    R_AfterAdd="@GridAllocExpense_R_AfterAdd"
-                    R_CheckDelete="@GridAllocExpense_R_CheckDelete"
-                    R_BeforeDelete="@GridAllocExpense_R_BeforeDelete"
-                    R_BeforeEdit="@GridAllocExpense_R_BeforeEdit"
-                    R_BeforeSaveBatch="@GridAllocExpense_R_BeforeSaveBatch"
-                    R_ServiceSaveBatch="@GridAllocExpense_R_ServiceSaveBatch"
-                    R_AfterSaveBatch="@GridAllocExpense_R_AfterSaveBatch"
+                    R_ServiceGetListRecord="Grid_R_ServiceGetListRecordAsset"
+                    R_ServiceGetRecord="Conductor_R_ServiceGetRecordAsset"
+                    R_GridType="@R_eGridType.Original"
                     Height="400px">
                 <R_GridColumns>
                     <R_GridLookupColumn FieldName="@nameof(FAT01100ExpenseAllocationRSP_FA_GET_ASSET_EXP_ALLOC_LISTResultDTO.CEXPENSE_DEPT_CODE)"
@@ -74,6 +65,51 @@
                                       Width="250px"
                                       Enabled="false" />
                     <R_GridNumericColumn FieldName="@nameof(FAT01100ExpenseAllocationRSP_FA_GET_ASSET_EXP_ALLOC_LISTResultDTO.NEXPENSE_PCT)"
+                                         HeaderText="@Localizer["_Percent"]"
+                                         Width="100px"
+                                         TValue="decimal"
+                                         ThousandSeparator="true"
+                                         Decimals="2"
+                                         R_EnableAdd="@_isEditMode"
+                                         R_EnableEdit="@_isEditMode" 
+                                         Enabled="@_isEditMode" />
+
+                </R_GridColumns>
+            </R_Grid>
+        </R_ItemLayout>
+        <R_ItemLayout col="6">
+            <R_Grid @ref="_gridTrans"
+                    DataSource="@(_VM?.TransExpAllocList ?? new System.Collections.ObjectModel.ObservableCollection<FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO>())"
+                    R_ServiceGetListRecord="@Grid_R_ServiceGetListRecordTrans"
+                    R_GridType="@R_eGridType.Batch"
+                    R_ConductorGridSource="@_conductorGridTrans"
+                    AllowAddNewRow="@_isEditMode"
+                    AllowEditRow="@_isEditMode"
+                    AllowDeleteRow="@_isEditMode"
+                    R_Before_Open_Grid_Lookup="@GridDepartmentLookup_R_Before_Open_Lookup"
+                    R_After_Open_Grid_Lookup="@GridDepartmentLookup_R_After_Open_Lookup"
+                    R_CellValueChanged="@GridAllocExpense_R_CellValueChanged"
+                    R_CellLostFocused="@GridAllocExpense_R_CellLostFocused"
+                    R_ServiceGetRecord="@Grid_R_ServiceGetRecordTrans"
+                    R_AfterAdd="@GridAllocExpense_R_AfterAdd"
+                    R_CheckDelete="@GridAllocExpense_R_CheckDelete"
+                    R_BeforeDelete="@GridAllocExpense_R_BeforeDelete"
+                    R_BeforeEdit="@GridAllocExpense_R_BeforeEdit"
+                    R_BeforeSaveBatch="@GridAllocExpense_R_BeforeSaveBatch"
+                    R_ServiceSaveBatch="@GridAllocExpense_R_ServiceSaveBatch"
+                    R_AfterSaveBatch="@GridAllocExpense_R_AfterSaveBatch"
+                    Height="400px">
+                <R_GridColumns>
+                    <R_GridLookupColumn FieldName="@nameof(FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO.CEXPENSE_DEPT_CODE)"
+                                        HeaderText="@Localizer["_DepartmentCode"]"
+                                        Width="150px"
+                                        R_EnableAdd="@_isEditMode"
+                                        R_EnableEdit="@_isEditMode" Enabled="@_isEditMode" />
+                    <R_GridTextColumn FieldName="@nameof(FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO.CEXPENSE_DEPT_NAME)"
+                                      HeaderText="@Localizer["_DepartmentName"]"
+                                      Width="250px"
+                                      Enabled="false" />
+                    <R_GridNumericColumn FieldName="@nameof(FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO.NEXPENSE_PCT)"
                                          HeaderText="@Localizer["_Percent"]"
                                          Width="100px"
                                          TValue="decimal"

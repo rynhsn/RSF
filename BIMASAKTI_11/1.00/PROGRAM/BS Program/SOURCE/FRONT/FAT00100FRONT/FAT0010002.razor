@@ -727,7 +727,8 @@
                                                               Style="text-align: right;"
                                                               R_ConductorSource="@_conductorAssetInfoRef"
                                                               R_EnableAdd
-                                                              R_EnableEdit />
+                                                              R_EnableEdit 
+                                                              Enabled="@(_conductorAssetInfoRef?.R_ConductorMode != R_eConductorMode.Normal && !_VM.Data.LNEW_FLAG)"/>
                                         </R_ItemLayout>
                                     </R_StackLayout>
                                 </R_ItemLayout>
@@ -785,7 +786,8 @@
                                                               Style="text-align: right;"
                                                               R_ConductorSource="@_conductorAssetInfoRef"
                                                               R_EnableAdd
-                                                              R_EnableEdit />
+                                                              R_EnableEdit 
+                                                              Enabled="@(_conductorAssetInfoRef?.R_ConductorMode != R_eConductorMode.Normal && !_VM.Data.LNEW_FLAG)"/>
                                         </R_ItemLayout>
                                     </R_StackLayout>
                                 </R_ItemLayout>
@@ -864,13 +866,15 @@
                                         </R_ItemLayout>
                                         <R_ItemLayout col="10">
                                             <R_NumericTextBox Value="@_VM.Data.NBOOK_VALUE"
+                                                              ValueChanged="@((decimal value) => OnAmountChanged(value, "NBOOK_VALUE", "NLBOOK_VALUE", "NBBOOK_VALUE", false))"
                                                               TValue="decimal"
                                                               Decimals="2"
                                                               ThousandSeparator="true"
                                                               Arrows="false"
                                                               Style="text-align: right;"
                                                               R_ConductorSource="@_conductorAssetInfoRef"
-                                                              Enabled="false" />
+                                                              R_EnableAdd
+                                                              R_EnableEdit />
                                         </R_ItemLayout>
                                     </R_StackLayout>
                                 </R_ItemLayout>
@@ -908,7 +912,7 @@
                                 </R_ItemLayout>
                             </R_StackLayout>
 
-                            <R_StackLayout Row class="mb-1">
+                            <R_StackLayout Row class="mb-1" style="display:none !important;">
                                 <R_ItemLayout col="2">
                                     <R_Label>@Localizer["_BegBookValue"]</R_Label>
                                 </R_ItemLayout>
@@ -1260,6 +1264,7 @@
                 R_AfterAdd="@ConductorAssetInfo_R_AfterAdd"
                 R_Saving="@ConductorAssetInfo_R_Saving"
                 R_ServiceSave="@ConductorAssetInfo_R_ServiceSave"
+                R_AfterSave="@ConductorAssetInfo_AfterSave"
                 R_ServiceDelete="@ConductorAssetInfo_R_ServiceDelete"
                 R_Validation="@ConductorAssetInfo_R_Validation"
                 R_BeforeCancel="@ConductorAssetInfo_BeforeCancel"

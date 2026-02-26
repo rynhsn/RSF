@@ -165,6 +165,11 @@ namespace FAT00100Front
                 // Call GetCurrencyListAsync
                 await _VM.GetCurrencyListAsync(ClientHelper.CompanyId, ClientHelper.UserId);
 
+                DateTime datenow = DateTime.Now;
+                string crefDates = datenow.ToString("yyyyMMdd");
+
+                await _VM.FAT00100GetLastCurrencyRateAsync(ClientHelper.CompanyId, _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE, crefDates);
+
                 // Initialize period month combo
                 _VM.SetComboPeriodMonthList();
 
@@ -988,11 +993,11 @@ namespace FAT00100Front
                 // Update status display label (handled by binding)
                 // Populate lookup descriptions (handled by lookup handlers)
                 // Update currency rate display fields
+
+                
                 if (!string.IsNullOrWhiteSpace(_VM.CurrentRecord.CCURRENCY_CODE))
                 {
-                    // TODO: Calculate and set currency display fields if ViewModel method exists
-                    // _VM.CurrentRecord.CLOCAL_CURRENCY_DISPLAY = ...;
-                    // _VM.CurrentRecord.CBASE_CURRENCY_DISPLAY = ...;
+                    
                 }
 
                 // Format audit trail dates for display (handled by properties)
@@ -1051,13 +1056,14 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        private void Conductor_R_AfterAdd(R_AfterAddEventArgs eventArgs)
+        private async Task Conductor_R_AfterAdd(R_AfterAddEventArgs eventArgs)
         {
             var loEx = new R_Exception();
 
             try
             {
                 var loEntity = (FAT00100DTO)eventArgs.Data;
+                
                 string lcFilterSupplierId = _VM.PoSupplierId;
                 loEntity.CSUPPLIER_ID = string.Empty;
                 loEntity.CSUPPLIER_NAME = string.Empty;
@@ -1089,6 +1095,21 @@ namespace FAT00100Front
                 {
                     loEntity.CLOCAL_CURRENCY_CODE = _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE ?? string.Empty;
                     loEntity.CBASE_CURRENCY_CODE = _VM.CompanyInfoData.CBASE_CURRENCY_CODE ?? string.Empty;
+                    loEntity.CCURRENCY_CODE = _VM.CompanyInfoData.CLOCAL_CURRENCY_CODE ?? string.Empty;
+                    if (_VM.LastCurrencyRateData != null)
+                    {
+                        loEntity.NLBASE_RATE = _VM.LastCurrencyRateData.NLBASE_RATE_AMOUNT;
+                        loEntity.NLCURRENCY_RATE = _VM.LastCurrencyRateData.NLCURRENCY_RATE_AMOUNT;
+                        loEntity.NBBASE_RATE = _VM.LastCurrencyRateData.NBBASE_RATE_AMOUNT;
+                        loEntity.NBCURRENCY_RATE = _VM.LastCurrencyRateData.NBCURRENCY_RATE_AMOUNT;
+                    }
+                    else
+                    {
+                        loEntity.NLBASE_RATE = 1;
+                        loEntity.NLCURRENCY_RATE = 1;
+                        loEntity.NBBASE_RATE = 1;
+                        loEntity.NBCURRENCY_RATE = 1;
+                    }
                 }
                 else
                 {
@@ -1162,6 +1183,9 @@ namespace FAT00100Front
                 loParam.CCOMPANY_ID = ClientHelper.CompanyId;
                 loParam.CUSER_ID = ClientHelper.UserId;
                 loParam.CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName;
+                string refdate = loParam.CREF_DATE;
+                string cdeptcode = loParam.CDEPT_CODE;
+                string cdeptname = loParam.CDEPT_NAME;
                 await _VM.SaveRecordAsync(
                     loParam, 
                     (eCRUDMode)eventArgs.ConductorMode, 
@@ -1169,6 +1193,17 @@ namespace FAT00100Front
                     ClientHelper.CultureUI.TwoLetterISOLanguageName
                 );
                 eventArgs.Result = _VM.CurrentRecord;
+                _VM.PoDeptCode= cdeptcode;
+                _VM.PoDeptName = cdeptname;
+                _VM.PoSupplierId = "";
+                _VM.PoSupplierName = "";
+
+                _VM.PeriodFromYear = int.Parse(refdate.Substring(0, 4)); ;
+                _VM.PeriodFromMonth= refdate.Substring(4, 2);
+                _VM.PeriodToYear = _VM.PeriodFromYear;
+                _VM.PeriodToMonth = _VM.PeriodFromMonth;
+                _VM.SelectedStatus = "";
+
             }
             catch (Exception ex)
             {
@@ -1184,7 +1219,10 @@ namespace FAT00100Front
 
             try
             {
-                await _gridRef.R_RefreshGrid(null);
+                // await _gridRef.R_RefreshGrid(null);
+                FAT00100GetDataGridResultDTO currenDataGrid= new FAT00100GetDataGridResultDTO();
+                currenDataGrid = R_FrontUtility.ConvertObjectToObject<FAT00100GetDataGridResultDTO>(_VM.CurrentRecord) ?? new FAT00100GetDataGridResultDTO();
+                await _gridRef.R_SelectCurrentDataAsync(currenDataGrid);
             }
             catch (Exception ex)
             {
@@ -1335,7 +1373,7 @@ namespace FAT00100Front
                     }
                 }
 
-                if (string.IsNullOrWhiteSpace(loEntity.CSUPPLIER_ID))
+                if (string.IsNullOrWhiteSpace(loEntity.CSUPPLIER_ID) && loEntity.CSOURCE_MODULE==FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ)
                 {
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_Supplier"));
                 }
@@ -1506,7 +1544,7 @@ namespace FAT00100Front
             loEx.ThrowExceptionIfErrors();
         }
 
-        private async Task _valueChangedCurrency(string value)
+        private async Task _valueChangedCurrency(string value, bool lDate)
         {
             var loEx = new R_Exception();
             try
@@ -1520,6 +1558,11 @@ namespace FAT00100Front
                     _VM.Data.CCURRENCY_CODE = value;
                     _VM.CurrencyListtemp= R_FrontUtility.ConvertCollectionToCollection<FAT00100GetCurrencyListResultDTO>(_VM.CurrencyList).ToList();
                     _VM.Data.CCURRENCY_NAME = _VM.CurrencyListtemp.Find(x => x.CCURRENCY_CODE == value)?.CCURRENCY_NAME ?? string.Empty;
+                    
+                    if (lDate)
+                    {
+                        _VM.Data.DREF_DATE = DateTime.Now;
+                    }
                     string crefDate = _VM.Data.DREF_DATE.ToString("yyyyMMdd");
                     await _VM.FAT00100GetLastCurrencyRateAsync(ClientHelper.CompanyId, value, crefDate);
                     if (_VM.LastCurrencyRateData != null)
@@ -1578,7 +1621,7 @@ namespace FAT00100Front
                     CMODE = "T", // T=Transaction, V=View
                     CLOCAL_CURRENCY_CODE = _VM.CompanyInfoData?.CLOCAL_CURRENCY_CODE ?? string.Empty,
                     CBASE_CURRENCY_CODE = _VM.CompanyInfoData?.CBASE_CURRENCY_CODE ?? string.Empty,
-                    LASSET_INCREMENT_FLAG = _VM.SystemParamData.LINCREMENT_FLAG,
+                    LINCREMENT_FLAG = _VM.SystemParamData.LINCREMENT_FLAG,
                     LJRNGRP_MODE = _VM.JrngrpMode,
                     LDEPT_MODE = _VM.DeptMode,
                     CASSET_DEPT_CODE = _VM.DefaultAssetDeptCode ?? string.Empty,
@@ -1679,7 +1722,18 @@ namespace FAT00100Front
                     loEntity.CREC_ID
                 );
 
-                // Refresh grid after submit
+                var loRefreshParam = new FAT00100DTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
+                    CDEPT_CODE = _VM.CurrentRecord.CDEPT_CODE,
+                    CREF_NO = _VM.CurrentRecord.CREF_NO,
+                    CREC_ID = _VM.CurrentRecord.CREC_ID
+
+                };
+
+                await _VM.GetEntity(loRefreshParam);
+                await _conductorRef.R_SetCurrentData(_VM.CurrentRecord);
 
                 string lcMessageSuccess = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_msgSubmitSuccess");
 
@@ -1689,8 +1743,7 @@ namespace FAT00100Front
                     R_eMessageBoxButtonType.OK
                 );
 
-                if (_gridRef != null)
-                    await _gridRef.R_RefreshGrid(null);
+                
             }
             catch (Exception ex)
             {
@@ -1746,6 +1799,19 @@ namespace FAT00100Front
                     FAT00100ViewModel.DEFAULT_STATUS_DRAFT
                 );
 
+                var loRefreshParam = new FAT00100DTO
+                {
+                    CCOMPANY_ID = ClientHelper.CompanyId,
+                    CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
+                    CDEPT_CODE = _VM.CurrentRecord.CDEPT_CODE,
+                    CREF_NO = _VM.CurrentRecord.CREF_NO,
+                    CREC_ID = _VM.CurrentRecord.CREC_ID
+
+                };
+
+                await _VM.GetEntity(loRefreshParam);
+                await _conductorRef.R_SetCurrentData(_VM.CurrentRecord);
+
                 string lcMessageSuccess = R_FrontUtility.R_GetMessage(typeof(Resources_Dummy_Class), "_msgDrafSuccess");
 
                 var leResultSuccess = await R_MessageBox.Show(
@@ -1754,9 +1820,8 @@ namespace FAT00100Front
                     R_eMessageBoxButtonType.OK
                 );
 
-                // Refresh grid after update
-                if (_gridRef != null)
-                    await _gridRef.R_RefreshGrid(null);
+
+                
             }
             catch (Exception ex)
             {

@@ -401,7 +401,8 @@ namespace FAT00100Front
                     CCOMPANY_ID = ClientHelper.CompanyId,
                     CUSER_ID = ClientHelper.UserId,
                     CPROPERTY_ID = "",
-                    CCATEGORY_TYPE = "60"
+                    CCATEGORY_TYPE = "60",
+                    LCHILD_ONLY=true
                 };
                 eventArgs.TargetPageType = typeof(GSL01800);
             }
@@ -917,15 +918,15 @@ namespace FAT00100Front
             }
         }
 
-        private async Task OnBookValueChanged(decimal poParam)
-        {
-            _VM.Data.NBOOK_VALUE = poParam;
-            await OnAmountChanged(poParam, "NBOOK_VALUE", "NLBOOK_VALUE", "NBBOOK_VALUE",false);
-            if (_VM.Data.LNEW_FLAG)
-            {
-                _VM.Data.NBEG_BOOK_VALUE = _VM.Data.NBOOK_VALUE;
-            }
-        }
+        //private async Task OnBookValueChanged(decimal poParam)
+        //{
+        //    _VM.Data.NBOOK_VALUE = poParam;
+        //    await OnAmountChanged(poParam, "NBOOK_VALUE", "NLBOOK_VALUE", "NBBOOK_VALUE",false);
+        //    if (_VM.Data.LNEW_FLAG)
+        //    {
+        //        _VM.Data.NBEG_BOOK_VALUE = _VM.Data.NBOOK_VALUE;
+        //    }
+        //}
 
         private void CalculateYearlyDepreciationProcess(string value)
         { 
@@ -972,7 +973,7 @@ namespace FAT00100Front
             {
                 
                 //_VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NBEG_BOOK_VALUE - _VM.Data.NRESIDUAL_VALUE) * decVal;
-                decimal lnDenominator = (_VM.Data.NBEG_BOOK_VALUE - _VM.Data.NRESIDUAL_VALUE);
+                decimal lnDenominator = (_VM.Data.NBOOK_VALUE - _VM.Data.NRESIDUAL_VALUE);
                 if (lnDenominator == 0)
                 {
                     _VM.Data.NYEAR_DEPR = 0;
@@ -982,7 +983,7 @@ namespace FAT00100Front
                     _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator * decVal;
                 }
                 //_VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NLBEG_BOOK_VALUE - _VM.Data.NLRESIDUAL_VALUE) * decVal;
-                decimal lnDenominator2 = (_VM.Data.NLBEG_BOOK_VALUE - _VM.Data.NLRESIDUAL_VALUE);
+                decimal lnDenominator2 = (_VM.Data.NLBOOK_VALUE - _VM.Data.NLRESIDUAL_VALUE);
                 if (lnDenominator2 == 0)
                 {
                     _VM.Data.NLYEAR_DEPR = 0;
@@ -992,7 +993,7 @@ namespace FAT00100Front
                     _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator2 * decVal;
                 }
                 //_VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * (_VM.Data.NBBEG_BOOK_VALUE - _VM.Data.NBRESIDUAL_VALUE) * decVal;
-                decimal lnDenominator3 = (_VM.Data.NBBEG_BOOK_VALUE - _VM.Data.NBRESIDUAL_VALUE);
+                decimal lnDenominator3 = (_VM.Data.NBBOOK_VALUE - _VM.Data.NBRESIDUAL_VALUE);
                 if (lnDenominator3 == 0)
                 {
                     _VM.Data.NBYEAR_DEPR = 0;
@@ -1005,7 +1006,7 @@ namespace FAT00100Front
             else
             {
                 //  _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NBEG_BOOK_VALUE * decVal;
-                decimal lnDenominator4 = _VM.Data.NBEG_BOOK_VALUE;
+                decimal lnDenominator4 = _VM.Data.NBOOK_VALUE;
                 if (lnDenominator4 == 0)
                 {
                     _VM.Data.NYEAR_DEPR = 0;
@@ -1015,7 +1016,7 @@ namespace FAT00100Front
                     _VM.Data.NYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator4 * decVal;
                 }
                 //_VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NLBEG_BOOK_VALUE * decVal;
-                decimal lnDenominator5 = _VM.Data.NLBEG_BOOK_VALUE;
+                decimal lnDenominator5 = _VM.Data.NLBOOK_VALUE;
                 if (lnDenominator5 == 0)
                 {
                     _VM.Data.NLYEAR_DEPR = 0;
@@ -1025,7 +1026,7 @@ namespace FAT00100Front
                     _VM.Data.NLYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * lnDenominator5 * decVal;
                 }
                 //_VM.Data.NBYEAR_DEPR = _VM.Data.NYEAR_DEPR_PCT * _VM.Data.NBBEG_BOOK_VALUE * decVal;
-                decimal lnDenominator6 = _VM.Data.NBBEG_BOOK_VALUE;
+                decimal lnDenominator6 = _VM.Data.NBBOOK_VALUE;
                 if (lnDenominator6 == 0)
                 {
                     _VM.Data.NBYEAR_DEPR = 0;
@@ -1316,7 +1317,7 @@ namespace FAT00100Front
                 else
                 {
                     // Validate Asset Code
-                    if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE) && _VM.AssetIncrementFlag==false)
+                    if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE) && _VM.AssetIncrementFlag == false)
                     {
                         loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
                     }
@@ -1581,10 +1582,10 @@ namespace FAT00100Front
                 }
 
                 // Validate Description
-                if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Description"));
-                }
+                //if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
+                //{
+                //    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_Description"));
+                //}
             }
             catch (Exception ex)
             {
@@ -1594,9 +1595,10 @@ namespace FAT00100Front
             if (loEx.HasError)
             {
                 eventArgs.Cancel = true;
+                R_DisplayException(loEx);
             }
 
-            loEx.ThrowExceptionIfErrors();
+
         }
 
         /// <summary>
@@ -1617,6 +1619,11 @@ namespace FAT00100Front
                 loEntity.CCOMPANY_ID = ClientHelper.CompanyId;
                 loEntity.CUSER_ID = ClientHelper.UserId;
 
+                //CR1 26-02-2026: Set Beg Book Value from Book Value when saving
+                loEntity.NBEG_BOOK_VALUE = loEntity.NBOOK_VALUE;
+                loEntity.NLBEG_BOOK_VALUE = loEntity.NLBOOK_VALUE;
+                loEntity.NBBEG_BOOK_VALUE = loEntity.NBBOOK_VALUE;
+
                 if (_VM.TransDetailData != null)
                 {
                     loEntity.CDEPT_CODE = _VM.TransDetailData.CDEPT_CODE;
@@ -1626,6 +1633,7 @@ namespace FAT00100Front
                     loEntity.NLCURRENCY_RATE = _VM.TransDetailData.NLCURRENCY_RATE;
                     loEntity.NBBASE_RATE = _VM.TransDetailData.NBBASE_RATE;
                     loEntity.NBCURRENCY_RATE = _VM.TransDetailData.NBCURRENCY_RATE;
+
                 }
                 // Set start date
                 if (loEntity.DSTART_DATE.HasValue)
@@ -1688,10 +1696,10 @@ namespace FAT00100Front
                     eventArgs.Result = _VM.CurrentRecord;
 
                     // Refresh asset list grid after save
-                    if (gvAssetList != null)
-                    {
-                        await gvAssetList.R_RefreshGrid(null);
-                    }
+                    //if (gvAssetList != null)
+                    //{
+                    //    await gvAssetList.R_RefreshGrid(null);
+                    //}
                     await _VM.GetTransDetailAsync(
                         ClientHelper.CompanyId,
                         ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en",
@@ -1700,6 +1708,25 @@ namespace FAT00100Front
                         _VM.ReferenceNo
                     );
                 }
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        private async Task ConductorAssetInfo_AfterSave(R_AfterSaveEventArgs eventArgs)
+        {
+            var loEx = new R_Exception();
+
+            try
+            {
+                // await _gridRef.R_RefreshGrid(null);
+                FAT0010002GetFAAcquisitionDetailAssetListResultDTO currenDataGrid = new FAT0010002GetFAAcquisitionDetailAssetListResultDTO();
+                currenDataGrid = R_FrontUtility.ConvertObjectToObject<FAT0010002GetFAAcquisitionDetailAssetListResultDTO>(_VM.CurrentRecord) ?? new FAT0010002GetFAAcquisitionDetailAssetListResultDTO();
+                await gvAssetList.R_SelectCurrentDataAsync(currenDataGrid);
             }
             catch (Exception ex)
             {

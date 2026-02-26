@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="V01" xml:space="preserve">
+    <value>Currency Rate Type is required!</value>
+  </data>
+  <data name="V02" xml:space="preserve">
+    <value>IC Link Date is required!</value>
+  </data>
+  <data name="V03" xml:space="preserve">
+    <value>PJ Link Date is required!</value>
+  </data>
+  <data name="V04" xml:space="preserve">
+    <value>Soft Close Period may not be later than IC Link Date Period!</value>
+  </data>
+  <data name="V05" xml:space="preserve">
+    <value>Soft Close Period may not be later than PJ Link Date Period!</value>
+  </data>
+  <data name="V06" xml:space="preserve">
+    <value>Soft Close Period may not be later than GL Link Date Period!</value>
+  </data>
+  <data name="V07" xml:space="preserve">
+    <value>Current Period may not be later than Soft Close Period!</value>
+  </data>
+  <data name="V08" xml:space="preserve">
+    <value>GL Link Date is required!</value>
+  </data>
+  <data name="V09" xml:space="preserve">
+    <value>Trans Dept Code is required!</value>
+  </data>
+  <data name="V10" xml:space="preserve">
+    <value>Asset Dept Code is required!</value>
+  </data>
+  <data name="V11" xml:space="preserve">
+    <value>Default Trans. Department required!</value>
+  </data>
+  <data name="V12" xml:space="preserve">
+    <value>Default Asset Department required!</value>
+  </data>
+  <data name="_AllowCancelSoftClose" xml:space="preserve">
+    <value>Allow Cancel Soft Close</value>
+  </data>
+  <data name="_AutoDepreciationTrans" xml:space="preserve">
+    <value>Auto Depreciation Transaction</value>
+  </data>
+  <data name="_AutoDeptA" xml:space="preserve">
+    <value>1 Header for each asset</value>
+  </data>
+  <data name="_AutoDeptP" xml:space="preserve">
+    <value>1 Header for each process</value>
+  </data>
+  <data name="_BankInMode" xml:space="preserve">
+    <value>Bank-in Mode</value>
+  </data>
+  <data name="_BtnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_BtnCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="_By" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="_ByDept" xml:space="preserve">
+    <value>By Department</value>
+  </data>
+  <data name="_Cheque" xml:space="preserve">
+    <value>Cheque</value>
+  </data>
+  <data name="_ClosingInProgress" xml:space="preserve">
+    <value>Closing in Progress</value>
+  </data>
+  <data name="_ContraAccount" xml:space="preserve">
+    <value>Contra Account*</value>
+  </data>
+  <data name="_CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="_CurrentPeriod" xml:space="preserve">
+    <value>Current Period</value>
+  </data>
+  <data name="_CurrRateType" xml:space="preserve">
+    <value>Currency Rate Type*</value>
+  </data>
+  <data name="_CurrRateTypeNotMand" xml:space="preserve">
+    <value>Currency Rate Type</value>
+  </data>
+  <data name="_DefaultAssetDept" xml:space="preserve">
+    <value>Default Asset Department*</value>
+  </data>
+  <data name="_DefaultAssetDeptNotMand" xml:space="preserve">
+    <value>Default Asset Department</value>
+  </data>
+  <data name="_DefaultTransDept" xml:space="preserve">
+    <value>Default Trans. Department*</value>
+  </data>
+  <data name="_DefaultTransDeptNotMand" xml:space="preserve">
+    <value>Default Trans. Department</value>
+  </data>
+  <data name="_DetailByAsset" xml:space="preserve">
+    <value>Detail by Asset</value>
+  </data>
+  <data name="_DocNumByCashOrBank" xml:space="preserve">
+    <value>Document Numbering by Cash/Bank Code</value>
+  </data>
+  <data name="_EnableInputChequeDueDate" xml:space="preserve">
+    <value>Enable Input Cheque Due Date</value>
+  </data>
+  <data name="_FASystemParameter" xml:space="preserve">
+    <value>FA System Parameter</value>
+  </data>
+  <data name="_ForexGainAccount" xml:space="preserve">
+    <value>Forex Gain Account*</value>
+  </data>
+  <data name="_ForexLossAccount" xml:space="preserve">
+    <value>Forex Loss Account*</value>
+  </data>
+  <data name="_GLLinkDate" xml:space="preserve">
+    <value>GL Link Date</value>
+  </data>
+  <data name="_ICLinkDate" xml:space="preserve">
+    <value>IC Link Date</value>
+  </data>
+  <data name="_IncrementalAssetCode" xml:space="preserve">
+    <value>Using Incremental Asset Code by Journal Group</value>
+  </data>
+  <data name="_JournalSetup" xml:space="preserve">
+    <value>Journal Setup</value>
+  </data>
+  <data name="_JournalType" xml:space="preserve">
+    <value>Journal Type</value>
+  </data>
+  <data name="_L01" xml:space="preserve">
+    <value>FA System Parameter for this property has not been created!</value>
+  </data>
+  <data name="_length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="_N01" xml:space="preserve">
+    <value>Discard Changes?</value>
+  </data>
+  <data name="_N02" xml:space="preserve">
+    <value>FA System Parameter Created Successfully!</value>
+  </data>
+  <data name="_Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="_PJLinkDate" xml:space="preserve">
+    <value>PJ Link Date</value>
+  </data>
+  <data name="_RadioBBankInMode" xml:space="preserve">
+    <value>Through Batch Clearing Cheque</value>
+  </data>
+  <data name="_RadioDBankInMode" xml:space="preserve">
+    <value>Clearing Cheque Directly</value>
+  </data>
+  <data name="_SoftClosePeriod" xml:space="preserve">
+    <value>Soft Close Period</value>
+  </data>
+  <data name="_SoftClosingProgress" xml:space="preserve">
+    <value>Soft Closing in Progress</value>
+  </data>
+  <data name="_SummaryByJrnal" xml:space="preserve">
+    <value>Summary by Journal Group</value>
+  </data>
+  <data name="_UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+</root>

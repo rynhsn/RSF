@@ -18,5 +18,8 @@ namespace FAT01100Common.DTOs
         public string CTRANS_SEQ_NO { get; set; } = string.Empty;
         public string CREC_ID { get; set; } = string.Empty;
 
+        public string CASSET_NAME { get; set; } = string.Empty;
+        public string CDEPT_NAME { get; set; } = string.Empty;
+
     }
 }

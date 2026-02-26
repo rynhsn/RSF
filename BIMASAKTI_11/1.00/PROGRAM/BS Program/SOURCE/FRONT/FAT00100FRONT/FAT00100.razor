@@ -296,7 +296,7 @@
                 <!-- Supplier Section -->
                 <R_StackLayout Row class="mb-1">
                     <R_ItemLayout col="3">
-                        <R_Label>@Localizer["_Supplier"]*</R_Label>
+                        <R_Label>@Localizer["_Supplier"]@(_VM.Data.CSOURCE_MODULE == FAT00100ViewModel.DEFAULT_SOURCE_MODULE_PJ ? "*" : "")</R_Label>
                     </R_ItemLayout>
                     <R_ItemLayout col="3">
                         <R_TextBox @bind-Value="_VM.Data.CSUPPLIER_ID"
@@ -324,7 +324,7 @@
                     <R_ItemLayout col="3">
                         <R_ComboBox Value="_VM.Data.CCURRENCY_CODE"
                                     Data="_VM.CurrencyList"
-                                    ValueChanged="@((string value) => _valueChangedCurrency(value))"
+                                    ValueChanged="@((string value) => _valueChangedCurrency(value,false))"
                                     R_ConductorSource="@_conductorRef"
                                     R_EnableAdd="true"
                                     R_EnableEdit="true"
@@ -533,7 +533,7 @@
              R_AfterAdd="@Conductor_R_AfterAdd"
              R_Saving="@Conductor_R_Saving"
              R_ServiceSave="@Conductor_R_ServiceSave"
-             R_AfterSave="Conductor_AfterSave"
+             R_AfterSave="@Conductor_AfterSave"
              R_ServiceDelete="@Conductor_R_ServiceDelete"
              R_BeforeCancel="@R_BeforeCancel"
              R_BeforeDelete="BeforeDelete"
