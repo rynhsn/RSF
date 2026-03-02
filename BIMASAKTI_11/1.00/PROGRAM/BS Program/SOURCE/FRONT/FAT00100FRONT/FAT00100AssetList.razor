@@ -11,7 +11,7 @@
             <R_ItemLayout col="3">
                 <R_Label>@(VM?.CurrentRecord?.CREF_NO ?? string.Empty)</R_Label>
             </R_ItemLayout>
-            <R_ItemLayout col="2">
+            <R_ItemLayout col="3">
                 <R_Label>@(VM?.CurrentRecord?.CREF_DATE_DISPLAY ?? string.Empty)</R_Label>
             </R_ItemLayout>
         </R_StackLayout>
@@ -44,7 +44,7 @@
                                  Width="200px" />
                 <R_GridTextColumn FieldName="@nameof(FAT00100GetTransAssetListResultDTO.CCURRENCY_CODE)"
                                   HeaderText="@Localizer["_Curr"]"
-                                  Width="200px" />
+                                  Width="100px" />
                 <R_GridNumericColumn FieldName="@nameof(FAT00100GetTransAssetListResultDTO.NLINIT_COST)" 
                                     HeaderText="@Localizer["_InitialCost"]" 
                                     Width="120px"

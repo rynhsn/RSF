@@ -1,0 +1,378 @@
+﻿@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _ILocalizer
+
+<R_StackLayout>
+    <R_ItemLayout>
+        <R_TabStrip OnActiveTabIndexChanged="@OnActiveTabIndexChanged">
+            @* ==================== TRANSACTION ENTRY TAB ==================== *@
+            <R_TabStripTab Title="@_ILocalizer["_tabTransactionEntry"]">
+                <R_StackLayout Class="FAT00700_tab_content">
+                    <R_StackLayout>
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="7">
+                                <R_StackLayout Row>
+                                    <R_ItemLayout col="2">
+                                        <R_Label>
+                                            @Localizer["_lblDeptM"]
+                                        </R_Label>
+                                    </R_ItemLayout>
+
+                                    <R_ItemLayout col="2">
+                                        <R_TextBox R_ConductorSource="@_conductorRef"
+                                                   R_EnableAdd
+                                                   OnLostFocused="@OnLostFocusedDepartment"
+                                                   @bind-Value="@_viewModel.Data.CDEPT_CODE">
+                                        </R_TextBox>
+                                    </R_ItemLayout>
+
+                                    <R_Lookup R_ConductorSource="@_conductorRef"
+                                              R_EnableAdd
+                                              R_Before_Open_Lookup="@BeforeOpenLookUpDepartment"
+                                              R_After_Open_Lookup="@AfterOpenLookUpDepartment">
+                                        ...
+                                    </R_Lookup>
+
+                                    <R_ItemLayout auto="false">
+                                        <R_TextBox R_ConductorSource="@_conductorRef"
+                                                   @bind-value="@_viewModel.Data.CDEPT_NAME"
+                                                   Enabled="false">
+                                        </R_TextBox>
+                                    </R_ItemLayout>
+
+                                    <h5 class="text-primary">
+                                        @_viewModel.Data.CTRANS_STATUS_NAME
+                                    </h5>
+
+                                </R_StackLayout>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* Reference NO - Ref Date *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="7">
+                                <R_StackLayout Row>
+                                    <R_ItemLayout col="2">
+                                        <R_Label>
+                                            @Localizer["_lblRefM"]
+                                        </R_Label>
+                                    </R_ItemLayout>
+
+                                    <R_ItemLayout col="5">
+                                        <R_TextBox R_ConductorSource="@_conductorRef"
+                                                   R_EnableAdd
+                                                   Enabled="@((_conductorRef.R_ConductorMode == R_BlazorFrontEnd.Enums.R_eConductorMode.Add &&
+                                                                                                                                                                                                                                                                          _viewModel.paramTransEntry.LINCREMENT_FLAG == false ? true : false))"
+                                                   @bind-value="@_viewModel.Data.CREF_NO">
+                                        </R_TextBox>
+                                    </R_ItemLayout>
+
+                                    <R_ItemLayout col="2" Style="width: 13%">
+                                        <R_Label>
+                                            @Localizer["_lblRefDateM"]
+                                        </R_Label>
+                                    </R_ItemLayout>
+
+                                    <R_ItemLayout auto="false">
+                                        <R_DatePicker R_ConductorSource="@_conductorRef"
+                                                      R_EnableAdd
+                                                      R_EnableEdit
+                                                      Value="@_viewModel.Data.DREF_DATE"
+                                                      ValueChanged="@((DateTime? pdValue) => @RefDateChanged(pdValue))">
+                                        </R_DatePicker>
+                                    </R_ItemLayout>
+                                </R_StackLayout>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* Asset Code - Trans Seq No *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="7">
+                                <R_StackLayout Row>
+                                    <R_ItemLayout col="2">
+                                        <R_Label>
+                                            @Localizer["_lblAssetCodeM"]
+                                        </R_Label>
+                                    </R_ItemLayout>
+
+                                    <R_ItemLayout col="5">
+                                        <R_TextBox R_ConductorSource="@_conductorRef"
+                                                   R_EnableAdd
+                                                   OnLostFocused="@OnLostFocusedAsset"
+                                                   @bind-value="_viewModel.Data.CASSET_CODE">
+                                        </R_TextBox>
+                                    </R_ItemLayout>
+
+                                    <R_Lookup R_ConductorSource="@_conductorRef"
+                                              R_Before_Open_Lookup="@BeforeOpenLookUpAsset"
+                                              R_After_Open_Lookup="@AfterOpenLookUpAsset"
+                                              R_EnableAdd
+                                              R_EnableEdit>
+                                        ...
+                                    </R_Lookup>
+
+                                    <R_Label>
+                                        @Localizer["_lblTransSeqNo"]
+                                    </R_Label>
+
+                                    <R_ItemLayout auto="false">
+                                        <R_TextBox Enabled="false"
+                                                   @bind-value="@_viewModel.Data.CASSET_TRANS_SEQ_NO">
+                                        </R_TextBox>
+                                    </R_ItemLayout>
+                                </R_StackLayout>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* Asset Name *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="7">
+                                <R_StackLayout Row>
+                                    <R_ItemLayout col="2">
+                                        <R_Label>
+                                            @Localizer["_lblAssetNm"]
+                                        </R_Label>
+                                    </R_ItemLayout>
+
+                                    <R_ItemLayout auto="false">
+                                        <R_TextBox Enabled="false"
+                                                   @bind-value="@_viewModel.Data.CASSET_NAME">
+                                        </R_TextBox>
+                                    </R_ItemLayout>
+                                </R_StackLayout>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* Asset Departmnet *@
+                        <R_StackLayout Row>
+                            <R_ItemLayout col="7">
+                                <R_StackLayout Row>
+                                    <R_ItemLayout col="2">
+                                        <R_Label>
+                                            @Localizer["_lblAssetDept"]
+                                        </R_Label>
+                                    </R_ItemLayout>
+
+                                    <R_ItemLayout col="2">
+                                        <R_TextBox R_ConductorSource="@_conductorRef"
+                                                   Enabled="false"
+                                                   @bind-value="@_viewModel.Data.CASSET_DEPT_CODE">
+                                        </R_TextBox>
+                                    </R_ItemLayout>
+
+                                    <R_ItemLayout auto="false">
+                                        <R_TextBox R_ConductorSource="@_conductorRef"
+                                                   @bind-value="@_viewModel.Data.CASSET_DEPT_NAME"
+                                                   Enabled="false">
+                                        </R_TextBox>
+                                    </R_ItemLayout>
+                                </R_StackLayout>
+                            </R_ItemLayout>
+                        </R_StackLayout>
+
+                        @* Discard Amount *@
+                        <R_ItemLayout col="7">
+                            @* Local Amount *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_ILocalizer["_lblDiscardAmtMust"]</R_Label>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout col="2">
+                                    <R_Label>@_ILocalizer["_lblCurrRate"]</R_Label>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="@_viewModel.paramTransEntry.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_NumericTextBox TValue="decimal"
+                                                      Enabled="false"
+                                                      Arrows="false"
+                                                      @bind-Value="@_viewModel.Data.NLTRANS_AMOUNT"
+                                                      TextAlignment="R_eTextAlignment.Right"></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        <R_ItemLayout col="7">
+                            @* Base Amount *@
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    @* for spacing *@
+                                </R_ItemLayout>
+
+                                <R_ItemLayout col="2">
+                                    <R_Label>@_ILocalizer["_lblCurrRate"]</R_Label>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="@_viewModel.paramTransEntry.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+
+                                <R_ItemLayout col="3">
+                                    <R_NumericTextBox TValue="decimal"
+                                                      Enabled="false"
+                                                      Arrows="false"
+                                                      @bind-Value="@_viewModel.Data.NBTRANS_AMOUNT"
+                                                      TextAlignment="R_eTextAlignment.Right">
+                                    </R_NumericTextBox>
+                                </R_ItemLayout>
+
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        @* Allocation *@
+                        <R_ItemLayout col="7">
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="2">
+                                    <R_Label>@_ILocalizer["_lblAlloc"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_TextBox @bind-Value="@_viewModel.Data.CEXPENSE_ALLOC_ID"
+                                               R_ConductorSource="_conductorRef"
+                                               OnLostFocused="@OnLostFocusedAllocation"
+                                               R_EnableAdd
+                                               R_EnableEdit>
+                                    </R_TextBox>
+                                </R_ItemLayout>
+                                @* Allocation Lookup - Enabled in Add mode or Edit mode when LCHANGE_DESC=0 *@
+                                <R_ItemLayout auto="true">
+                                    <R_Lookup R_ConductorSource="_conductorRef"
+                                              R_EnableAdd
+                                              R_EnableEdit
+                                              R_Before_Open_Lookup="@BeforeOpenAllocation"
+                                              R_After_Open_Lookup="@AfterOpenAllocation">...</R_Lookup>
+                                </R_ItemLayout>
+                                <R_ItemLayout auto="false">
+                                    <R_TextBox Value="@_viewModel.Data.CEXPENSE_ALLOC_NAME" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        @* Description *@
+                        <R_ItemLayout col="7">
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="2">
+                                    <R_Label>@_ILocalizer["_lblDescMust"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="10">
+                                    <R_TextArea @bind-Value="@_viewModel.Data.CTRANS_DESC"
+                                                MaxLength="255"
+                                                Height="60px"
+                                                R_ConductorSource="_conductorRef"
+                                                R_EnableAdd
+                                                R_EnableEdit />
+                                </R_ItemLayout>
+
+                                <R_ItemLayout Class="ms-2"></R_ItemLayout>
+
+                                <R_ItemLayout col="10">
+                                    <R_StackLayout>
+                                        @* Created By *@
+                                        <R_StackLayout Row>
+                                            <R_ItemLayout col="2">
+                                                <R_Label>Updated By</R_Label>
+                                            </R_ItemLayout>
+                                            <R_ItemLayout col="2">
+                                                <R_TextBox Value="@_viewModel.Data.CUPDATE_BY" Enabled="false"></R_TextBox>
+                                            </R_ItemLayout>
+                                            <R_ItemLayout col="5">
+                                                <R_DateTimePicker @bind-Value="@_viewModel.Data.DUPDATE_DATE" Enabled="false"></R_DateTimePicker>
+                                            </R_ItemLayout>
+                                        </R_StackLayout>
+                                        @* Updated By *@
+                                        <R_StackLayout Row>
+                                            <R_ItemLayout col="2">
+                                                <R_Label>Created By</R_Label>
+                                            </R_ItemLayout>
+                                            <R_ItemLayout col="2">
+                                                <R_TextBox Value="@_viewModel.Data.CCREATE_BY" Enabled="false"></R_TextBox>
+                                            </R_ItemLayout>
+                                            <R_ItemLayout col="5">
+                                                <R_DateTimePicker @bind-Value="@_viewModel.Data.DCREATE_DATE" Enabled="false"></R_DateTimePicker>
+                                            </R_ItemLayout>
+                                        </R_StackLayout>
+                                    </R_StackLayout>
+                                </R_ItemLayout>
+
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_StackLayout>
+
+                <R_StackLayout Row Class="mt-4">
+                    <R_ItemLayout col="3">
+                        <R_AddButton Enabled="_viewModel.llEnableAdd"
+                                     R_Conductor="@_conductorRef">
+                        </R_AddButton>
+                        <R_EditButton R_Conductor="@_conductorRef"
+                                      Enabled="@((_viewModel.llEnableAdd && _viewModel.loTransEntry.CTRANS_STATUS == "00"))">
+                        </R_EditButton>
+
+                        <R_Button OnClick="@DeleteTransaction"
+                                  Enabled="@((_viewModel.llEnableDelete == true &&
+                                                                                _viewModel.llDeletedRecord == false &&
+                                                                                _viewModel.loTransEntry.CCOMPANY_ID != ""))">
+                            @Localizer["_btnDelete"]
+                        </R_Button>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout auto="false">
+                        @* Submit - Enabled on Normal mode when any active (displayed) data and PCMODE = 'T' and CSTATUS='00' (Draft) *@
+                        <R_Button OnClick="@SubmitTransaction"
+                                  Enabled="@((_viewModel.llEnableSubmit && _viewModel.loTransEntry.CTRANS_STATUS == "00"))">
+                            @Localizer["_lblSubmit"]
+                        </R_Button>
+                        @* Redraft - Enabled on Normal mode when any active (displayed) data and PCMODE = 'T' and (CSTATUS IN('01') or (CSTATUS='03' and LTRANS_APPROVAL = 0)) *@
+                        <R_Button OnClick="@RedraftTransaction"
+                                  Enabled="@((_viewModel.llEnableRedraft && _viewModel.loTransEntry.CTRANS_STATUS == "10"))">
+                            @Localizer["_btnRedraft"]
+                        </R_Button>
+
+                        @* Print - Enabled on Normal mode when any active data and depend on user access right for printing *@
+                        <R_Popup R_Before_Open_Popup="@BeforeOpenJournal"
+                                 R_After_Open_Popup="@AfterOpenJournal"
+                                 Enabled="@((_viewModel.llEnableJournal &&
+                                                                              _viewModel.loTransEntry.CTRANS_STATUS != "00" &&
+                                                                              _viewModel.loTransEntry.CGL_REF_NO != ""))">
+                            @Localizer["_btnJournal"]
+                        </R_Popup>
+
+                        @* <R_Button>@_ILocalizer["_lblPrint"]</R_Button> *@
+                        @* Journal - Enable in normal mode when any active data and CSTATUS = '08' *@
+                        @* <R_Button>@_ILocalizer["_lblJournal"]</R_Button> *@
+                    </R_ItemLayout>
+
+
+                    <R_ItemLayout col="2">
+                        @* Cancel - Enabled on Add or Edit mode *@
+                        <R_CancelButton R_Conductor="@_conductorRef" Enabled="@(_conductorRef.R_ConductorMode == R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_eConductorMode.Edit)" />
+                        @* Save - Enabled on Add or Edit mode *@
+                        <R_SaveButton R_Conductor="@_conductorRef" Enabled="@(_conductorRef.R_ConductorMode == R_eConductorMode.Add || _conductorRef.R_ConductorMode == R_eConductorMode.Edit)" />
+                    </R_ItemLayout>
+                </R_StackLayout>
+            </R_TabStripTab>
+
+            <R_TabStripTab 
+                Enabled="_viewModel.llEnableTabInformation"
+                Title="@_ILocalizer["_tabAssetInformation"]" Id="AssetInfo">
+                <R_TabPage 
+                    R_Before_Open_TabPage="BeforeOpenTabAssetInfo" />
+            </R_TabStripTab>
+        </R_TabStrip>
+    </R_ItemLayout>
+</R_StackLayout>
+    
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@Conductor_R_GetRecord"
+             R_SetOther="@SetOtherFAT00700"
+             R_AfterAdd="@Conductor_R_AfterAdd"
+             R_Validation="@ValidationTransactionEntry"
+             R_BeforeCancel="@BeforeCancelTransaction"
+             R_Saving="@SavingTransactionEntry"
+             R_ServiceSave="@SaveTransactionEntry" />
+<style>
+
+</style>

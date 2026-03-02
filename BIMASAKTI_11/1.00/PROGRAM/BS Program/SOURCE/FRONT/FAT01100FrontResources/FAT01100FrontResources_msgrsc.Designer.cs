@@ -169,6 +169,15 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string _cancel {
+            get {
+                return ResourceManager.GetString("_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created By.
         /// </summary>
         internal static string _CreatedBy {
@@ -250,6 +259,24 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        internal static string _edit {
+            get {
+                return ResourceManager.GetString("_edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expense Allocation.
+        /// </summary>
+        internal static string _ExpenseAllocation {
+            get {
+                return ResourceManager.GetString("_ExpenseAllocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Floor.
         /// </summary>
         internal static string _Floor {
@@ -313,6 +340,15 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string _name {
+            get {
+                return ResourceManager.GetString("_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Asset Information.
         /// </summary>
         internal static string _NewAssetInformation {
@@ -331,6 +367,15 @@ namespace FAT01100FrontResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Expense Alocation.
+        /// </summary>
+        internal static string _NewExpenseAlocation {
+            get {
+                return ResourceManager.GetString("_NewExpenseAlocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Old Asset Information.
         /// </summary>
         internal static string _OldAssetInformation {
@@ -345,6 +390,24 @@ namespace FAT01100FrontResources {
         internal static string _OldDepreciationInformation {
             get {
                 return ResourceManager.GetString("_OldDepreciationInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Expense Alocation.
+        /// </summary>
+        internal static string _OldExpenseAlocation {
+            get {
+                return ResourceManager.GetString("_OldExpenseAlocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to %.
+        /// </summary>
+        internal static string _Percent {
+            get {
+                return ResourceManager.GetString("_Percent", resourceCulture);
             }
         }
         
@@ -552,6 +615,15 @@ namespace FAT01100FrontResources {
         internal static string _UserOwner {
             get {
                 return ResourceManager.GetString("_UserOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot Proceed! Selected Asset Code has outstanding transaction  {0} with Reference No {1}.
+        /// </summary>
+        internal static string _val_Outstanding {
+            get {
+                return ResourceManager.GetString("_val_Outstanding", resourceCulture);
             }
         }
         

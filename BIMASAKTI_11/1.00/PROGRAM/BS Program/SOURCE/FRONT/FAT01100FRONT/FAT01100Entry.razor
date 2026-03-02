@@ -831,7 +831,7 @@
         </R_StackLayout>
     </R_TabStripTab>
 
-    <R_TabStripTab @ref="_tabExpenseAllocation" Title="@Localizer["_ExpenseAllocation"]" Id="@nameof(FAT01100ExpenseAllocation)">
+    <R_TabStripTab @ref="_tabExpenseAllocation" Title="@Localizer["_ExpenseAllocation"]" Id="@nameof(FAT01100ExpenseAllocation)" Enabled="@(_conductorRef?.R_ConductorMode == R_eConductorMode.Normal)">
         <CascadingValue Value="@_VM" Name="FAT0010002ViewModel" IsFixed="true">
             <R_TabPage @ref="_tabPageExpenseAllocation" R_Before_Open_TabPage="BeforeOpenExpenseAllocation" R_After_Open_TabPage="AfterOpenExpenseAllocation" R_TabEventCallback="ExpenseAllocationTabEventCallBack"/>
         </CascadingValue>

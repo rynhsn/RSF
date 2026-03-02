@@ -1,0 +1,166 @@
+﻿@page "/FAT00700"
+@inherits R_Page
+@attribute [R_Page(Title = "FA Discard")]
+@inject R_ILocalizer<Resources_Dummy_Class> _ILocalizer
+
+<R_StackLayout Class="gap-5">
+    @* Header Section *@
+    <R_ItemLayout>
+        <R_StackLayout>
+            @* Department and Period Row *@
+            <R_ItemLayout>
+                <R_StackLayout Row>
+                    @* Department Label *@
+                    <R_ItemLayout col="1">
+                        <R_Label>@_ILocalizer["_lblDepartment"]</R_Label>
+                    </R_ItemLayout>
+
+                    @* Department Code *@
+                    <R_ItemLayout col="1">
+                        <R_TextBox @bind-Value="@_viewModel.Data.CDEPT_CODE"
+                                   R_ConductorSource="_conductorRef"
+                                   Enabled
+                                   OnLostFocused="OnLostFocusedDepartment"></R_TextBox>
+                    </R_ItemLayout>
+
+                    @* Department Lookup - Enabled in Add mode or Find mode *@
+                    <R_ItemLayout auto="true">
+                        <R_Lookup R_Before_Open_Lookup="@BeforeOpenLookUpDepartment"
+                                  R_After_Open_Lookup="@AfterOpenLookUpDepartment">...</R_Lookup>
+                    </R_ItemLayout>
+
+                    @* Department Description *@
+                    <R_ItemLayout col="2">
+                        <R_TextBox Value="@_viewModel.Data.CDEPT_NAME" Enabled="false"></R_TextBox>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="1"></R_ItemLayout>
+
+                    @* Period Label *@
+                    <R_ItemLayout col="1">
+                        <R_Label>@_ILocalizer["_lblPeriod"]</R_Label>
+                    </R_ItemLayout>
+
+                    @* Period From *@
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox TValue="int"
+                                          Value="@_viewModel.IYEAR_FROM"
+                                          ThousandSeparator="false"
+                                          ValueChanged="((int value) => OnChangedYearFrom(value))">
+                        </R_NumericTextBox>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_DropDownList Data="@_viewModel.MonthList"
+                                        Value="_viewModel.CMONTH_FROM"
+                                        ValueField="@nameof(_viewModel.CMONTH_FROM)"
+                                        TextField="@nameof(_viewModel.CMONTH_FROM)"
+                                        PopupMaxHeight="200px"
+                                        R_ConductorSource="@_conductorRef"
+                                        Enabled
+                                        ValueChanged="((string value) => OnChangedMonthFrom(value))" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout auto="true">
+                        <R_Label>to</R_Label>
+                    </R_ItemLayout>
+
+                    @* Period To *@
+                    <R_ItemLayout col="1">
+                        <R_NumericTextBox Value="@_viewModel.IYEAR_TO"
+                                          ThousandSeparator="false"
+                                          ValueChanged="((int value) => OnChangedYearTo(value))"></R_NumericTextBox>
+                    </R_ItemLayout>
+
+                    <R_ItemLayout>
+                        <R_DropDownList Data="@_viewModel.MonthList"
+                                        Value="_viewModel.CMONTH_TO"
+                                        ValueField="@nameof(_viewModel.CMONTH_TO)"
+                                        TextField="@nameof(_viewModel.CMONTH_TO)"
+                                        PopupMaxHeight="200px"
+                                        R_ConductorSource="@_conductorRef"
+                                        Enabled
+                                        ValueChanged="((string value) => OnChangedMonthTo(value))" />
+                    </R_ItemLayout>
+
+                    <R_ItemLayout col="1">
+                        <R_Button OnClick="OnClickRefresh">@_ILocalizer["_lblRefresh"]</R_Button>
+                    </R_ItemLayout>
+
+                </R_StackLayout>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            @* Asset Label *@
+            <R_ItemLayout col="1">
+                <R_Label>@_ILocalizer["_lblAsset"]</R_Label>
+            </R_ItemLayout>
+
+            @* Asset Code *@
+            <R_ItemLayout col="1">
+                <R_TextBox OnLostFocused="@OnLostFocusedAsset"
+                           @bind-Value="@_viewModel.Data.CASSET_CODE"></R_TextBox>
+            </R_ItemLayout>
+
+            @* Asset Lookup - Enabled in Add mode, Edit mode when LCHANGE_DESC=0 and LCHANGE_ALLOC=0, or Find mode when CASSET_CODE='' *@
+            <R_ItemLayout auto="true">
+                <R_Lookup R_Before_Open_Lookup="@BeforeOpenLookUpAsset"
+                          R_After_Open_Lookup="@AfterOpenLookUpAsset">...</R_Lookup>
+            </R_ItemLayout>
+
+            @* Asset Description *@
+            <R_ItemLayout col="2">
+                <R_TextBox Value="@_viewModel.Data.CASSET_NAME" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    @* Grid Section *@
+    <R_ItemLayout>
+        <R_Grid @ref="_gridRef"
+                DataSource="_viewModel.TransactionList"
+                Height="400px"
+                Pageable
+                PageSize="10"
+                R_ServiceGetListRecord="R_ServiceGetListRecord"
+                R_Display="@R_Display"
+                R_GridType="R_eGridType.Original">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(GetTransactionListResultDTO.CDEPT_CODE)" HeaderText="@_ILocalizer["_lblDeptGrid"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="200px" FieldName="@nameof(GetTransactionListResultDTO.CREF_NO)" HeaderText="@_ILocalizer["_lblReferenceNoGrid"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="200px" FieldName="@nameof(GetTransactionListResultDTO.CREF_DATE)" HeaderText="@_ILocalizer["_lblDate"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="200px" FieldName="@nameof(GetTransactionListResultDTO.CASSET_CODE)" HeaderText="@_ILocalizer["_lblAssetCode"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="300px" FieldName="@nameof(GetTransactionListResultDTO.CASSET_NAME)" HeaderText="@_ILocalizer["_lblAssetName"]"></R_GridTextColumn>
+                <R_GridTextColumn FieldName="@nameof(GetTransactionListResultDTO.CCURRENCY_CODE)" HeaderText="@_ILocalizer["_lblCurr"]"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GetTransactionListResultDTO.NTRANS_AMOUNT)" HeaderText="@_ILocalizer["_lblDiscardAmt"]"
+                                     Width="300px"></R_GridNumericColumn>
+                <R_GridTextColumn Width="150px" FieldName="@nameof(GetTransactionListResultDTO.CTRANS_STATUS_NAME)" HeaderText="@_ILocalizer["_lblStatus"]"></R_GridTextColumn>
+                <R_GridTextColumn Width="200px" FieldName="@nameof(GetTransactionListResultDTO.CTRANS_DESC)" HeaderText="@_ILocalizer["_lblDesc"]"></R_GridTextColumn>
+                <R_GridNumericColumn TValue="decimal" Decimals="0" FieldName="@nameof(GetTransactionListResultDTO.NQTY)" HeaderText="@_ILocalizer["_lblQty"]"></R_GridNumericColumn>
+                <R_GridTextColumn Width="200px" FieldName="@nameof(GetTransactionListResultDTO.CCREATE_BY)" HeaderText="@_ILocalizer["_lblCreateBy"]"></R_GridTextColumn>
+                <R_GridDatePickerColumn Width="200px" FieldName="@nameof(GetTransactionListResultDTO.DCREATE_DATE)" HeaderText="@_ILocalizer["_lblCreateDate"]"></R_GridDatePickerColumn>
+                <R_GridTextColumn Width="200px" FieldName="@nameof(GetTransactionListResultDTO.CUPDATE_BY)" HeaderText="@_ILocalizer["_lblUpdateBy"]"></R_GridTextColumn>
+                <R_GridDatePickerColumn Width="200px" FieldName="@nameof(GetTransactionListResultDTO.DUPDATE_DATE)" HeaderText="@_ILocalizer["_lblUpdateDate"]"></R_GridDatePickerColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="_conductorRef"
+             R_ViewModel="_viewModel"
+             R_ServiceGetRecord="R_GetRecord"
+             R_Display="R_Display"
+             R_Validation="R_Validation"
+             R_IsHeader />
+
+<R_PredefinedDock 
+    Title=@Localizer["Transaction Entry"] 
+    R_InstantiateDock="PredefinedTransEntry" 
+    R_AfterOpenPredefinedDock="AfterTransEntry" 
+    Enabled="true">
+</R_PredefinedDock>
+
+<style>
+
+</style>

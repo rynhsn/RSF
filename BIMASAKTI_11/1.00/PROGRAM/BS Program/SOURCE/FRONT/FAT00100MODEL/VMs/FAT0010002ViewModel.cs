@@ -49,6 +49,7 @@ namespace FAT00100Model.VMs
 
         // Form state properties (extracted from VB.NET module variables)
         public string DeptCodeDefault { get; set; } = string.Empty;
+        public string DeptCodeAssetDefault { get; set; } = string.Empty;
         public string DeptCode { get; set; } = string.Empty;
         public string ReferenceNo { get; set; } = string.Empty;
         public string RecId { get; set; } = string.Empty;

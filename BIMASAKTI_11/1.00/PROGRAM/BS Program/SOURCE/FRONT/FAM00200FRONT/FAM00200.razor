@@ -1,0 +1,176 @@
+﻿@page "/FAM00200"
+@using FAM00200Common.DTOs
+@inherits R_Page
+@attribute [R_Page(ResourceId = "_AssetTaxType")]
+
+<R_StackLayout Row>
+    <R_ItemLayout col="3">
+        <R_Grid @ref="@_gridRef"
+                DataSource="@_viewModel.TaxTypeGrid"
+                R_ServiceGetListRecord="@TaxType_ServiceGetListRecord"
+                R_ConductorSource="@_conductorRef"
+                R_GridType="@R_eGridType.Navigator"
+                Enabled="@_PageOnCRUDMode"
+                R_RowRender="@R_RowRender"
+                Pageable
+                Height="350px">
+            <R_GridColumns>
+                <R_GridTextColumn FieldName="@nameof(FAM00200DTO.CTAX_TYPE_ID_NAME)" HeaderText="@_localizer["_TaxType"]" Width="200px"></R_GridTextColumn>
+            </R_GridColumns>
+        </R_Grid>
+    </R_ItemLayout>
+
+    <R_ItemLayout col="9">
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_TaxTypeIDName"]*</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox MaxLength="20"
+                           @ref="@_TaxTypeId_TextBox"
+                           R_ConductorSource="@_conductorRef"
+                           @bind-Value="@_viewModel.Data.CTAX_TYPE_ID"
+                           R_EnableAdd></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox MaxLength="100"
+                           @ref="@_TaxTypeName_TextBox"
+                           R_ConductorSource="@_conductorRef"
+                           @bind-Value="@_viewModel.Data.CTAX_TYPE_NAME"
+                           R_EnableAdd R_EnableEdit></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_UsefulLife"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="1">
+                <R_NumericTextBox @bind-Value="@_viewModel.Data.IUSEFUL_LIFE"
+                                  Min="@_viewModel.IMIN_YEAR"
+                                  Max="@_viewModel.IMAX_YEAR"
+                                  Decimals="0"
+                                  Step="1"
+                                  R_ConductorSource="@_conductorRef"
+                                  R_EnableAdd R_EnableEdit></R_NumericTextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>
+                    @_localizer["_Years"]
+                </R_Label>
+
+                <R_Label>
+                    @_localizer["_Lifetime"]
+                </R_Label>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_Description"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_TextArea MaxLength="500"
+                            R_ConductorSource="@_conductorRef"
+                            @bind-Value="@_viewModel.Data.CTAX_TYPE_DESC"
+                            R_EnableAdd R_EnableEdit></R_TextArea>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+                <R_Label>@_localizer["_Status"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="5">
+                <R_RadioGroup Data="@_viewModel.ActiveInactiveList"
+                              @bind-Value="@_viewModel.Data.LACTIVE"
+                              ValueField="Key"
+                              TextField="Value"
+                              Layout="R_eRadioGroupLayout.Horizontal"
+                              R_ConductorSource="@_conductorRef"
+                              R_EnableAdd R_EnableEdit />
+
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+        <R_StackLayout Row><R_ItemLayout><R_Label></R_Label></R_ItemLayout></R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_UpdatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CUPDATE_BY" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DateTimePicker @bind-Value="@_viewModel.Data.DUPDATE_DATE" ShowPickerButton="false"
+                                  Enabled="false"></R_DateTimePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row>
+            <R_ItemLayout col="3">
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_Label>@_localizer["_CreatedBy"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="2">
+                <R_TextBox @bind-Value="@_viewModel.Data.CCREATE_BY" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_DateTimePicker @bind-Value="@_viewModel.Data.DCREATE_DATE" ShowPickerButton="false"
+                                  Enabled="false"></R_DateTimePicker>
+            </R_ItemLayout>
+        </R_StackLayout>
+
+        <R_StackLayout Row Justify="@R_eJustify.SpaceBetween" Class="mt-3">
+            <R_ItemLayout>
+                <R_AddButton R_Conductor="@_conductorRef"></R_AddButton>
+                <R_EditButton R_Conductor="@_conductorRef"></R_EditButton>
+            </R_ItemLayout>
+            <R_ItemLayout>
+                <R_CancelButton R_Conductor="@_conductorRef"></R_CancelButton>
+                <R_SaveButton R_Conductor="@_conductorRef"></R_SaveButton>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>
+
+<R_Conductor @ref="@_conductorRef"
+             R_ViewModel="@_viewModel"
+             R_IsHeader="true"
+             R_ServiceGetRecord="@TaxType_ServiceGetRecord"
+             R_Validation="@TaxType_Validation"
+             R_ServiceSave="@TaxType_ServiceSave"
+             R_DisableCancelConfirmation
+             R_BeforeCancel="TaxType_BeforeCancel"
+             R_Display="@TaxType_Display"
+             R_SetOther="@TaxType_SetOther"
+             R_AfterAdd="@TaxType_AfterAdd" />
+
+<style>
+    /*the following selectors target the locked/frozen columns*/
+    /*===*/
+    .k-grid .k-master-row.CustomFormatting .k-grid-content-sticky,
+    .k-grid .k-master-row.CustomFormatting.k-alt .k-grid-content-sticky
+    /*===*/ {
+        background-color: inherit;
+    }
+
+    .k-grid .k-master-row.CustomFormatting:hover {
+        background-color: yellow !important;
+    }
+
+
+    .k-grid .k-master-row.CustomFormatting {
+        background-color: yellow !important;
+    }
+</style>

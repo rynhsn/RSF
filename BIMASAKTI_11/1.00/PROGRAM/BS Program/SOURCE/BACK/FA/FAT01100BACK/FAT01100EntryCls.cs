@@ -24,6 +24,9 @@ namespace FAT01100Back
     public class FAT01100EntryCls : R_BusinessObjectAsync<FAT01100DTO>
     {
         private readonly FAT01100BackResources.Resources_Dummy_Class loRsp = new();
+        RSP_FA_UPDATE_TRANS_HD_STATUSResources.Resources_Dummy_Class loRsp2 = new();
+        RSP_FAT01100_SUBMIT_TRANSResources.Resources_Dummy_Class loRsp3 = new();
+        RSP_FAT01100_SAVE_TRANSResources.Resources_Dummy_Class loRsp4 = new();
         private readonly LoggerFAT01100 _logger;
         private readonly ActivitySource _activitySource;
 
@@ -92,7 +95,15 @@ namespace FAT01100Back
                     return $" {p.ParameterName} ={lcValue}";
                 })));
 
-                await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                
+                try
+                {
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
                 loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
@@ -316,7 +327,15 @@ namespace FAT01100Back
                     return $" {p.ParameterName} ={lcValue}";
                 })));
 
-                await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                
+                try
+                {
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
                 loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
             }
             catch (Exception ex)
@@ -442,7 +461,7 @@ namespace FAT01100Back
                 using DbConnection loConn = await loDb.GetConnectionAsync();
                 using DbCommand loCmd = loDb.GetCommand();
                 loCmd.Parameters.Clear();
-                loCmd.CommandText = "RSP_FA_GET_SYSTEM_PARAM";
+                loCmd.CommandText = "RSP_FA_GET_SYSTEM_PARAM ";
                 loCmd.CommandType = CommandType.StoredProcedure;
                 loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
                 loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 8, poParameter.CLANGUAGE_ID);
@@ -693,9 +712,9 @@ namespace FAT01100Back
         }
 
         /// <summary>RSP_FA_UPDATE_TRANS_HD_STATUS</summary>
-        public async Task<FAT01100ResultDTO<object>> FAT01100UpdateTransHdStatus(FAT01100UpdateTransHdStatusParameterDTO poParameter)
+        public async Task<FAT01100ResultDTO<object>> FAT01100UpdateTransHdStatus_old(FAT01100UpdateTransHdStatusParameterDTO poParameter)
         {
-            string lcMethod = nameof(FAT01100UpdateTransHdStatus);
+            string lcMethod = nameof(FAT01100UpdateTransHdStatus_old);
             using var activity = _activitySource.StartActivity(lcMethod);
             _logger.LogInfo("START method {MethodName}", lcMethod);
 
@@ -726,8 +745,65 @@ namespace FAT01100Back
             return loResult;
         }
 
+        public async Task<FAT01100ResultDTO<object>> FAT01100UpdateTransHdStatus(FAT01100UpdateTransHdStatusParameterDTO poParameter)
+        {
+            string lcMethod = nameof(FAT01100UpdateTransHdStatus);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            _logger.LogInfo("START method {MethodName}", lcMethod);
+
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
+            var loResult = new FAT01100ResultDTO<object> { Data = null };
+
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
+                loCmd.Parameters.Clear();
+                var lcQuery = "RSP_FA_UPDATE_TRANS_HD_STATUS ";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poParameter.CREC_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CNEW_STATUS", DbType.String, 2, poParameter.CNEW_STATUS);
+
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+
+                try
+                {
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loDb != null)
+                    loDb = null;
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            _logger.LogInfo("END method {MethodName}", lcMethod);
+            return loResult;
+        }
+
+
+
         /// <summary>RSP_FAT01100_SUBMIT_TRANS</summary>
-        public async Task<FAT01100ResultDTO<object>> FAT01100SubmitTrans(FAT01100SubmitTransParameterDTO poParameter)
+        public async Task<FAT01100ResultDTO<object>> FAT01100SubmitTrans_old(FAT01100SubmitTransParameterDTO poParameter)
         {
             string lcMethod = nameof(FAT01100SubmitTrans);
             using var activity = _activitySource.StartActivity(lcMethod);
@@ -754,6 +830,60 @@ namespace FAT01100Back
             }
             catch (Exception ex) { loEx.Add(ex); _logger.LogError(loEx); }
             finally { if (loDb != null) loDb = null; }
+            loEx.ThrowExceptionIfErrors();
+            _logger.LogInfo("END method {MethodName}", lcMethod);
+            return loResult;
+        }
+
+        public async Task<FAT01100ResultDTO<object>> FAT01100SubmitTrans(FAT01100SubmitTransParameterDTO poParameter)
+        {
+            string lcMethod = nameof(FAT01100SubmitTrans);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            _logger.LogInfo("START method {MethodName}", lcMethod);
+
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
+            var loResult = new FAT01100ResultDTO<object> { Data = null };
+
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+
+                R_ExternalException.R_SP_Init_Exception(loConn);
+
+                loCmd.Parameters.Clear();
+                var lcQuery = "RSP_FAT01100_SUBMIT_TRANS ";
+                loCmd.CommandText = lcQuery;
+                loCmd.CommandType = CommandType.StoredProcedure;
+
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CUSER_ID", DbType.String, 50, poParameter.CUSER_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CREC_ID", DbType.String, 50, poParameter.CREC_ID);
+
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+
+                try
+                {
+                    await loDb.SqlExecNonQueryAsync(loConn, loCmd, false);
+                }
+                catch (Exception ex)
+                {
+                    loEx.Add(ex);
+                }
+                loEx.Add(R_ExternalException.R_SP_Get_Exception(loConn));
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+            finally
+            {
+                if (loDb != null)
+                    loDb = null;
+            }
+
             loEx.ThrowExceptionIfErrors();
             _logger.LogInfo("END method {MethodName}", lcMethod);
             return loResult;
@@ -811,6 +941,38 @@ namespace FAT01100Back
 
         #endregion
 
+        public async Task<FAT01100ResultDTO<FAT01100GetOutstandingTransResultDTO>> FAT01100GetOutstandingTrans(FAT01100GetOutstandingTransParameterDTO poParameter)
+        {
+            string lcMethod = nameof(FAT01100GetOutstandingTrans);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            _logger.LogInfo("START method {MethodName}", lcMethod);
+
+            var loEx = new R_Exception();
+            var loDb = new R_Db();
+            var loResult = new FAT01100ResultDTO<FAT01100GetOutstandingTransResultDTO> { Data = new FAT01100GetOutstandingTransResultDTO() };
+
+            try
+            {
+                using DbConnection loConn = await loDb.GetConnectionAsync();
+                using DbCommand loCmd = loDb.GetCommand();
+                loCmd.Parameters.Clear();
+                loCmd.CommandText = "RSP_FA_GET_OUTSTANDING_TRANS ";
+                loCmd.CommandType = CommandType.StoredProcedure;
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParameter.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, poParameter.CASSET_CODE);
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
+                var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
+                var loRtn = R_Utility.R_ConvertTo<FAT01100GetOutstandingTransResultDTO>(loDataTable).FirstOrDefault();
+                //if (loRtn != null)
+                //    loResult.Data = loRtn;
+                loResult.Data = loRtn;
+            }
+            catch (Exception ex) { loEx.Add(ex); _logger.LogError(loEx); }
+            finally { if (loDb != null) loDb = null; }
+            loEx.ThrowExceptionIfErrors();
+            _logger.LogInfo("END method {MethodName}", lcMethod);
+            return loResult;
+        }
         private async Task<FAT01100ImageStorageTypeDTO> GetStorageType()
         {
             using Activity activity = _activitySource.StartActivity("GetStorageType");

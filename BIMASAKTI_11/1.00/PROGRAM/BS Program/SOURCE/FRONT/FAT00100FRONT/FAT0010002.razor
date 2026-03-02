@@ -164,8 +164,7 @@
                                     <R_ItemLayout col="8">
                                         <R_TextBox @bind-Value="_VM.Data.CASSET_CODE"
                                                    R_ConductorSource="@_conductorAssetInfoRef"
-                                                   R_EnableAdd="@(_conductorAssetInfoRef?.R_ConductorMode != R_eConductorMode.Normal && _VM.AssetIncrementFlag)"
-                                                   R_EnableEdit="true" />
+                                                   Enabled="@(_conductorAssetInfoRef?.R_ConductorMode == R_eConductorMode.Add && _VM.AssetIncrementFlag==false)"/>
                                     </R_ItemLayout>
                                 </R_StackLayout>
 

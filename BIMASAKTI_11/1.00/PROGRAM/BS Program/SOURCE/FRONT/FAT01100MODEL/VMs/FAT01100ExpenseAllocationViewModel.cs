@@ -68,12 +68,18 @@ namespace FAT01100Model.VMs
         /// Get transaction expense allocation list
         /// </summary>
         /// <param name="poParameter">Parameter DTO</param>
-        public async Task GetTransExpAllocListAsync(string lcAssetCode)
+        public async Task GetTransExpAllocListAsync(string lcAssetCode, string lcParentId, string lcDeptCode, string lcTransCode, string lcRefNo, string lcAssetTransSeqNo)
         {
             var loEx = new R_Exception();
             try
             {
                 R_FrontContext.R_SetStreamingContext(FAT01100ContextConstants.CASSET_CODE, lcAssetCode);
+                R_FrontContext.R_SetStreamingContext(FAT01100ContextConstants.CPARENT_ID, lcParentId);
+                R_FrontContext.R_SetStreamingContext(FAT01100ContextConstants.CDEPT_CODE, lcDeptCode);
+                R_FrontContext.R_SetStreamingContext(FAT01100ContextConstants.CTRANS_CODE, lcTransCode);
+                R_FrontContext.R_SetStreamingContext(FAT01100ContextConstants.CREF_NO, lcRefNo);
+                R_FrontContext.R_SetStreamingContext(FAT01100ContextConstants.CASSET_TRANS_SEQ_NO, lcAssetTransSeqNo);
+                
                 var loResult = await _model.RSP_FA_GET_TRANS_EXP_ALLOC_LISTAsync();
                 TransExpAllocList = new ObservableCollection<FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO>(
                     loResult.Data ?? new List<FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO>());

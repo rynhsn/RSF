@@ -1,0 +1,281 @@
+﻿@inherits R_Page
+@inject R_ILocalizer<Resources_Dummy_Class> _ILocalizer
+@using FAT00700Common.DTOs
+
+<R_StackLayout Class="FAT00700_tab_content">
+    @* Asset Code Row *@
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_ILocalizer["_lblAssetCode"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="3">
+                <R_TextBox Value="@_viewModel.CurrentRecord.CASSET_CODE" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    @* Asset Name Row *@
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            <R_ItemLayout col="2">
+                <R_Label>@_ILocalizer["_lblAssetName"]</R_Label>
+            </R_ItemLayout>
+            <R_ItemLayout col="6">
+                <R_TextBox Value="@_viewModel.CurrentRecord.CASSET_NAME" Enabled="false"></R_TextBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+
+    @* Asset Information GroupBox *@
+    <R_ItemLayout>
+        <R_GroupBox Title="@_ILocalizer["_lblAssetInformation"]">
+            <R_StackLayout Class="FAT00700_groupbox_content">
+                @* Asset Department *@
+                <R_ItemLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@_ILocalizer["_lblAssetDepartment"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_TextBox Value="@_viewModel.CurrentRecord.CASSET_DEPT_CODE" Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox Value="@_viewModel.CurrentRecord.CASSET_DEPT_NAME" Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                @* Asset Category *@
+                <R_ItemLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@_ILocalizer["_lblAssetCategory"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_TextBox Value="@_viewModel.CurrentRecord.CCATEGORY_CODE" Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox Value="@_viewModel.CurrentRecord.CCATEGORY_DESC" Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                @* Location *@
+                <R_ItemLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@_ILocalizer["_lblLocation"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox Value="@_viewModel.CurrentRecord.CASSET_LOCATION" Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                @* Serial Number *@
+                <R_ItemLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@_ILocalizer["_lblSerialNumber"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="4">
+                            <R_TextBox Value="@_viewModel.CurrentRecord.CSERIAL_NUMBER" Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                @* Quantity *@
+                <R_ItemLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@_ILocalizer["_lblQuantity"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_NumericTextBox TValue="int" Value="@_viewModel.CurrentRecord.IQTY" Enabled="false"
+                                              Decimals="2" ThousandSeparator="true"></R_NumericTextBox>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="2">
+                            <R_TextBox Value="@_viewModel.CurrentRecord.CUNIT" Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+
+                @* Last Trans Date *@
+                <R_ItemLayout>
+                    <R_StackLayout Row>
+                        <R_ItemLayout col="2">
+                            <R_Label>@_ILocalizer["_lblLastTransDate"]</R_Label>
+                        </R_ItemLayout>
+                        <R_ItemLayout col="3">
+                            <R_TextBox Value="@_viewModel.CurrentRecord.CLAST_TRANS_DATE" Enabled="false"></R_TextBox>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_ItemLayout>
+            </R_StackLayout>
+        </R_GroupBox>
+    </R_ItemLayout>
+
+    @* Depreciation Information and Expense Allocation Row *@
+    <R_ItemLayout>
+        <R_StackLayout Row>
+            @* Depreciation Information GroupBox *@
+            <R_ItemLayout col="8">
+                <R_GroupBox Title="@_ILocalizer["_lblDepreciationInformation"]">
+                    <R_StackLayout Class="FAT00700_groupbox_content">
+                        @* Depreciation Method and Start Date *@
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_ILocalizer["_lblDepreciationMethod"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_TextBox Value="@_viewModel.CurrentRecord.CDEPR_METHOD_DESC" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_Label>@_ILocalizer["_lblStartDate"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_TextBox Value="@_viewModel.CurrentRecord.CSTART_DATE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        @* Column Headers *@
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3"></R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_Label>@_ILocalizer["_lblLocalAmt"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="4">
+                                    <R_Label>@_ILocalizer["_lblBaseAmt"]</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        @* Book Value *@
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_ILocalizer["_lblBookValue"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_TextBox Value="@_viewModel.CurrencyResult.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_NumericTextBox TValue="decimal" Value="@_viewModel.CurrentRecord.NLBOOK_VALUE" Enabled="false"
+                                                      Decimals="2" ThousandSeparator="true" TextAlignment="R_eTextAlignment.Right"></R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_TextBox Value="@_viewModel.CurrencyResult.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_NumericTextBox TValue="decimal" Value="@_viewModel.CurrentRecord.NBBOOK_VALUE" Enabled="false"
+                                                      Decimals="2" ThousandSeparator="true" TextAlignment="R_eTextAlignment.Right"></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        @* Residual Value *@
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_ILocalizer["_lblResidualValue"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_TextBox Value="@_viewModel.CurrencyResult.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_NumericTextBox TValue="decimal" Value="@_viewModel.CurrentRecord.NLRESIDUAL_VALUE" Enabled="false"
+                                                      Decimals="2" ThousandSeparator="true" TextAlignment="R_eTextAlignment.Right"></R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_TextBox Value="@_viewModel.CurrencyResult.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_NumericTextBox TValue="decimal" Value="@_viewModel.CurrentRecord.NBRESIDUAL_VALUE" Enabled="false"
+                                                      Decimals="2" ThousandSeparator="true" TextAlignment="R_eTextAlignment.Right"></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        @* Useful Life *@
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_ILocalizer["_lblUsefulLife"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox TValue="int" Value="@_viewModel.CurrentRecord.IUSEFUL_LIVE_YR" Enabled="false"></R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_Label>@_ILocalizer["_lblYears"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox TValue="int" Value="@_viewModel.CurrentRecord.IUSEFUL_LIVE_MO" Enabled="false"></R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_Label>@_ILocalizer["_lblMonths"]</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        @* Yearly Depreciation *@
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3">
+                                    <R_Label>@_ILocalizer["_lblYearlyDepreciation"]</R_Label>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="2">
+                                    <R_NumericTextBox TValue="decimal" Value="@_viewModel.CurrentRecord.NYEAR_DEPR_PCT" Enabled="false"
+                                                      Decimals="2" ThousandSeparator="true" TextAlignment="R_eTextAlignment.Right"></R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_Label>%</R_Label>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+
+                        @* Yearly Depreciation Amount *@
+                        <R_ItemLayout>
+                            <R_StackLayout Row>
+                                <R_ItemLayout col="3"></R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_TextBox Value="@_viewModel.CurrencyResult.CLOCAL_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_NumericTextBox TValue="decimal" Value="@_viewModel.CurrentRecord.NLYEAR_DEPR_AMT" Enabled="false"
+                                                      Decimals="2" ThousandSeparator="true" TextAlignment="R_eTextAlignment.Right"></R_NumericTextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="1">
+                                    <R_TextBox Value="@_viewModel.CurrencyResult.CBASE_CURRENCY_CODE" Enabled="false"></R_TextBox>
+                                </R_ItemLayout>
+                                <R_ItemLayout col="3">
+                                    <R_NumericTextBox TValue="decimal" Value="@_viewModel.CurrentRecord.NBYEAR_DEPR_AMT" Enabled="false"
+                                                      Decimals="2" ThousandSeparator="true" TextAlignment="R_eTextAlignment.Right"></R_NumericTextBox>
+                                </R_ItemLayout>
+                            </R_StackLayout>
+                        </R_ItemLayout>
+                    </R_StackLayout>
+                </R_GroupBox>
+            </R_ItemLayout>
+
+            @* Expense Allocation GroupBox *@
+            <R_ItemLayout col="4">
+                <R_GroupBox Title="@_ILocalizer["_lblExpenseAllocation"]">
+                    <R_Grid @ref="_gridAllocRef"
+                            DataSource="_viewModel.GridAllocList"
+                            Height="200px"
+                            R_GridType="R_eGridType.Original">
+                        <R_GridColumns>
+                            <R_GridTextColumn FieldName="@nameof(GetGridAllocDataResultDTO.CEXPENSE_DEPT_CODE)" HeaderText="@_ILocalizer["_lblDeptGrid"]"></R_GridTextColumn>
+                            <R_GridTextColumn FieldName="@nameof(GetGridAllocDataResultDTO.CEXPENSE_DEPT_NAME)" HeaderText="@_ILocalizer["_lblNameGrid"]" Width="150px"></R_GridTextColumn>
+                            <R_GridNumericColumn TValue="decimal" FieldName="@nameof(GetGridAllocDataResultDTO.NEXPENSE_PCT)" HeaderText="@_ILocalizer["_lblPercentage"]"></R_GridNumericColumn>
+                        </R_GridColumns>
+                    </R_Grid>
+                </R_GroupBox>
+            </R_ItemLayout>
+        </R_StackLayout>
+    </R_ItemLayout>
+</R_StackLayout>

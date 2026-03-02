@@ -1,4 +1,4 @@
-﻿using Lookup_FACommon.DTOs;
+using Lookup_FACommon.DTOs;
 using Lookup_FAModel.ViewModel.FAL00200;
 using R_BlazorFrontEnd.Controls;
 using R_BlazorFrontEnd.Controls.Events;

@@ -1,0 +1,2 @@
+DATA_EXISTS=Tax Type ID {0} already exists!
+ERROR_PROCESS=Process failed! unable to save Tax Type {0}

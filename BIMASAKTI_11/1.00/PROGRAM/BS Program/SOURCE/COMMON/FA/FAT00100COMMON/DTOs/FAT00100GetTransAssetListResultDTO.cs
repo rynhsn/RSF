@@ -21,7 +21,7 @@ namespace FAT00100Common.DTOs
         public string CLOCAL_CURRENCY_CODE { get; set; } = string.Empty;
         public string CBASE_CURRENCY_CODE { get; set; } = string.Empty;
         public decimal NINIT_COST { get; set; }
-        public short IQTY { get; set; }
+        public int IQTY { get; set; }
         public string CUNIT { get; set; } = string.Empty;
         public decimal NLINIT_COST { get; set; }
         public decimal NBINIT_COST { get; set; }

@@ -18,6 +18,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using R_BlazorFrontEnd.Controls.Tab;
+using System.Globalization;
 
 namespace FAT00100Front
 {
@@ -63,7 +64,10 @@ namespace FAT00100Front
                 {
                     // Store current record in ViewModel (data state)
                     VM.CurrentRecord = loDTO;
-                    
+                    VM.CurrentRecord.CREF_DATE_DISPLAY= VM.CurrentRecord.DREF_DATE.ToString(
+                                                        "dd MMMM yyyy",
+                                                        ClientHelper.CultureUI ?? CultureInfo.InvariantCulture
+                                                    ) ?? "";
                     // Refresh grid to load data - use InvokeAsync to ensure it happens after rendering
                     // Streaming context will be set in Grid_R_ServiceGetListRecord before API call
                     await InvokeAsync(async () =>

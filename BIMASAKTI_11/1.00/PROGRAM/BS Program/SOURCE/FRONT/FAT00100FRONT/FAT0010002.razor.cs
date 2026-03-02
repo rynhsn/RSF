@@ -93,6 +93,7 @@ namespace FAT00100Front
                     _VM.RecId = loParam.CREC_ID ?? string.Empty;
                     _VM.SoftPeriod = loParam.CSOFT_PERIOD ?? string.Empty;
                     _VM.DeptCodeDefault= loParam.CDEPT_CODE_DEFAULT ?? string.Empty;
+                    _VM.DeptCodeAssetDefault = loParam.CASSET_DEPT_CODE ?? string.Empty;
                 }
 
                 await _VM00100.GetDeptLookupListAsync(ClientHelper.CompanyId, ClientHelper.UserId, string.Empty);
@@ -462,7 +463,8 @@ namespace FAT00100Front
                     CUSER_ID = ClientHelper.UserId,
                     CPROPERTY_ID = "",
                     CCATEGORY_TYPE = "60",
-                    CSEARCH_TEXT = loGetData.CASSET_DEPT_CODE
+                    CSEARCH_TEXT = loGetData.CASSET_DEPT_CODE,
+                    LCHILD_ONLY = true
                 };
                 var loResult = await loLookupViewModel.GetCategory(param);
 
@@ -1273,7 +1275,7 @@ namespace FAT00100Front
                 //    loEntity.CASSET_DEPT_NAME = _VM.TransDetailData.CDEPT_NAME;
                 //}
 
-                var foundDept = _VM00100.DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == _VM.DeptCodeDefault);
+                var foundDept = _VM00100.DeptLookupList?.ToList().Find(x => x.CDEPT_CODE == _VM.DeptCodeAssetDefault);
                 if (foundDept != null)
                 {
                     loEntity.CASSET_DEPT_CODE = foundDept.CDEPT_CODE;
@@ -1293,6 +1295,7 @@ namespace FAT00100Front
                 loEntity.NBYEAR_DEPR_AMT = 0;
                 loEntity.NLRESIDUAL_VALUE = 0;
                 loEntity.NBRESIDUAL_VALUE = 0;
+                await tabStripRef.SetActiveTabAsync("AssetInfo");
             }
             catch (Exception ex)
             {
@@ -1562,6 +1565,11 @@ namespace FAT00100Front
                 if (_VM.Data == null)
                     return;
 
+                // Validate Asset Code
+                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE) && _VM.AssetIncrementFlag == false)
+                {
+                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
+                }
                 // Validate Department
                 if (string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE) && 
                     (_VM.TransDetailData == null || string.IsNullOrWhiteSpace(_VM.TransDetailData.CDEPT_CODE)))
@@ -1575,11 +1583,7 @@ namespace FAT00100Front
                     loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_ReferenceDate"));
                 }
 
-                // Validate Asset Code
-                if (string.IsNullOrWhiteSpace(_VM.Data.CASSET_CODE) && _VM.AssetIncrementFlag == false)
-                {
-                    loEx.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "Val_AssetCode"));
-                }
+                
 
                 // Validate Description
                 //if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))

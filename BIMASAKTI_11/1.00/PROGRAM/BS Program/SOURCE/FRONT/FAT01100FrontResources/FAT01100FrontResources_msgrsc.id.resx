@@ -309,6 +309,9 @@
   <data name="_ReferenceDate" xml:space="preserve">
     <value>Referensi Tanggal</value>
   </data>
+  <data name="_TransactionSequenceNumber" xml:space="preserve">
+    <value>Trans. Seq. No</value>
+  </data>
   <data name="_Status" xml:space="preserve">
     <value>Status</value>
   </data>
@@ -350,5 +353,29 @@
   </data>
   <data name="msg_redraf_success" xml:space="preserve">
     <value>Transaction Redrafted Successfully!</value>
+  </data>
+  <data name="_ExpenseAllocation" xml:space="preserve">
+    <value>Expense Allocation</value>
+  </data>
+  <data name="_OldExpenseAlocation" xml:space="preserve">
+    <value>Old Expense Alocation</value>
+  </data>
+  <data name="_NewExpenseAlocation" xml:space="preserve">
+    <value>New Expense Alocation</value>
+  </data>
+  <data name="_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="_Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="_edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="_val_Outstanding" xml:space="preserve">
+    <value>Cannot Proceed! Selected Asset Code has outstanding transaction  {0} with Reference No {1}</value>
   </data>
 </root>

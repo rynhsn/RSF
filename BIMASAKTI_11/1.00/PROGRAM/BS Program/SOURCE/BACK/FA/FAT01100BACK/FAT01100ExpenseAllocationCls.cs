@@ -47,18 +47,14 @@ namespace FAT01100Back
                 using DbCommand loCmd = loDb.GetCommand();
                 loCmd.Parameters.Clear();
 
-                loCmd.CommandText = "RSP_FA_GET_ASSET_EXP_ALLOC_LIST";
+                loCmd.CommandText = "RSP_FA_GET_ASSET_EXP_ALLOC_LIST ";
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "CASSET_CODE", DbType.String, 50, poParam.CASSET_CODE);
-                loDb.R_AddCommandParameter(loCmd, "CLANGUAGE_ID", DbType.String, 10, poParam.CLANGUAGE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 50, poParam.CASSET_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 10, poParam.CLANGUAGE_ID);
 
-                var loDbParams = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x => x != null && x.ParameterName.StartsWith("@"))
-                .ToDictionary(x => x.ParameterName, x => x.Value);
-
-                _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
 
                 var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 loResult = R_Utility.R_ConvertTo<FAT01100ExpenseAllocationRSP_FA_GET_ASSET_EXP_ALLOC_LISTResultDTO>(loDataTable).ToList();
@@ -96,23 +92,19 @@ namespace FAT01100Back
                 using DbCommand loCmd = loDb.GetCommand();
                 loCmd.Parameters.Clear();
 
-                loCmd.CommandText = "RSP_FA_GET_TRANS_EXP_ALLOC_LIST";
+                loCmd.CommandText = "RSP_FA_GET_TRANS_EXP_ALLOC_LIST"; 
                 loCmd.CommandType = CommandType.StoredProcedure;
 
-                loDb.R_AddCommandParameter(loCmd, "CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
-                loDb.R_AddCommandParameter(loCmd, "CPARENT_ID", DbType.String, 50, poParam.CPARENT_ID);
-                loDb.R_AddCommandParameter(loCmd, "CDEPT_CODE", DbType.String, 20, poParam.CDEPT_CODE);
-                loDb.R_AddCommandParameter(loCmd, "CTRANS_CODE", DbType.String, 10, poParam.CTRANS_CODE);
-                loDb.R_AddCommandParameter(loCmd, "CREF_NO", DbType.String, 30, poParam.CREF_NO);
-                loDb.R_AddCommandParameter(loCmd, "CASSET_CODE", DbType.String, 20, poParam.CASSET_CODE);
-                loDb.R_AddCommandParameter(loCmd, "CASSET_TRANS_SEQ_NO", DbType.String, 6, poParam.CASSET_TRANS_SEQ_NO);
-                loDb.R_AddCommandParameter(loCmd, "CLANGUAGE_ID", DbType.String, 2, poParam.CLANGUAGE_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CCOMPANY_ID", DbType.String, 8, poParam.CCOMPANY_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CPARENT_ID", DbType.String, 50, poParam.CPARENT_ID);
+                loDb.R_AddCommandParameter(loCmd, "@CDEPT_CODE", DbType.String, 20, poParam.CDEPT_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CTRANS_CODE", DbType.String, 10, poParam.CTRANS_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CREF_NO", DbType.String, 30, poParam.CREF_NO);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_CODE", DbType.String, 20, poParam.CASSET_CODE);
+                loDb.R_AddCommandParameter(loCmd, "@CASSET_TRANS_SEQ_NO", DbType.String, 6, poParam.CASSET_TRANS_SEQ_NO);
+                loDb.R_AddCommandParameter(loCmd, "@CLANGUAGE_ID", DbType.String, 2, poParam.CLANGUAGE_ID);
 
-                var loDbParams = loCmd.Parameters.Cast<DbParameter>()
-                .Where(x => x != null && x.ParameterName.StartsWith("@"))
-                .ToDictionary(x => x.ParameterName, x => x.Value);
-
-                _logger.LogDebug("{@ObjectQuery} {@Parameter}", loCmd.CommandText, loDbParams);
+                _logger.LogDebug("EXEC " + loCmd.CommandText + string.Join(", ", loCmd.Parameters.Cast<DbParameter>().Select(p => $"{p.ParameterName} ='{p.Value}'")));
 
                 var loDataTable = await loDb.SqlExecQueryAsync(loConn, loCmd, false);
                 loResult = R_Utility.R_ConvertTo<FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO>(loDataTable).ToList();

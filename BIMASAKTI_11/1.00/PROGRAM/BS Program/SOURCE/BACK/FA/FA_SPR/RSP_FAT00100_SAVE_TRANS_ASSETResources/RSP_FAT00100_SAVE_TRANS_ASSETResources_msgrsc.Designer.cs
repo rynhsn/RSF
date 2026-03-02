@@ -62,6 +62,24 @@ namespace RSP_FAT00100_SAVE_TRANS_ASSETResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Asset Code {0} already exists!.
+        /// </summary>
+        public static string ASSET_EXIST_FA {
+            get {
+                return ResourceManager.GetString("ASSET_EXIST_FA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Asset Code {0} already exists in HD module!.
+        /// </summary>
+        public static string ASSET_EXIST_HD {
+            get {
+                return ResourceManager.GetString("ASSET_EXIST_HD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Asset Numbering not yet configured for Journal Group {0}.
         /// </summary>
         public static string ASSET_NUM_NOT_FOUND {

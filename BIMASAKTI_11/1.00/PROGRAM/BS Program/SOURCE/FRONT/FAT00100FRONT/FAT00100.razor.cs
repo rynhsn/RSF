@@ -25,6 +25,7 @@ using Lookup_GSCOMMON.DTOs;
 using Lookup_GSModel.ViewModel;
 using GLF00100COMMON;
 using GLF00100FRONT;
+using System.Xml.Linq;
 
 namespace FAT00100Front
 {
@@ -1193,16 +1194,16 @@ namespace FAT00100Front
                     ClientHelper.CultureUI.TwoLetterISOLanguageName
                 );
                 eventArgs.Result = _VM.CurrentRecord;
-                _VM.PoDeptCode= cdeptcode;
-                _VM.PoDeptName = cdeptname;
-                _VM.PoSupplierId = "";
-                _VM.PoSupplierName = "";
+                //_VM.PoDeptCode= cdeptcode;
+                //_VM.PoDeptName = cdeptname;
+                //_VM.PoSupplierId = "";
+                //_VM.PoSupplierName = "";
 
-                _VM.PeriodFromYear = int.Parse(refdate.Substring(0, 4)); ;
-                _VM.PeriodFromMonth= refdate.Substring(4, 2);
-                _VM.PeriodToYear = _VM.PeriodFromYear;
-                _VM.PeriodToMonth = _VM.PeriodFromMonth;
-                _VM.SelectedStatus = "";
+                //_VM.PeriodFromYear = int.Parse(refdate.Substring(0, 4)); ;
+                //_VM.PeriodFromMonth= refdate.Substring(4, 2);
+                //_VM.PeriodToYear = _VM.PeriodFromYear;
+                //_VM.PeriodToMonth = _VM.PeriodFromMonth;
+                //_VM.SelectedStatus = "";
 
             }
             catch (Exception ex)
@@ -1219,10 +1220,76 @@ namespace FAT00100Front
 
             try
             {
-                // await _gridRef.R_RefreshGrid(null);
-                FAT00100GetDataGridResultDTO currenDataGrid= new FAT00100GetDataGridResultDTO();
-                currenDataGrid = R_FrontUtility.ConvertObjectToObject<FAT00100GetDataGridResultDTO>(_VM.CurrentRecord) ?? new FAT00100GetDataGridResultDTO();
-                await _gridRef.R_SelectCurrentDataAsync(currenDataGrid);
+                var loParam = (FAT00100DTO)eventArgs.Data;
+
+                _VM.PoDeptCode = loParam.CDEPT_CODE;
+                _VM.PoDeptName = loParam.CDEPT_NAME;
+                _VM.PoSupplierId = "";
+                _VM.PoSupplierName = "";
+
+                _VM.PeriodFromYear = int.Parse(loParam.CREF_DATE.Substring(0, 4)); ;
+                _VM.PeriodFromMonth = loParam.CREF_DATE.Substring(4, 2);
+                _VM.PeriodToYear = _VM.PeriodFromYear;
+                _VM.PeriodToMonth = _VM.PeriodFromMonth;
+                _VM.SelectedStatus = "";
+
+                await btnRefresh_OnClick();
+                //await _conductorRef.R_SetCurrentData(loParam);
+
+
+
+                //if (_VM.DataGridList.Count > 0)
+                //{
+                //    int index = _VM.DataGridList.ToList().FindIndex(x => x.CREC_ID == loParam.CREC_ID);
+                //    await _gridRef.R_SelectCurrentDataAsync(index);
+
+                //    //var loSelectedChargesData = _VM.DataGridList.Where(x => x.CREC_ID == _VM.CurrentRecord.CREC_ID).FirstOrDefault();
+                //    //await _gridRef.R_SelectCurrentDataAsync(loSelectedChargesData);
+
+                //}
+
+
+
+
+                //var loRefreshParam = new FAT00100DTO
+                //{
+                //    CCOMPANY_ID = ClientHelper.CompanyId,
+                //    CLANG_ID = ClientHelper.CultureUI.TwoLetterISOLanguageName,
+                //    CDEPT_CODE = _VM.CurrentRecord.CDEPT_CODE,
+                //    CREF_NO = _VM.CurrentRecord.CREF_NO,
+                //    CREC_ID = _VM.CurrentRecord.CREC_ID,
+                //    CTRANS_DESC= _VM.CurrentRecord.CTRANS_DESC
+
+                //};
+
+                //await _gridRef.R_RefreshGrid(null);
+
+                //await _VM.GetEntity(loRefreshParam);
+
+                ////FAT00100GetDataGridResultDTO currenDataGrid = new FAT00100GetDataGridResultDTO();
+                ////currenDataGrid = R_FrontUtility.ConvertObjectToObject<FAT00100GetDataGridResultDTO>(_VM.CurrentRecord) ?? new FAT00100GetDataGridResultDTO();
+                ////await _gridRef.R_SelectCurrentDataAsync(currenDataGrid);
+
+                ////await _gridRef.R_RefreshGrid(null);
+
+
+                ////await _gridLOIChargesListRef.R_RefreshGrid(loData);
+
+                //if (_VM.DataGridList.Count > 0)
+                //{
+                //    // var loSelectedChargesData = _VM.DataGridList?.FirstOrDefault(x => x.CREC_ID == _VM.CurrentRecord.CREC_ID);
+                //    //var loSelectedChargesData = _VM.DataGridList.Where(x => x.CREC_ID == _VM.CurrentRecord.CREC_ID).FirstOrDefault();
+                //    //await _gridRef.R_SelectCurrentDataAsync(loSelectedChargesData);
+
+
+                //    int index = _VM.DataGridList.ToList().FindIndex(x => x.CREC_ID == _VM.CurrentRecord.CREC_ID);
+                //    await _gridRef.R_SelectCurrentDataAsync(index);
+
+                //}
+                ////await _conductorRef.R_SetCurrentData(_VM.CurrentRecord);
+
+
+
             }
             catch (Exception ex)
             {
@@ -1624,7 +1691,7 @@ namespace FAT00100Front
                     LINCREMENT_FLAG = _VM.SystemParamData.LINCREMENT_FLAG,
                     LJRNGRP_MODE = _VM.JrngrpMode,
                     LDEPT_MODE = _VM.DeptMode,
-                    CASSET_DEPT_CODE = _VM.DefaultAssetDeptCode ?? string.Empty,
+                    CASSET_DEPT_CODE = _VM.SystemParamData.CASSET_DEPT_CODE ?? string.Empty,
                     LGLLINK = _VM.GLLink,
                     CGLLINK_DATE = _VM.GlinkDate ?? string.Empty,
                     CREC_ID = loEntity.CREC_ID ?? string.Empty,

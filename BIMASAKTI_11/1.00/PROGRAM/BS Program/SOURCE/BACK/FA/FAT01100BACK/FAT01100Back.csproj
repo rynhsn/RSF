@@ -34,6 +34,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\COMMON\FA\FAT01100Common\FAT01100Common.csproj" />
     <ProjectReference Include="..\FAT01100BackResources\FAT01100BackResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT01100_SAVE_TRANSResources\RSP_FAT01100_SAVE_TRANSResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT01100_SAVE_TRANS_EXP_ALLOCResources\RSP_FAT01100_SAVE_TRANS_EXP_ALLOCResources.csproj" />
+    <ProjectReference Include="..\FA_SPR\RSP_FAT01100_SUBMIT_TRANSResources\RSP_FAT01100_SUBMIT_TRANSResources.csproj" />
     <ProjectReference Include="..\FA_SPR\RSP_FA_UPDATE_TRANS_HD_STATUSResources\RSP_FA_UPDATE_TRANS_HD_STATUSResources.csproj" />
   </ItemGroup>
 

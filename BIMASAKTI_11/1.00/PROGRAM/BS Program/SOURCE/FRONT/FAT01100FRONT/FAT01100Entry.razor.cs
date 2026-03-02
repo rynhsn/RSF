@@ -520,6 +520,7 @@ namespace FAT01100Front
                 else
                 {
                     
+
                     if (string.IsNullOrWhiteSpace(_VM.Data.CDEPT_CODE))
                     {
                         loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_department"));
@@ -541,6 +542,18 @@ namespace FAT01100Front
                     {
                         loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_assetInfo_AssetCode"));
                     }
+                    if(_conductorRef?.R_ConductorMode == R_eConductorMode.Add)
+                    {
+                        await _VM.GetOutstandingTrans(_VM.Data.CASSET_CODE);
+                        if (_VM.GetOutstandingTransData != null)
+                        {
+                            var loError = R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "_val_Outstanding");
+                            string lcMessage = loError.ErrDescp.ToString();
+                            lcMessage = string.Format(lcMessage, _VM.GetOutstandingTransData.CTRANSACTION_NAME, _VM.GetOutstandingTransData.CREF_NO);
+                            loException.Add("_val_Outstanding", lcMessage);
+                        }
+                    }
+                    
                     if (string.IsNullOrWhiteSpace(_VM.Data.CTRANS_DESC))
                     {
                         loException.Add(R_FrontUtility.R_GetError(typeof(Resources_Dummy_Class), "val_entry_transactionDescription"));

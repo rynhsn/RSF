@@ -27,6 +27,7 @@ using R_BlazorFrontEnd.Controls.Enums;
 using R_BlazorFrontEnd.Controls.MessageBox;
 using R_BlazorFrontEnd.Controls.Popup;
 using System.Reflection.PortableExecutable;
+using System.Globalization;
 
 namespace FAT01100Front
 {
@@ -38,6 +39,7 @@ namespace FAT01100Front
         [Inject] private R_ILocalizer<FAT01100FrontResources.Resources_Dummy_Class> Localizer { get; set; } = default!;
         #endregion
         private FAT01100ExpenseAllocationViewModel _VM = new();
+        private readonly FAT01100ExpenseAllocationBatchViewModel _batchViewModel = new FAT01100ExpenseAllocationBatchViewModel();
         private R_Conductor? _conductorRef;
 
         // Component references
@@ -59,7 +61,12 @@ namespace FAT01100Front
             {
                 if (poParameter is FAT01100DTO loDTO)
                 {
-                    _VM.Entity = R_FrontUtility.ConvertObjectToObject<FAT01100ExpenseAllocationDTO>(loDTO); 
+                    _VM.Entity = R_FrontUtility.ConvertObjectToObject<FAT01100ExpenseAllocationDTO>(loDTO);
+                    _VM.Entity.CDISPLAY_REF_DATE =_VM.Entity.DREF_DATE?.ToString(
+                                                        "dd MMMM yyyy",
+                                                        ClientHelper.CultureUI ?? CultureInfo.InvariantCulture
+                                                    ) ?? "";
+
                     await InvokeAsync(async () =>
                     {
                         //if (_conductorGridAsset != null)
@@ -70,8 +77,7 @@ namespace FAT01100Front
                         await _gridAsset.R_RefreshGrid(null);
                         if (_conductorGridTrans != null)
                         {
-                            await _gridAsset.R_RefreshGrid(null);
-
+                            await _gridTrans.R_RefreshGrid(null);
                         }
                     });
                 }
@@ -130,7 +136,13 @@ namespace FAT01100Front
             {
 
                 string lcAssetCodeTrans = _VM.Entity?.CASSET_CODE ?? string.Empty;
-                await _VM.GetTransExpAllocListAsync(lcAssetCodeTrans);
+                string lcParentId = _VM.Entity?.CREC_ID ?? string.Empty;
+                string lcDeptCode = _VM.Entity?.CDEPT_CODE ?? string.Empty;
+                string lcTransCode = _VM.Entity?.CTRANS_SEQ_NO ?? string.Empty;
+                string lcRefNo = _VM.Entity?.CREF_NO ?? string.Empty;
+                string lcAssetTransSeqNo = _VM.Entity?.CTRANS_SEQ_NO ?? string.Empty;
+                
+                await _VM.GetTransExpAllocListAsync(lcAssetCodeTrans, lcParentId, lcDeptCode, lcTransCode, lcRefNo, lcAssetTransSeqNo);
                 eventArgs.ListEntityResult = _VM.TransExpAllocList ?? new ObservableCollection<FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO>();
             }
             catch (Exception ex)
@@ -167,7 +179,7 @@ namespace FAT01100Front
 
             try
             {
-                var loData = (FAT01100ExpenseAllocationRSP_FA_GET_ASSET_EXP_ALLOC_LISTResultDTO)eventArgs.Data;
+                var loData = (FAT01100ExpenseAllocationRSP_FA_GET_TRANS_EXP_ALLOC_LISTResultDTO)eventArgs.Data;
 
                 if (loData != null)
                 {
@@ -265,7 +277,7 @@ namespace FAT01100Front
 
                 // Call batch save using existing batch ViewModel
                 string lcLangId = ClientHelper.CultureUI?.TwoLetterISOLanguageName ?? "en";
-                //await _batchViewModel.R_SaveBatchAsync(loParameter, lcLangId);
+                await _batchViewModel.R_SaveBatchAsync(loParameter, lcLangId);
             }
             catch (Exception ex)
             {
@@ -285,11 +297,11 @@ namespace FAT01100Front
                 _isEditMode = false;
                 _lastDepartmentCode = string.Empty;
 
-              
-                //if (_gridAllocExpense != null)
-                //{
-                //    await _gridAllocExpense.R_RefreshGrid(null);
-                //}
+
+                if (_gridTrans != null)
+                {
+                    await _gridTrans.R_RefreshGrid(null);
+                }
             }
             catch (Exception ex)
             {
@@ -315,18 +327,11 @@ namespace FAT01100Front
             {
                 _isEditMode = true;
                 _lastDepartmentCode = string.Empty;
-
-                // Notify Blazor that state has changed so grid can update
                 await InvokeAsync(StateHasChanged);
-
-                // Force grid to update its UI state by calling a refresh
-                // This ensures AllowAddNewRow binding change is applied
-                if (_gridAsset != null)
+                if (_gridTrans != null)
                 {
-                    // Use a small delay to ensure state change is processed
                     await Task.Delay(50);
-                    // Refresh grid to apply AllowAddNewRow change
-                    await _gridAsset.R_RefreshGrid(null);
+                    await _gridTrans.R_RefreshGrid(null);
                 }
             }
             catch (Exception ex)
@@ -351,9 +356,9 @@ namespace FAT01100Front
                 _lastDepartmentCode = string.Empty;
 
                 // Refresh grid to discard changes
-                if (_gridAsset != null)
+                if (_gridTrans != null)
                 {
-                    await _gridAsset.R_RefreshGrid(null);
+                    await _gridTrans.R_RefreshGrid(null);
                 }
             }
             catch (Exception ex)
@@ -378,9 +383,9 @@ namespace FAT01100Front
             {
                 // For batch grid, call R_SaveBatch() which will trigger:
                 // R_BeforeSaveBatch -> R_ServiceSaveBatch -> R_AfterSaveBatch
-                if (_gridAsset != null)
+                if (_gridTrans != null)
                 {
-                    await _gridAsset.R_SaveBatch();
+                    await _gridTrans.R_SaveBatch();
                 }
             }
             catch (Exception ex)
@@ -503,29 +508,11 @@ namespace FAT01100Front
 
                         if (string.IsNullOrWhiteSpace(lcDeptCode))
                         {
-                            // Clear department name if code is empty
                             loGridRow.CEXPENSE_DEPT_NAME = string.Empty;
                             _lastDepartmentCode = string.Empty;
                         }
                         else if (lcDeptCode != _lastDepartmentCode)
                         {
-                            // Department code changed - perform lookup to get department name
-                            // NET4: Uses LookUpForm with GSL00500 sender flag to get department info
-                            // In NET6: We need to call the lookup service or ViewModel method to get department name
-
-                            // TODO: Implement department lookup service call here
-                            // For now, we'll leave the department name empty if not found via lookup
-                            // The lookup should be handled via the R_GridLookupColumn's lookup mechanism
-                            // This handler is for when user types the code manually instead of using lookup
-
-                            // Note: If department lookup ViewModel method exists, call it here
-                            // Example:
-                            // var loDeptResult = await _VM.GetDepartmentNameAsync(lcDeptCode);
-                            // if (loDeptResult != null)
-                            // {
-                            //     loGridRow.CEXPENSE_DEPT_NAME = loDeptResult.CDEPT_NAME;
-                            // }
-
                             _lastDepartmentCode = lcDeptCode;
                         }
                     }
@@ -645,28 +632,28 @@ namespace FAT01100Front
                 // Check if we have valid data (CASSET_CODE)
                 bool llHasData = loParam != null && !string.IsNullOrWhiteSpace(loParam.CASSET_CODE);
 
-                //if (!llHasData)
-                //{
-                //    // No valid data - clear grid
-                //    if (_gridAllocExpense != null && _gridAllocExpense.DataSource != null && _gridAllocExpense.DataSource.Count > 0)
-                //    {
-                //        _gridAllocExpense.DataSource.Clear();
-                //    }
+                if (!llHasData)
+                {
+                    // No valid data - clear grid
+                    if (_gridTrans != null && _gridTrans.DataSource != null && _gridTrans.DataSource.Count > 0)
+                    {
+                        _gridTrans.DataSource.Clear();
+                    }
 
-                //    // Also clear the ViewModel's AllocExpenPageList collection
-                //    if (_VM?.AllocExpenPageList != null && _VM.AllocExpenPageList.Count > 0)
-                //    {
-                //        _VM.AllocExpenPageList.Clear();
-                //    }
-                //}
-                //else
-                //{
-                //    // Has valid data - refresh grid to load expense allocation list
-                //    if (_gridAllocExpense != null)
-                //    {
-                //        await _gridAllocExpense.R_RefreshGrid(null);
-                //    }
-                //}
+                    // Also clear the ViewModel's AllocExpenPageList collection
+                    if (_VM?.TransExpAllocList != null && _VM.TransExpAllocList.Count > 0)
+                    {
+                        _VM.TransExpAllocList.Clear();
+                    }
+                }
+                else
+                {
+                    // Has valid data - refresh grid to load expense allocation list
+                    if (_gridTrans != null)
+                    {
+                        await _gridTrans.R_RefreshGrid(null);
+                    }
+                }
             }
             catch (Exception ex)
             {

@@ -412,6 +412,31 @@ namespace FAT01100Model
             throw new NotImplementedException();
         }
 
+        public async Task<FAT01100ResultDTO<FAT01100GetOutstandingTransResultDTO>> FAT01100GetOutstandingTrans(FAT01100GetOutstandingTransParameterDTO poParameter)
+        {
+            var loEx = new R_Exception();
+            FAT01100ResultDTO<FAT01100GetOutstandingTransResultDTO> loRtn = new FAT01100ResultDTO<FAT01100GetOutstandingTransResultDTO>();
+
+            try
+            {
+                R_HTTPClientWrapper.httpClientName = _HttpClientName;
+                loRtn = await R_HTTPClientWrapper.R_APIRequestObject<FAT01100ResultDTO<FAT01100GetOutstandingTransResultDTO>, FAT01100GetOutstandingTransParameterDTO>(
+                    _RequestServiceEndPoint,
+                    nameof(IFAT01100Entry.FAT01100GetOutstandingTrans),
+                    poParameter,
+                    _ModuleName,
+                    _SendWithContext,
+                    _SendWithToken);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
         #endregion
     }
 }

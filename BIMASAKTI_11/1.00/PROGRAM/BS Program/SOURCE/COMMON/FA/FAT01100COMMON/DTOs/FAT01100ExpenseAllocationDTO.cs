@@ -15,6 +15,7 @@ namespace FAT01100Common.DTOs
         public string CREF_NO { get; set; } = string.Empty;
         public string CREF_DATE { get; set; } = string.Empty;
         public DateTime? DREF_DATE { get; set; }
+        public string CDISPLAY_REF_DATE { get; set; }
         public string CTRANS_SEQ_NO { get; set; } = string.Empty;
         public string CREC_ID { get; set; } = string.Empty;
 

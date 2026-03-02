@@ -436,6 +436,31 @@ namespace FAT01100Service
             }
         }
 
+        [HttpPost]
+        public async Task<FAT01100ResultDTO<FAT01100GetOutstandingTransResultDTO>> FAT01100GetOutstandingTrans(FAT01100GetOutstandingTransParameterDTO poParameter)
+        {
+            var lcMethod = nameof(FAT01100GetOutstandingTrans);
+            using var activity = _activitySource.StartActivity(lcMethod);
+            var loEx = new R_Exception();
+            var loRtn = new FAT01100ResultDTO<FAT01100GetOutstandingTransResultDTO>();
+
+            try
+            {
+                var loCls = new FAT01100EntryCls();
+                poParameter.CCOMPANY_ID = R_BackGlobalVar.COMPANY_ID;
+                _logger.LogInfo("Start method {MethodName}", lcMethod);
+                loRtn = await loCls.FAT01100GetOutstandingTrans(poParameter);
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+                _logger.LogError(loEx);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+            return loRtn;
+        }
+
 
         #endregion
     }

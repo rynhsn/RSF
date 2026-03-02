@@ -40,6 +40,7 @@ namespace FAT01100Model.VMs
         public FAT01100GetYearRangeResultDTO YearRangeData { get; set; } = new FAT01100GetYearRangeResultDTO();
         public FAT01100GetLastCurrencyRateResultDTO LastCurrencyRateData { get; set; } = new FAT01100GetLastCurrencyRateResultDTO();
         public FAT01100GetAssetResultDTO GetAssetData { get; set; } = new FAT01100GetAssetResultDTO();
+        public FAT01100GetOutstandingTransResultDTO GetOutstandingTransData { get; set; } = new FAT01100GetOutstandingTransResultDTO();
 
         // List bindings
         public ObservableCollection<FAT01100GetCurrencyListResultDTO> CurrencyList { get; set; } = new ObservableCollection<FAT01100GetCurrencyListResultDTO>();
@@ -218,6 +219,26 @@ namespace FAT01100Model.VMs
                 //Entity = R_FrontUtility.ConvertObjectToObject<FAT01100DTO>(GetAssetData);
                 
 
+            }
+            catch (Exception ex)
+            {
+                loEx.Add(ex);
+            }
+
+            loEx.ThrowExceptionIfErrors();
+        }
+
+        public async Task GetOutstandingTrans(string pcAssetCode)
+        {
+            var loEx = new R_Exception();
+            try
+            {
+                var loParam = new FAT01100GetOutstandingTransParameterDTO
+                {
+                    CASSET_CODE = pcAssetCode
+                };
+                var loResult = await _model.FAT01100GetOutstandingTrans(loParam);
+                GetOutstandingTransData = loResult.Data;
             }
             catch (Exception ex)
             {

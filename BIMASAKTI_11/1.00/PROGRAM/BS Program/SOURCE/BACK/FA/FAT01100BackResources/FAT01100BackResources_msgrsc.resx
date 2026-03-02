@@ -59,6 +59,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PS001" xml:space="preserve">
-    <value>Change Asset Data - placeholder message</value>
+    <value>Duplicate code. Please input another code</value>
+  </data>
+  <data name="PS002" xml:space="preserve">
+    <value>Data Not Found</value>
+  </data>
+  <data name="PS003" xml:space="preserve">
+    <value>Asset Code is already exists.</value>
+  </data>
+  <data name="PS004" xml:space="preserve">
+    <value>Asset data is not valid, can't be processed !</value>
+  </data>
+  <data name="PS005" xml:space="preserve">
+    <value>There's an error in the data!</value>
   </data>
 </root>
